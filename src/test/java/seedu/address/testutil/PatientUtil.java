@@ -10,13 +10,13 @@ import java.util.Set;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.model.person.Patient;
+import seedu.address.model.patient.Patient;
 import seedu.address.model.tag.Tag;
 
 /**
  * A utility class for Patient.
  */
-public class PersonUtil {
+public class PatientUtil {
 
     /**
      * Returns an add command string for adding the {@code patient}.
