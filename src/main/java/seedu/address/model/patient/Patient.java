@@ -24,15 +24,19 @@ public class Patient {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
+    // Extra fields
+    private final Remark remark;
+
     /**
      * Every field must be present and not null.
      */
-    public Patient(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Patient(Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.remark = remark;
         this.tags.addAll(tags);
     }
 
@@ -52,6 +56,10 @@ public class Patient {
         return address;
     }
 
+    public Remark getRemark() {
+        return remark;
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -64,7 +72,7 @@ public class Patient {
      * Returns true if both persons of the same name have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two persons.
      */
-    public boolean isSamePerson(Patient otherPatient) {
+    public boolean isSamePatient(Patient otherPatient) {
         if (otherPatient == this) {
             return true;
         }
