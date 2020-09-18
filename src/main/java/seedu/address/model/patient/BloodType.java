@@ -24,7 +24,7 @@ public class BloodType {
     }
 
     /**
-     * Returns true if a given string is a valid birthdate number.
+     * Returns true if a given string is a valid bloodtype value.
      */
     public static boolean isValidBloodType(String test) {
         for (String validType: Types) {

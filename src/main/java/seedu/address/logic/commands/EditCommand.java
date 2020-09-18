@@ -1,13 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_BLOODTYPE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTHDATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.*;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PATIENTS;
 
 import java.util.Collections;
@@ -36,6 +30,7 @@ public class EditCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
+            + "[" + PREFIX_GENDER + "GENDER] "
             + "[" + PREFIX_BIRTHDATE + "BIRTHDATE] "
             + "[" + PREFIX_BLOODTYPE + "BLOODTYPE] "
             + "[" + PREFIX_NAME + "NAME] "
@@ -95,6 +90,7 @@ public class EditCommand extends Command {
         assert patientToEdit != null;
 
         Name updatedName = editPatientDescriptor.getName().orElse(patientToEdit.getName());
+        Gender updatedGender = editPatientDescriptor.getGender().orElse(patientToEdit.getGender());
         Birthdate updatedBirthdate = editPatientDescriptor.getBirthdate().orElse(patientToEdit.getBirthdate());
         BloodType updatedBloodType = editPatientDescriptor.getBloodType().orElse(patientToEdit.getBloodType());
         Phone updatedPhone = editPatientDescriptor.getPhone().orElse(patientToEdit.getPhone());
@@ -103,7 +99,7 @@ public class EditCommand extends Command {
         Remark updatedRemark = patientToEdit.getRemark(); // edit command does not allow editing remarks
         Set<Tag> updatedTags = editPatientDescriptor.getTags().orElse(patientToEdit.getTags());
 
-        return new Patient(updatedName, updatedBirthdate, updatedBloodType, updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedTags);
+        return new Patient(updatedName, updatedGender, updatedBirthdate, updatedBloodType, updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedTags);
     }
 
     @Override
@@ -130,6 +126,7 @@ public class EditCommand extends Command {
      */
     public static class EditPatientDescriptor {
         private Name name;
+        private Gender gender;
         private Birthdate birthdate;
         private BloodType bloodtype;
         private Phone phone;
@@ -146,6 +143,7 @@ public class EditCommand extends Command {
          */
         public EditPatientDescriptor(EditPatientDescriptor toCopy) {
             setName(toCopy.name);
+            setGender(toCopy.gender);
             setBirthdate(toCopy.birthdate);
             setBloodType(toCopy.bloodtype);
             setPhone(toCopy.phone);
@@ -168,6 +166,14 @@ public class EditCommand extends Command {
 
         public Optional<Name> getName() {
             return Optional.ofNullable(name);
+        }
+
+        public void setGender(Gender gender) {
+            this.gender = gender;
+        }
+
+        public Optional<Gender> getGender() {
+            return Optional.ofNullable(gender);
         }
 
         public void setBirthdate(Birthdate birthdate) {
@@ -251,6 +257,7 @@ public class EditCommand extends Command {
             EditPatientDescriptor e = (EditPatientDescriptor) other;
 
             return getName().equals(e.getName())
+                    && getGender().equals(e.getGender())
                     && getBirthdate().equals(e.getBirthdate())
                     && getBloodType().equals(e.getBloodType())
                     && getPhone().equals(e.getPhone())
