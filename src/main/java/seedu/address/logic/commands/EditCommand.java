@@ -2,6 +2,8 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BLOODTYPE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTHDATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -33,6 +35,9 @@ public class EditCommand extends Command {
             + "by the index number used in the displayed patient list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
+            + "[" + PREFIX_NAME + "NAME] "
+            + "[" + PREFIX_BIRTHDATE + "BIRTHDATE] "
+            + "[" + PREFIX_BLOODTYPE + "BLOODTYPE] "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
@@ -91,13 +96,14 @@ public class EditCommand extends Command {
 
         Name updatedName = editPatientDescriptor.getName().orElse(patientToEdit.getName());
         Birthdate updatedBirthdate = editPatientDescriptor.getBirthdate().orElse(patientToEdit.getBirthdate());
+        BloodType updatedBloodType = editPatientDescriptor.getBloodType().orElse(patientToEdit.getBloodType());
         Phone updatedPhone = editPatientDescriptor.getPhone().orElse(patientToEdit.getPhone());
         Email updatedEmail = editPatientDescriptor.getEmail().orElse(patientToEdit.getEmail());
         Address updatedAddress = editPatientDescriptor.getAddress().orElse(patientToEdit.getAddress());
         Remark updatedRemark = patientToEdit.getRemark(); // edit command does not allow editing remarks
         Set<Tag> updatedTags = editPatientDescriptor.getTags().orElse(patientToEdit.getTags());
 
-        return new Patient(updatedName, updatedBirthdate, updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedTags);
+        return new Patient(updatedName, updatedBirthdate, updatedBloodType, updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedTags);
     }
 
     @Override
@@ -125,6 +131,7 @@ public class EditCommand extends Command {
     public static class EditPatientDescriptor {
         private Name name;
         private Birthdate birthdate;
+        private BloodType bloodtype;
         private Phone phone;
         private Email email;
         private Address address;
@@ -140,6 +147,7 @@ public class EditCommand extends Command {
         public EditPatientDescriptor(EditPatientDescriptor toCopy) {
             setName(toCopy.name);
             setBirthdate(toCopy.birthdate);
+            setBloodType(toCopy.bloodtype);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
@@ -168,6 +176,14 @@ public class EditCommand extends Command {
 
         public Optional<Birthdate> getBirthdate() {
             return Optional.ofNullable(birthdate);
+        }
+
+        public void setBloodType(BloodType bloodtype) {
+            this.bloodtype = bloodtype;
+        }
+
+        public Optional<BloodType> getBloodType() {
+            return Optional.ofNullable(bloodtype);
         }
 
         public void setPhone(Phone phone) {
@@ -235,6 +251,8 @@ public class EditCommand extends Command {
             EditPatientDescriptor e = (EditPatientDescriptor) other;
 
             return getName().equals(e.getName())
+                    && getBirthdate().equals(e.getBirthdate())
+                    && getBloodType().equals(e.getBloodType())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())

@@ -18,10 +18,12 @@ public class Patient {
     // Identity fields
     private final Name name;
     private final Birthdate birthdate;
-    private final Phone phone;
-    private final Email email;
+    private final BloodType bloodtype;
+
 
     // Data fields
+    private final Phone phone;
+    private final Email email;
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
@@ -31,10 +33,11 @@ public class Patient {
     /**
      * Every field must be present and not null.
      */
-    public Patient(Name name, Birthdate birthdate, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Patient(Name name, Birthdate birthdate, BloodType bloodtype, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags) {
+        requireAllNonNull(name, birthdate, bloodtype, phone, email, address, tags);
         this.name = name;
         this.birthdate = birthdate;
+        this.bloodtype = bloodtype;
         this.phone = phone;
         this.email = email;
         this.address = address;
@@ -48,6 +51,10 @@ public class Patient {
 
     public Birthdate getBirthdate() {
         return birthdate;
+    }
+
+    public BloodType getBloodType() {
+        return bloodtype;
     }
 
     public Phone getPhone() {
@@ -75,7 +82,7 @@ public class Patient {
     }
 
     /**
-     * Returns true if both persons of the same name and age have at least one other identity field that is the same.
+     * Returns true if both persons of the same name, age and blood, and have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSamePatient(Patient otherPatient) {
@@ -86,6 +93,7 @@ public class Patient {
         return otherPatient != null
                 && otherPatient.getName().equals(getName())
                 && otherPatient.getBirthdate().equals(getBirthdate())
+                && otherPatient.getBloodType().equals(getBloodType())
                 && (otherPatient.getPhone().equals(getPhone()) || otherPatient.getEmail().equals(getEmail()));
     }
 
@@ -106,6 +114,7 @@ public class Patient {
         Patient otherPatient = (Patient) other;
         return otherPatient.getName().equals(getName())
                 && otherPatient.getBirthdate().equals(getBirthdate())
+                && otherPatient.getBloodType().equals(getBloodType())
                 && otherPatient.getPhone().equals(getPhone())
                 && otherPatient.getEmail().equals(getEmail())
                 && otherPatient.getAddress().equals(getAddress())
@@ -115,7 +124,7 @@ public class Patient {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, birthdate, phone, email, address, tags);
+        return Objects.hash(name, birthdate, bloodtype, phone, email, address, tags);
     }
 
     @Override
@@ -124,6 +133,8 @@ public class Patient {
         builder.append(getName())
                 .append(" Birthdate: ")
                 .append(getBirthdate())
+                .append(" BloodType: ")
+                .append(getBloodType())
                 .append(" Phone: ")
                 .append(getPhone())
                 .append(" Email: ")
