@@ -9,10 +9,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.patient.Address;
-import seedu.address.model.patient.Email;
-import seedu.address.model.patient.Name;
-import seedu.address.model.patient.Phone;
+import seedu.address.model.patient.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -48,6 +45,21 @@ public class ParserUtil {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
         return new Name(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String birthdate} into a {@code Birthdate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static Birthdate parseBirthdate(String birthdate) throws ParseException {
+        requireNonNull(birthdate);
+        String trimmedBirthdate = birthdate.trim();
+        if (!Birthdate.isValidBirthdate(trimmedBirthdate)) {
+            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        }
+        return new Birthdate(trimmedBirthdate);
     }
 
     /**

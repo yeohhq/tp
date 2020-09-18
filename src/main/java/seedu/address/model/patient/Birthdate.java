@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Birthdate {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Birthdate must be input in this format: "; //todo
+            "Birthdate must be input in this format: YYYY-MM-DD";
 
     public final String value;
 
@@ -22,16 +22,15 @@ public class Birthdate {
     public Birthdate(String birthdate) {
         requireNonNull(birthdate);
         checkArgument(isValidBirthdate(birthdate), MESSAGE_CONSTRAINTS);
-        value = LocalDate.parse(birthdate).toString();
+        value = birthdate;
     }
 
     /**
      * Returns true if a given string is a valid birthdate number.
      */
     public static boolean isValidBirthdate(String test) {
-        DateTimeFormatter dateFormatter = DateTimeFormatter.BASIC_ISO_DATE;
         try {
-            LocalDate.parse(test, dateFormatter);
+            LocalDate.parse(test);
         } catch (DateTimeParseException e) {
             return false;
         }

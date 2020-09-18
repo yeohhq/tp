@@ -21,6 +21,7 @@ class JsonAdaptedPatient {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Patient's %s field is missing!";
 
     private final String name;
+    private final String birthdate;
     private final String phone;
     private final String email;
     private final String address;
@@ -31,10 +32,13 @@ class JsonAdaptedPatient {
      * Constructs a {@code JsonAdaptedPatient} with the given patient details.
      */
     @JsonCreator
-    public JsonAdaptedPatient(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
+    public JsonAdaptedPatient(@JsonProperty("name") String name,
+                              @JsonProperty("birthdate") String birthdate,
+                              @JsonProperty("phone") String phone,
                               @JsonProperty("email") String email, @JsonProperty("address") String address,
                               @JsonProperty("remark") String remark, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
+        this.birthdate = birthdate;
         this.phone = phone;
         this.email = email;
         this.address = address;
@@ -49,6 +53,7 @@ class JsonAdaptedPatient {
      */
     public JsonAdaptedPatient(Patient source) {
         name = source.getName().fullName;
+        birthdate = source.getBirthdate().value;
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
@@ -76,6 +81,17 @@ class JsonAdaptedPatient {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
         final Name modelName = new Name(name);
+
+
+        if (birthdate == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Birthdate.class.getSimpleName()));
+        }
+        if (!Birthdate.isValidBirthdate(birthdate)) {
+            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        }
+        final Birthdate modelBirthdate = new Birthdate(birthdate);
+
+
 
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
@@ -107,7 +123,7 @@ class JsonAdaptedPatient {
         final Remark modelRemark = new Remark(remark);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Patient(modelName, modelPhone, modelEmail, modelAddress, modelRemark, modelTags);
+        return new Patient(modelName, modelBirthdate, modelPhone, modelEmail, modelAddress, modelRemark, modelTags);
     }
 
 }

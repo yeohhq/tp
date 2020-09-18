@@ -90,13 +90,14 @@ public class EditCommand extends Command {
         assert patientToEdit != null;
 
         Name updatedName = editPatientDescriptor.getName().orElse(patientToEdit.getName());
+        Birthdate updatedBirthdate = editPatientDescriptor.getBirthdate().orElse(patientToEdit.getBirthdate());
         Phone updatedPhone = editPatientDescriptor.getPhone().orElse(patientToEdit.getPhone());
         Email updatedEmail = editPatientDescriptor.getEmail().orElse(patientToEdit.getEmail());
         Address updatedAddress = editPatientDescriptor.getAddress().orElse(patientToEdit.getAddress());
         Remark updatedRemark = patientToEdit.getRemark(); // edit command does not allow editing remarks
         Set<Tag> updatedTags = editPatientDescriptor.getTags().orElse(patientToEdit.getTags());
 
-        return new Patient(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedTags);
+        return new Patient(updatedName, updatedBirthdate, updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedTags);
     }
 
     @Override
@@ -123,6 +124,7 @@ public class EditCommand extends Command {
      */
     public static class EditPatientDescriptor {
         private Name name;
+        private Birthdate birthdate;
         private Phone phone;
         private Email email;
         private Address address;
@@ -137,6 +139,7 @@ public class EditCommand extends Command {
          */
         public EditPatientDescriptor(EditPatientDescriptor toCopy) {
             setName(toCopy.name);
+            setBirthdate(toCopy.birthdate);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
@@ -157,6 +160,14 @@ public class EditCommand extends Command {
 
         public Optional<Name> getName() {
             return Optional.ofNullable(name);
+        }
+
+        public void setBirthdate(Birthdate birthdate) {
+            this.birthdate = birthdate;
+        }
+
+        public Optional<Birthdate> getBirthdate() {
+            return Optional.ofNullable(birthdate);
         }
 
         public void setPhone(Phone phone) {
