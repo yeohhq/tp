@@ -97,8 +97,8 @@ class JsonAdaptedPatient {
         if (bloodtype == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, BloodType.class.getSimpleName()));
         }
-        if (!BloodType.isValidBloodType(birthdate)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        if (!BloodType.isValidBloodType(bloodtype)) {
+            throw new IllegalValueException(BloodType.MESSAGE_CONSTRAINTS);
         }
         final BloodType modelBloodType = new BloodType(bloodtype);
 

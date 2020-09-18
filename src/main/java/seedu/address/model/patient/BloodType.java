@@ -1,17 +1,12 @@
 package seedu.address.model.patient;
 
-
-
-import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 public class BloodType {
 
-    private static final String MESSAGE_CONSTRAINTS =
-            "BloodType must be valid. Eg: A+";
+
+    public static final String MESSAGE_CONSTRAINTS = "BloodType must be valid. Eg: A+";
 
     private static final String[] Types = { "A+", "A-", "B+", "B-", "O", "O+", "O-", "AB+", "AB-"};
 
@@ -33,7 +28,7 @@ public class BloodType {
      */
     public static boolean isValidBloodType(String test) {
         for (String validType: Types) {
-            if (test.equals(validType)) {
+            if (test.contains(validType)) {
                 return true;
             }
         }
