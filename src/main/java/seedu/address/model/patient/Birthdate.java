@@ -1,7 +1,6 @@
 package seedu.address.model.patient;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 import static java.util.Objects.requireNonNull;

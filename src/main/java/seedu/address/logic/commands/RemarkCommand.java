@@ -55,7 +55,8 @@ public class RemarkCommand extends Command {
         }
 
         Patient patientToEdit = lastShownList.get(index.getZeroBased());
-        Patient editedPatient = new Patient(patientToEdit.getName(), patientToEdit.getBirthdate(), patientToEdit.getPhone(), patientToEdit.getEmail(),
+        Patient editedPatient = new Patient(patientToEdit.getName(), patientToEdit.getBirthdate(), patientToEdit.getBloodType(),
+                patientToEdit.getPhone(), patientToEdit.getEmail(),
                 patientToEdit.getAddress(), remark, patientToEdit.getTags());
 
         model.setPatient(patientToEdit, editedPatient);

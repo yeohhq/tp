@@ -22,6 +22,7 @@ class JsonAdaptedPatient {
 
     private final String name;
     private final String birthdate;
+    private final String bloodtype;
     private final String phone;
     private final String email;
     private final String address;
@@ -34,11 +35,13 @@ class JsonAdaptedPatient {
     @JsonCreator
     public JsonAdaptedPatient(@JsonProperty("name") String name,
                               @JsonProperty("birthdate") String birthdate,
+                              @JsonProperty("bloodtype") String bloodtype,
                               @JsonProperty("phone") String phone,
                               @JsonProperty("email") String email, @JsonProperty("address") String address,
                               @JsonProperty("remark") String remark, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.birthdate = birthdate;
+        this.bloodtype = bloodtype;
         this.phone = phone;
         this.email = email;
         this.address = address;
@@ -54,6 +57,7 @@ class JsonAdaptedPatient {
     public JsonAdaptedPatient(Patient source) {
         name = source.getName().fullName;
         birthdate = source.getBirthdate().value;
+        bloodtype = source.getBloodType().value;
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
@@ -82,7 +86,6 @@ class JsonAdaptedPatient {
         }
         final Name modelName = new Name(name);
 
-
         if (birthdate == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Birthdate.class.getSimpleName()));
         }
@@ -91,7 +94,13 @@ class JsonAdaptedPatient {
         }
         final Birthdate modelBirthdate = new Birthdate(birthdate);
 
-
+        if (bloodtype == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, BloodType.class.getSimpleName()));
+        }
+        if (!BloodType.isValidBloodType(birthdate)) {
+            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        }
+        final BloodType modelBloodType = new BloodType(bloodtype);
 
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
@@ -123,7 +132,7 @@ class JsonAdaptedPatient {
         final Remark modelRemark = new Remark(remark);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Patient(modelName, modelBirthdate, modelPhone, modelEmail, modelAddress, modelRemark, modelTags);
+        return new Patient(modelName, modelBirthdate, modelBloodType, modelPhone, modelEmail, modelAddress, modelRemark, modelTags);
     }
 
 }

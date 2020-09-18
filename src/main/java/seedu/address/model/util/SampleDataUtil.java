@@ -18,22 +18,22 @@ public class SampleDataUtil {
 
     public static Patient[] getSamplePatients() {
         return new Patient[] {
-            new Patient(new Name("Alex Yeoh"), new Birthdate("02/28/2019"), new Phone("87438807"), new Email("alexyeoh@example.com"),
+            new Patient(new Name("Alex Yeoh"), new Birthdate("2019-02-28"), new BloodType("A+"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new Address("Blk 30 Geylang Street 29, #06-40"), EMPTY_REMARK,
                 getTagSet("friends")),
-            new Patient(new Name("Bernice Yu"), new Birthdate("02/28/2019"), new Phone("99272758"), new Email("berniceyu@example.com"),
+            new Patient(new Name("Bernice Yu"), new Birthdate("1998-10-03"), new BloodType("A+"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"), EMPTY_REMARK,
                 getTagSet("colleagues", "friends")),
-            new Patient(new Name("Charlotte Oliveiro"), new Birthdate("02/28/2019"), new Phone("93210283"), new Email("charlotte@example.com"),
+            new Patient(new Name("Charlotte Oliveiro"), new Birthdate("1998-08-13"), new BloodType("A+"), new Phone("93210283"), new Email("charlotte@example.com"),
                 new Address("Blk 11 Ang Mo Kio Street 74, #11-04"), EMPTY_REMARK,
                 getTagSet("neighbours")),
-            new Patient(new Name("David Li"), new Birthdate("02/28/2019"), new Phone("91031282"), new Email("lidavid@example.com"),
+            new Patient(new Name("David Li"), new Birthdate("1997-12-28"), new BloodType("A+"), new Phone("91031282"), new Email("lidavid@example.com"),
                 new Address("Blk 436 Serangoon Gardens Street 26, #16-43"), EMPTY_REMARK,
                 getTagSet("family")),
-            new Patient(new Name("Irfan Ibrahim"), new Birthdate("02/28/2019"), new Phone("92492021"), new Email("irfan@example.com"),
+            new Patient(new Name("Irfan Ibrahim"), new Birthdate("1996-08-17"), new BloodType("A+"), new Phone("92492021"), new Email("irfan@example.com"),
                 new Address("Blk 47 Tampines Street 20, #17-35"), EMPTY_REMARK,
                 getTagSet("classmates")),
-            new Patient(new Name("Roy Balakrishnan"), new Birthdate("02/28/2019"), new Phone("92624417"), new Email("royb@example.com"),
+            new Patient(new Name("Roy Balakrishnan"), new Birthdate("1990-01-23"), new BloodType("A+"), new Phone("92624417"), new Email("royb@example.com"),
                 new Address("Blk 45 Aljunied Street 85, #11-31"), EMPTY_REMARK,
                 getTagSet("colleagues"))
         };
