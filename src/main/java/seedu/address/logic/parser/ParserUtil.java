@@ -48,6 +48,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String gender} into a {@code Gender}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code gender} is invalid.
+     */
+    public static Gender parseGender(String gender) throws ParseException {
+        requireNonNull(gender);
+        String trimmedGender = gender.trim();
+        if (!Gender.isValidGender(trimmedGender)) {
+            throw new ParseException(Gender.MESSAGE_CONSTRAINTS);
+        }
+        return new Gender(trimmedGender);
+    }
+
+    /**
      * Parses a {@code String birthdate} into a {@code Birthdate}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -57,7 +72,7 @@ public class ParserUtil {
         requireNonNull(birthdate);
         String trimmedBirthdate = birthdate.trim();
         if (!Birthdate.isValidBirthdate(trimmedBirthdate)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Birthdate.MESSAGE_CONSTRAINTS);
         }
         return new Birthdate(trimmedBirthdate);
     }
@@ -72,7 +87,7 @@ public class ParserUtil {
         requireNonNull(bloodtype);
         String trimmedBloodtype = bloodtype.trim();
         if (!BloodType.isValidBloodType(trimmedBloodtype)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            throw new ParseException(BloodType.MESSAGE_CONSTRAINTS);
         }
         return new BloodType(trimmedBloodtype);
     }
