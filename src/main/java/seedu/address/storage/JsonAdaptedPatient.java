@@ -21,6 +21,7 @@ class JsonAdaptedPatient {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Patient's %s field is missing!";
 
     private final String name;
+    private final String gender;
     private final String birthdate;
     private final String bloodtype;
     private final String phone;
@@ -34,12 +35,14 @@ class JsonAdaptedPatient {
      */
     @JsonCreator
     public JsonAdaptedPatient(@JsonProperty("name") String name,
+                              @JsonProperty("gender") String gender,
                               @JsonProperty("birthdate") String birthdate,
                               @JsonProperty("bloodtype") String bloodtype,
                               @JsonProperty("phone") String phone,
                               @JsonProperty("email") String email, @JsonProperty("address") String address,
                               @JsonProperty("remark") String remark, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
+        this.gender = gender;
         this.birthdate = birthdate;
         this.bloodtype = bloodtype;
         this.phone = phone;
@@ -56,6 +59,7 @@ class JsonAdaptedPatient {
      */
     public JsonAdaptedPatient(Patient source) {
         name = source.getName().fullName;
+        gender = source.getGender().value;
         birthdate = source.getBirthdate().value;
         bloodtype = source.getBloodType().value;
         phone = source.getPhone().value;
@@ -85,6 +89,14 @@ class JsonAdaptedPatient {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
         final Name modelName = new Name(name);
+
+        if (gender == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Gender.class.getSimpleName()));
+        }
+        if (!Gender.isValidGender(gender)) {
+            throw new IllegalValueException(Gender.MESSAGE_CONSTRAINTS);
+        }
+        final Gender modelGender = new Gender(gender);
 
         if (birthdate == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Birthdate.class.getSimpleName()));
@@ -132,7 +144,7 @@ class JsonAdaptedPatient {
         final Remark modelRemark = new Remark(remark);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Patient(modelName, modelBirthdate, modelBloodType, modelPhone, modelEmail, modelAddress, modelRemark, modelTags);
+        return new Patient(modelName, modelGender, modelBirthdate, modelBloodType, modelPhone, modelEmail, modelAddress, modelRemark, modelTags);
     }
 
 }
