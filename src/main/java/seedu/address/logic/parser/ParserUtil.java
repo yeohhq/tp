@@ -57,7 +57,7 @@ public class ParserUtil {
         requireNonNull(birthdate);
         String trimmedBirthdate = birthdate.trim();
         if (!Birthdate.isValidBirthdate(trimmedBirthdate)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Birthdate.MESSAGE_CONSTRAINTS);
         }
         return new Birthdate(trimmedBirthdate);
     }
@@ -72,7 +72,7 @@ public class ParserUtil {
         requireNonNull(bloodtype);
         String trimmedBloodtype = bloodtype.trim();
         if (!BloodType.isValidBloodType(trimmedBloodtype)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            throw new ParseException(BloodType.MESSAGE_CONSTRAINTS);
         }
         return new BloodType(trimmedBloodtype);
     }
