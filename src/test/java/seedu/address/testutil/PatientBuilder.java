@@ -13,6 +13,7 @@ import seedu.address.model.util.SampleDataUtil;
 public class PatientBuilder {
 
     public static final String DEFAULT_NAME = "Alice Pauline";
+    public static final String DEFAULT_GENDER = "FEMALE";
     public static final String DEFAULT_BIRTHDATE = "1990-03-02";
     public static final String DEFAULT_BLOODTYPE = "O+";
     public static final String DEFAULT_PHONE = "85355255";
@@ -21,6 +22,7 @@ public class PatientBuilder {
     public static final String DEFAULT_REMARK = "";
 
     private Name name;
+    private Gender gender;
     private Birthdate birthdate;
     private BloodType bloodtype;
     private Phone phone;
@@ -34,6 +36,7 @@ public class PatientBuilder {
      */
     public PatientBuilder() {
         name = new Name(DEFAULT_NAME);
+        gender = new Gender(DEFAULT_GENDER);
         birthdate = new Birthdate(DEFAULT_BIRTHDATE);
         bloodtype = new BloodType(DEFAULT_BLOODTYPE);
         phone = new Phone(DEFAULT_PHONE);
@@ -48,6 +51,7 @@ public class PatientBuilder {
      */
     public PatientBuilder(Patient patientToCopy) {
         name = patientToCopy.getName();
+        gender = patientToCopy.getGender();
         birthdate = patientToCopy.getBirthdate();
         bloodtype = patientToCopy.getBloodType();
         phone = patientToCopy.getPhone();
@@ -62,6 +66,14 @@ public class PatientBuilder {
      */
     public PatientBuilder withName(String name) {
         this.name = new Name(name);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Gender} of the {@code Patient} that we are building.
+     */
+    public PatientBuilder withGender(String gender) {
+        this.gender = new Gender(gender);
         return this;
     }
 
@@ -122,7 +134,7 @@ public class PatientBuilder {
     }
 
     public Patient build() {
-        return new Patient(name, birthdate, bloodtype, phone, email, address, remark, tags);
+        return new Patient(name, gender, birthdate, bloodtype, phone, email, address, remark, tags);
     }
 
 }
