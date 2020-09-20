@@ -7,7 +7,6 @@ public class CliSyntax {
 
     /* Prefix definitions */
     public static final Prefix PREFIX_NAME = new Prefix("n/");
-    public static final Prefix PREFIX_GENDER = new Prefix("g/");
     public static final Prefix PREFIX_BLOODTYPE = new Prefix("bt/");
     public static final Prefix PREFIX_BIRTHDATE = new Prefix("bd/");
     public static final Prefix PREFIX_PHONE = new Prefix("p/");
