@@ -236,13 +236,15 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of patient's contacts/details
+* has a preference to check his schedule on desktop over handwritten schedule
+* has a need to store patient's information on desktop
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: provide an application for psychiatrists to manage their patient's medical information and their upcoming appointments. 
 
 
 ### User stories
@@ -251,12 +253,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new patient               |                                                                        |
-| `* * *`  | user                                       | delete a patient                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a patient by name          | locate details of patients without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many patients in the address book | sort patients by name           | locate a patient easily                                                 |
+| `* * *`  | Psychiatrist                                   | view the appointment history of my patient        | decide when I can schedule the next appointment for the patient.                 |
+| `* * *`  | Psychiatrist                                       | delete full patient records               | remove any irrelevant patient records                                                                       |
+| `* * *`  | Psychiatrist                                       | record details about the patient           | access his/her psychotherapy progress. |
+| `* * *`    | Psychiatrist                                       | view my patient’s medical information    | access the type and dosage of medication to provide.                |
+| `* * *`    | Psychiatrist                                       | view my patient’s contact information     | I can contact them for their appointments.                |
+| `* * *`    | Psychiatrist                                       | store my patient’s reviews/preference    | I can alter the treatment plan to suit his preferences.               |
 
 *{More to be added}*
 
@@ -286,6 +288,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. AddressBook shows an error message.
 
       Use case resumes at step 2.
+      
+**Use case: Edit a patient**
+
+**MSS**
+
+1.  User requests to view a patient.
+2.  AddressBook shows the patient's informations.
+3.  User requests to the patient's information.
+4.  AddressBook edits the patient's information.
+
+    Use case ends.
+
+**Extensions**
+* 1a. The patient is not found.
+
+    * 1a1. AddressBook shows an error message.
+    
+      Use case ends.
+
+* 3a. The patient is not found.
+
+    * 3a1. AddressBook shows an error message.
+    
+      Use case resumes at step 2.
 
 *{More to be added}*
 
@@ -294,6 +320,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 patients without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  Should be able to schedule up to 100 appointments per patient without a noticeable sluggishness in performance for typical usage.
 
 *{More to be added}*
 
@@ -301,6 +328,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Priority Patient**: A patient that requires more attention that the typical patient.
+* **Next Available Timing(NAT)**: The next timing that is available for the user which fits his/her schedule.
 
 --------------------------------------------------------------------------------------------------------------------
 
