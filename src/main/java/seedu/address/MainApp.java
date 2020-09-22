@@ -33,6 +33,7 @@ import seedu.address.ui.UiManager;
 
 /**
  * Runs the application.
+ * Testing the commit/pull-requests.
  */
 public class MainApp extends Application {
 
