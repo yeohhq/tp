@@ -129,6 +129,20 @@ Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
+  
+### Schedule a patient appointment : `schedule`
+
+Schedules a new patient appointment in Archangel.
+
+Format: `schedule n/NAME d/DATE t/TIME [desc/DESCRIPTION]`
+
+* Schedules patient appointment for patient `NAME`.
+* Optional `DESCRIPTION` for appointment.
+* Appointment will be set to input `DATE` (format: YYYY-MM-DD) and `TIME` (format: HH-MM)
+
+Examples:
+* `schedule n/Kim Guan d/2020-09-14 t/08-00 desc/Review Appointment` schedules an appointment for patient Kim Guan on 2020-09-14 at 08-00 with appointment description Review Appointment
+* `schedule n/Kim Guan d/2020-09-14 t/08-00` schedules an appointment for patient Kim Guan on 2020-09-14 at 08-00 with no appointment description
 
 ### Deleting a patient : `delete`
 
