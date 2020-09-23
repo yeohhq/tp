@@ -129,6 +129,20 @@ Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
+  
+### Schedule a patient appointment : `schedule`
+
+Schedules a new patient appointment in Archangel.
+
+Format: `schedule n/NAME d/DATE t/TIME [desc/DESCRIPTION]`
+
+* Schedules patient appointment for patient `NAME`.
+* Optional `DESCRIPTION` for appointment.
+* Appointment will be set to input `DATE` (format: YYYY-MM-DD) and `TIME` (format: HH-MM)
+
+Examples:
+* `schedule n/Kim Guan d/2020-09-14 t/08-00 desc/Review Appointment` schedules an appointment for patient Kim Guan on 2020-09-14 at 08-00 with appointment description Review Appointment
+* `schedule n/Kim Guan d/2020-09-14 t/08-00` schedules an appointment for patient Kim Guan on 2020-09-14 at 08-00 with no appointment description
 
 ### Deleting a patient : `delete`
 
@@ -180,8 +194,9 @@ Action | Format, Examples
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **View** | `view n/NAME `<br>e.g.,`view n/Kim Guan`
 **Clear** | `clear`
+**Schedule** | `schedule n/NAME d/DATE t/TIME [desc/DESCRIPTION]`<br>e.g., `schedule n/Kim Guan d/2020-09-14 t/08-00 desc/Review Appointment`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g., `edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
