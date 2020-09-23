@@ -274,7 +274,7 @@ public class EditCommand extends Command {
             EditPatientDescriptor e = (EditPatientDescriptor) other;
 
             return getName().equals(e.getName())
-                    && getGender().equals(e.getBirthdate())
+                    && getGender().equals(e.getGender())
                     && getBirthdate().equals(e.getBirthdate())
                     && getBloodType().equals(e.getBloodType())
                     && getPhone().equals(e.getPhone())

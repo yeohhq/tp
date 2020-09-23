@@ -2,8 +2,9 @@
   "_comment": "AddressBook save file which contains the same Patient values as in TypicalPatients#getTypicalAddressBook()",
   "patients" : [ {
     "name" : "Alice Pauline",
-    "birthdate" : "2018-12-27",
-    "bloodtype" : "A+",
+    "gender" : "FEMALE",
+    "birthdate" : "1998-04-03",
+    "bloodtype" : "O+",
     "phone" : "94351253",
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
@@ -11,8 +12,9 @@
     "tagged" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
-    "birthdate" : "2017-12-27",
-    "bloodtype" : "A-",
+    "gender" : "MALE",
+    "birthdate" : "1998-08-03",
+    "bloodtype" : "O+",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
@@ -20,16 +22,19 @@
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
-    "birthdate" : "2017-10-27",
-    "bloodtype" : "B+",
+    "gender" : "MALE",
+    "birthdate" : "1998-12-03",
+    "bloodtype" : "O+",
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "address" : "wall street",
+    "remark" : "",
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
-    "birthdate" : "2000-10-27",
-    "bloodtype" : "B-",
+    "gender" : "MALE",
+    "birthdate" : "1999-04-16",
+    "bloodtype" : "O+",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "address" : "10th street",
@@ -37,8 +42,9 @@
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
-    "birthdate" : "2000-12-27",
-    "bloodtype" : "AB+",
+    "gender" : "FEMALE",
+    "birthdate" : "1990-07-03",
+    "bloodtype" : "A+",
     "phone" : "9482224",
     "email" : "werner@example.com",
     "address" : "michegan ave",
@@ -46,8 +52,9 @@
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
-    "birthdate" : "2000-12-17",
-    "bloodtype" : "AB-",
+    "gender" : "FEMALE",
+    "birthdate" : "2000-04-11",
+    "bloodtype" : "B+",
     "phone" : "9482427",
     "email" : "lydia@example.com",
     "address" : "little tokyo",
@@ -55,8 +62,9 @@
     "tagged" : [ ]
   }, {
     "name" : "George Best",
-    "birthdate" : "2000-09-17",
-    "bloodtype" : "O+",
+    "gender" : "MALE",
+    "birthdate" : "2001-05-11",
+    "bloodtype" : "AB+",
     "phone" : "9482442",
     "email" : "anna@example.com",
     "address" : "4th street",

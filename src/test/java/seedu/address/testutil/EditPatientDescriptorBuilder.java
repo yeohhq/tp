@@ -6,10 +6,15 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditPatientDescriptor;
 import seedu.address.model.patient.Address;
+import seedu.address.model.patient.Birthdate;
+import seedu.address.model.patient.BloodType;
 import seedu.address.model.patient.Email;
+import seedu.address.model.patient.Gender;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.Phone;
+import seedu.address.model.patient.Remark;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -33,6 +38,9 @@ public class EditPatientDescriptorBuilder {
     public EditPatientDescriptorBuilder(Patient patient) {
         descriptor = new EditPatientDescriptor();
         descriptor.setName(patient.getName());
+        descriptor.setGender(patient.getGender());
+        descriptor.setBirthdate(patient.getBirthdate());
+        descriptor.setBloodType(patient.getBloodType());
         descriptor.setPhone(patient.getPhone());
         descriptor.setEmail(patient.getEmail());
         descriptor.setAddress(patient.getAddress());
@@ -44,6 +52,30 @@ public class EditPatientDescriptorBuilder {
      */
     public EditPatientDescriptorBuilder withName(String name) {
         descriptor.setName(new Name(name));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Gender} of the {@code EditPatientDescriptor} that we are building.
+     */
+    public EditPatientDescriptorBuilder withGender(String gender) {
+        descriptor.setGender(new Gender(gender));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Birthdate} of the {@code EditPatientDescriptor} that we are building.
+     */
+    public EditPatientDescriptorBuilder withBirthdate(String birthdate) {
+        descriptor.setBirthdate(new Birthdate(birthdate));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Gender} of the {@code EditPatientDescriptor} that we are building.
+     */
+    public EditPatientDescriptorBuilder withBloodType(String bloodtype) {
+        descriptor.setBloodType(new BloodType(bloodtype));
         return this;
     }
 

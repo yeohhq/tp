@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTHDATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BLOODTYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -34,7 +35,7 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_BIRTHDATE,
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_GENDER, PREFIX_BIRTHDATE,
                             PREFIX_BLOODTYPE, PREFIX_PHONE,
                             PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
 
@@ -49,6 +50,10 @@ public class EditCommandParser implements Parser<EditCommand> {
         EditPatientDescriptor editPatientDescriptor = new EditPatientDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editPatientDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
+        }
+
+        if (argMultimap.getValue(PREFIX_GENDER).isPresent()) {
+            editPatientDescriptor.setGender(ParserUtil.parseGender(argMultimap.getValue(PREFIX_GENDER).get()));
         }
         if (argMultimap.getValue(PREFIX_BIRTHDATE).isPresent()) {
             editPatientDescriptor.setBirthdate(ParserUtil.parseBirthdate(argMultimap.getValue(PREFIX_BIRTHDATE).get()));
