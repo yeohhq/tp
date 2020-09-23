@@ -1,7 +1,14 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTHDATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BLOODTYPE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PATIENTS;
 
 import java.util.Collections;
@@ -15,7 +22,15 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.patient.*;
+import seedu.address.model.patient.Address;
+import seedu.address.model.patient.Birthdate;
+import seedu.address.model.patient.BloodType;
+import seedu.address.model.patient.Email;
+import seedu.address.model.patient.Gender;
+import seedu.address.model.patient.Name;
+import seedu.address.model.patient.Patient;
+import seedu.address.model.patient.Phone;
+import seedu.address.model.patient.Remark;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -99,7 +114,9 @@ public class EditCommand extends Command {
         Remark updatedRemark = patientToEdit.getRemark(); // edit command does not allow editing remarks
         Set<Tag> updatedTags = editPatientDescriptor.getTags().orElse(patientToEdit.getTags());
 
-        return new Patient(updatedName, updatedGender, updatedBirthdate, updatedBloodType, updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedTags);
+        return new Patient(updatedName, updatedGender, updatedBirthdate,
+                updatedBloodType, updatedPhone, updatedEmail, updatedAddress,
+                updatedRemark, updatedTags);
     }
 
     @Override
@@ -257,7 +274,7 @@ public class EditCommand extends Command {
             EditPatientDescriptor e = (EditPatientDescriptor) other;
 
             return getName().equals(e.getName())
-                    && getGender().equals(e.getBirthdate())
+                    && getGender().equals(e.getGender())
                     && getBirthdate().equals(e.getBirthdate())
                     && getBloodType().equals(e.getBloodType())
                     && getPhone().equals(e.getPhone())

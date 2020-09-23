@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 
-
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.RemarkCommand;
@@ -13,6 +12,14 @@ import seedu.address.model.patient.Remark;
 
 public class RemarkCommandParser implements Parser<RemarkCommand> {
 
+
+    /**
+     * Parses {@code userInput} into a command and returns it.
+     *
+     * @param args the user input
+     * @return a RemarkCommand object
+     * @throws ParseException
+     */
     public RemarkCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,

@@ -1,10 +1,10 @@
 package seedu.address.model.patient;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
 public class Birthdate {
 
