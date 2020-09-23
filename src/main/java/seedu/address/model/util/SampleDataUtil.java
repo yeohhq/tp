@@ -6,7 +6,15 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.patient.*;
+import seedu.address.model.patient.Address;
+import seedu.address.model.patient.Birthdate;
+import seedu.address.model.patient.BloodType;
+import seedu.address.model.patient.Email;
+import seedu.address.model.patient.Gender;
+import seedu.address.model.patient.Name;
+import seedu.address.model.patient.Patient;
+import seedu.address.model.patient.Phone;
+import seedu.address.model.patient.Remark;
 import seedu.address.model.tag.Tag;
 
 /**
