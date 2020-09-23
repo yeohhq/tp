@@ -114,7 +114,9 @@ public class EditCommand extends Command {
         Remark updatedRemark = patientToEdit.getRemark(); // edit command does not allow editing remarks
         Set<Tag> updatedTags = editPatientDescriptor.getTags().orElse(patientToEdit.getTags());
 
-        return new Patient(updatedName, updatedGender, updatedBirthdate, updatedBloodType, updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedTags);
+        return new Patient(updatedName, updatedGender, updatedBirthdate,
+                updatedBloodType, updatedPhone, updatedEmail, updatedAddress,
+                updatedRemark, updatedTags);
     }
 
     @Override

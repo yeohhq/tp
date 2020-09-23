@@ -12,6 +12,14 @@ import seedu.address.model.patient.Remark;
 
 public class RemarkCommandParser implements Parser<RemarkCommand> {
 
+
+    /**
+     * Parses {@code userInput} into a command and returns it.
+     *
+     * @param args the user input
+     * @return a RemarkCommand object
+     * @throws ParseException
+     */
     public RemarkCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,

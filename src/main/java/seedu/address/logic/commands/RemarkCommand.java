@@ -12,8 +12,6 @@ import seedu.address.model.Model;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.Remark;
 
-import java.util.List;
-
 /**
  * Changes the remark of an existing patient in the address book.
  */
@@ -57,9 +55,10 @@ public class RemarkCommand extends Command {
         }
 
         Patient patientToEdit = lastShownList.get(index.getZeroBased());
-        Patient editedPatient = new Patient(patientToEdit.getName(), patientToEdit.getGender(), patientToEdit.getBirthdate(), patientToEdit.getBloodType(),
-                patientToEdit.getPhone(), patientToEdit.getEmail(),
-                patientToEdit.getAddress(), remark, patientToEdit.getTags());
+        Patient editedPatient = new Patient(patientToEdit.getName(), patientToEdit.getGender(),
+                    patientToEdit.getBirthdate(), patientToEdit.getBloodType(),
+                    patientToEdit.getPhone(), patientToEdit.getEmail(),
+                    patientToEdit.getAddress(), remark, patientToEdit.getTags());
 
         model.setPatient(patientToEdit, editedPatient);
         model.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
@@ -93,7 +92,5 @@ public class RemarkCommand extends Command {
         return index.equals(e.index)
                 && remark.equals(e.remark);
     }
-
-
 
 }
