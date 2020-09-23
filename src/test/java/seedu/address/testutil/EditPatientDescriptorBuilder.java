@@ -13,9 +13,8 @@ import seedu.address.model.patient.Gender;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.Phone;
-import seedu.address.model.patient.Remark;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.tag.Tag;
+
 
 /**
  * A utility class to help with building EditPatientDescriptor objects.

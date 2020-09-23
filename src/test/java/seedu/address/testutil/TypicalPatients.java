@@ -1,5 +1,22 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_BIRTHDATE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_BIRTHDATE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_BLOODTYPE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_BLOODTYPE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GENDER_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GENDER_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -7,7 +24,7 @@ import java.util.List;
 import seedu.address.model.AddressBook;
 import seedu.address.model.patient.Patient;
 
-import static seedu.address.logic.commands.CommandTestUtil.*;
+
 
 /**
  * A utility class containing a list of {@code Patient} objects to be used in tests.
@@ -76,14 +93,24 @@ public class TypicalPatients {
             .withEmail("hans@example.com").withRemark("").withAddress("chicago ave").build();
 
     // Manually added - Patient's details found in {@code CommandTestUtil}
-    public static final Patient AMY = new PatientBuilder().withName(VALID_NAME_AMY).withGender(VALID_GENDER_AMY)
-            .withBirthdate(VALID_BIRTHDATE_AMY).withBloodType(VALID_BLOODTYPE_AMY)
+    public static final Patient AMY = new PatientBuilder().withName(VALID_NAME_AMY)
+            .withGender(VALID_GENDER_AMY)
+            .withBirthdate(VALID_BIRTHDATE_AMY)
+            .withBloodType(VALID_BLOODTYPE_AMY)
             .withPhone(VALID_PHONE_AMY)
-            .withEmail(VALID_EMAIL_AMY).withRemark("").withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).build();
-    public static final Patient BOB = new PatientBuilder().withName(VALID_NAME_BOB).withGender(VALID_GENDER_BOB)
-            .withBirthdate(VALID_BIRTHDATE_BOB).withBloodType(VALID_BLOODTYPE_BOB)
+            .withEmail(VALID_EMAIL_AMY)
+            .withRemark("")
+            .withAddress(VALID_ADDRESS_AMY)
+            .withTags(VALID_TAG_FRIEND).build();
+    public static final Patient BOB = new PatientBuilder().withName(VALID_NAME_BOB)
+            .withGender(VALID_GENDER_BOB)
+            .withBirthdate(VALID_BIRTHDATE_BOB)
+            .withBloodType(VALID_BLOODTYPE_BOB)
             .withPhone(VALID_PHONE_BOB)
-            .withEmail(VALID_EMAIL_BOB).withRemark("").withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+            .withEmail(VALID_EMAIL_BOB)
+            .withRemark("")
+            .withAddress(VALID_ADDRESS_BOB)
+            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
