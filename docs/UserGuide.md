@@ -174,7 +174,6 @@ Examples:
 * `p-list` followed by `p-delete 2` deletes the 2nd patient in the Archangel.
 * `p-find Betsy` followed by `p-delete 1` deletes the 1st patient in the results of the find command.
 
-
 ### 7. Exiting the program : `exit`
 
 Exits the program.
@@ -191,23 +190,68 @@ The Archangel data is saved in the hard disk automatically after any command tha
 
 Schedules a new patient appointment in Archangel.
 
-Format: `a-schedule i/INDEXOFPATIENT s/DATE&TIME e/DATE&TIME [desc/DESCRIPTION] [t/TAGS]`
+Format: `a-schedule i/INDEXOFPATIENT s/DATE&TIME e/DATE&TIME [desc/DESCRIPTION] [t/TAGS]…`
 
 * Schedules patient appointment for patient NAME.
 * Optional DESCRIPTION for appointment.
 * Appointment will be set to input DATE (format: YYYY-MM-DD) and TIME (format: HH-MM).
 
 Examples:
-* `a-schedule n/Kim Guan d/2020-09-14 t/08-00 desc/Review Appointment` schedules an appointment for patient Kim Guan on 2020-09-14 at 08-00 with appointment description Review Appointment.
-* `a-schedule n/Kim Guan d/2020-09-14 t/08-00` schedules an appointment for patient Kim Guan on 2020-09-14 at 08-00 with no appointment description.
+* `a-schedule i/2 s/2020-09-14 08-00 e/2020-09-14 10-00 desc/Review Appointment` schedules an appointment for patient 2 on 2020-09-14 at 08-00 with appointment description Review Appointment.
+* `a-schedule i/2 e/2020-09-14 08-00 e/2020-09-14 10-00` schedules an appointment for patient 2 on 2020-09-14 at 08-00 with no appointment description.
 
 ### 2. List all appointments : `a-list`
 
+Shows a list of all patient appointments in Archangel.
+
+Format: `a-list`
+
 ### 3. Delete an appointment : `a-delete`
+
+Deletes the specified patient appointment from Archangel.
+
+Format: `a-delete INDEX`
+
+* Deletes the appointment at the specified INDEX.
+* The index refers to the index number shown in the displayed appointment list.
+* The index must be a positive integer 1, 2, 3, …​
+
+Examples:
+* `a-list` followed by `a-delete 2` deletes the 2nd appointment in the Archangel.
+* `a-find Review` followed by `a-delete 1` deletes the 1st appointment in the results of the find command.
 
 ### 4. Find an appointment : `a-find`
 
+Finds patient appointments whose description contain any of the given keywords.
+
+Format: `a-find KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g `review` will match `Review`
+* The order of the keywords does not matter. e.g. `Appointment Review` will match `Review Appointment`
+* Only the description is searched.
+* Only full words will be matched e.g. `Review` will not match `Reviews`
+* Appointments matching at least one keyword will be returned (i.e. OR search).
+  e.g. `Review Appointment` will return `Review Session`, `Follow-up Appointment`
+
+Examples:
+* `a-find Review` returns `review` and `Review Session`
+* `a-find Review Appointment` returns `Review Session`, `Follow-up Appointment`
+
 ### 5. Edit an appointment : `a-edit`
+
+Edits an existing patient appointment in Archangel.
+
+Format: `a-edit INDEX [s/DATE&TIME] [e/DATE&TIME] [desc/DESCRIPTION] [t/TAGS]…`
+
+* Edits the appointment at the specified INDEX. The index refers to the index number shown in the displayed appointment list. The index must be a positive integer 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing tags, the existing tags of the appointment will be removed i.e adding of tags is not cumulative.
+* You can remove all the appointment’s tags by typing `t/` without specifying any tags after it.
+
+Examples:
+* `a-edit 1 s/2020-09-15 12-00 e/2020-09-15 14-00` Edits the start and end date & time of the 1st appointment to be 15/9/2020 12:00 and 15/9/2020 14:00 respectively.
+* `p-edit 2 d/Review Session /t` Edits the description of the 2nd appointment to be Review Session and clears all existing tags.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -220,12 +264,17 @@ A: Install the app in the other computer and overwrite the empty data file it cr
 
 ## Command summary
 
-Action         | Format, Examples
----------------|------------------
-Add Patient    | `p-add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…`​ <br> e.g. `p-add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-View Patient   | `p-view n/NAME` <br>e.g. `p-view n/Kim Guan`
-Delete Patient | `p-delete INDEX` <br>e.g. `p-delete 3`
-Edit Patient   | `p-edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br> e.g. `p-edit 2 n/James Lee e/jameslee@example.com`
-Find Patient   | `p-find KEYWORD [MORE_KEYWORDS]` <br> e.g. `p-find James Jake`
-List Patients  | `p-list`
-Help           | `help`
+Action               | Format, Examples
+---------------------|------------------------
+Add Patient          | `p-add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…`​ <br> e.g. `p-add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+View Patient         | `p-view n/NAME` <br>e.g. `p-view n/Kim Guan`
+Delete Patient       | `p-delete INDEX` <br>e.g. `p-delete 3`
+Edit Patient         | `p-edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br> e.g. `p-edit 2 n/James Lee e/jameslee@example.com`
+Find Patient         | `p-find KEYWORD [MORE_KEYWORDS]` <br> e.g. `p-find James Jake`
+List Patients        | `p-list`
+Help                 | `help`
+Schedule Appointment | `a-schedule i/INDEXOFPATIENT s/DATE&TIME e/DATE&TIME [desc/DESCRIPTION] [t/TAGS]…`​<br> e.g. `a-schedule i/2 s/2020-09-14 08-00 e/2020-09-14 10-00 desc/Review Appointment` 
+Delete Appointment   | `a-delete INDEX` <br>e.g. `a-delete 3`
+Edit Appointment     | `a-edit INDEX [s/DATE&TIME] [e/DATE&TIME] [desc/DESCRIPTION] [t/TAGS]…` <br> e.g. `a-edit 2 s/2020-09-15 12-00 e/2020-09-15 14-00`
+Find Appointment     | `a-find KEYWORD [MORE_KEYWORDS]` <br> e.g. `a-find Review Appointment`
+List Appointments    | `a-list`
