@@ -31,7 +31,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Gordon Foo
 
-<img src="images/gordonfgz.png" width="200px">
+<img src="images/teamphotos/gordonfgz.png" width="200px">
 
 [[github](http://github.com/gordonfgz)]
 [[portfolio](team/gordonfgz.md)]
