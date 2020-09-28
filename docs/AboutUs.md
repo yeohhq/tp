@@ -11,7 +11,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Chu Kim Guan
 
-<img src="images/soaza.png" width="200px">
+<img src="images/teamphotos/soaza.png" width="200px">
 
 [[github](https://github.com/soaza)]
 [[portfolio](team/soaza.md)]
@@ -21,7 +21,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Yeoh Hui Qing
 
-<img src="images/yeohhq.png" width="200px">
+<img src="images/teamphotos/yeohhq.png" width="200px">
 
 [[github](http://github.com/yeohhq)]
 [[portfolio](team/yeohhq.md)]
@@ -41,7 +41,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Jim Vincent Engay
 
-<img src="images/jimvae.png" width="200px">
+<img src="images/teamphotos/jimvae.png" width="200px">
 
 [[github](http://github.com/jimvae)]
 [[portfolio](team/jimvae.md)]
@@ -51,7 +51,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Chew Hoa Shen
 
-<img src="images/chshen1998.png" width="200px">
+<img src="images/teamphotos/chshen1998.png" width="200px">
 
 [[github](http://github.com/chshen1998)]
 [[portfolio](team/chshen1998.md)]

@@ -3,7 +3,8 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+Archangel is a **desktop app for managing patient appointments, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). 
+If you can type fast, Archangel can get your patient management appointment done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -26,11 +27,9 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
    * **`list`** : Lists all contacts.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`add`**`n/John Doe g/MALE bd/2018-12-27 bt/A+ p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25` : Adds a Patient named `John Doe` to the Archangel.
 
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
-
-   * **`clear`** : Deletes all contacts.
 
    * **`exit`** : Exits the app.
 
@@ -67,11 +66,10 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a patient: `add`
+### 1. Adding a patient: `add`
 
-Adds a patient to the address book.
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Adds a patient to the address book. 
+Format: `add n/NAME g/GENDER bd/BIRTHDATE (in YYYY/MM/DD format) bt/BLOODTYPE p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A patient can have any number of tags (including 0)
@@ -82,24 +80,24 @@ Examples:
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
 
-### View a patient's information: `view`
+### 2. View a patient's information: `view`
 
 View the patient's information stored in Archangel.
 
 Format: `view n/NAME` 
 * View the patient with the specified name 
 
-### Listing all patients : `list`
+### 3. Listing all patients : `list`
 
 Shows a list of all patients in the address book.
 
 Format: `list`
 
-### Editing a patient : `edit`
+### 4. Editing a patient : `edit`
 
 Edits an existing patient in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [g/GENDER] [bd/BIRTHDATE] [bt/BLOODTYPE] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
 * Edits the patient at the specified `INDEX`. The index refers to the index number shown in the displayed patient list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -130,11 +128,64 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
   
-### Schedule a patient appointment : `schedule`
+### 5. Giving a patient a Remark : `remark`
+
+Stores a remark under the patient's information.
+
+Format: `remark INDEX r/REMARK`
+
+* Store a remark for the patient at the specified `INDEX`.
+* The index refers to the index number shown in the displayed patient list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `remark 1 r/ Likes to swim.` gives the 1st patient in the list a remark of `Likes to swim.`
+
+### 6. Removing a patient's Remark : `remark`
+
+Stores a remark under the patient's information.
+
+Format: `remark INDEX`
+
+* Removes the remark for the patient at the specified `INDEX`.
+* The index refers to the index number shown in the displayed patient list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `remark 1` removes the Remark of the 1st patient on the list.
+  
+### 7. Deleting a patient : `delete`
+
+Deletes the specified patient from the Archangel.
+
+Format: `delete INDEX`
+
+* Deletes the patient at the specified `INDEX`.
+* The index refers to the index number shown in the displayed patient list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list` followed by `delete 2` deletes the 2nd patient in the Archangel.
+* `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
+
+
+### 7. Exiting the program : `exit`
+
+Exits the program.
+
+Format: `exit`
+
+### 8. Saving the data
+
+The Archangel data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+## Coming soon in v1.2
+
+### 1. Schedule a patient appointment : `schedule`
 
 Schedules a new patient appointment in Archangel.
 
-Format: `schedule n/NAME d/DATE t/TIME [desc/DESCRIPTION]`
+Format: `schedule i/INDEXOFPATIENT s/DATE&TIME e/DATE&TIME [desc/DESCRIPTION] [t/TAGS]`
 
 * Schedules patient appointment for patient `NAME`.
 * Optional `DESCRIPTION` for appointment.
@@ -144,39 +195,13 @@ Examples:
 * `schedule n/Kim Guan d/2020-09-14 t/08-00 desc/Review Appointment` schedules an appointment for patient Kim Guan on 2020-09-14 at 08-00 with appointment description Review Appointment
 * `schedule n/Kim Guan d/2020-09-14 t/08-00` schedules an appointment for patient Kim Guan on 2020-09-14 at 08-00 with no appointment description
 
-### Deleting a patient : `delete`
+### 2. List all appointments : `appointmentlist`
 
-Deletes the specified patient from the address book.
+### 3. Delete an appointment : `delete-a`
 
-Format: `delete INDEX`
+### 4. Find an appointment : `find-a`
 
-* Deletes the patient at the specified `INDEX`.
-* The index refers to the index number shown in the displayed patient list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd patient in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
-
-### Clearing all entries : `clear`
-
-Clears all entries from the address book.
-
-Format: `clear`
-
-### Exiting the program : `exit`
-
-Exits the program.
-
-Format: `exit`
-
-### Saving the data
-
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Archiving data files `[coming in v2.0]`
-
-_{explain the feature here}_
+### 5. Edit an appointment : `edit-a`
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -193,8 +218,6 @@ Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **View** | `view n/NAME `<br>e.g.,`view n/Kim Guan`
-**Clear** | `clear`
-**Schedule** | `schedule n/NAME d/DATE t/TIME [desc/DESCRIPTION]`<br>e.g., `schedule n/Kim Guan d/2020-09-14 t/08-00 desc/Review Appointment`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g., `edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
