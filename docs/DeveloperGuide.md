@@ -288,6 +288,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. AddressBook shows an error message.
 
       Use case resumes at step 2.
+
+**Use case: Schedule a patient**
+
+**MSS**
+
+1.  User requests to show schedule 
+2.  AddressBook shows schedule
+3.  User requests to schedule a patient
+4.  AddressBook schedule the patient
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The appointment has conflict with another patient
+
+  Use case ends.
+
+* 3a. The appointment's date/timing is invalid
+
+    * 3a1. AddressBook shows an error message.
+
+      Use case resumes at step 3.
       
 **Use case: Edit a patient**
 
@@ -329,7 +352,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Priority Patient**: A patient that requires more attention that the typical patient.
-* **Next Available Timing(NAT)**: The next timing that is available for the user which fits his/her schedule.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -373,6 +395,17 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
+
+1. _{ more test cases …​ }_
+
+### Viewing a patient
+1. Viewing a patient while all patients are being shown
+
+   1. Test case: `view Kim Guan`<br>
+      Expected: Details of patient named 'Kim Guan' is shown.
+
+   1. Other incorrect delete commands to try: `view`, `view x`, `...` (where x is not in the list)<br>
+      Expected: Error details shown in status message. Status bar remains the same.
 
 1. _{ more test cases …​ }_
 
