@@ -15,7 +15,7 @@ If you can type fast, Archangel can get your patient management appointment done
 
 1. Ensure you have Java 11 or above installed in your Computer.
 
-2. Download the latest addressbook.jar from [here](https://github.com/se-edu/addressbook-level3/releases).
+2. Download the latest `archangel.jar` from [here](https://github.com/AY2021S1-CS2103T-W11-1/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 
@@ -136,6 +136,7 @@ Examples:
 ### 5. Giving a patient a Remark : `p-remark`
 
 Stores a remark under the patient's information.
+Recommended usage would be to store Allergies, Preferences, etc. 
 
 Format: `p-remark INDEX r/REMARK`
 
