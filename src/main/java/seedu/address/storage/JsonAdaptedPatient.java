@@ -10,7 +10,15 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.patient.*;
+import seedu.address.model.patient.Address;
+import seedu.address.model.patient.Birthdate;
+import seedu.address.model.patient.BloodType;
+import seedu.address.model.patient.Email;
+import seedu.address.model.patient.Gender;
+import seedu.address.model.patient.Name;
+import seedu.address.model.patient.Patient;
+import seedu.address.model.patient.Phone;
+import seedu.address.model.patient.Remark;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -39,8 +47,10 @@ class JsonAdaptedPatient {
                               @JsonProperty("birthdate") String birthdate,
                               @JsonProperty("bloodtype") String bloodtype,
                               @JsonProperty("phone") String phone,
-                              @JsonProperty("email") String email, @JsonProperty("address") String address,
-                              @JsonProperty("remark") String remark, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                              @JsonProperty("email") String email,
+                              @JsonProperty("address") String address,
+                              @JsonProperty("remark") String remark,
+                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.gender = gender;
         this.birthdate = birthdate;
@@ -83,7 +93,8 @@ class JsonAdaptedPatient {
         }
 
         if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
         if (!Name.isValidName(name)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
@@ -91,7 +102,8 @@ class JsonAdaptedPatient {
         final Name modelName = new Name(name);
 
         if (gender == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Gender.class.getSimpleName()));
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Gender.class.getSimpleName()));
         }
         if (!Gender.isValidGender(gender)) {
             throw new IllegalValueException(Gender.MESSAGE_CONSTRAINTS);
@@ -99,7 +111,8 @@ class JsonAdaptedPatient {
         final Gender modelGender = new Gender(gender);
 
         if (birthdate == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Birthdate.class.getSimpleName()));
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Birthdate.class.getSimpleName()));
         }
         if (!Birthdate.isValidBirthdate(birthdate)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
@@ -107,7 +120,8 @@ class JsonAdaptedPatient {
         final Birthdate modelBirthdate = new Birthdate(birthdate);
 
         if (bloodtype == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, BloodType.class.getSimpleName()));
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, BloodType.class.getSimpleName()));
         }
         if (!BloodType.isValidBloodType(bloodtype)) {
             throw new IllegalValueException(BloodType.MESSAGE_CONSTRAINTS);
@@ -144,7 +158,8 @@ class JsonAdaptedPatient {
         final Remark modelRemark = new Remark(remark);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Patient(modelName, modelGender, modelBirthdate, modelBloodType, modelPhone, modelEmail, modelAddress, modelRemark, modelTags);
+        return new Patient(modelName, modelGender, modelBirthdate,
+                    modelBloodType, modelPhone, modelEmail, modelAddress, modelRemark, modelTags);
     }
 
 }

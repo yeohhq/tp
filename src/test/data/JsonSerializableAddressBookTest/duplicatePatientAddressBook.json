@@ -1,6 +1,7 @@
 {
   "patients": [ {
     "name": "Alice Pauline",
+    "gender" : "FEMALE",
     "birthdate" : "2018-12-27",
     "bloodtype" : "A+",
     "phone": "94351253",
@@ -10,6 +11,7 @@
     "tagged": [ "friends" ]
   }, {
     "name": "Alice Pauline",
+    "gender" : "FEMALE",
     "birthdate" : "2018-12-27",
     "bloodtype" : "A+",
     "phone": "94351253",

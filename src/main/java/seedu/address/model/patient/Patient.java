@@ -34,7 +34,11 @@ public class Patient {
     /**
      * Every field must be present and not null.
      */
-    public Patient(Name name, Gender gender, Birthdate birthdate, BloodType bloodtype, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags) {
+    public Patient(Name name, Gender gender,
+                   Birthdate birthdate, BloodType bloodtype,
+                   Phone phone, Email email,
+                   Address address, Remark remark,
+                   Set<Tag> tags) {
         requireAllNonNull(name, birthdate, bloodtype, phone, email, address, tags);
         this.name = name;
         this.gender = gender;
@@ -88,7 +92,8 @@ public class Patient {
     }
 
     /**
-     * Returns true if both persons of the same name, gender, age and bloodtype, and have at least one other identity field that is the same.
+     * Returns true if both persons of the same name, gender, age and bloodtype,
+     * and have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSamePatient(Patient otherPatient) {
