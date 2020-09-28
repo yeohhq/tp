@@ -131,6 +131,7 @@ Examples:
 ### 5. Giving a patient a Remark : `remark`
 
 Stores a remark under the patient's information.
+Recommended usage would be to store Allergies, Preferences, etc. 
 
 Format: `remark INDEX r/REMARK`
 
