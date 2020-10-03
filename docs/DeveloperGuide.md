@@ -244,7 +244,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: provide an application for psychiatrists to manage their patient's medical information and their upcoming appointments. 
+**Value proposition**: provide an application for psychiatrists to manage their patient's medical information and their upcoming appointments.
 
 
 ### User stories
@@ -293,7 +293,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to show schedule 
+1.  User requests to show schedule
 2.  AddressBook shows schedule
 3.  User requests to schedule a patient
 4.  AddressBook schedule the patient
@@ -311,7 +311,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. AddressBook shows an error message.
 
       Use case resumes at step 3.
-      
+
 **Use case: Edit a patient**
 
 **MSS**
@@ -327,13 +327,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. The patient is not found.
 
     * 1a1. AddressBook shows an error message.
-    
+
       Use case ends.
 
 * 3a. The patient is not found.
 
     * 3a1. AddressBook shows an error message.
-    
+
       Use case resumes at step 2.
 
 *{More to be added}*
