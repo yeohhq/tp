@@ -1,35 +1,35 @@
 package seedu.address.commons;
 
-import static java.util.Objects.requireNonNull;
-
-import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.exceptions.CommandException;
-
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
-import java.util.concurrent.ConcurrentMap;
 
-public class CommandHistoryManager {
+import seedu.address.model.patient.Patient;
 
-    private final Stack<Command> commandHistory;
-    CommandHistoryManager(){
+public class UserHistoryManager {
 
-        this.commandHistory = new Stack<>();
+    private final Stack<List<Patient>> userHistory;
 
+    public UserHistoryManager() {
+        this.userHistory = new Stack<>();
     }
 
-    public static final String MESSAGE_NO_UNDO_HISTORY_ERROR = "Nothing to undo!";
+    public void addHistory(List<Patient> newList) {
+        userHistory.add(new ArrayList<>(newList));
+    }
+
+    public void undoHistory() {
+        userHistory.pop();
+    }
+
+    public Stack<List<Patient>> getHistory() {
+        return userHistory;
+    }
 
     public boolean canUndo() {
-        return commandHistory.size() > 0;
+        return userHistory.size() > 1;
     }
 
-    public CommandResult executeUndo() throws CommandException {
-        if (!canUndo()) {
-            throw new CommandException(MESSAGE_NO_UNDO_HISTORY_ERROR);
-        }
 
-        CommandResult cmdResult = commandHistory.peek().
-    }
 
 }

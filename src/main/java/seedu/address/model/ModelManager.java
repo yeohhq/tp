@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import seedu.address.commons.UserHistoryManager;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.patient.Patient;
@@ -20,6 +21,7 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final AddressBook addressBook;
+    private final UserHistoryManager userHistory;
     private final UserPrefs userPrefs;
     private final FilteredList<Patient> filteredPatients;
 
@@ -34,6 +36,8 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
+        this.userHistory = new UserHistoryManager();
+        userHistory.addHistory(addressBook.getPatientList());
         filteredPatients = new FilteredList<>(this.addressBook.getPatientList());
     }
 
@@ -97,21 +101,35 @@ public class ModelManager implements Model {
     @Override
     public void deletePatient(Patient target) {
         addressBook.removePatient(target);
+        updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
+        userHistory.addHistory(addressBook.getPatientList());
     }
 
     @Override
     public void addPatient(Patient patient) {
         addressBook.addPatient(patient);
         updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
+        this.userHistory.addHistory(addressBook.getPatientList());
     }
 
     @Override
     public void setPatient(Patient target, Patient editedPatient) {
         requireAllNonNull(target, editedPatient);
-
         addressBook.setPatient(target, editedPatient);
+        updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
+        this.userHistory.addHistory(addressBook.getPatientList());
     }
 
+    @Override
+    public UserHistoryManager getUserHistoryManager() {
+        return this.userHistory;
+    }
+
+    @Override
+    public void undoPatientHistory() {
+        this.userHistory.undoHistory();
+        addressBook.setPatients((this.userHistory.getHistory().peek()));
+    }
     //=========== Filtered Patient List Accessors =============================================================
 
     /**
