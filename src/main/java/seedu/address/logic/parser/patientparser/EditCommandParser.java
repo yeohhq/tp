@@ -48,7 +48,8 @@ public class EditCommandParser implements Parser<PatientEditCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, PatientEditCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    PatientEditCommand.MESSAGE_USAGE), pe);
         }
 
         EditPatientDescriptor editPatientDescriptor = new EditPatientDescriptor();

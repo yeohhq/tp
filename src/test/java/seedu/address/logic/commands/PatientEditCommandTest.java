@@ -29,7 +29,8 @@ import seedu.address.testutil.EditPatientDescriptorBuilder;
 import seedu.address.testutil.PatientBuilder;
 
 /**
- * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for PatientEditCommand.
+ * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand)
+ * and unit tests for PatientEditCommand.
  */
 public class PatientEditCommandTest {
 
@@ -72,7 +73,8 @@ public class PatientEditCommandTest {
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
-        PatientEditCommand patientEditCommand = new PatientEditCommand(INDEX_FIRST_PATIENT, new EditPatientDescriptor());
+        PatientEditCommand patientEditCommand =
+                                        new PatientEditCommand(INDEX_FIRST_PATIENT, new EditPatientDescriptor());
         Patient editedPatient = model.getFilteredPatientList().get(INDEX_FIRST_PATIENT.getZeroBased());
 
         String expectedMessage = String.format(PatientEditCommand.MESSAGE_EDIT_PATIENT_SUCCESS, editedPatient);

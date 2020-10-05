@@ -7,12 +7,21 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.patientcommands.*;
-import seedu.address.logic.commands.patientcommands.PatientAddCommand;
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.patientcommands.HelpCommand;
+import seedu.address.logic.commands.patientcommands.PatientAddCommand;
+import seedu.address.logic.commands.patientcommands.PatientDeleteCommand;
+import seedu.address.logic.commands.patientcommands.PatientEditCommand;
+import seedu.address.logic.commands.patientcommands.PatientFindCommand;
+import seedu.address.logic.commands.patientcommands.PatientListCommand;
+import seedu.address.logic.commands.patientcommands.PatientRemarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.logic.parser.patientparser.*;
+import seedu.address.logic.parser.patientparser.AddCommandParser;
+import seedu.address.logic.parser.patientparser.DeleteCommandParser;
+import seedu.address.logic.parser.patientparser.EditCommandParser;
+import seedu.address.logic.parser.patientparser.FindCommandParser;
+import seedu.address.logic.parser.patientparser.RemarkCommandParser;
 
 /**
  * Parses user input.

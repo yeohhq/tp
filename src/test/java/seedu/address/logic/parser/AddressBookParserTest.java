@@ -15,9 +15,13 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.patientcommands.*;
+import seedu.address.logic.commands.patientcommands.HelpCommand;
 import seedu.address.logic.commands.patientcommands.PatientAddCommand;
+import seedu.address.logic.commands.patientcommands.PatientDeleteCommand;
+import seedu.address.logic.commands.patientcommands.PatientEditCommand;
 import seedu.address.logic.commands.patientcommands.PatientEditCommand.EditPatientDescriptor;
+import seedu.address.logic.commands.patientcommands.PatientFindCommand;
+import seedu.address.logic.commands.patientcommands.PatientListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.filters.patientfilters.SearchNameFilter;
 import seedu.address.model.patient.Patient;
