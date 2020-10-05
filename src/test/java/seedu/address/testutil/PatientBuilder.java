@@ -3,7 +3,15 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.patient.*;
+import seedu.address.model.patient.Address;
+import seedu.address.model.patient.Birthdate;
+import seedu.address.model.patient.BloodType;
+import seedu.address.model.patient.Email;
+import seedu.address.model.patient.Gender;
+import seedu.address.model.patient.Name;
+import seedu.address.model.patient.Patient;
+import seedu.address.model.patient.Phone;
+import seedu.address.model.patient.Remark;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -12,13 +20,13 @@ import seedu.address.model.util.SampleDataUtil;
  */
 public class PatientBuilder {
 
-    public static final String DEFAULT_NAME = "Alice Pauline";
+    public static final String DEFAULT_NAME = "Alexandra Loise";
     public static final String DEFAULT_GENDER = "FEMALE";
-    public static final String DEFAULT_BIRTHDATE = "1990-03-02";
-    public static final String DEFAULT_BLOODTYPE = "O+";
-    public static final String DEFAULT_PHONE = "85355255";
-    public static final String DEFAULT_EMAIL = "alice@gmail.com";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_BIRTHDATE = "2000-11-11";
+    public static final String DEFAULT_BLOODTYPE = "AB+";
+    public static final String DEFAULT_PHONE = "9831920";
+    public static final String DEFAULT_EMAIL = "alex@gmail.com";
+    public static final String DEFAULT_ADDRESS = "144, Bedok West Ave 2, #08-143";
     public static final String DEFAULT_REMARK = "";
 
     private Name name;
