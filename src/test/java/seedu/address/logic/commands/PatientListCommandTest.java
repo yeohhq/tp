@@ -8,14 +8,15 @@ import static seedu.address.testutil.TypicalPatients.getTypicalAddressBook;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.patientcommands.PatientListCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for PatientListCommand.
  */
-public class ListCommandTest {
+public class PatientListCommandTest {
 
     private Model model;
     private Model expectedModel;
@@ -28,12 +29,12 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new PatientListCommand(), model, PatientListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showPatientAtIndex(model, INDEX_FIRST_PATIENT);
-        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new PatientListCommand(), model, PatientListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }
