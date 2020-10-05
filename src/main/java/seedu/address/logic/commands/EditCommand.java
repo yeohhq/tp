@@ -34,7 +34,7 @@ import seedu.address.model.patient.Remark;
 import seedu.address.model.tag.Tag;
 
 /**
- * Edits the details of an existing patient in the address book.
+ * Edit the details of an existing patient in the address book.
  */
 public class EditCommand extends Command {
 
