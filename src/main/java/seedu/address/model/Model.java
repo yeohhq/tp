@@ -4,6 +4,7 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.UserHistoryManager;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.patient.Patient;
 
@@ -85,4 +86,14 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPatientList(Predicate<Patient> predicate);
+
+    /**
+     * Returns user history.
+     */
+    UserHistoryManager getUserHistoryManager();
+
+    /**
+     * Undo the patient history
+     */
+    void undoPatientHistory();
 }

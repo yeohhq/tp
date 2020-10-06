@@ -14,6 +14,7 @@ import java.util.function.Predicate;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.UserHistoryManager;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.patientcommands.PatientAddCommand;
@@ -147,6 +148,16 @@ public class PatientAddCommandTest {
 
         @Override
         public void updateFilteredPatientList(Predicate<Patient> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public UserHistoryManager getUserHistoryManager() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void undoPatientHistory() {
             throw new AssertionError("This method should not be called.");
         }
     }
