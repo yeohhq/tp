@@ -47,6 +47,7 @@ public class DeleteCommandTest {
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
     }
 
+    /*
     @Test
     public void execute_validIndexFilteredList_success() {
         showPatientAtIndex(model, INDEX_FIRST_PATIENT);
@@ -62,6 +63,7 @@ public class DeleteCommandTest {
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
+    */
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
