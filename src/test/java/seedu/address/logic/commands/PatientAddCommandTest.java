@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.patientcommands.PatientAddCommand;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -23,11 +24,11 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.patient.Patient;
 import seedu.address.testutil.PatientBuilder;
 
-public class AddCommandTest {
+public class PatientAddCommandTest {
 
     @Test
     public void constructor_nullPatient_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+        assertThrows(NullPointerException.class, () -> new PatientAddCommand(null));
     }
 
     @Test
@@ -35,33 +36,34 @@ public class AddCommandTest {
         ModelStubAcceptingPatientAdded modelStub = new ModelStubAcceptingPatientAdded();
         Patient validPatient = new PatientBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validPatient).execute(modelStub);
+        CommandResult commandResult = new PatientAddCommand(validPatient).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPatient), commandResult.getFeedbackToUser());
+        assertEquals(String.format(PatientAddCommand.MESSAGE_SUCCESS, validPatient), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validPatient), modelStub.patientsAdded);
     }
 
     @Test
     public void execute_duplicatePatient_throwsCommandException() {
         Patient validPatient = new PatientBuilder().build();
-        AddCommand addCommand = new AddCommand(validPatient);
+        PatientAddCommand patientAddCommand = new PatientAddCommand(validPatient);
         ModelStub modelStub = new ModelStubWithPatient(validPatient);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, PatientAddCommand.MESSAGE_DUPLICATE_PERSON, () ->
+                patientAddCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
         Patient alice = new PatientBuilder().withName("Alice").build();
         Patient bob = new PatientBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        PatientAddCommand addAliceCommand = new PatientAddCommand(alice);
+        PatientAddCommand addBobCommand = new PatientAddCommand(bob);
 
         // same object -> returns true
         assertTrue(addAliceCommand.equals(addAliceCommand));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
+        PatientAddCommand addAliceCommandCopy = new PatientAddCommand(alice);
         assertTrue(addAliceCommand.equals(addAliceCommandCopy));
 
         // different types -> returns false

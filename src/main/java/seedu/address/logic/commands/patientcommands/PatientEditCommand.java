@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.patientcommands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
@@ -20,6 +20,8 @@ import java.util.Set;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.patient.Address;
@@ -36,9 +38,9 @@ import seedu.address.model.tag.Tag;
 /**
  * Edits the details of an existing patient in the address book.
  */
-public class EditCommand extends Command {
+public class PatientEditCommand extends Command {
 
-    public static final String COMMAND_WORD = "edit";
+    public static final String COMMAND_WORD = "p-edit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the patient identified "
             + "by the index number used in the displayed patient list. "
@@ -68,7 +70,7 @@ public class EditCommand extends Command {
      * @param index of the patient in the filtered patient list to edit
      * @param editPatientDescriptor details to edit the patient with
      */
-    public EditCommand(Index index, EditPatientDescriptor editPatientDescriptor) {
+    public PatientEditCommand(Index index, EditPatientDescriptor editPatientDescriptor) {
         requireNonNull(index);
         requireNonNull(editPatientDescriptor);
 
@@ -127,12 +129,12 @@ public class EditCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditCommand)) {
+        if (!(other instanceof PatientEditCommand)) {
             return false;
         }
 
         // state check
-        EditCommand e = (EditCommand) other;
+        PatientEditCommand e = (PatientEditCommand) other;
         return index.equals(e.index)
                 && editPatientDescriptor.equals(e.editPatientDescriptor);
     }

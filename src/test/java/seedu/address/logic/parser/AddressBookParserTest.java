@@ -13,17 +13,17 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditPatientDescriptor;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.patientcommands.HelpCommand;
+import seedu.address.logic.commands.patientcommands.PatientAddCommand;
+import seedu.address.logic.commands.patientcommands.PatientDeleteCommand;
+import seedu.address.logic.commands.patientcommands.PatientEditCommand;
+import seedu.address.logic.commands.patientcommands.PatientEditCommand.EditPatientDescriptor;
+import seedu.address.logic.commands.patientcommands.PatientFindCommand;
+import seedu.address.logic.commands.patientcommands.PatientListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.patient.NameContainsKeywordsPredicate;
+import seedu.address.model.filters.patientfilters.SearchNameFilter;
 import seedu.address.model.patient.Patient;
 import seedu.address.testutil.EditPatientDescriptorBuilder;
 import seedu.address.testutil.PatientBuilder;
@@ -36,8 +36,8 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_add() throws Exception {
         Patient patient = new PatientBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PatientUtil.getAddCommand(patient));
-        assertEquals(new AddCommand(patient), command);
+        PatientAddCommand command = (PatientAddCommand) parser.parseCommand(PatientUtil.getAddCommand(patient));
+        assertEquals(new PatientAddCommand(patient), command);
     }
 
     @Test
@@ -48,18 +48,18 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_delete() throws Exception {
-        DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PATIENT.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PATIENT), command);
+        PatientDeleteCommand command = (PatientDeleteCommand) parser.parseCommand(
+                PatientDeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PATIENT.getOneBased());
+        assertEquals(new PatientDeleteCommand(INDEX_FIRST_PATIENT), command);
     }
 
     @Test
     public void parseCommand_edit() throws Exception {
         Patient patient = new PatientBuilder().build();
         EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder(patient).build();
-        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
+        PatientEditCommand command = (PatientEditCommand) parser.parseCommand(PatientEditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PATIENT.getOneBased() + " " + PatientUtil.getEditPatientDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_PATIENT, descriptor), command);
+        assertEquals(new PatientEditCommand(INDEX_FIRST_PATIENT, descriptor), command);
     }
 
     @Test
@@ -71,9 +71,9 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        PatientFindCommand command = (PatientFindCommand) parser.parseCommand(
+                PatientFindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new PatientFindCommand(new SearchNameFilter(keywords)), command);
     }
 
     @Test
@@ -84,8 +84,8 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_list() throws Exception {
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+        assertTrue(parser.parseCommand(PatientListCommand.COMMAND_WORD) instanceof PatientListCommand);
+        assertTrue(parser.parseCommand(PatientListCommand.COMMAND_WORD + " 3") instanceof PatientListCommand);
     }
 
     @Test
