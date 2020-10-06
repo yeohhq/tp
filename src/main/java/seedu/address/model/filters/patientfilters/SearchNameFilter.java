@@ -1,17 +1,18 @@
-package seedu.address.model.patient;
+package seedu.address.model.filters.patientfilters;
 
 import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
+import seedu.address.model.patient.Patient;
 
 /**
  * Tests that a {@code Patient}'s {@code Name} matches any of the keywords given.
  */
-public class NameContainsKeywordsPredicate implements Predicate<Patient> {
+public class SearchNameFilter implements Predicate<Patient> {
     private final List<String> keywords;
 
-    public NameContainsKeywordsPredicate(List<String> keywords) {
+    public SearchNameFilter(List<String> keywords) {
         this.keywords = keywords;
     }
 
@@ -24,8 +25,8 @@ public class NameContainsKeywordsPredicate implements Predicate<Patient> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof NameContainsKeywordsPredicate // instanceof handles nulls
-                && keywords.equals(((NameContainsKeywordsPredicate) other).keywords)); // state check
+                || (other instanceof SearchNameFilter // instanceof handles nulls
+                && keywords.equals(((SearchNameFilter) other).keywords)); // state check
     }
 
 }
