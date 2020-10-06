@@ -11,9 +11,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.logic.Logic;
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.patientcommands.PatientAddCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -47,14 +47,14 @@ public class UserHistoryManagerTest {
 
     @Test
     public void testAddHistory() throws CommandException {
-        CommandResult commandResultOne = new AddCommand(ALICE).execute(model);
+        CommandResult commandResultOne = new PatientAddCommand(ALICE).execute(model);
         int size = model.getUserHistoryManager().getUserHistorySize();
         assertEquals(size, 2);
     }
 
     @Test
     public void testUndoHistory() throws CommandException {
-        CommandResult commandResultOne = new AddCommand(ALICE).execute(model);
+        CommandResult commandResultOne = new PatientAddCommand(ALICE).execute(model);
         int sizeBefore = model.getUserHistoryManager().getUserHistorySize();
         model.getUserHistoryManager().undoHistory();
         int sizeAfter = model.getUserHistoryManager().getUserHistorySize();

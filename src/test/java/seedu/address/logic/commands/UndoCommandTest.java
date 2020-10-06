@@ -15,6 +15,7 @@ import org.junit.jupiter.api.io.TempDir;
 import seedu.address.commons.UserHistoryManager;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.patientcommands.PatientAddCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -45,7 +46,7 @@ public class UndoCommandTest {
     @Test
     public void testUndo() throws CommandException {
         Patient validPatient = new PatientBuilder().build();
-        CommandResult commandResult = new AddCommand(validPatient).execute(model);
+        CommandResult commandResult = new PatientAddCommand(validPatient).execute(model);
         model.undoPatientHistory();
         assertFalse(model.getAddressBook().getPatientList().contains(validPatient));
     }
@@ -57,8 +58,8 @@ public class UndoCommandTest {
     @Test
     public void testConsecutiveCommandFollowByUndo() throws CommandException {
         Patient validPatientOne = new PatientBuilder().build();
-        CommandResult commandResultOne = new AddCommand(validPatientOne).execute(model);
-        CommandResult commandResultTwo = new AddCommand(ALICE).execute(model);
+        CommandResult commandResultOne = new PatientAddCommand(validPatientOne).execute(model);
+        CommandResult commandResultTwo = new PatientAddCommand(ALICE).execute(model);
         CommandResult undoCommand = new UndoCommand().execute(model);
 
         assertTrue(model.getAddressBook().getPatientList().contains(validPatientOne));
@@ -72,8 +73,8 @@ public class UndoCommandTest {
     @Test
     public void testConsecutiveCommandFollowedByConsecutiveUndo() throws CommandException {
         Patient validPatientOne = new PatientBuilder().build();
-        CommandResult commandResultOne = new AddCommand(validPatientOne).execute(model);
-        CommandResult commandResultTwo = new AddCommand(ALICE).execute(model);
+        CommandResult commandResultOne = new PatientAddCommand(validPatientOne).execute(model);
+        CommandResult commandResultTwo = new PatientAddCommand(ALICE).execute(model);
         CommandResult undoCommand = new UndoCommand().execute(model);
         CommandResult undoCommandTwo = new UndoCommand().execute(model);
 
@@ -88,7 +89,7 @@ public class UndoCommandTest {
     @Test
     public void testMultipleUndoAfterSingleCommand() throws CommandException {
         Patient validPatientOne = new PatientBuilder().build();
-        CommandResult commandResultOne = new AddCommand(validPatientOne).execute(model);
+        CommandResult commandResultOne = new PatientAddCommand(validPatientOne).execute(model);
 
         try {
             CommandResult undoCommand = new UndoCommand().execute(model);
