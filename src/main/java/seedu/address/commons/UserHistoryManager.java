@@ -22,6 +22,10 @@ public class UserHistoryManager {
         userHistory.pop();
     }
 
+    public int getUserHistorySize() {
+        return userHistory.size();
+    }
+
     public Stack<List<Patient>> getHistory() {
         return userHistory;
     }
