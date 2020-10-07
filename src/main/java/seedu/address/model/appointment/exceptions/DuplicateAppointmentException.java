@@ -1,4 +1,11 @@
 package seedu.address.model.appointment.exceptions;
 
-public class DuplicateAppointmentException extends Throwable {
+/**
+ * Signals that the operation will result in duplicate appointments (Appointments are considered duplicates if they have the same
+ * identity).
+ */
+public class DuplicateAppointmentException extends RuntimeException {
+    public DuplicateAppointmentException() {
+        super("Operation would result in duplicate appointments");
+    }
 }

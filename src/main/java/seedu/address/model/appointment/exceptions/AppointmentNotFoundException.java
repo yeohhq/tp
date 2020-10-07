@@ -1,4 +1,10 @@
 package seedu.address.model.appointment.exceptions;
 
-public class AppointmentNotFoundException extends Throwable {
+/**
+ * Signals that the operation is unable to find the specified appointment.
+ */
+public class AppointmentNotFoundException extends RuntimeException {
+    public AppointmentNotFoundException() {
+        super("Appointment not found");
+    }
 }
