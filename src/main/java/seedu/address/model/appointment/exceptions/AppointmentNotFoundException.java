@@ -1,4 +1,4 @@
 package seedu.address.model.appointment.exceptions;
 
-public class AppointmentNotFoundException {
+public class AppointmentNotFoundException extends Throwable {
 }

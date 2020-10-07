@@ -10,10 +10,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.appointment.exceptions.DuplicateAppointmentException;
 import seedu.address.model.appointment.exceptions.AppointmentNotFoundException;
-import seedu.address.model.patient.Patient;
-import seedu.address.model.patient.UniquePatientList;
-import seedu.address.model.patient.exceptions.DuplicatePatientException;
-import seedu.address.model.patient.exceptions.PatientNotFoundException;
 
 /**
  * A list of appointments that enforces uniqueness between its elements and does not allow nulls.
@@ -28,97 +24,98 @@ import seedu.address.model.patient.exceptions.PatientNotFoundException;
  *
  * @see Appointment#isSameAppointment(Appointment)
  */
-public class AppointmentList implements Iterable<Appointment {
+public class AppointmentList implements Iterable<Appointment> {
 
     private ObservableList<Appointment> internalList = FXCollections.observableArrayList();
     private final ObservableList<Appointment> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent patient as the given argument.
+     * Returns true if the list contains an equivalent appointment as the given argument.
      */
-    public boolean contains(Patient toCheck) {
+    public boolean contains(Appointment toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameAppointment);
     }
 
     /**
-     * Adds a patient to the list.
-     * The patient must not already exist in the list.
+     * Adds an appointment to the list.
+     * The appointment must not already exist in the list.
      */
-    public void add(Patient toAdd) {
+    public void add(Appointment toAdd) throws DuplicateAppointmentException {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicatePatientException();
+            throw new DuplicateAppointmentException();
         }
         internalList.add(toAdd);
     }
 
     /**
-     * Replaces the patient {@code target} in the list with {@code editedPatient}.
+     * Replaces the appointment {@code target} in the list with {@code editedAppointment}.
      * {@code target} must exist in the list.
-     * The patient identity of {@code editedPatient} must not be the same as another existing patient in the list.
+     * The appointment identity of {@code editedAppointment} must not be the same as another existing appointment in the list.
      */
-    public void setPatient(Patient target, Patient editedPatient) {
-        requireAllNonNull(target, editedPatient);
+    public void setAppointment(Appointment target, Appointment editedAppointment) throws AppointmentNotFoundException
+            , DuplicateAppointmentException {
+        requireAllNonNull(target, editedAppointment);
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new PatientNotFoundException();
+            throw new AppointmentNotFoundException();
         }
 
-        if (!target.isSamePatient(editedPatient) && contains(editedPatient)) {
-            throw new DuplicatePatientException();
+        if (!target.isSameAppointment(editedAppointment) && contains(editedAppointment)) {
+            throw new DuplicateAppointmentException();
         }
 
-        internalList.set(index, editedPatient);
+        internalList.set(index, editedAppointment);
     }
 
     /**
-     * Removes the equivalent patient from the list.
-     * The patient must exist in the list.
+     * Removes the equivalent appointment from the list.
+     * The appointment must exist in the list.
      */
-    public void remove(Patient toRemove) {
+    public void remove(Appointment toRemove) throws AppointmentNotFoundException {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new PatientNotFoundException();
+            throw new AppointmentNotFoundException();
         }
     }
 
-    public void setPatients(UniquePatientList replacement) {
+    public void setAppointment(AppointmentList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
 
     /**
-     * Replaces the contents of this list with {@code patients}.
-     * {@code patients} must not contain duplicate patients.
+     * Replaces the contents of this list with {@code appointment}.
+     * {@code appointment} must not contain duplicate sppointments.
      */
-    public void setPatients(List<Patient> patients) {
-        requireAllNonNull(patients);
-        if (!personsAreUnique(patients)) {
-            throw new DuplicatePatientException();
+    public void setAppointments(List<Appointment> appointments) throws DuplicateAppointmentException {
+        requireAllNonNull(appointments);
+        if (!appointmentsAreUnique(appointments)) {
+            throw new DuplicateAppointmentException();
         }
-        internalList.setAll(patients);
+        internalList.setAll(appointments);
     }
 
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
-    public ObservableList<Patient> asUnmodifiableObservableList() {
+    public ObservableList<Appointment> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
     }
 
     @Override
-    public Iterator<Patient> iterator() {
+    public Iterator<Appointment> iterator() {
         return internalList.iterator();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof UniquePatientList // instanceof handles nulls
-                && internalList.equals(((UniquePatientList) other).internalList));
+                || (other instanceof AppointmentList // instanceof handles nulls
+                && internalList.equals(((AppointmentList) other).internalList));
     }
 
     @Override
@@ -127,12 +124,12 @@ public class AppointmentList implements Iterable<Appointment {
     }
 
     /**
-     * Returns true if {@code patients} contains only unique patients.
+     * Returns true if {@code appointments} contains only unique appointments.
      */
-    private boolean personsAreUnique(List<Patient> patients) {
-        for (int i = 0; i < patients.size() - 1; i++) {
-            for (int j = i + 1; j < patients.size(); j++) {
-                if (patients.get(i).isSamePatient(patients.get(j))) {
+    private boolean appointmentsAreUnique(List<Appointment> appointments) {
+        for (int i = 0; i < appointments.size() - 1; i++) {
+            for (int j = i + 1; j < appointments.size(); j++) {
+                if (appointments.get(i).isSameAppointment(appointments.get(j))) {
                     return false;
                 }
             }
