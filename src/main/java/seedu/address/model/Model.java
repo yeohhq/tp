@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.UserHistoryManager;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.patient.Patient;
 
 /**
@@ -14,6 +15,7 @@ import seedu.address.model.patient.Patient;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Patient> PREDICATE_SHOW_ALL_PATIENTS = unused -> true;
+    Predicate<Appointment> PREDICATE_SHOW_ALL_APPOINTMENTS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -53,6 +55,8 @@ public interface Model {
     /** Returns the AddressBook */
     ReadOnlyAddressBook getAddressBook();
 
+    /* Patient abstract methods */
+
     /**
      * Returns true if a patient with the same identity as {@code patient} exists in the address book.
      */
@@ -87,13 +91,51 @@ public interface Model {
      */
     void updateFilteredPatientList(Predicate<Patient> predicate);
 
+    /* Appointment abstract methods */
+
+    /**
+     * Returns true if an appointment with the same identity as {@code appointment} exists in the address book.
+     */
+    boolean hasAppointment(Appointment appointment);
+
+    /**
+     * Deletes the given appointment.
+     * The appointment must exist in the address book.
+     */
+    void deleteAppointment(Appointment target);
+
+    /**
+     * Adds the given appointment.
+     * {@code appointment} must not already exist in the address book.
+     */
+    void addAppointment(Appointment appointment);
+
+    /**
+     * Replaces the given appointment {@code target} with {@code editedAppointment}.
+     * {@code target} must exist in the address book.
+     * The appointment identity of {@code editedAppointment} must not be
+     * the same as another existing appointment in the address book.
+     */
+    void setAppointment(Appointment target, Appointment editedAppointment);
+
+    /** Returns an unmodifiable view of the filtered appointment list */
+    ObservableList<Appointment> getFilteredAppointmentList();
+
+    /**
+     * Updates the filter of the filtered appointment list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredAppointmentList(Predicate<Appointment> predicate);
+
     /**
      * Returns user history.
      */
     UserHistoryManager getUserHistoryManager();
 
     /**
-     * Undo the patient history
+     * Undo the patient history.
      */
     void undoPatientHistory();
+
+    // TODO: include undo operations for Appointment class.
 }

@@ -21,7 +21,6 @@ public class Patient {
     private final Birthdate birthdate;
     private final BloodType bloodtype;
 
-
     // Data fields
     private final Phone phone;
     private final Email email;

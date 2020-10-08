@@ -14,6 +14,7 @@ import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.patient.Patient;
 import seedu.address.storage.Storage;
 
@@ -43,6 +44,7 @@ public class LogicManager implements Logic {
 
         CommandResult commandResult;
         Command command = addressBookParser.parseCommand(commandText);
+        //        Command command = addressBookParser.parseCommand(commandText, getFilteredPatientList());
         commandResult = command.execute(model);
 
         try {
@@ -62,6 +64,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Patient> getFilteredPatientList() {
         return model.getFilteredPatientList();
+    }
+
+    @Override
+    public ObservableList<Appointment> getFilteredAppointmentList() {
+        return model.getFilteredAppointmentList();
     }
 
     @Override
