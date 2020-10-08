@@ -44,7 +44,6 @@ public class LogicManager implements Logic {
 
         CommandResult commandResult;
         Command command = addressBookParser.parseCommand(commandText);
-        //        Command command = addressBookParser.parseCommand(commandText, getFilteredPatientList());
         commandResult = command.execute(model);
 
         try {
