@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.UserHistoryManager;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.patient.Patient;
 
 /**
@@ -24,6 +25,7 @@ public class ModelManager implements Model {
     private final UserHistoryManager userHistory;
     private final UserPrefs userPrefs;
     private final FilteredList<Patient> filteredPatients;
+    private final FilteredList<Appointment> filteredAppointments;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -39,6 +41,7 @@ public class ModelManager implements Model {
         this.userHistory = new UserHistoryManager();
         userHistory.addHistory(addressBook.getPatientList());
         filteredPatients = new FilteredList<>(this.addressBook.getPatientList());
+        filteredAppointments = new FilteredList<>(this.addressBook.getAppointmentList());
     }
 
     public ModelManager() {
@@ -92,6 +95,8 @@ public class ModelManager implements Model {
         return addressBook;
     }
 
+    /* Patient methods */
+
     @Override
     public boolean hasPatient(Patient patient) {
         requireNonNull(patient);
@@ -120,6 +125,36 @@ public class ModelManager implements Model {
         this.userHistory.addHistory(addressBook.getPatientList());
     }
 
+    /* Appointment methods */
+
+    @Override
+    public boolean hasAppointment(Appointment appointment) {
+        requireNonNull(appointment);
+        return addressBook.hasAppointment(appointment);
+    }
+
+    @Override
+    public void deleteAppointment(Appointment target) {
+        addressBook.removeAppointment(target);
+        updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
+        // userHistory.addHistory(addressBook.getPatientList());
+    }
+
+    @Override
+    public void addAppointment(Appointment appointment) {
+        addressBook.addAppointment(appointment);
+        updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
+        // this.userHistory.addHistory(addressBook.getPatientList());
+    }
+
+    @Override
+    public void setAppointment(Appointment target, Appointment editedAppointment) {
+        requireAllNonNull(target, editedAppointment);
+        addressBook.setAppointment(target, editedAppointment);
+        updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
+        this.userHistory.addHistory(addressBook.getPatientList());
+    }
+
     @Override
     public UserHistoryManager getUserHistoryManager() {
         return this.userHistory;
@@ -130,6 +165,7 @@ public class ModelManager implements Model {
         this.userHistory.undoHistory();
         addressBook.setPatients((this.userHistory.getHistory().peek()));
     }
+
     //=========== Filtered Patient List Accessors =============================================================
 
     /**
@@ -145,6 +181,23 @@ public class ModelManager implements Model {
     public void updateFilteredPatientList(Predicate<Patient> predicate) {
         requireNonNull(predicate);
         filteredPatients.setPredicate(predicate);
+    }
+
+    //=========== Filtered Patient List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Appointment} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Appointment> getFilteredAppointmentList() {
+        return filteredAppointments;
+    }
+
+    @Override
+    public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
+        requireNonNull(predicate);
+        filteredAppointments.setPredicate(predicate);
     }
 
     @Override
@@ -163,7 +216,8 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPatients.equals(other.filteredPatients);
+                && filteredPatients.equals(other.filteredPatients)
+                && filteredAppointments.equals(other.filteredAppointments);
     }
 
 }

@@ -136,7 +136,7 @@ Examples:
 ### 5. Giving a patient a Remark : `p-remark`
 
 Stores a remark under the patient's information.
-Recommended usage would be to store Allergies, Preferences, etc. 
+Recommended usage would be to store Allergies, Preferences, etc.
 
 Format: `p-remark INDEX r/REMARK`
 
@@ -190,15 +190,13 @@ The Archangel data is saved in the hard disk automatically after any command tha
 
 Schedules a new patient appointment in Archangel.
 
-Format: `a-schedule i/INDEXOFPATIENT s/DATE&TIME e/DATE&TIME [desc/DESCRIPTION] [t/TAGS]…`
+Format: `a-schedule i/INDEXOFPATIENT start/DATE&TIME end/DATE&TIME d/DESCRIPTION [t/TAGS]…`
 
 * Schedules patient appointment for patient NAME.
-* Optional DESCRIPTION for appointment.
-* Appointment will be set to input DATE (format: YYYY-MM-DD) and TIME (format: HH-MM).
+* Appointment will be set to input DATE (format: YYYY-MM-DD) and TIME (format: HH:MM).
 
 Examples:
-* `a-schedule i/2 s/2020-09-14 08-00 e/2020-09-14 10-00 desc/Review Appointment` schedules an appointment for patient 2 on 2020-09-14 at 08-00 with appointment description Review Appointment.
-* `a-schedule i/2 e/2020-09-14 08-00 e/2020-09-14 10-00` schedules an appointment for patient 2 on 2020-09-14 at 08-00 with no appointment description.
+* `a-schedule i/2 start/2020-09-14 08:00 end/2020-09-14 10:00 d/Review Appointment` schedules an appointment for patient 2 on 2020-09-14 at 08-00 with appointment description Review Appointment.
 
 ### 2. List all appointments : `a-list`
 
@@ -241,7 +239,7 @@ Examples:
 
 Edits an existing patient appointment in Archangel.
 
-Format: `a-edit INDEX [s/DATE&TIME] [e/DATE&TIME] [desc/DESCRIPTION] [t/TAGS]…`
+Format: `a-edit INDEX [start/DATE&TIME] [end/DATE&TIME] [d/DESCRIPTION] [t/TAGS]…`
 
 * Edits the appointment at the specified INDEX. The index refers to the index number shown in the displayed appointment list. The index must be a positive integer 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -250,7 +248,7 @@ Format: `a-edit INDEX [s/DATE&TIME] [e/DATE&TIME] [desc/DESCRIPTION] [t/TAGS]…
 * You can remove all the appointment’s tags by typing `t/` without specifying any tags after it.
 
 Examples:
-* `a-edit 1 s/2020-09-15 12-00 e/2020-09-15 14-00` Edits the start and end date & time of the 1st appointment to be 15/9/2020 12:00 and 15/9/2020 14:00 respectively.
+* `a-edit 1 start/2020-09-15 12:00 end/2020-09-15 14:00` Edits the start and end date & time of the 1st appointment to be 15/9/2020 12:00 and 15/9/2020 14:00 respectively.
 * `p-edit 2 d/Review Session /t` Edits the description of the 2nd appointment to be Review Session and clears all existing tags.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -273,8 +271,8 @@ Edit Patient         | `p-edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDR
 Find Patient         | `p-find KEYWORD [MORE_KEYWORDS]` <br> e.g. `p-find James Jake`
 List Patients        | `p-list`
 Help                 | `help`
-Schedule Appointment | `a-schedule i/INDEXOFPATIENT s/DATE&TIME e/DATE&TIME [desc/DESCRIPTION] [t/TAGS]…`​<br> e.g. `a-schedule i/2 s/2020-09-14 08-00 e/2020-09-14 10-00 desc/Review Appointment` 
+Schedule Appointment | `a-schedule i/INDEXOFPATIENT start/DATE&TIME end/DATE&TIME d/DESCRIPTION [t/TAGS]…`​<br> e.g. `a-schedule i/2 start/2020-09-14 08:00 end/2020-09-14 10:00 d/Review Appointment`
 Delete Appointment   | `a-delete INDEX` <br>e.g. `a-delete 3`
-Edit Appointment     | `a-edit INDEX [s/DATE&TIME] [e/DATE&TIME] [desc/DESCRIPTION] [t/TAGS]…` <br> e.g. `a-edit 2 s/2020-09-15 12-00 e/2020-09-15 14-00`
+Edit Appointment     | `a-edit INDEX [start/DATE&TIME] [end/DATE&TIME] [d/DESCRIPTION] [t/TAGS]…` <br> e.g. `a-edit 2 start/2020-09-15 12:00 end/2020-09-15 14:00`
 Find Appointment     | `a-find KEYWORD [MORE_KEYWORDS]` <br> e.g. `a-find Review Appointment`
 List Appointments    | `a-list`

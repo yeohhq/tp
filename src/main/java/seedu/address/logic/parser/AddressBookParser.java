@@ -10,6 +10,7 @@ import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.UndoCommand;
+import seedu.address.logic.commands.appointmentcommands.AppointmentDeleteCommand;
 import seedu.address.logic.commands.patientcommands.HelpCommand;
 import seedu.address.logic.commands.patientcommands.PatientAddCommand;
 import seedu.address.logic.commands.patientcommands.PatientDeleteCommand;
@@ -17,6 +18,7 @@ import seedu.address.logic.commands.patientcommands.PatientEditCommand;
 import seedu.address.logic.commands.patientcommands.PatientFindCommand;
 import seedu.address.logic.commands.patientcommands.PatientListCommand;
 import seedu.address.logic.commands.patientcommands.PatientRemarkCommand;
+import seedu.address.logic.parser.appointmentparser.DeleteAppointmentCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.patientparser.AddCommandParser;
 import seedu.address.logic.parser.patientparser.DeleteCommandParser;
@@ -60,14 +62,20 @@ public class AddressBookParser {
         case PatientDeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
 
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
-
         case PatientFindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
         case PatientListCommand.COMMAND_WORD:
             return new PatientListCommand();
+
+        case PatientRemarkCommand.COMMAND_WORD:
+            return new RemarkCommandParser().parse(arguments);
+
+        case AppointmentDeleteCommand.COMMAND_WORD:
+            return new DeleteAppointmentCommandParser().parse(arguments);
+
+        case ClearCommand.COMMAND_WORD:
+            return new ClearCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
@@ -75,16 +83,43 @@ public class AddressBookParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
-        case PatientRemarkCommand.COMMAND_WORD:
-            return new RemarkCommandParser().parse(arguments);
-
         case UndoCommand.COMMAND_WORD:
             return new UndoCommand();
-
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
+
+    // TODO: Implement parser for Appointment type commands that require data retrieval of Patients from patient list.
+    //    /**
+    //     * Parses user input into command for execution using overloaded method with reference to patient list.
+    //     *
+    //     * @param userInput full user input string
+    //     * @param patientObservableList patient list
+    //     * @return the command based on the user input
+    //     * @throws ParseException if the user input does not conform the expected format
+    //     */
+    //    public Command parseCommand(String userInput, ObservableList<Patient> patientObservableList)
+    //    throws ParseException {
+    //        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
+    //        if (!matcher.matches()) {
+    //            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+    //        }
+    //
+    //        final String commandWord = matcher.group("commandWord");
+    //        final String arguments = matcher.group("arguments");
+    //        switch (commandWord) {
+    //
+    //        case AppointmentScheduleCommand.COMMAND_WORD:
+    //            return new ScheduleAppointmentCommandParser().parse(arguments, patientObservableList);
+    //
+    //        case AppointmentEditCommand.COMMAND_WORD:
+    //            return new EditAppointmentCommandParser().parse(arguments, patientObservableList);
+    //
+    //        default:
+    //            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+    //        }
+    //    }
 
 }
