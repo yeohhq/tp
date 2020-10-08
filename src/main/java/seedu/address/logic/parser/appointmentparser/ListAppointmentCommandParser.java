@@ -15,6 +15,6 @@ public class ListAppointmentCommandParser implements Parser<AppointmentListComma
      * @throws ParseException if the user input does not conform the expected format
      */
     public AppointmentListCommand parse(String args) {
-        return null;
+        return new AppointmentListCommand();
     }
 }
