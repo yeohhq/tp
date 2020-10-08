@@ -1,10 +1,10 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.patientcommands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showPatientAtIndex;
+import static seedu.address.logic.commands.patientcommands.PatientCommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.patientcommands.PatientCommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.patientcommands.PatientCommandTestUtil.showPatientAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PATIENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PATIENT;
 import static seedu.address.testutil.TypicalPatients.getTypicalAddressBook;
