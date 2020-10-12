@@ -1,8 +1,6 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.appointmentcommands;
 
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showPatientAtIndex;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PATIENT;
+import static seedu.address.logic.commands.patientcommands.PatientCommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPatients.getTypicalAddressBook;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -14,9 +12,10 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for PatientListCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for AppointmentListCommand.
+ * NOT DONE
  */
-public class PatientListCommandTest {
+public class AppointmentListCommandTest {
 
     private Model model;
     private Model expectedModel;
@@ -29,12 +28,13 @@ public class PatientListCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new PatientListCommand(), model, PatientListCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new AppointmentListCommand(), model,
+                AppointmentListCommand.MESSAGE_LIST_APPOINTMENT_SUCCESS, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        showPatientAtIndex(model, INDEX_FIRST_PATIENT);
+        // showAppointmentAtIndex(model, INDEX_FIRST_PATIENT);
         assertCommandSuccess(new PatientListCommand(), model, PatientListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }
