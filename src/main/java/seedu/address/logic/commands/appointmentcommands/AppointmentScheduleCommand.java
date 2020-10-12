@@ -51,10 +51,9 @@ public class AppointmentScheduleCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         toSchedule.parsePatient(model.getAddressBook());
-//        if (model.hasAppointment(toSchedule)) {
-//            throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
-//        }
-
+        if (model.hasAppointment(toSchedule)) {
+            throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
+        }
         model.addAppointment(toSchedule);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toSchedule));
     }

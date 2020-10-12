@@ -24,7 +24,7 @@ class JsonSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE_PATIENT = "Patients list contains duplicate patient(s).";
     public static final String MESSAGE_DUPLICATE_APPOINTMENT =
-    "Appointments list contains duplicate appointment(s).";
+        "Appointments list contains duplicate appointment(s).";
 
     private final List<JsonAdaptedPatient> patients = new ArrayList<>();
     private final List<JsonAdaptedAppointment> appointments = new ArrayList<>();
@@ -33,7 +33,8 @@ class JsonSerializableAddressBook {
      * Constructs a {@code JsonSerializableAddressBook} with the given patients and appointments.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("patients") List<JsonAdaptedPatient> patients,@JsonProperty("appointments") List<JsonAdaptedAppointment> appointments) {
+    public JsonSerializableAddressBook(@JsonProperty("patients") List<JsonAdaptedPatient> patients,
+                                       @JsonProperty("appointments") List<JsonAdaptedAppointment> appointments) {
         this.patients.addAll(patients);
         this.appointments.addAll(appointments);
     }
@@ -46,7 +47,8 @@ class JsonSerializableAddressBook {
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         patients.addAll(source.getPatientList().stream().map(JsonAdaptedPatient::new).collect(Collectors.toList()));
-        appointments.addAll(source.getAppointmentList().stream().map(JsonAdaptedAppointment::new).collect(Collectors.toList()));
+        appointments.addAll(source.getAppointmentList().stream().map(JsonAdaptedAppointment::new)
+                .collect(Collectors.toList()));
     }
 
     /**

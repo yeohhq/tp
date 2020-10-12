@@ -11,7 +11,6 @@ import java.time.LocalDateTime;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import javafx.collections.ObservableList;
 import seedu.address.logic.commands.appointmentcommands.AppointmentScheduleCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
@@ -22,7 +21,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentTime;
 import seedu.address.model.appointment.Description;
-import seedu.address.model.patient.Patient;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -30,13 +28,12 @@ import seedu.address.model.tag.Tag;
  */
 public class ScheduleAppointmentCommandParser implements Parser<AppointmentScheduleCommand> {
 
-    // TODO: resolve Parser interface method.
-    @Override
     /**
      * Parses the given {@code String} of arguments in the context of the AppointmentScheduleCommand
      * and returns an AppointmentScheduleCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
+    @Override
     public AppointmentScheduleCommand parse(String args)
             throws ParseException {
         ArgumentMultimap argMultimap =
@@ -55,7 +52,7 @@ public class ScheduleAppointmentCommandParser implements Parser<AppointmentSched
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Boolean isMissed = false; // isMissed is always initialised to false for newly scheduled appointment
         Boolean isCompleted = false; // isCompleted is always initialised to false for newly scheduled appointment
-        String patient =argMultimap.getValue(PREFIX_PATIENT).get();
+        String patient = argMultimap.getValue(PREFIX_PATIENT).get();
         Appointment appointment = new Appointment(appointmentTime, patient, tagList, isCompleted, isMissed,
                 description);
 

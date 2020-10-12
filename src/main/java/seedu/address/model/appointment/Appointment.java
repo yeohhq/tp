@@ -1,10 +1,12 @@
 package seedu.address.model.appointment;
 
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 
-import seedu.address.model.AddressBook;
-import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.tag.Tag;
@@ -38,6 +40,9 @@ public class Appointment {
         this.tags.addAll(tags);
     }
 
+    /**
+     * Every field must be present and not null.
+     */
     public Appointment(AppointmentTime appointmentTime, String patientString, Set<Tag> tags,
                        Boolean isCompleted, Boolean isMissed, Description description) {
         this.appointmentTime = appointmentTime;
@@ -66,7 +71,9 @@ public class Appointment {
         return this.patient;
     }
 
-    public String getPatientString() { return this.patientString; }
+    public String getPatientString() {
+        return this.patientString;
+    }
 
     public Boolean isMissed() {
         return this.isMissed;
@@ -80,10 +87,14 @@ public class Appointment {
         return this.description;
     }
 
+    /**
+     * Parses patientString to change patient field in appointment
+     * @param addressBook
+     */
     public void parsePatient(ReadOnlyAddressBook addressBook) {
         ArrayList<Patient> arr = new ArrayList<>(addressBook.getPatientList());
-        for (int i = 0 ; i < arr.size() ; i ++) {
-            if(arr.get(i).getName().equals(patientString)) {
+        for (int i = 0; i < arr.size(); i++) {
+            if (arr.get(i).getName().equals(patientString)) {
                 patient = arr.get(i);
             }
         }
