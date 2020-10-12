@@ -1,11 +1,8 @@
 package seedu.address.testutil;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
-import java.time.LocalDateTime;
 
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentTime;
 import seedu.address.model.appointment.Description;

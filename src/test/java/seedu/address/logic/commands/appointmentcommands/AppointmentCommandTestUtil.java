@@ -1,6 +1,5 @@
 package seedu.address.logic.commands.appointmentcommands;
 
-
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -8,16 +7,17 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.filters.patientfilters.SearchNameFilter;
-import seedu.address.model.patient.Patient;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.*;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_START;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_END;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PATIENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 /**
  * Contains helper methods for testing appointment commands.

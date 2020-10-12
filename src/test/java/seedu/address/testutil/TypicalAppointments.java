@@ -4,8 +4,6 @@ import static seedu.address.logic.commands.appointmentcommands.AppointmentComman
 import static seedu.address.logic.commands.appointmentcommands.AppointmentCommandTestUtil.VALID_START_TWO;
 import static seedu.address.logic.commands.appointmentcommands.AppointmentCommandTestUtil.VALID_END_ONE;
 import static seedu.address.logic.commands.appointmentcommands.AppointmentCommandTestUtil.VALID_END_TWO;
-import static seedu.address.logic.commands.appointmentcommands.AppointmentCommandTestUtil.VALID_PATIENT_ONE;
-import static seedu.address.logic.commands.appointmentcommands.AppointmentCommandTestUtil.VALID_PATIENT_TWO;
 import static seedu.address.logic.commands.appointmentcommands.AppointmentCommandTestUtil.VALID_DESCRIPTION_ONE;
 import static seedu.address.logic.commands.appointmentcommands.AppointmentCommandTestUtil.VALID_DESCRIPTION_TWO;
 import static seedu.address.logic.commands.appointmentcommands.AppointmentCommandTestUtil.VALID_TAG_ONE;
@@ -19,7 +17,6 @@ import java.util.List;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.patient.Patient;
 
 /**
  * A utility class containing a list of {@code Appointment} objects to be used in tests.

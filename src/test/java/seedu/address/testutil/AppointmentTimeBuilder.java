@@ -1,19 +1,11 @@
 package seedu.address.testutil;
 
 import java.time.LocalDateTime;
-import java.time.Month;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 
-import com.fasterxml.jackson.databind.ser.impl.FailingSerializer;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.appointment.AppointmentTime;
-import seedu.address.model.patient.Name;
 
 import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 /**
  * A utility class to help with building AppointmentTime objects.
