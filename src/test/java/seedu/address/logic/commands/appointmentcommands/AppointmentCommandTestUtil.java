@@ -10,6 +10,7 @@ import seedu.address.model.appointment.Appointment;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_START;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_END;

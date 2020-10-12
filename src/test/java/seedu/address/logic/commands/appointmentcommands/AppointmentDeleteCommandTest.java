@@ -24,15 +24,18 @@ public class AppointmentDeleteCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Appointment appointmentToDelete = model.getFilteredAppointmentList().get(INDEX_FIRST_APPOINTMENT.getZeroBased());
+        Appointment appointmentToDelete = model.getFilteredAppointmentList()
+                .get(INDEX_FIRST_APPOINTMENT.getZeroBased());
         AppointmentDeleteCommand appointmentDeleteCommand = new AppointmentDeleteCommand(INDEX_FIRST_APPOINTMENT);
 
-        String expectedMessage = String.format(AppointmentDeleteCommand.MESSAGE_DELETE_APPOINTMENT_SUCCESS, appointmentToDelete);
+        String expectedMessage = String.format(AppointmentDeleteCommand.MESSAGE_DELETE_APPOINTMENT_SUCCESS,
+                appointmentToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deleteAppointment(appointmentToDelete);
 
-        AppointmentCommandTestUtil.assertCommandSuccess(appointmentDeleteCommand, model, expectedMessage, expectedModel);
+        AppointmentCommandTestUtil.assertCommandSuccess(appointmentDeleteCommand, model,
+                expectedMessage, expectedModel);
     }
 
     @Test
@@ -40,7 +43,8 @@ public class AppointmentDeleteCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredAppointmentList().size() + 1);
         AppointmentDeleteCommand appointmentDeleteCommand = new AppointmentDeleteCommand(outOfBoundIndex);
 
-        AppointmentCommandTestUtil.assertCommandFailure(appointmentDeleteCommand, model, Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
+        AppointmentCommandTestUtil.assertCommandFailure(appointmentDeleteCommand, model,
+                Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
     }
 
     // UNCOMMENT THIS TEST WHEN FILTERS ARE DONE
@@ -55,7 +59,8 @@ public class AppointmentDeleteCommandTest {
 
         AppointmentDeleteCommand appointmentDeleteCommand = new AppointmentDeleteCommand(outOfBoundIndex);
 
-        AppointmentCommandTestUtil.assertCommandFailure(appointmentDeleteCommand, model, Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
+        AppointmentCommandTestUtil.assertCommandFailure(appointmentDeleteCommand, model,
+                Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
     }
     */
 

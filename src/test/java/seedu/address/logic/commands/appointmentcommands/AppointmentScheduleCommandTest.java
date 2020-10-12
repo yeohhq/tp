@@ -1,7 +1,11 @@
 package seedu.address.logic.commands.appointmentcommands;
 
+import static java.util.Objects.requireNonNull;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.function.Predicate;
+import java.nio.file.Path;
 import javafx.collections.ObservableList;
-import org.junit.jupiter.api.Test;
 import seedu.address.commons.UserHistoryManager;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
@@ -13,20 +17,17 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.patient.Patient;
 import seedu.address.testutil.AppointmentBuilder;
-import static seedu.address.logic.commands.appointmentcommands.AppointmentCommandTestUtil.VALID_START_ONE;
-import static seedu.address.logic.commands.appointmentcommands.AppointmentCommandTestUtil.VALID_START_TWO;
 import static seedu.address.logic.commands.appointmentcommands.AppointmentCommandTestUtil.VALID_END_ONE;
 import static seedu.address.logic.commands.appointmentcommands.AppointmentCommandTestUtil.VALID_END_TWO;
-
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.function.Predicate;
-
-import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static seedu.address.logic.commands.appointmentcommands.AppointmentCommandTestUtil.VALID_START_ONE;
+import static seedu.address.logic.commands.appointmentcommands.AppointmentCommandTestUtil.VALID_START_TWO;
 import static seedu.address.testutil.Assert.assertThrows;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
 
 public class AppointmentScheduleCommandTest {
     @Test
@@ -41,7 +42,8 @@ public class AppointmentScheduleCommandTest {
 
         CommandResult commandResult = new AppointmentScheduleCommand(validAppointment).execute(modelStub);
 
-        assertEquals(String.format(AppointmentScheduleCommand.MESSAGE_SUCCESS, validAppointment), commandResult.getFeedbackToUser());
+        assertEquals(String.format(AppointmentScheduleCommand.MESSAGE_SUCCESS, validAppointment),
+                commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validAppointment), modelStub.appointmentAdded);
     }
 
@@ -49,7 +51,8 @@ public class AppointmentScheduleCommandTest {
     public void execute_duplicateAppointment_throwsCommandException() {
         Appointment validAppointment = new AppointmentBuilder().build();
         AppointmentScheduleCommand appointmentScheduleCommand = new AppointmentScheduleCommand(validAppointment);
-        AppointmentScheduleCommandTest.ModelStub modelStub = new AppointmentScheduleCommandTest.ModelStubWithAppointment(validAppointment);
+        AppointmentScheduleCommandTest.ModelStub modelStub =
+                new AppointmentScheduleCommandTest.ModelStubWithAppointment(validAppointment);
 
         assertThrows(CommandException.class, AppointmentScheduleCommand.MESSAGE_DUPLICATE_APPOINTMENT, () ->
                 appointmentScheduleCommand.execute(modelStub));

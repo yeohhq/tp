@@ -6,7 +6,7 @@ import java.util.Set;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentTime;
 import seedu.address.model.appointment.Description;
-import seedu.address.model.patient.*;
+import seedu.address.model.patient.Patient;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -15,9 +15,9 @@ import seedu.address.model.util.SampleDataUtil;
  */
 public class AppointmentBuilder {
 
-    public static final AppointmentTime DEFAULT_TIME = new AppointmentTimeBuilder().build();
-    public static final Patient DEFAULT_PATIENT = new PatientBuilder().build();
-    public static final String DEFAULT_DESCRIPTION = "Appointment";
+    private static final AppointmentTime DEFAULT_TIME = new AppointmentTimeBuilder().build();
+    private static final Patient DEFAULT_PATIENT = new PatientBuilder().build();
+    private static final String DEFAULT_DESCRIPTION = "Appointment";
     public static final boolean DEFAULT_COMPLETE = false;
     public static final boolean DEFAULT_MISSED = false;
 
@@ -58,7 +58,7 @@ public class AppointmentBuilder {
     /**
      * Sets the {@code Patient} of the {@code Appointment} that we are building.
      */
-    public AppointmentBuilder withPatient(Patient patient){
+    public AppointmentBuilder withPatient(Patient patient) {
         this.patient = patient;
         return this;
     }
@@ -66,7 +66,7 @@ public class AppointmentBuilder {
     /**
      * Sets the {@code Description} of the {@code Appointment} that we are building.
      */
-    public AppointmentBuilder withDescription(String description){
+    public AppointmentBuilder withDescription(String description) {
         this.description = new Description(description);
         return this;
     }
@@ -80,6 +80,6 @@ public class AppointmentBuilder {
     }
 
     public Appointment build() {
-        return new Appointment(appointmentTime, patient, tags, DEFAULT_COMPLETE,DEFAULT_MISSED, description);
+        return new Appointment(appointmentTime, patient, tags, DEFAULT_COMPLETE, DEFAULT_MISSED, description);
     }
 }

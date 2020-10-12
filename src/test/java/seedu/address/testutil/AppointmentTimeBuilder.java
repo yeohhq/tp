@@ -3,9 +3,9 @@ package seedu.address.testutil;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import seedu.address.model.appointment.AppointmentTime;
-
 import static java.util.Objects.requireNonNull;
+
+import seedu.address.model.appointment.AppointmentTime;
 
 /**
  * A utility class to help with building AppointmentTime objects.
@@ -17,8 +17,8 @@ public class AppointmentTimeBuilder {
      */
     public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm");
 
-    public static final String DEFAULT_START = "2020-01-01 12:00";
-    public static final String DEFAULT_END = "2020-01-01 14:00";
+    private static final String DEFAULT_START = "2020-01-01 12:00";
+    private static final String DEFAULT_END = "2020-01-01 14:00";
 
     public LocalDateTime start;
     public LocalDateTime end;

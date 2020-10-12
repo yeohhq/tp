@@ -2,7 +2,10 @@ package seedu.address.model.appointment;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.appointmentcommands.AppointmentCommandTestUtil.*;
+import static seedu.address.logic.commands.appointmentcommands.AppointmentCommandTestUtil.VALID_DESCRIPTION_TWO;
+import static seedu.address.logic.commands.appointmentcommands.AppointmentCommandTestUtil.VALID_END_TWO;
+import static seedu.address.logic.commands.appointmentcommands.AppointmentCommandTestUtil.VALID_START_TWO;
+import static seedu.address.logic.commands.appointmentcommands.AppointmentCommandTestUtil.VALID_TAG_TWO;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAppointments.APT1;
 import static seedu.address.testutil.TypicalAppointments.APT2;
@@ -29,7 +32,8 @@ public class AppointmentTest {
         assertFalse(APT1.isSameAppointment(null));
 
         // different date and time -> returns false
-        Appointment editedAPT1 = new AppointmentBuilder(APT1).withAppointmentTime(VALID_START_TWO, VALID_END_TWO).build();
+        Appointment editedAPT1 = new AppointmentBuilder(APT1)
+                .withAppointmentTime(VALID_START_TWO, VALID_END_TWO).build();
         assertFalse(APT1.isSameAppointment(editedAPT1));
 
         // different description -> returns false
@@ -60,7 +64,8 @@ public class AppointmentTest {
         assertFalse(APT1.equals(APT2));
 
         // different appointment time -> returns false
-        Appointment editedAPT1 = new AppointmentBuilder(APT1).withAppointmentTime(VALID_START_TWO, VALID_END_TWO).build();
+        Appointment editedAPT1 = new AppointmentBuilder(APT1)
+                .withAppointmentTime(VALID_START_TWO, VALID_END_TWO).build();
         assertFalse(APT1.equals(editedAPT1));
 
         // different description -> returns false
