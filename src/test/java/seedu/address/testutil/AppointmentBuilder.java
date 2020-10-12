@@ -14,19 +14,15 @@ import seedu.address.model.util.SampleDataUtil;
  * A utility class to help with building Appointment objects.
  */
 public class AppointmentBuilder {
-
+    public static final boolean DEFAULT_COMPLETE = false;
+    public static final boolean DEFAULT_MISSED = false;
     private static final AppointmentTime DEFAULT_TIME = new AppointmentTimeBuilder().build();
     private static final Patient DEFAULT_PATIENT = new PatientBuilder().build();
     private static final String DEFAULT_DESCRIPTION = "Appointment";
-    public static final boolean DEFAULT_COMPLETE = false;
-    public static final boolean DEFAULT_MISSED = false;
-
-    public AppointmentTime appointmentTime;
-    public Patient patient;
-    public Description description;
+    private AppointmentTime appointmentTime;
+    private Patient patient;
+    private Description description;
     private Set<Tag> tags;
-
-
     /**
      * Creates a {@code AppointmentBuilder} with the default details.
      */

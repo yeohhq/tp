@@ -32,17 +32,17 @@ public class AppointmentTest {
         assertFalse(APT1.isSameAppointment(null));
 
         // different date and time -> returns false
-        Appointment editedAPT1 = new AppointmentBuilder(APT1)
+        Appointment editedApt1 = new AppointmentBuilder(APT1)
                 .withAppointmentTime(VALID_START_TWO, VALID_END_TWO).build();
-        assertFalse(APT1.isSameAppointment(editedAPT1));
+        assertFalse(APT1.isSameAppointment(editedApt1));
 
         // different description -> returns false
-        editedAPT1 = new AppointmentBuilder(APT1).withDescription(VALID_DESCRIPTION_TWO).build();
-        assertFalse(APT1.isSameAppointment(editedAPT1));
+        editedApt1 = new AppointmentBuilder(APT1).withDescription(VALID_DESCRIPTION_TWO).build();
+        assertFalse(APT1.isSameAppointment(editedApt1));
 
         // different patient-> returns false
-        editedAPT1 = new AppointmentBuilder(APT1).withPatient(BOB).build();
-        assertFalse(APT1.isSameAppointment(editedAPT1));
+        editedApt1 = new AppointmentBuilder(APT1).withPatient(BOB).build();
+        assertFalse(APT1.isSameAppointment(editedApt1));
     }
 
     @Test
@@ -64,20 +64,20 @@ public class AppointmentTest {
         assertFalse(APT1.equals(APT2));
 
         // different appointment time -> returns false
-        Appointment editedAPT1 = new AppointmentBuilder(APT1)
+        Appointment editedApt1 = new AppointmentBuilder(APT1)
                 .withAppointmentTime(VALID_START_TWO, VALID_END_TWO).build();
-        assertFalse(APT1.equals(editedAPT1));
+        assertFalse(APT1.equals(editedApt1));
 
         // different description -> returns false
-        editedAPT1 = new AppointmentBuilder(APT1).withDescription(VALID_DESCRIPTION_TWO).build();
-        assertFalse(APT1.equals(editedAPT1));
+        editedApt1 = new AppointmentBuilder(APT1).withDescription(VALID_DESCRIPTION_TWO).build();
+        assertFalse(APT1.equals(editedApt1));
 
         // different patient -> returns false
-        editedAPT1 = new AppointmentBuilder(APT1).withPatient(BOB).build();
-        assertFalse(APT1.equals(editedAPT1));
+        editedApt1 = new AppointmentBuilder(APT1).withPatient(BOB).build();
+        assertFalse(APT1.equals(editedApt1));
 
         // different tags -> returns false
-        editedAPT1 = new AppointmentBuilder(APT1).withTags(VALID_TAG_TWO).build();
-        assertFalse(APT1.equals(editedAPT1));
+        editedApt1 = new AppointmentBuilder(APT1).withTags(VALID_TAG_TWO).build();
+        assertFalse(APT1.equals(editedApt1));
     }
 }

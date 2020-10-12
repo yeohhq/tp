@@ -1,9 +1,9 @@
 package seedu.address.testutil;
 
+import static java.util.Objects.requireNonNull;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-
-import static java.util.Objects.requireNonNull;
 
 import seedu.address.model.appointment.AppointmentTime;
 
@@ -20,8 +20,8 @@ public class AppointmentTimeBuilder {
     private static final String DEFAULT_START = "2020-01-01 12:00";
     private static final String DEFAULT_END = "2020-01-01 14:00";
 
-    public LocalDateTime start;
-    public LocalDateTime end;
+    private LocalDateTime start;
+    private LocalDateTime end;
 
     /**
      * Creates a {@code AppointmentTimeBuilder} with the default details.
@@ -58,20 +58,9 @@ public class AppointmentTimeBuilder {
     public AppointmentTime build() {
         return new AppointmentTime(start, end);
     }
-
     /**
      * Parses a {@code String dateTime} into a {@code LocalDateTime}.
      * Leading and trailing whitespaces will be trimmed.
-     */
-    /*
-    public static LocalDateTime parseDateTime(String dateTime) {
-        requireNonNull(dateTime);
-        String trimmedDateTime = dateTime.trim();
-        LocalDateTime localDateTime = null;
-        localDateTime = LocalDateTime.parse(trimmedDateTime, DATE_FORMATTER);
-        return localDateTime;
-    }
-
      */
     public static LocalDateTime parseDateTime(String dateTime) {
         requireNonNull(dateTime);

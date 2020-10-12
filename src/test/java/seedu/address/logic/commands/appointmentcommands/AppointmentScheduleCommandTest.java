@@ -1,10 +1,22 @@
 package seedu.address.logic.commands.appointmentcommands;
 
 import static java.util.Objects.requireNonNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.appointmentcommands.AppointmentCommandTestUtil.VALID_END_ONE;
+import static seedu.address.logic.commands.appointmentcommands.AppointmentCommandTestUtil.VALID_END_TWO;
+import static seedu.address.logic.commands.appointmentcommands.AppointmentCommandTestUtil.VALID_START_ONE;
+import static seedu.address.logic.commands.appointmentcommands.AppointmentCommandTestUtil.VALID_START_TWO;
+import static seedu.address.testutil.Assert.assertThrows;
+
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
-import java.nio.file.Path;
+
+import org.junit.jupiter.api.Test;
+
 import javafx.collections.ObservableList;
 import seedu.address.commons.UserHistoryManager;
 import seedu.address.commons.core.GuiSettings;
@@ -17,17 +29,6 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.patient.Patient;
 import seedu.address.testutil.AppointmentBuilder;
-import static seedu.address.logic.commands.appointmentcommands.AppointmentCommandTestUtil.VALID_END_ONE;
-import static seedu.address.logic.commands.appointmentcommands.AppointmentCommandTestUtil.VALID_END_TWO;
-import static seedu.address.logic.commands.appointmentcommands.AppointmentCommandTestUtil.VALID_START_ONE;
-import static seedu.address.logic.commands.appointmentcommands.AppointmentCommandTestUtil.VALID_START_TWO;
-import static seedu.address.testutil.Assert.assertThrows;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import org.junit.jupiter.api.Test;
 
 public class AppointmentScheduleCommandTest {
     @Test
@@ -62,8 +63,8 @@ public class AppointmentScheduleCommandTest {
     public void equals() {
         Appointment apt1 = new AppointmentBuilder().withAppointmentTime(VALID_START_ONE, VALID_END_ONE).build();
         Appointment apt2 = new AppointmentBuilder().withAppointmentTime(VALID_START_TWO, VALID_END_TWO).build();
-        AppointmentScheduleCommand addCommand1 = new  AppointmentScheduleCommand(apt1);
-        AppointmentScheduleCommand addCommand2 = new  AppointmentScheduleCommand(apt2);
+        AppointmentScheduleCommand addCommand1 = new AppointmentScheduleCommand(apt1);
+        AppointmentScheduleCommand addCommand2 = new AppointmentScheduleCommand(apt2);
 
         // same object -> returns true
         assertTrue(addCommand1.equals(addCommand1));
