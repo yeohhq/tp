@@ -10,6 +10,8 @@ import static seedu.address.logic.commands.appointmentcommands.AppointmentComman
 import static seedu.address.logic.commands.appointmentcommands.AppointmentCommandTestUtil.VALID_DESCRIPTION_TWO;
 import static seedu.address.logic.commands.appointmentcommands.AppointmentCommandTestUtil.VALID_TAG_ONE;
 import static seedu.address.logic.commands.appointmentcommands.AppointmentCommandTestUtil.VALID_TAG_TWO;
+import static seedu.address.testutil.TypicalPatients.ALICE;
+import static seedu.address.testutil.TypicalPatients.BOB;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,12 +26,10 @@ import seedu.address.model.patient.Patient;
  */
 public class TypicalAppointments {
 
-    public static final List<Patient> patientsList = TypicalPatients.getTypicalPatients();
-
     public static final Appointment APT1 = new AppointmentBuilder().withAppointmentTime(VALID_START_ONE, VALID_END_ONE)
-            .withPatient(patientsList.get(0)).withDescription(VALID_DESCRIPTION_ONE).withTags(VALID_TAG_ONE).build();
+            .withPatient(ALICE).withDescription(VALID_DESCRIPTION_ONE).withTags(VALID_TAG_ONE).build();
     public static final Appointment APT2 = new AppointmentBuilder().withAppointmentTime(VALID_START_TWO, VALID_END_TWO)
-            .withPatient(patientsList.get(1)).withDescription(VALID_DESCRIPTION_TWO).withTags(VALID_TAG_TWO).build();
+            .withPatient(BOB).withDescription(VALID_DESCRIPTION_TWO).withTags(VALID_TAG_TWO).build();
 
     private TypicalAppointments() {} // prevents instantiation
 
@@ -38,13 +38,13 @@ public class TypicalAppointments {
      */
     public static AddressBook getTypicalAddressBook() {
         AddressBook ab = new AddressBook();
-        for (Appointment appointment : getTypicalAppontments()) {
+        for (Appointment appointment : getTypicalAppointments()) {
             ab.addAppointment(appointment);
         }
         return ab;
     }
 
-    public static List<Appointment> getTypicalAppontments() {
+    public static List<Appointment> getTypicalAppointments() {
         return new ArrayList<>(Arrays.asList(APT1, APT2));
     }
 }
