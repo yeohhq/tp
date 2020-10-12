@@ -28,12 +28,8 @@ public class AppointmentTimeBuilder {
      * Creates a {@code AppointmentTimeBuilder} with the default details.
      */
     public AppointmentTimeBuilder() {
-        try {
-            start = parseDateTime(DEFAULT_START);
-            end = parseDateTime(DEFAULT_END);
-        } catch (ParseException e) {
-            fail("Parse Exception thrown when creating AppointmentTime");
-        }
+        start = parseDateTime(DEFAULT_START);
+        end = parseDateTime(DEFAULT_END);
     }
 
     /**
@@ -47,7 +43,7 @@ public class AppointmentTimeBuilder {
     /**
      * Sets the start time of the {@code AppointmentTime} that we are building.
      */
-    public AppointmentTimeBuilder withStart(String stringStart) throws ParseException {
+    public AppointmentTimeBuilder withStart(String stringStart) {
         this.start = parseDateTime(stringStart);
         return this;
     }
@@ -55,7 +51,7 @@ public class AppointmentTimeBuilder {
     /**
      * Sets the end time of the {@code AppointmentTime} that we are building.
      */
-    public AppointmentTimeBuilder withEnd(String stringEnd) throws ParseException {
+    public AppointmentTimeBuilder withEnd(String stringEnd) {
         this.end = parseDateTime(stringEnd);
         return this;
     }
@@ -67,19 +63,12 @@ public class AppointmentTimeBuilder {
     /**
      * Parses a {@code String dateTime} into a {@code LocalDateTime}.
      * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code dateTime} is invalid.
      */
-    public static LocalDateTime parseDateTime(String dateTime) throws ParseException {
+    public static LocalDateTime parseDateTime(String dateTime) {
         requireNonNull(dateTime);
         String trimmedDateTime = dateTime.trim();
         LocalDateTime localDateTime = null;
-
-        try {
-            localDateTime = LocalDateTime.parse(trimmedDateTime, DATE_FORMATTER);
-        } catch (DateTimeParseException e) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
-        }
+        localDateTime = LocalDateTime.parse(trimmedDateTime, DATE_FORMATTER);
         return localDateTime;
     }
 }

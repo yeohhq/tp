@@ -53,7 +53,7 @@ public class AppointmentBuilder {
     /**
      * Sets the {@code AppointmentTime} of the {@code Appointment} that we are building.
      */
-    public AppointmentBuilder withAppointmentTime(String start, String end) throws ParseException {
+    public AppointmentBuilder withAppointmentTime(String start, String end) {
         this.appointmentTime = new AppointmentTimeBuilder().withStart(start).withEnd(end).build();
         return this;
     }

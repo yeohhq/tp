@@ -13,10 +13,7 @@ import seedu.address.model.patient.Patient;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_START;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_END;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PATIENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.*;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -35,6 +32,8 @@ public class AppointmentCommandTestUtil {
     public static final String VALID_PATIENT_TWO = "2";
     public static final String VALID_DESCRIPTION_ONE = "Review Appointment";
     public static final String VALID_DESCRIPTION_TWO = "Follow-up Appointment";
+    public static final String VALID_TAG_ONE = "Review";
+    public static final String VALID_TAG_TWO = "Follow up";
 
     public static final String START_DESC_ONE = " " + PREFIX_APPOINTMENT_START + VALID_START_ONE;
     public static final String START_DESC_TWO = " " + PREFIX_APPOINTMENT_START + VALID_START_TWO;
@@ -44,12 +43,16 @@ public class AppointmentCommandTestUtil {
     public static final String PATIENT_DESC_TWO = " " + PREFIX_PATIENT + VALID_PATIENT_TWO;
     public static final String DESCRIPTION_DESC_ONE = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_ONE;
     public static final String DESCRIPTION_DESC_TWO = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_TWO;
+    public static final String TAG_DESC_ONE = " " + PREFIX_TAG + VALID_TAG_ONE;
+    public static final String TAG_DESC_TWO = " " + PREFIX_TAG + VALID_TAG_TWO;
 
     // Must follow correct date & time format
     public static final String INVALID_START_DESC = " " + PREFIX_APPOINTMENT_START + "08:00 2020-10-07";
     public static final String INVALID_END_DESC = " " + PREFIX_APPOINTMENT_END + "07-10-2020 08:00";
     // Patient id must be a number
     public static final String INVALID_PATIENT_DESC = " " + PREFIX_PATIENT + "A";
+    // '*' not allowed in tags
+    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "Review*";
 
     /**
      * Executes the given {@code command}, confirms that <br>

@@ -8,6 +8,8 @@ import static seedu.address.logic.commands.appointmentcommands.AppointmentComman
 import static seedu.address.logic.commands.appointmentcommands.AppointmentCommandTestUtil.VALID_PATIENT_TWO;
 import static seedu.address.logic.commands.appointmentcommands.AppointmentCommandTestUtil.VALID_DESCRIPTION_ONE;
 import static seedu.address.logic.commands.appointmentcommands.AppointmentCommandTestUtil.VALID_DESCRIPTION_TWO;
+import static seedu.address.logic.commands.appointmentcommands.AppointmentCommandTestUtil.VALID_TAG_ONE;
+import static seedu.address.logic.commands.appointmentcommands.AppointmentCommandTestUtil.VALID_TAG_TWO;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,7 +26,10 @@ public class TypicalAppointments {
 
     public static final List<Patient> patientsList = TypicalPatients.getTypicalPatients();
 
-    public static final Appointment app1;
+    public static final Appointment APT1 = new AppointmentBuilder().withAppointmentTime(VALID_START_ONE, VALID_END_ONE)
+            .withPatient(patientsList.get(0)).withDescription(VALID_DESCRIPTION_ONE).withTags(VALID_TAG_ONE).build();
+    public static final Appointment APT2 = new AppointmentBuilder().withAppointmentTime(VALID_START_TWO, VALID_END_TWO)
+            .withPatient(patientsList.get(1)).withDescription(VALID_DESCRIPTION_TWO).withTags(VALID_TAG_TWO).build();
 
     private TypicalAppointments() {} // prevents instantiation
 
@@ -39,7 +44,7 @@ public class TypicalAppointments {
         return ab;
     }
 
-    public static List<Patient> getTypicalAppontments() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+    public static List<Appointment> getTypicalAppontments() {
+        return new ArrayList<>(Arrays.asList(APT1, APT2));
     }
 }
