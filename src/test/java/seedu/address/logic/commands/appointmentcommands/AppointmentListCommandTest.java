@@ -1,12 +1,11 @@
 package seedu.address.logic.commands.appointmentcommands;
 
-import static seedu.address.logic.commands.patientcommands.PatientCommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.appointmentcommands.AppointmentCommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPatients.getTypicalAddressBook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.appointmentcommands.AppointmentListCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
