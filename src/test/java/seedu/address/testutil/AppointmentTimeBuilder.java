@@ -6,11 +6,10 @@ import java.time.format.DateTimeParseException;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.AppointmentTime;
-import seedu.address.model.patient.Address;
 import seedu.address.model.patient.Name;
-import seedu.address.model.patient.Patient;
 
 import static java.util.Objects.requireNonNull;
+import static org.junit.jupiter.api.Assertions.fail;
 
 /**
  * A utility class to help with building AppointmentTime objects.
@@ -28,9 +27,13 @@ public class AppointmentTimeBuilder {
     /**
      * Creates a {@code AppointmentTimeBuilder} with the default details.
      */
-    public AppointmentTimeBuilder() throws ParseException {
-        start = parseDateTime(DEFAULT_START);
-        end = parseDateTime(DEFAULT_END);
+    public AppointmentTimeBuilder() {
+        try {
+            start = parseDateTime(DEFAULT_START);
+            end = parseDateTime(DEFAULT_END);
+        } catch (ParseException e) {
+            fail("Parse Exception thrown when creating AppointmentTime");
+        }
     }
 
     /**
