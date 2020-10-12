@@ -36,7 +36,7 @@ public class JsonAdaptedAppointment {
     private final String isCompleted;
     private final String isMissed;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
-    private List<Patient> patientList = new ArrayList<>();
+//    private List<Patient> patientList = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedAppointment} with the given appointment details.
@@ -61,18 +61,18 @@ public class JsonAdaptedAppointment {
     /**
      * Converts a given {@code Appointment} into this class for Jackson use.
      */
-    public JsonAdaptedAppointment(Appointment source, ArrayList<Patient> patientList) {
+    public JsonAdaptedAppointment(Appointment source) {
+        System.out.println(source);
         appointmentTime = source.getAppointmentTime().toString();
-        patient = source.getPatient().toString();
+        patient = source.getPatientString();
         description = source.getDescription().toString();
         isCompleted = source.isCompleted().toString();
         isMissed = source.isMissed().toString();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
-        startTime = null;
-        endTime = null;
-        patientList = patientList;
+        startTime = source.getStartTime();
+        endTime = source.getEndTime();
     }
 
     /**
@@ -90,26 +90,26 @@ public class JsonAdaptedAppointment {
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, AppointmentTime.class.getSimpleName()));
         }
-        try {
-            startTime = ParserUtil.parseDateTime(appointmentTime.substring(0, appointmentTime.length() / 2));
-            endTime = ParserUtil.parseDateTime(appointmentTime.substring(appointmentTime.length() / 2));
-
-            if (!AppointmentTime.isValidAppointmentTime(startTime, endTime)) {
-                throw new IllegalValueException(AppointmentTime.MESSAGE_CONSTRAINTS);
-            }
-        } catch (DateTimeParseException e) {
-            throw new IllegalValueException(AppointmentTime.MESSAGE_CONSTRAINTS);
-        }
+//        try {
+////            startTime = ParserUtil.parseDateTime(appointmentTime.substring(0, appointmentTime.length() / 2));
+////            endTime = ParserUtil.parseDateTime(appointmentTime.substring(appointmentTime.length() / 2));
+//            startTime = ParseU
+//
+//            if (!AppointmentTime.isValidAppointmentTime(startTime, endTime)) {
+//                throw new IllegalValueException(AppointmentTime.MESSAGE_CONSTRAINTS);
+//            }
+//        } catch (DateTimeParseException e) {
+//            throw new IllegalValueException(AppointmentTime.MESSAGE_CONSTRAINTS);
+//        }
         final AppointmentTime modelAppointmentTime = new AppointmentTime(startTime, endTime);
-
-        //        if (patient == null) {
-        //            throw new IllegalValueException(
-        //                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Patient.class.getSimpleName()));
-        //        }
-        //        if (!Patient.isValidPatient(patient)) {
-        //            throw new IllegalValueException(Patient.MESSAGE_CONSTRAINTS);
-        //        }
-        //        final Patient modelPatient = patientList.get(patient);
+        if (patient == null) {
+           throw new IllegalValueException(
+                String.format(MISSING_FIELD_MESSAGE_FORMAT, Patient.class.getSimpleName()));
+            }
+//        if (!Patient.isValidPatient(patient)) {
+//            throw new IllegalValueException(Patient.MESSAGE_CONSTRAINTS);
+//            }
+//        final Patient modelPatient = patientList.get(patient);
 
         if (description == null) {
             throw new IllegalValueException(
@@ -126,11 +126,12 @@ public class JsonAdaptedAppointment {
         }
         final boolean modelisCompleted = Boolean.getBoolean(isCompleted);
         final boolean modelisMissed = Boolean.getBoolean(isMissed);
-
         final Set<Tag> modelTags = new HashSet<>(appointmentTags);
-        //        return new Appointment(modelAppointmentTime, modelPatient, modelTags, modelisCompleted,
-        //        modelisMissed, modelDescription);
-        return null;
+        Appointment appointment = new Appointment(modelAppointmentTime, patient ,
+                modelTags, modelisCompleted, modelisMissed, modelDescription);
+        return appointment;
+
+
     }
 
 }

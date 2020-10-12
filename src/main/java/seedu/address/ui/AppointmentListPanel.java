@@ -8,40 +8,42 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.patient.Patient;
 
 /**
  * Panel containing the list of persons.
  */
-public class PatientListPanel extends UiPart<Region> {
-    private static final String FXML = "PatientListPanel.fxml";
+public class AppointmentListPanel extends UiPart<Region> {
+    private static final String FXML = "AppointmentListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(PatientListPanel.class);
 
     @FXML
-    private ListView<Patient> personListView;
+    private ListView<Appointment> personListView;
 
     /**
      * Creates a {@code PatientListPanel} with the given {@code ObservableList}.
      */
-    public PatientListPanel(ObservableList<Patient> patientList) {
+    public AppointmentListPanel(ObservableList<Appointment> appointments) {
         super(FXML);
-        personListView.setItems(patientList);
-        personListView.setCellFactory(listView -> new PatientListViewCell());
+        personListView.setItems(appointments);
+        personListView.setCellFactory(listView -> new AppointmentListViewCell());
+
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Patient} using a {@code PatientCard}.
      */
-    class PatientListViewCell extends ListCell<Patient> {
+    class AppointmentListViewCell extends ListCell<Appointment> {
         @Override
-        protected void updateItem(Patient patient, boolean empty) {
-            super.updateItem(patient, empty);
+        protected void updateItem(Appointment appointment, boolean empty) {
+            super.updateItem(appointment, empty);
 
-            if (empty || patient == null) {
+            if (empty || appointment == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PatientCard(patient, getIndex() + 1).getRoot());
+                setGraphic(new AppointmentCard(appointment, getIndex() + 1).getRoot());
             }
         }
     }
