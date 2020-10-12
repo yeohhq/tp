@@ -30,9 +30,9 @@ public class AppointmentCommandTestUtil {
     public static final String VALID_END_TWO = "2020-08-05 16:00";
     public static final int VALID_PATIENT_ONE = 0;
     public static final int VALID_PATIENT_TWO = 1;
-    public static final String VALID_DESCRIPTION_ONE = "ReviewAppointment";
-    public static final String VALID_DESCRIPTION_TWO = "RollowupAppointment";
-    public static final String VALID_TAG_ONE = "Aeview";
+    public static final String VALID_DESCRIPTION_ONE = "Review Appointment";
+    public static final String VALID_DESCRIPTION_TWO = "Followup Appointment";
+    public static final String VALID_TAG_ONE = "Review";
     public static final String VALID_TAG_TWO = "Followup";
 
     public static final String START_DESC_ONE = " " + PREFIX_APPOINTMENT_START + VALID_START_ONE;

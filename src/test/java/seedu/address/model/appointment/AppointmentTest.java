@@ -6,7 +6,6 @@ import static seedu.address.logic.commands.appointmentcommands.AppointmentComman
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAppointments.APT1;
 import static seedu.address.testutil.TypicalAppointments.APT2;
-import static seedu.address.testutil.TypicalPatients.ALICE;
 import static seedu.address.testutil.TypicalPatients.BOB;
 
 import org.junit.jupiter.api.Test;
