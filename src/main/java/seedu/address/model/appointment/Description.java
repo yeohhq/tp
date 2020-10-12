@@ -8,7 +8,8 @@ public class Description {
     public static final String MESSAGE_CONSTRAINTS =
             "Description should only contain alphanumeric characters and spaces, and it should not be blank";
 
-    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    // public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
     public final String description;
 
