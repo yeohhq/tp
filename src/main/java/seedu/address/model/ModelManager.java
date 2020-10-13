@@ -1,5 +1,6 @@
 package seedu.address.model;
 
+import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -100,8 +101,11 @@ public class ModelManager implements Model {
 
     @Override
     public boolean hasPatient(Patient patient) {
-        requireNonNull(patient);
-        return addressBook.hasPatient(patient);
+        if (isNull(patient)) {
+            return false;
+        } else {
+            return addressBook.hasPatient(patient);
+        }
     }
 
     @Override
