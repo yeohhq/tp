@@ -1,20 +1,17 @@
 package seedu.address.logic.parser.appointmentparser;
 
-import seedu.address.commons.util.StringUtil;
-import seedu.address.logic.commands.appointmentcommands.AppointmentFindPatientCommand;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import seedu.address.logic.commands.appointmentcommands.AppointmentIsMissedCommand;
 import seedu.address.logic.commands.patientcommands.PatientFindCommand;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.filters.appointmentfilters.SearchAppointmentMissedFilter;
-import seedu.address.model.filters.appointmentfilters.SearchPatientFilter;
 
-import java.util.Arrays;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 /**
- * Parses input arguments and creates a new PatientFindCommand object
+ * Parses input arguments and creates a new AppointmentIsMissedCommand object
  */
 public class AppointmentMissedCommandParser implements Parser<AppointmentIsMissedCommand> {
 
