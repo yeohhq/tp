@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.util.Pair;
 import seedu.address.commons.UserHistoryManager;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -39,7 +40,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         this.userHistory = new UserHistoryManager();
-        userHistory.addHistory(addressBook.getPatientList());
+        userHistory.addHistory(new Pair(addressBook.getPatientList(), addressBook.getAppointmentList()));
         filteredPatients = new FilteredList<>(this.addressBook.getPatientList());
         filteredAppointments = new FilteredList<>(this.addressBook.getAppointmentList());
     }
@@ -107,14 +108,12 @@ public class ModelManager implements Model {
     public void deletePatient(Patient target) {
         addressBook.removePatient(target);
         updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
-        userHistory.addHistory(addressBook.getPatientList());
     }
 
     @Override
     public void addPatient(Patient patient) {
         addressBook.addPatient(patient);
         updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
-        this.userHistory.addHistory(addressBook.getPatientList());
     }
 
     @Override
@@ -122,7 +121,6 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPatient);
         addressBook.setPatient(target, editedPatient);
         updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
-        this.userHistory.addHistory(addressBook.getPatientList());
     }
 
     /* Appointment methods */
@@ -137,14 +135,12 @@ public class ModelManager implements Model {
     public void deleteAppointment(Appointment target) {
         addressBook.removeAppointment(target);
         updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
-        // userHistory.addHistory(addressBook.getPatientList());
     }
 
     @Override
     public void addAppointment(Appointment appointment) {
         addressBook.addAppointment(appointment);
         updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
-        // this.userHistory.addHistory(addressBook.getPatientList());
     }
 
     @Override
@@ -152,7 +148,6 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedAppointment);
         addressBook.setAppointment(target, editedAppointment);
         updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
-        this.userHistory.addHistory(addressBook.getPatientList());
     }
 
     @Override
@@ -161,9 +156,10 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void undoPatientHistory() {
+    public void undoHistory() {
         this.userHistory.undoHistory();
-        addressBook.setPatients((this.userHistory.getHistory().peek()));
+        addressBook.setPatients((this.userHistory.getHistory().peek().getKey()));
+        addressBook.setAppointments((this.userHistory.getHistory().peek().getValue()));
     }
 
     //=========== Filtered Patient List Accessors =============================================================

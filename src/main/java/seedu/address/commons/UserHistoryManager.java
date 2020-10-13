@@ -1,22 +1,25 @@
 package seedu.address.commons;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
+import javafx.util.Pair;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.patient.Patient;
 
 public class UserHistoryManager {
 
-    private final Stack<List<Patient>> userHistory;
+    private final Stack<Pair<List<Patient>, List<Appointment>>> userHistory;
 
     public UserHistoryManager() {
         this.userHistory = new Stack<>();
     }
 
-    public void addHistory(List<Patient> newList) {
-        userHistory.add(new ArrayList<>(newList));
+    public void addHistory(Pair p) {
+        userHistory.add(p);
     }
+
+
 
     public void undoHistory() {
         userHistory.pop();
@@ -26,7 +29,7 @@ public class UserHistoryManager {
         return userHistory.size();
     }
 
-    public Stack<List<Patient>> getHistory() {
+    public Stack<Pair<List<Patient>, List<Appointment>>> getHistory() {
         return userHistory;
     }
 
