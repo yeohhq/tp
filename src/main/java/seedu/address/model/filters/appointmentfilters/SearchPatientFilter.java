@@ -19,7 +19,7 @@ public class SearchPatientFilter implements Predicate<Appointment> {
     public boolean test(Appointment appointment) {
         return keywords.stream()
                 .anyMatch(keyword -> StringUtil
-                        .containsWordIgnoreCase(appointment.getPatient().getName().fullName, keyword));
+                        .containsWordIgnoreCase(appointment.getPatientString(), keyword));
     }
 
     @Override

@@ -1,10 +1,20 @@
 package seedu.address.logic.commands.appointmentcommands;
 
+import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.model.Model;
 import seedu.address.model.filters.appointmentfilters.SearchPatientFilter;
 
-public class AppointmentFindPatientCommand {
+import static java.util.Objects.requireNonNull;
 
-    public static final String COMMAND_WORD = "p-find";
+/**
+ * Finds and lists all appointments in address book whose patient name contains any of the argument keywords.
+ * Keyword matching is case insensitive.
+ */
+public class AppointmentFindPatientCommand extends Command {
+
+    public static final String COMMAND_WORD = "a-find";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all appointments with patients whose names "
             + "contain any of the specified keywords (case-insensitive) and displays them as a list with index "
@@ -16,6 +26,14 @@ public class AppointmentFindPatientCommand {
 
     public AppointmentFindPatientCommand(SearchPatientFilter predicate) {
         this.predicate = predicate;
+    }
+
+    @Override
+    public CommandResult execute(Model model) {
+        requireNonNull(model);
+        model.updateFilteredAppointmentList(predicate);
+        return new CommandResult(
+                String.format(Messages.MESSAGE_PATIENTS_LISTED_OVERVIEW, model.getFilteredPatientList().size()));
     }
 
     @Override
