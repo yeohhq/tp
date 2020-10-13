@@ -36,6 +36,7 @@ public class AppointmentScheduleCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New appointment scheduled: %1$s";
     public static final String MESSAGE_DUPLICATE_APPOINTMENT = "This appointment already exists in Archangel";
+    public static final String MESSAGE_MISSING_PATIENT = "This patient is not in Archangel";
 
     private final Appointment toSchedule;
 
@@ -51,6 +52,9 @@ public class AppointmentScheduleCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         toSchedule.parsePatient(model.getAddressBook());
+        if (!model.hasPatient(toSchedule.getPatient())) {
+            throw new CommandException((MESSAGE_MISSING_PATIENT));
+        }
         if (model.hasAppointment(toSchedule)) {
             throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
         }

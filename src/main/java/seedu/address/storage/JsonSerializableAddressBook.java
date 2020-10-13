@@ -61,19 +61,11 @@ class JsonSerializableAddressBook {
         for (JsonAdaptedAppointment jsonAdaptedAppointment : appointments) {
             Appointment appointment = jsonAdaptedAppointment.toModelType();
             appointment.parsePatient(addressBook);
-            if (addressBook.hasAppointment(appointment)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_APPOINTMENT);
-            }
-            addressBook.addAppointment(appointment);
+            addressBook.addAppointment(appointment, true);
         }
         for (JsonAdaptedPatient jsonAdaptedPatient : patients) {
             Patient patient = jsonAdaptedPatient.toModelType();
-            if (addressBook.hasPatient(patient)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PATIENT);
-            }
             addressBook.addPatient(patient);
-
-
         }
         return addressBook;
     }
