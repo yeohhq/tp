@@ -94,7 +94,7 @@ public class Appointment {
     public void parsePatient(ReadOnlyAddressBook addressBook) {
         ArrayList<Patient> arr = new ArrayList<>(addressBook.getPatientList());
         for (int i = 0; i < arr.size(); i++) {
-            if (arr.get(i).getName().equals(patientString)) {
+            if (arr.get(i).getName().toString().equalsIgnoreCase(patientString)) {
                 patient = arr.get(i);
             }
         }
@@ -116,10 +116,10 @@ public class Appointment {
         if (otherAppointment == this) {
             return true;
         }
-
+        System.out.println(otherAppointment.patientString);
         return otherAppointment != null
                 && otherAppointment.getAppointmentTime().equals(getAppointmentTime())
-                && otherAppointment.getPatient().equals(getPatient())
+                && otherAppointment.getPatientString().equals(getPatientString())
                 && otherAppointment.getDescription().equals(getDescription());
 
     }

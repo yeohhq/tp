@@ -129,6 +129,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void addAppointment(Appointment a) {
         appointments.add(a);
     }
+    public void addAppointment(Appointment a , boolean fromJson) {
+        appointments.add(a, fromJson);
+    }
 
     /**
      * Replaces the given appointment {@code target} in the list with {@code editedAppointment}.
