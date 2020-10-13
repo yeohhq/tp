@@ -49,7 +49,7 @@ public class AppointmentTime {
 
     @Override
     public String toString() {
-        return "START: " + start + "\n + END: " + end;
+        return "START: " + start + "\n END: " + end;
     }
 
     @Override

@@ -1,14 +1,15 @@
 package seedu.address.model.appointment;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.tag.Tag;
-
 
 /**
  * Represents an Appoint in the Archangel
@@ -18,7 +19,8 @@ public class Appointment {
 
     // Identity fields
     private final AppointmentTime appointmentTime;
-    private final Patient patient;
+    private Patient patient;
+    private final String patientString;
     private final Set<Tag> tags = new HashSet<>();
     private final Boolean isCompleted;
     private final Boolean isMissed;
@@ -31,11 +33,27 @@ public class Appointment {
                        Boolean isCompleted, Boolean isMissed, Description description) {
         this.appointmentTime = appointmentTime;
         this.patient = patient;
+        this.patientString = null;
         this.isCompleted = isCompleted;
         this.isMissed = isMissed;
         this.description = description;
         this.tags.addAll(tags);
     }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Appointment(AppointmentTime appointmentTime, String patientString, Set<Tag> tags,
+                       Boolean isCompleted, Boolean isMissed, Description description) {
+        this.appointmentTime = appointmentTime;
+        this.patient = null;
+        this.patientString = patientString;
+        this.isCompleted = isCompleted;
+        this.isMissed = isMissed;
+        this.description = description;
+        this.tags.addAll(tags);
+    }
+
 
     public AppointmentTime getAppointmentTime() {
         return this.appointmentTime;
@@ -53,6 +71,10 @@ public class Appointment {
         return this.patient;
     }
 
+    public String getPatientString() {
+        return this.patientString;
+    }
+
     public Boolean isMissed() {
         return this.isMissed;
     }
@@ -63,6 +85,19 @@ public class Appointment {
 
     public Description getDescription() {
         return this.description;
+    }
+
+    /**
+     * Parses patientString to change patient field in appointment
+     * @param addressBook
+     */
+    public void parsePatient(ReadOnlyAddressBook addressBook) {
+        ArrayList<Patient> arr = new ArrayList<>(addressBook.getPatientList());
+        for (int i = 0; i < arr.size(); i++) {
+            if (arr.get(i).getName().equals(patientString)) {
+                patient = arr.get(i);
+            }
+        }
     }
 
     /**

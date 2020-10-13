@@ -188,7 +188,7 @@ public class PatientAddCommandTest {
         }
 
         @Override
-        public void undoPatientHistory() {
+        public void undoHistory() {
             throw new AssertionError("This method should not be called.");
         }
     }
