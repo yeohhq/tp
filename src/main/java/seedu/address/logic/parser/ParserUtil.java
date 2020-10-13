@@ -32,7 +32,7 @@ public class ParserUtil {
     /**
      * Formats date and time inputs as: yyyy-MM-dd hh:mm (eg. 2020-02-20 08:00).
      */
-    public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm");
+    public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -166,7 +166,6 @@ public class ParserUtil {
         requireNonNull(dateTime);
         String trimmedDateTime = dateTime.trim();
         LocalDateTime localDateTime = null;
-
         try {
             localDateTime = LocalDateTime.parse(trimmedDateTime, DATE_FORMATTER);
         } catch (DateTimeParseException e) {

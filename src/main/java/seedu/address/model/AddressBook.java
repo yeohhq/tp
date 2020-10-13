@@ -20,6 +20,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     private final UniquePatientList patients;
     private final UniqueAppointmentList appointments;
 
+
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
      * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
@@ -127,6 +128,9 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addAppointment(Appointment a) {
         appointments.add(a);
+    }
+    public void addAppointment(Appointment a , boolean fromJson) {
+        appointments.add(a, fromJson);
     }
 
     /**
