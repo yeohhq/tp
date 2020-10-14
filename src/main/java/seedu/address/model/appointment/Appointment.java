@@ -7,7 +7,6 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.commons.util.StringUtil;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.tag.Tag;
@@ -102,6 +101,11 @@ public class Appointment {
         }
     }
 
+    /**
+     * Retrieves patient using index
+     * @param arr
+     * @param index
+     */
     // This method only applies for the ScheduleAppointmentCommand
     public void parsePatient(ArrayList<Patient> arr, int index) {
         patient = arr.get(index - 1);

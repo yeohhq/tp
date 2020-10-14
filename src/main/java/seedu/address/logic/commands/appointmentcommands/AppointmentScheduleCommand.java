@@ -7,21 +7,17 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PATIENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+
 import javafx.collections.ObservableList;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.appointment.UniqueAppointmentList;
 import seedu.address.model.patient.Patient;
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Calendar;
 
 /**
  * Adds an appointment to the address book.
@@ -49,7 +45,6 @@ public class AppointmentScheduleCommand extends Command {
     public static final String MESSAGE_MISSING_PATIENT = "This patient is not in Archangel";
     public static final String MESSAGE_WRONG_INDEX = "We have some problem with your index";
     public static final String MESSAGE_INVALID_APPOINTMENT_SLOT = "That time slot is already taken";
-
 
 
     private final Appointment toSchedule;
@@ -111,17 +106,15 @@ public class AppointmentScheduleCommand extends Command {
         LocalDateTime startDate = appointment.getStartTime();
         LocalDateTime endDate = appointment.getEndTime();
 
-        for (Appointment currentAppointment: appointmentList) {
-//            System.out.println(currentAppointment);
-
+        for (Appointment currentAppointment : appointmentList) {
             LocalDateTime currentStartDate = currentAppointment.getStartTime();
             LocalDateTime currentEndDate = currentAppointment.getEndTime();
             // startDate or endDate is in between currentAppointment slot
             // current Appointment slot is within new appointment slot
             if (startDate.isAfter(currentStartDate) && startDate.isBefore(currentEndDate)
-            || endDate.isAfter(currentStartDate) && endDate.isBefore(currentEndDate)
-            || startDate.isBefore(currentStartDate) && endDate.isAfter(currentEndDate)
-            || startDate.isEqual(currentStartDate) || endDate.isEqual(currentEndDate)) {
+                    || endDate.isAfter(currentStartDate) && endDate.isBefore(currentEndDate)
+                    || startDate.isBefore(currentStartDate) && endDate.isAfter(currentEndDate)
+                    || startDate.isEqual(currentStartDate) || endDate.isEqual(currentEndDate)) {
                 return false;
             }
         }
