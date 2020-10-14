@@ -22,7 +22,7 @@ public class SearchAppointmentTagsFilter implements Predicate<Appointment> {
         return tags.stream()
                 .anyMatch(tag -> {
                     Tag currentTag = new Tag(tag);
-                    return appointment.getPatient().getTags().contains(currentTag);
+                    return appointment.getTags().contains(currentTag);
                 });
     }
 

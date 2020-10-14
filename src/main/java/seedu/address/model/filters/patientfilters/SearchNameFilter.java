@@ -28,5 +28,4 @@ public class SearchNameFilter implements Predicate<Patient> {
                 || (other instanceof SearchNameFilter // instanceof handles nulls
                 && keywords.equals(((SearchNameFilter) other).keywords)); // state check
     }
-
 }
