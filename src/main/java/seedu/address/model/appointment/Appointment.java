@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.commons.util.StringUtil;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.tag.Tag;
@@ -20,7 +21,7 @@ public class Appointment {
     // Identity fields
     private final AppointmentTime appointmentTime;
     private Patient patient;
-    private final String patientString;
+    private String patientString;
     private final Set<Tag> tags = new HashSet<>();
     private final Boolean isCompleted;
     private final Boolean isMissed;
@@ -92,12 +93,20 @@ public class Appointment {
      * @param addressBook
      */
     public void parsePatient(ReadOnlyAddressBook addressBook) {
+        // This method applies for reading the Json file
         ArrayList<Patient> arr = new ArrayList<>(addressBook.getPatientList());
         for (int i = 0; i < arr.size(); i++) {
-            if (arr.get(i).getName().toString().equalsIgnoreCase(patientString)) {
+            if (arr.get(i).getName().fullName.equals(patientString)) {
                 patient = arr.get(i);
             }
         }
+    }
+
+    // This method only applies for the ScheduleAppointmentCommand
+    public void parsePatient(ArrayList<Patient> arr, int index) {
+        patient = arr.get(index - 1);
+        patientString = patient.getName().fullName.toString();
+
     }
 
     /**
