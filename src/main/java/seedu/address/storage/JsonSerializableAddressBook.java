@@ -12,6 +12,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.filters.patientfilters.SearchNameFilter;
 import seedu.address.model.patient.Patient;
 
 /**
@@ -65,7 +66,7 @@ class JsonSerializableAddressBook {
         }
 
         for (JsonAdaptedAppointment jsonAdaptedAppointment : appointments) {
-            Appointment appointment = jsonAdaptedAppointment.toModelType();
+            Appointment appointment = jsonAdaptedAppointment.toModelType(addressBook);
             appointment.parsePatient(addressBook);
             addressBook.addAppointment(appointment, true);
         }

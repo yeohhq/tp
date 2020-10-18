@@ -175,15 +175,15 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String patientIndex} into a {@code int}.
+     * Parses a {@code String patientIndex} into a {@code Index}.
      * Leading and trailing whitespaces will be trimmed.
-     * Note: Patient index patient will be processed later.
+     * Note: Patient index will be processed later.
      */
-    public static int parsePatient(String patientIndex) {
+    public static Index parsePatientIndex(String patientIndex) {
         requireNonNull(patientIndex);
         String trimmedPatientIndex = patientIndex.trim();
         int patientIndexInt = Integer.parseInt(trimmedPatientIndex);
-        return patientIndexInt;
+        return Index.fromOneBased(patientIndexInt);
     }
 
     /**

@@ -17,7 +17,6 @@ import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 
-import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.appointmentcommands.AppointmentEditCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
@@ -25,8 +24,6 @@ import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.appointment.AppointmentTime;
-import seedu.address.model.patient.Patient;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -34,19 +31,12 @@ import seedu.address.model.tag.Tag;
  */
 public class EditAppointmentCommandParser implements Parser<AppointmentEditCommand> {
 
-    // TODO: resolve Parser interface method.
-    @Override
-    public AppointmentEditCommand parse(String userInput) throws ParseException {
-        return null;
-    }
-
     /**
      * Parses the given {@code String} of arguments in the context of the AppointmentEditCommand
      * and returns an AppointmentEditCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AppointmentEditCommand parse(String args, ObservableList<Patient> patientObservableList)
-            throws ParseException {
+    public AppointmentEditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_APPOINTMENT_START, PREFIX_APPOINTMENT_END, PREFIX_PATIENT,
@@ -57,19 +47,21 @@ public class EditAppointmentCommandParser implements Parser<AppointmentEditComma
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE), pe);
         }
 
         EditAppointmentDescriptor editAppointmentDescriptor = new EditAppointmentDescriptor();
 
-        if (argMultimap.getValue(PREFIX_APPOINTMENT_START).isPresent()
-                && argMultimap.getValue(PREFIX_APPOINTMENT_END).isPresent()) {
-            LocalDateTime startTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_APPOINTMENT_START).get());
-            LocalDateTime endTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_APPOINTMENT_END).get());
-            AppointmentTime appointmentTime = new AppointmentTime(startTime, endTime);
-            editAppointmentDescriptor.setAppointmentTime(appointmentTime);
+        LocalDateTime startTime = null;
+        LocalDateTime endTime = null;
+
+        if (argMultimap.getValue(PREFIX_APPOINTMENT_START).isPresent()) {
+            startTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_APPOINTMENT_START).get());
         }
+        if (argMultimap.getValue(PREFIX_APPOINTMENT_END).isPresent()) {
+            endTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_APPOINTMENT_END).get());
+        }
+        editAppointmentDescriptor.setAppointmentTime(startTime, endTime);
 
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
             editAppointmentDescriptor.setDescription(ParserUtil.parseDescription(
@@ -77,8 +69,9 @@ public class EditAppointmentCommandParser implements Parser<AppointmentEditComma
         }
 
         if (argMultimap.getValue(PREFIX_PATIENT).isPresent()) {
-            int patientIndex = ParserUtil.parsePatient(argMultimap.getValue(PREFIX_PATIENT).get());
-            editAppointmentDescriptor.setPatient(patientObservableList.get(patientIndex));
+            Index patientIndex = ParserUtil.parsePatientIndex(argMultimap.getValue(PREFIX_PATIENT).get());
+            editAppointmentDescriptor.setNeedsParsePatient(true);
+            editAppointmentDescriptor.setPatientIndex(patientIndex);
         }
 
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editAppointmentDescriptor::setTags);

@@ -19,6 +19,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.testutil.EditAppointmentDescriptorBuilder;
 
 /**
  * Contains helper methods for testing appointment commands.
@@ -54,6 +55,22 @@ public class AppointmentCommandTestUtil {
     public static final String INVALID_PATIENT_DESC = " " + PREFIX_PATIENT + "A";
     // '*' not allowed in tags
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "Review*";
+
+    public static final AppointmentEditCommand.EditAppointmentDescriptor DESC_REVIEW;
+    public static final AppointmentEditCommand.EditAppointmentDescriptor DESC_FOLLOWUP;
+
+    static {
+        DESC_REVIEW = new EditAppointmentDescriptorBuilder()
+                .withAppointmentTime(VALID_START_ONE, VALID_END_ONE)
+                .withDescription(VALID_DESCRIPTION_ONE)
+                .withPatient(VALID_PATIENT_ONE)
+                .withTags(VALID_TAG_ONE).build();
+        DESC_FOLLOWUP = new EditAppointmentDescriptorBuilder()
+                .withAppointmentTime(VALID_START_TWO, VALID_END_TWO)
+                .withDescription(VALID_DESCRIPTION_TWO)
+                .withPatient(VALID_PATIENT_TWO)
+                .withTags(VALID_TAG_TWO).build();
+    }
 
     /**
      * Executes the given {@code command}, confirms that <br>
@@ -99,7 +116,7 @@ public class AppointmentCommandTestUtil {
     }
 
     /**
-     * Updates {@code model}'s filtered list to show only the patient at the given {@code targetIndex} in the
+     * Updates {@code model}'s filtered list to show only the appointment at the given {@code targetIndex} in the
      * {@code model}'s address book.
      */
     public static void showAppointmentAtIndex(Model model, Index targetIndex) {

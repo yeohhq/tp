@@ -1,19 +1,18 @@
 package seedu.address.storage;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentTime;
 import seedu.address.model.appointment.Description;
+import seedu.address.model.filters.patientfilters.SearchNameFilter;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.tag.Tag;
 
@@ -59,9 +58,14 @@ public class JsonAdaptedAppointment {
      * Converts a given {@code Appointment} into this class for Jackson use.
      */
     public JsonAdaptedAppointment(Appointment source) {
+        String patient1;
         System.out.println(source);
         appointmentTime = source.getAppointmentTime().toString();
-        patient = source.getPatientString();
+        patient1 = source.getPatientString();
+        if (patient1 == null) {
+            patient1 = source.getPatient().getName().fullName;
+        }
+        patient = patient1;
         description = source.getDescription().toString();
         isCompleted = source.isCompleted().toString();
         isMissed = source.isMissed().toString();
@@ -77,7 +81,7 @@ public class JsonAdaptedAppointment {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted appointment.
      */
-    public Appointment toModelType() throws IllegalValueException {
+    public Appointment toModelType(ReadOnlyAddressBook addressBook) throws IllegalValueException {
         final List<Tag> appointmentTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             appointmentTags.add(tag.toModelType());
@@ -87,26 +91,13 @@ public class JsonAdaptedAppointment {
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, AppointmentTime.class.getSimpleName()));
         }
-        //        try {
-        //            startTime = ParserUtil.parseDateTime(appointmentTime.substring(0, appointmentTime.length() / 2));
-        //            endTime = ParserUtil.parseDateTime(appointmentTime.substring(appointmentTime.length() / 2));
-        //            startTime = ParseU
-        //
-        //            if (!AppointmentTime.isValidAppointmentTime(startTime, endTime)) {
-        //                throw new IllegalValueException(AppointmentTime.MESSAGE_CONSTRAINTS);
-        //            }
-        //        } catch (DateTimeParseException e) {
-        //            throw new IllegalValueException(AppointmentTime.MESSAGE_CONSTRAINTS);
-        //        }
         final AppointmentTime modelAppointmentTime = new AppointmentTime(startTime, endTime);
+
         if (patient == null) {
             throw new IllegalValueException(
                 String.format(MISSING_FIELD_MESSAGE_FORMAT, Patient.class.getSimpleName()));
         }
-        //      if (!Patient.isValidPatient(patient)) {
-        //            throw new IllegalValueException(Patient.MESSAGE_CONSTRAINTS);
-        //            }
-        //        final Patient modelPatient = patientList.get(patient);
+        final String modelPatientString = patient;
 
         if (description == null) {
             throw new IllegalValueException(
@@ -124,8 +115,9 @@ public class JsonAdaptedAppointment {
         final boolean modelIsCompleted = Boolean.getBoolean(isCompleted);
         final boolean modelIsMissed = Boolean.getBoolean(isMissed);
         final Set<Tag> modelTags = new HashSet<>(appointmentTags);
-        Appointment appointment = new Appointment(modelAppointmentTime, patient ,
+        Appointment appointment = new Appointment(modelAppointmentTime, modelPatientString,
                 modelTags, modelIsCompleted, modelIsMissed, modelDescription);
+        appointment.parsePatient(addressBook);
         return appointment;
 
 
