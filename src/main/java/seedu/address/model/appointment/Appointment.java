@@ -7,24 +7,25 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents an Appoint in the Archangel
+ * Represents an Appointment in the Archangel
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Appointment {
 
     // Identity fields
-    private final AppointmentTime appointmentTime;
+    private AppointmentTime appointmentTime;
     private Patient patient;
     private String patientString;
-    private final Set<Tag> tags = new HashSet<>();
+    private Set<Tag> tags = new HashSet<>();
     private final Boolean isCompleted;
     private final Boolean isMissed;
-    private final Description description;
+    private Description description;
 
     /**
      * Every field must be present and not null.
@@ -75,6 +76,10 @@ public class Appointment {
         return this.patientString;
     }
 
+    public Index getPatientIndex() {
+        return Index.fromZeroBased(Integer.parseInt(this.patientString));
+    }
+
     public Boolean isMissed() {
         return this.isMissed;
     }
@@ -87,8 +92,33 @@ public class Appointment {
         return this.description;
     }
 
+    // Method to edit Appointment class directly without use of EditAppointmentDescriptor
+    // to try fixing Json format conversion from showing patient field as "null".
+    // *Note: still does not fix "null" issue.
+
+    //    /**
+    //     * Updates all fields with EditAppointmentDescriptor fields
+    //     * @param descriptor
+    //     */
+    //    public void updateWithEditAppointmentDescriptor(EditAppointmentDescriptor descriptor,
+    //                                                    ReadOnlyAddressBook addressBook) {
+    //        LocalDateTime startTime = descriptor.getStartTime().orElse(this.getStartTime());
+    //        LocalDateTime endTime = descriptor.getEndTime().orElse(this.getEndTime());
+    //        appointmentTime =  new AppointmentTime(startTime, endTime);
+    //
+    //        if (descriptor.needsParsePatient) {
+    //            int patientIndex = descriptor.getPatientIndex().get().getZeroBased();
+    //            assert patientIndex < addressBook.getPatientList().size() :
+    //            MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX;
+    //            patient = addressBook.getPatientList().get(patientIndex);
+    //        }
+    //
+    //        description = descriptor.getDescription().orElse(this.getDescription());
+    //        tags = descriptor.getTags().orElse(this.getTags());
+    //    }
+
     /**
-     * Parses patientString to change patient field in appointment
+     * Parses patientString to change patient field in appointment from Json format.
      * @param addressBook
      */
     public void parsePatient(ReadOnlyAddressBook addressBook) {
@@ -102,15 +132,14 @@ public class Appointment {
     }
 
     /**
-     * Retrieves patient using index
+     * Retrieves patient using index from user input.
      * @param arr
      * @param index
      */
     // This method only applies for the ScheduleAppointmentCommand
     public void parsePatient(ArrayList<Patient> arr, int index) {
         patient = arr.get(index - 1);
-        patientString = patient.getName().fullName.toString();
-
+        patientString = patient.getName().fullName;
     }
 
     /**
@@ -129,12 +158,10 @@ public class Appointment {
         if (otherAppointment == this) {
             return true;
         }
-        System.out.println(otherAppointment.patientString);
         return otherAppointment != null
                 && otherAppointment.getAppointmentTime().equals(getAppointmentTime())
-                && otherAppointment.getPatientString().equals(getPatientString())
+                && otherAppointment.getPatient().equals(getPatient())
                 && otherAppointment.getDescription().equals(getDescription());
-
     }
 
     /**

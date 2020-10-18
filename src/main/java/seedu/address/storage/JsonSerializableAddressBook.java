@@ -65,7 +65,7 @@ class JsonSerializableAddressBook {
         }
 
         for (JsonAdaptedAppointment jsonAdaptedAppointment : appointments) {
-            Appointment appointment = jsonAdaptedAppointment.toModelType();
+            Appointment appointment = jsonAdaptedAppointment.toModelType(addressBook);
             appointment.parsePatient(addressBook);
             addressBook.addAppointment(appointment, true);
         }
