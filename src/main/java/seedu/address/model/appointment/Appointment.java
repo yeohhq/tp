@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.tag.Tag;
@@ -75,6 +76,10 @@ public class Appointment {
         return this.patientString;
     }
 
+    public Index getPatientIndex() {
+        return Index.fromZeroBased(Integer.parseInt(this.patientString));
+    }
+
     public Boolean isMissed() {
         return this.isMissed;
     }
@@ -91,25 +96,26 @@ public class Appointment {
     // to try fixing Json format conversion from showing patient field as "null".
     // *Note: still does not fix "null" issue.
 
-//    /**
-//     * Updates all fields with EditAppointmentDescriptor fields
-//     * @param descriptor
-//     */
-//    public void updateWithEditAppointmentDescriptor(EditAppointmentDescriptor descriptor,
-//                                                    ReadOnlyAddressBook addressBook) {
-//        LocalDateTime startTime = descriptor.getStartTime().orElse(this.getStartTime());
-//        LocalDateTime endTime = descriptor.getEndTime().orElse(this.getEndTime());
-//        appointmentTime =  new AppointmentTime(startTime, endTime);
-//
-//        if (descriptor.needsParsePatient) {
-//            int patientIndex = descriptor.getPatientIndex().get().getZeroBased();
-//            assert patientIndex < addressBook.getPatientList().size() : MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX;
-//            patient = addressBook.getPatientList().get(patientIndex);
-//        }
-//
-//        description = descriptor.getDescription().orElse(this.getDescription());
-//        tags = descriptor.getTags().orElse(this.getTags());
-//    }
+    //    /**
+    //     * Updates all fields with EditAppointmentDescriptor fields
+    //     * @param descriptor
+    //     */
+    //    public void updateWithEditAppointmentDescriptor(EditAppointmentDescriptor descriptor,
+    //                                                    ReadOnlyAddressBook addressBook) {
+    //        LocalDateTime startTime = descriptor.getStartTime().orElse(this.getStartTime());
+    //        LocalDateTime endTime = descriptor.getEndTime().orElse(this.getEndTime());
+    //        appointmentTime =  new AppointmentTime(startTime, endTime);
+    //
+    //        if (descriptor.needsParsePatient) {
+    //            int patientIndex = descriptor.getPatientIndex().get().getZeroBased();
+    //            assert patientIndex < addressBook.getPatientList().size() :
+    //            MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX;
+    //            patient = addressBook.getPatientList().get(patientIndex);
+    //        }
+    //
+    //        description = descriptor.getDescription().orElse(this.getDescription());
+    //        tags = descriptor.getTags().orElse(this.getTags());
+    //    }
 
     /**
      * Parses patientString to change patient field in appointment from Json format.

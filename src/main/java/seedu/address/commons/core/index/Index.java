@@ -54,7 +54,7 @@ public class Index {
 
     @Override
     public String toString() {
-        return "Zero-based: " + this.getZeroBased() +
-                "One-based: " + this.getOneBased();
+        return "Zero-based: " + this.getZeroBased()
+                + "One-based: " + this.getOneBased();
     }
 }

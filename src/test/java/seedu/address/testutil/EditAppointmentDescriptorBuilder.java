@@ -1,18 +1,15 @@
 package seedu.address.testutil;
 
-import seedu.address.commons.core.index.Index;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import seedu.address.logic.commands.appointmentcommands.AppointmentEditCommand;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.Description;
-import seedu.address.model.patient.Patient;
 import seedu.address.model.tag.Tag;
-
-import java.time.LocalDateTime;
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * A utility class to help with building EditAppointmentDescriptor objects.
@@ -36,7 +33,7 @@ public class EditAppointmentDescriptorBuilder {
         descriptor = new AppointmentEditCommand.EditAppointmentDescriptor();
         descriptor.setAppointmentTime(appointment.getStartTime(), appointment.getEndTime());
         descriptor.setPatient(appointment.getPatient());
-        descriptor.setPatientIndex(Index.fromZeroBased(Integer.parseInt(appointment.getPatientString())));
+        descriptor.setPatientString(appointment.getPatientString());
         descriptor.setDescription(appointment.getDescription());
         descriptor.setIsMissed(appointment.isMissed());
         descriptor.setIsCompleted(appointment.isCompleted());
@@ -58,8 +55,8 @@ public class EditAppointmentDescriptorBuilder {
     /**
      * Sets the {@code PatientIndex} of the {@code EditAppointmentDescriptor} that we are building.
      */
-    public EditAppointmentDescriptorBuilder withPatient(int patientIndex) {
-        descriptor.setPatientIndex(Index.fromOneBased(patientIndex));
+    public EditAppointmentDescriptorBuilder withPatient(String patientString) {
+        descriptor.setPatientString(patientString);
         return this;
     }
 

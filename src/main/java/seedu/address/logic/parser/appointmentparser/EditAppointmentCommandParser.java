@@ -69,9 +69,9 @@ public class EditAppointmentCommandParser implements Parser<AppointmentEditComma
         }
 
         if (argMultimap.getValue(PREFIX_PATIENT).isPresent()) {
-            Index patientIndex = ParserUtil.parsePatientIndex(argMultimap.getValue(PREFIX_PATIENT).get());
+            String patientString = ParserUtil.parsePatientString(argMultimap.getValue(PREFIX_PATIENT).get());
             editAppointmentDescriptor.setNeedsParsePatient(true);
-            editAppointmentDescriptor.setPatientIndex(patientIndex);
+            editAppointmentDescriptor.setPatientString(patientString);
         }
 
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editAppointmentDescriptor::setTags);

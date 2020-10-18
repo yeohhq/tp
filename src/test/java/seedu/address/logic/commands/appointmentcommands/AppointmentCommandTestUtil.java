@@ -30,8 +30,8 @@ public class AppointmentCommandTestUtil {
     public static final String VALID_START_TWO = "2020-08-05 14:00";
     public static final String VALID_END_ONE = "2020-10-07 10:00";
     public static final String VALID_END_TWO = "2020-08-05 16:00";
-    public static final int VALID_PATIENT_ONE = 0;
-    public static final int VALID_PATIENT_TWO = 1;
+    public static final String VALID_PATIENT_ONE = "0";
+    public static final String VALID_PATIENT_TWO = "1";
     public static final String VALID_DESCRIPTION_ONE = "Review Appointment";
     public static final String VALID_DESCRIPTION_TWO = "Followup Appointment";
     public static final String VALID_TAG_ONE = "Review";
@@ -123,8 +123,8 @@ public class AppointmentCommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredAppointmentList().size());
 
         Appointment appointment = model.getFilteredAppointmentList().get(targetIndex.getZeroBased());
-        // final String[] splitName = appointment.getName().fullName.split("\\s+");
-        // model.updateFilteredAppointmentList(new SearchNameFilter(Arrays.asList(splitName[0])));
+        //        final List<String> splitName = Collections.singletonList(appointment.getPatient().getName().fullName);
+        //        model.updateFilteredAppointmentList(new SearchPatientFilter(splitName));
 
         assertEquals(1, model.getFilteredAppointmentList().size());
     }

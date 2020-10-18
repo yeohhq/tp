@@ -1,12 +1,9 @@
 package seedu.address.logic.commands.appointmentcommands;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.testutil.EditAppointmentDescriptorBuilder;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.appointmentcommands.AppointmentCommandTestUtil.DESC_REVIEW;
 import static seedu.address.logic.commands.appointmentcommands.AppointmentCommandTestUtil.DESC_FOLLOWUP;
+import static seedu.address.logic.commands.appointmentcommands.AppointmentCommandTestUtil.DESC_REVIEW;
 import static seedu.address.logic.commands.appointmentcommands.AppointmentCommandTestUtil.VALID_DESCRIPTION_TWO;
 import static seedu.address.logic.commands.appointmentcommands.AppointmentCommandTestUtil.VALID_END_TWO;
 import static seedu.address.logic.commands.appointmentcommands.AppointmentCommandTestUtil.VALID_PATIENT_TWO;
@@ -14,13 +11,17 @@ import static seedu.address.logic.commands.appointmentcommands.AppointmentComman
 import static seedu.address.logic.commands.appointmentcommands.AppointmentCommandTestUtil.VALID_TAG_TWO;
 import static seedu.address.logic.commands.appointmentcommands.AppointmentEditCommand.EditAppointmentDescriptor;
 
+import org.junit.jupiter.api.Test;
+
+import seedu.address.testutil.EditAppointmentDescriptorBuilder;
+
 public class EditAppointmentDescriptorTest {
 
     @Test
     public void equals() {
         // same values -> returns true
-        AppointmentEditCommand.EditAppointmentDescriptor descriptorWithSameValues =
-                new AppointmentEditCommand.EditAppointmentDescriptor(DESC_REVIEW);
+        EditAppointmentDescriptor descriptorWithSameValues =
+                new EditAppointmentDescriptor(DESC_REVIEW);
         assertTrue(DESC_REVIEW.equals(descriptorWithSameValues));
 
         // same object -> returns true

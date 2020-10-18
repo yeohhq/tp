@@ -1,7 +1,10 @@
 package seedu.address.storage;
 
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -12,7 +15,6 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentTime;
 import seedu.address.model.appointment.Description;
-import seedu.address.model.filters.patientfilters.SearchNameFilter;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.tag.Tag;
 
