@@ -4,18 +4,20 @@ title: Developer Guide
 ---
 * Table of Contents
 {:toc}
+--------------------------------------------------------------------------------------------------------------------
+## **1. Introduction**
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+## **2. Setting up**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
+## **3. Design**
 
-### Architecture
+### 3.1 Architecture
 
 <img src="images/ArchitectureDiagram.png" width="450" />
 
@@ -57,7 +59,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 The sections below give more details of each component.
 
-### UI component
+### 3.2 UI component
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -73,7 +75,7 @@ The `UI` component,
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
-### Logic component
+### 3.3 Logic component
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
@@ -93,7 +95,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-### Model component
+### 3.4 Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
@@ -113,7 +115,7 @@ The `Model`,
 </div>
 
 
-### Storage component
+### 3.5 Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
@@ -123,19 +125,41 @@ The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
 * can save the address book data in json format and read it back.
 
-### Common classes
+### 3.6 Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+## **4. Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Undo/redo feature
+### 4.1 Patient Commands
+#### 4.1.1 Add Patient
+#### 4.1.2 View Patient
+#### 4.1.3 Delete Patient
+#### 4.1.4 Edit Patient
+#### 4.1.5 Find Patient
+#### 4.1.6 List Patient
 
-#### Implementation
+--------------------------------------------------------------------------------------------------------------------
+### 4.2 Appointment Commands
+#### 4.2.1 Schedule Appointment
+#### 4.2.2 Delete Appointment
+#### 4.2.3 Edit Appointment
+#### 4.2.4 Find Appointment (Patient)
+#### 4.2.5 Find Appointment (Tag)
+#### 4.2.6 Find Appointment (Today)
+#### 4.2.7 Find Appointment (Current Week)
+#### 4.2.8 List Appointment
+
+--------------------------------------------------------------------------------------------------------------------
+
+### 4.3 General Commands
+#### 4.3.1 Undo/redo feature
+
+###### Implementation
 
 The proposed undo/redo mechanism is facilitated by `UserHistoryManager`. It extends `AddressBook` with an undo/redo history, stored internally in `userHistory` as  `Stack<Pair<List<Patient>, List<Appointment>>>`. Additionally, it implements the following operations:
 
@@ -226,6 +250,8 @@ However, after many test runs, we concluded that the memory usage of the user hi
   * Pros: Will use less memory (due to the fact that are not saving any additional data).
   * Cons: Very difficult to implement, some commands might not have `pair command`(e.g for `edit`, it is own pair command but pair command to call for undo is hard to implement).
 
+#### 4.3.2 Help
+
 
 ### \[Proposed\] Data archiving
 
@@ -234,7 +260,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## **5. Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -244,7 +270,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+## **6. Appendix: Requirements**
 
 ### Product scope
 
