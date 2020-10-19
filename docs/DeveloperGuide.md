@@ -1,11 +1,23 @@
 ---
 layout: page
-title: Developer Guide
+title: Archangel Developer Guide
 ---
 * Table of Contents
 {:toc}
 --------------------------------------------------------------------------------------------------------------------
 ## **1. Introduction**
+### 1.1 Purpose
+This document describes the setting up, design, implementation, documentation of Archangel.
+
+### 1.2 Audience
+The whole documentation is in general for anyone who wants to understand the documentation and implementation
+of Archangel. The following groups are the intended target of this documentation.
+
+1. CS2101/CS2103T Teaching Team - to evaluate Archangel's software architecture, design, 
+implementation and documentation.
+2. CS2103T Students - to understand Archangel's software architecture, design, 
+implementation and documentation in order to enhance and implement some of the features
+inside the software.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -272,7 +284,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ## **6. Appendix: Requirements**
 
-### Product scope
+### 6.1 Product scope
 
 **Target user profile**:
 
@@ -287,7 +299,7 @@ _{Explain here how the data archiving feature will be implemented}_
 **Value proposition**: provide an application for psychiatrists to manage their patient's medical information and their upcoming appointments.
 
 
-### User stories
+### 6.2 User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -302,7 +314,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-### Use cases
+### 6.3 Use cases
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
@@ -378,7 +390,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-### Non-Functional Requirements
+### 6.4 Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 patients without a noticeable sluggishness in performance for typical usage.
@@ -387,7 +399,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-### Glossary
+### 6.5 Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
@@ -395,7 +407,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## **7. Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
@@ -404,7 +416,7 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### Launch and shutdown
+### 7.1 Launch and shutdown
 
 1. Initial launch
 
@@ -421,7 +433,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a patient
+### 7.2 Deleting a patient
 
 1. Deleting a patient while all patients are being shown
 
@@ -438,7 +450,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Viewing a patient
+### 7.3 Viewing a patient
 
 1. Viewing a patient while all patients are being shown
 
@@ -450,7 +462,7 @@ testers are expected to do more *exploratory* testing.
 
 2. _{ more test cases …​ }_
 
-### Saving data
+### 7.4 Saving data
 
 1. Dealing with missing/corrupted data files
 
