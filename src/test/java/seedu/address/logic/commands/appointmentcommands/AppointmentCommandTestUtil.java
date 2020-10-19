@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
@@ -19,6 +20,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.filters.appointmentfilters.SearchPatientFilter;
 import seedu.address.testutil.EditAppointmentDescriptorBuilder;
 
 /**
@@ -123,8 +125,8 @@ public class AppointmentCommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredAppointmentList().size());
 
         Appointment appointment = model.getFilteredAppointmentList().get(targetIndex.getZeroBased());
-        //        final List<String> splitName = Collections.singletonList(appointment.getPatient().getName().fullName);
-        //        model.updateFilteredAppointmentList(new SearchPatientFilter(splitName));
+        final String[] splitName = appointment.getPatient().getName().fullName.split("\\s+");
+        model.updateFilteredAppointmentList(new SearchPatientFilter(Arrays.asList(splitName)));
 
         assertEquals(1, model.getFilteredAppointmentList().size());
     }

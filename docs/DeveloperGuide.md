@@ -251,14 +251,14 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | Psychiatrist                                   | view the appointment history of my patient        | decide when I can schedule the next appointment for the patient.                 |
-| `* * *`  | Psychiatrist                                       | delete full patient records               | remove any irrelevant patient records                                                                       |
-| `* * *`  | Psychiatrist                                       | record details about the patient           | access his/her psychotherapy progress. |
-| `* * *`    | Psychiatrist                                       | view my patient’s medical information    | access the type and dosage of medication to provide.                |
-| `* * *`    | Psychiatrist                                       | view my patient’s contact information     | I can contact them for their appointments.                |
-| `* * *`    | Psychiatrist                                       | store my patient’s reviews/preference    | I can alter the treatment plan to suit his preferences.               |
+| Priority | As a …​          | I want to …​                                   | So that I can…​                                                        |
+| -------- | --------------- | --------------------------------------------- | --------------------------------------------------------------------- |
+| `* * *`  | Psychiatrist    | view the appointment history of my patient    | decide when I can schedule the next appointment for the patient.      |
+| `* * *`  | Psychiatrist    | delete full patient records                   | remove any irrelevant patient records                                 |
+| `* * *`  | Psychiatrist    | record details about the patient              | access his/her psychotherapy progress.                                |
+| `* * *`  | Psychiatrist    | view my patient’s medical information         | access the type and dosage of medication to provide.                  |
+| `* * *`  | Psychiatrist    | view my patient’s contact information         | I can contact them for their appointments.                            |
+| `* * *`  | Psychiatrist    | store my patient’s reviews/preference         | I can alter the treatment plan to suit his preferences.               |
 
 *{More to be added}*
 
@@ -399,15 +399,16 @@ testers are expected to do more *exploratory* testing.
 1. _{ more test cases …​ }_
 
 ### Viewing a patient
+
 1. Viewing a patient while all patients are being shown
 
    1. Test case: `view Kim Guan`<br>
       Expected: Details of patient named 'Kim Guan' is shown.
 
-   1. Other incorrect delete commands to try: `view`, `view x`, `...` (where x is not in the list)<br>
+   2. Other incorrect delete commands to try: `view`, `view x`, `...` (where x is not in the list)<br>
       Expected: Error details shown in status message. Status bar remains the same.
 
-1. _{ more test cases …​ }_
+2. _{ more test cases …​ }_
 
 ### Saving data
 
@@ -415,4 +416,4 @@ testers are expected to do more *exploratory* testing.
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-1. _{ more test cases …​ }_
+2. _{ more test cases …​ }_

@@ -72,7 +72,7 @@ public class AppointmentEditCommand extends Command {
         requireNonNull(model);
         List<Appointment> lastShownList = model.getFilteredAppointmentList();
 
-        if (index.getZeroBased() > lastShownList.size()) {
+        if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
         }
 
@@ -102,14 +102,7 @@ public class AppointmentEditCommand extends Command {
         LocalDateTime endTime = editAppointmentDescriptor.getEndTime().orElse(appointmentToEdit.getEndTime());
         AppointmentTime updatedAppointmentTime = new AppointmentTime(startTime, endTime);
 
-        Patient updatedPatient = appointmentToEdit.getPatient();
-        if (editAppointmentDescriptor.needsParsePatient) {
-            Index patientIndex = Index.fromOneBased(Integer.parseInt(editAppointmentDescriptor
-                    .getPatientString().get()));
-            assert patientIndex.getZeroBased() < addressBook.getPatientList().size()
-                    : MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX;
-            updatedPatient = addressBook.getPatientList().get(patientIndex.getZeroBased());
-        }
+        Patient updatedPatient = editAppointmentDescriptor.getPatient().orElse(appointmentToEdit.getPatient());
 
         Description updatedDescription = editAppointmentDescriptor.getDescription()
                 .orElse(appointmentToEdit.getDescription());

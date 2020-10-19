@@ -46,7 +46,8 @@ public class CommandResult {
      * @param canUndo
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean canUndo) {
-        this.feedbackToUser = requireNonNull(feedbackToUser);
+        requireNonNull(feedbackToUser);
+        this.feedbackToUser = feedbackToUser;
         this.showHelp = showHelp;
         this.exit = exit;
         this.canUndo = canUndo;
