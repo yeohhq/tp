@@ -223,7 +223,7 @@ However, after many test runs, we concluded that the memory usage of the user hi
   * Cons: We must ensure that the implementation of each individual command are correct.
   
 * **Alternative 3:** Individual command is contained in a `reversible-pair-action` class. When we want to `undo`, we can just call its `pair command`.
-  * Pros: Will use less memory (due to the fact that are not saving any addditional data).
+  * Pros: Will use less memory (due to the fact that are not saving any additional data).
   * Cons: Very difficult to implement, some commands might not have `pair command`(e.g for `edit`, it is own pair command but pair command to call for undo is hard to implement).
 
 
