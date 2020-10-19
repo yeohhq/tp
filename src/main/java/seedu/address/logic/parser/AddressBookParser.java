@@ -11,6 +11,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.commands.appointmentcommands.AppointmentDeleteCommand;
+import seedu.address.logic.commands.appointmentcommands.AppointmentEditCommand;
 import seedu.address.logic.commands.appointmentcommands.AppointmentFindPatientCommand;
 import seedu.address.logic.commands.appointmentcommands.AppointmentIsMissedCommand;
 import seedu.address.logic.commands.appointmentcommands.AppointmentListCommand;
@@ -31,6 +32,7 @@ import seedu.address.logic.parser.appointmentparser.AppointmentTagCommandParser;
 import seedu.address.logic.parser.appointmentparser.AppointmentTodayParser;
 import seedu.address.logic.parser.appointmentparser.AppointmentWeekParser;
 import seedu.address.logic.parser.appointmentparser.DeleteAppointmentCommandParser;
+import seedu.address.logic.parser.appointmentparser.EditAppointmentCommandParser;
 import seedu.address.logic.parser.appointmentparser.ListAppointmentCommandParser;
 import seedu.address.logic.parser.appointmentparser.ScheduleAppointmentCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -109,6 +111,9 @@ public class AddressBookParser {
         case AppointmentWeekCommand.COMMAND_WORD:
             return new AppointmentWeekParser().parse(arguments);
 
+        case AppointmentEditCommand.COMMAND_WORD:
+            return new EditAppointmentCommandParser().parse(arguments);
+
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
@@ -125,36 +130,5 @@ public class AddressBookParser {
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
-
-    // TODO: Implement parser for Appointment type commands that require data retrieval of Patients from patient list.
-    //    /**
-    //     * Parses user input into command for execution using overloaded method with reference to patient list.
-    //     *
-    //     * @param userInput full user input string
-    //     * @param patientObservableList patient list
-    //     * @return the command based on the user input
-    //     * @throws ParseException if the user input does not conform the expected format
-    //     */
-    //    public Command parseCommand(String userInput, ObservableList<Patient> patientObservableList)
-    //    throws ParseException {
-    //        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
-    //        if (!matcher.matches()) {
-    //            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
-    //        }
-    //
-    //        final String commandWord = matcher.group("commandWord");
-    //        final String arguments = matcher.group("arguments");
-    //        switch (commandWord) {
-    //
-    //        case AppointmentScheduleCommand.COMMAND_WORD:
-    //            return new ScheduleAppointmentCommandParser().parse(arguments, patientObservableList);
-    //
-    //        case AppointmentEditCommand.COMMAND_WORD:
-    //            return new EditAppointmentCommandParser().parse(arguments, patientObservableList);
-    //
-    //        default:
-    //            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
-    //        }
-    //    }
 
 }

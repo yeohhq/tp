@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
@@ -19,6 +20,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.filters.appointmentfilters.SearchPatientFilter;
+import seedu.address.testutil.EditAppointmentDescriptorBuilder;
 
 /**
  * Contains helper methods for testing appointment commands.
@@ -29,8 +32,8 @@ public class AppointmentCommandTestUtil {
     public static final String VALID_START_TWO = "2020-08-05 14:00";
     public static final String VALID_END_ONE = "2020-10-07 10:00";
     public static final String VALID_END_TWO = "2020-08-05 16:00";
-    public static final int VALID_PATIENT_ONE = 0;
-    public static final int VALID_PATIENT_TWO = 1;
+    public static final String VALID_PATIENT_ONE = "0";
+    public static final String VALID_PATIENT_TWO = "1";
     public static final String VALID_DESCRIPTION_ONE = "Review Appointment";
     public static final String VALID_DESCRIPTION_TWO = "Followup Appointment";
     public static final String VALID_TAG_ONE = "Review";
@@ -54,6 +57,22 @@ public class AppointmentCommandTestUtil {
     public static final String INVALID_PATIENT_DESC = " " + PREFIX_PATIENT + "A";
     // '*' not allowed in tags
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "Review*";
+
+    public static final AppointmentEditCommand.EditAppointmentDescriptor DESC_REVIEW;
+    public static final AppointmentEditCommand.EditAppointmentDescriptor DESC_FOLLOWUP;
+
+    static {
+        DESC_REVIEW = new EditAppointmentDescriptorBuilder()
+                .withAppointmentTime(VALID_START_ONE, VALID_END_ONE)
+                .withDescription(VALID_DESCRIPTION_ONE)
+                .withPatient(VALID_PATIENT_ONE)
+                .withTags(VALID_TAG_ONE).build();
+        DESC_FOLLOWUP = new EditAppointmentDescriptorBuilder()
+                .withAppointmentTime(VALID_START_TWO, VALID_END_TWO)
+                .withDescription(VALID_DESCRIPTION_TWO)
+                .withPatient(VALID_PATIENT_TWO)
+                .withTags(VALID_TAG_TWO).build();
+    }
 
     /**
      * Executes the given {@code command}, confirms that <br>
@@ -99,15 +118,15 @@ public class AppointmentCommandTestUtil {
     }
 
     /**
-     * Updates {@code model}'s filtered list to show only the patient at the given {@code targetIndex} in the
+     * Updates {@code model}'s filtered list to show only the appointment at the given {@code targetIndex} in the
      * {@code model}'s address book.
      */
     public static void showAppointmentAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredAppointmentList().size());
 
         Appointment appointment = model.getFilteredAppointmentList().get(targetIndex.getZeroBased());
-        // final String[] splitName = appointment.getName().fullName.split("\\s+");
-        // model.updateFilteredAppointmentList(new SearchNameFilter(Arrays.asList(splitName[0])));
+        final String[] splitName = appointment.getPatient().getName().fullName.split("\\s+");
+        model.updateFilteredAppointmentList(new SearchPatientFilter(Arrays.asList(splitName)));
 
         assertEquals(1, model.getFilteredAppointmentList().size());
     }
