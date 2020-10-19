@@ -1,14 +1,16 @@
-package seedu.address.logic.commands.patientcommands;
+package seedu.address.logic.commands.appointmentcommands;
 
 import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.appointmentcommands.AppointmentCommandTestUtil.VALID_END_ONE;
+import static seedu.address.logic.commands.appointmentcommands.AppointmentCommandTestUtil.VALID_END_TWO;
+import static seedu.address.logic.commands.appointmentcommands.AppointmentCommandTestUtil.VALID_START_ONE;
+import static seedu.address.logic.commands.appointmentcommands.AppointmentCommandTestUtil.VALID_START_TWO;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -16,66 +18,65 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.UserHistoryManager;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.patient.Patient;
-import seedu.address.testutil.PatientBuilder;
+import seedu.address.testutil.AppointmentBuilder;
 
-public class PatientAddCommandTest {
-
+public class AppointmentScheduleCommandTest {
     @Test
-    public void constructor_nullPatient_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new PatientAddCommand(null));
+    public void constructor_nullAppointment_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AppointmentScheduleCommand(null));
     }
 
-    @Test
-    public void execute_patientAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPatientAdded modelStub = new ModelStubAcceptingPatientAdded();
-        Patient validPatient = new PatientBuilder().build();
+    //    @Test
+    //    public void execute_appointmentAcceptedByModel_addSuccessful() throws Exception {
+    //        ModelStubAcceptingAppointmentAdded modelStub = new ModelStubAcceptingAppointmentAdded();
+    //        Appointment validAppointment = new AppointmentBuilder().build();
+    //
+    //        CommandResult commandResult = new AppointmentScheduleCommand(validAppointment).execute(modelStub);
+    //
+    //        assertEquals(String.format(AppointmentScheduleCommand.MESSAGE_SUCCESS, validAppointment),
+    //                commandResult.getFeedbackToUser());
+    //        assertEquals(Arrays.asList(validAppointment), modelStub.appointmentAdded);
+    //    }
 
-        CommandResult commandResult = new PatientAddCommand(validPatient).execute(modelStub);
-
-        assertEquals(String.format(PatientAddCommand.MESSAGE_SUCCESS, validPatient), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPatient), modelStub.patientsAdded);
-    }
-
-    @Test
-    public void execute_duplicatePatient_throwsCommandException() {
-        Patient validPatient = new PatientBuilder().build();
-        PatientAddCommand patientAddCommand = new PatientAddCommand(validPatient);
-        ModelStub modelStub = new ModelStubWithPatient(validPatient);
-
-        assertThrows(CommandException.class, PatientAddCommand.MESSAGE_DUPLICATE_PERSON, () ->
-                patientAddCommand.execute(modelStub));
-    }
+    //    @Test
+    //    public void execute_duplicateAppointment_throwsCommandException() {
+    //        Appointment validAppointment = new AppointmentBuilder().build();
+    //        AppointmentScheduleCommand appointmentScheduleCommand = new AppointmentScheduleCommand(validAppointment);
+    //        AppointmentScheduleCommandTest.ModelStub modelStub =
+    //                new AppointmentScheduleCommandTest.ModelStubWithAppointment(validAppointment);
+    //
+    //        assertThrows(CommandException.class, AppointmentScheduleCommand.MESSAGE_DUPLICATE_APPOINTMENT, () ->
+    //                appointmentScheduleCommand.execute(modelStub));
+    //    }
 
     @Test
     public void equals() {
-        Patient alice = new PatientBuilder().withName("Alice").build();
-        Patient bob = new PatientBuilder().withName("Bob").build();
-        PatientAddCommand addAliceCommand = new PatientAddCommand(alice);
-        PatientAddCommand addBobCommand = new PatientAddCommand(bob);
+        Appointment apt1 = new AppointmentBuilder().withAppointmentTime(VALID_START_ONE, VALID_END_ONE).build();
+        Appointment apt2 = new AppointmentBuilder().withAppointmentTime(VALID_START_TWO, VALID_END_TWO).build();
+        AppointmentScheduleCommand addCommand1 = new AppointmentScheduleCommand(apt1);
+        AppointmentScheduleCommand addCommand2 = new AppointmentScheduleCommand(apt2);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(addCommand1.equals(addCommand1));
 
         // same values -> returns true
-        PatientAddCommand addAliceCommandCopy = new PatientAddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        AppointmentScheduleCommand addCommand1Copy = new AppointmentScheduleCommand(apt1);
+        assertTrue(addCommand1.equals(addCommand1Copy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(addCommand1.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(addCommand1.equals(null));
 
         // different patient -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        assertFalse(addCommand1.equals(addCommand2));
     }
 
     /**
@@ -194,39 +195,39 @@ public class PatientAddCommandTest {
     }
 
     /**
-     * A Model stub that contains a single patient.
+     * A Model stub that contains a single appointment.
      */
-    private class ModelStubWithPatient extends ModelStub {
-        private final Patient patient;
+    private class ModelStubWithAppointment extends AppointmentScheduleCommandTest.ModelStub {
+        private final Appointment appointment;
 
-        ModelStubWithPatient(Patient patient) {
-            requireNonNull(patient);
-            this.patient = patient;
+        ModelStubWithAppointment(Appointment appointment) {
+            requireNonNull(appointment);
+            this.appointment = appointment;
         }
 
         @Override
-        public boolean hasPatient(Patient patient) {
-            requireNonNull(patient);
-            return this.patient.isSamePatient(patient);
+        public boolean hasAppointment(Appointment appointment) {
+            requireNonNull(appointment);
+            return this.appointment.isSameAppointment(appointment);
         }
     }
 
     /**
-     * A Model stub that always accept the patient being added.
+     * A Model stub that always accept the appointment being added.
      */
-    private class ModelStubAcceptingPatientAdded extends ModelStub {
-        final ArrayList<Patient> patientsAdded = new ArrayList<>();
+    private class ModelStubAcceptingAppointmentAdded extends AppointmentScheduleCommandTest.ModelStub {
+        final ArrayList<Appointment> appointmentAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPatient(Patient patient) {
-            requireNonNull(patient);
-            return patientsAdded.stream().anyMatch(patient::isSamePatient);
+        public boolean hasAppointment(Appointment appointment) {
+            requireNonNull(appointment);
+            return appointmentAdded.stream().anyMatch(appointment::isSameAppointment);
         }
 
         @Override
-        public void addPatient(Patient patient) {
-            requireNonNull(patient);
-            patientsAdded.add(patient);
+        public void addAppointment(Appointment appointment) {
+            requireNonNull(appointment);
+            appointmentAdded.add(appointment);
         }
 
         @Override
@@ -234,5 +235,4 @@ public class PatientAddCommandTest {
             return new AddressBook();
         }
     }
-
 }

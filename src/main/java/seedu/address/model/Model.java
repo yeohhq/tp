@@ -135,7 +135,7 @@ public interface Model {
     /**
      * Undo the patient history.
      */
-    void undoPatientHistory();
+    void undoHistory();
 
     // TODO: include undo operations for Appointment class.
 }

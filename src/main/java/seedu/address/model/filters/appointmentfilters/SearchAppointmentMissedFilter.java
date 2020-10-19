@@ -10,8 +10,8 @@ import seedu.address.model.appointment.Appointment;
 public class SearchAppointmentMissedFilter implements Predicate<Appointment> {
     private final Boolean isMissed;
 
-    public SearchAppointmentMissedFilter(Boolean isMissed) {
-        this.isMissed = isMissed;
+    public SearchAppointmentMissedFilter() {
+        this.isMissed = true;
     }
 
     @Override

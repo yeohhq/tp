@@ -32,7 +32,7 @@ public class ParserUtil {
     /**
      * Formats date and time inputs as: yyyy-MM-dd hh:mm (eg. 2020-02-20 08:00).
      */
-    public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm");
+    public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -166,7 +166,6 @@ public class ParserUtil {
         requireNonNull(dateTime);
         String trimmedDateTime = dateTime.trim();
         LocalDateTime localDateTime = null;
-
         try {
             localDateTime = LocalDateTime.parse(trimmedDateTime, DATE_FORMATTER);
         } catch (DateTimeParseException e) {
@@ -176,15 +175,14 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String patientIndex} into a {@code int}.
+     * Parses a {@code String patientString} into a {@code String}.
      * Leading and trailing whitespaces will be trimmed.
-     * Note: Patient index patient will be processed later.
+     * Note: Patient string will be parsed as Index will be processed later.
      */
-    public static int parsePatient(String patientIndex) {
-        requireNonNull(patientIndex);
-        String trimmedPatientIndex = patientIndex.trim();
-        int patientIndexInt = Integer.parseInt(trimmedPatientIndex);
-        return patientIndexInt;
+    public static String parsePatientString(String patientString) {
+        requireNonNull(patientString);
+        String trimmedPatientString = patientString.trim();
+        return trimmedPatientString;
     }
 
     /**

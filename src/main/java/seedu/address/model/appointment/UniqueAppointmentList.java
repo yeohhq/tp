@@ -50,6 +50,14 @@ public class UniqueAppointmentList {
     }
 
     /**
+     * Adds a appointment to the list when getting from JSON.
+     */
+    public void add(Appointment toAdd, boolean fromJson) {
+        requireNonNull(toAdd);
+        internalList.add(toAdd);
+    }
+
+    /**
      * Replaces the appointment {@code target} in the list with {@code editedAppointment}.
      * {@code target} must exist in the list.
      * The appointment identity of {@code editedAppointment}
@@ -92,9 +100,9 @@ public class UniqueAppointmentList {
      */
     public void setAppointments(List<Appointment> appointments) {
         requireAllNonNull(appointments);
-        if (!appointmentsAreUnique(appointments)) {
-            throw new DuplicateAppointmentException();
-        }
+        //        if (!appointmentsAreUnique(appointments)) {
+        //            throw new DuplicateAppointmentException();
+        //        }
         internalList.setAll(appointments);
     }
 

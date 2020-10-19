@@ -11,7 +11,6 @@ import java.time.LocalDateTime;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import javafx.collections.ObservableList;
 import seedu.address.logic.commands.appointmentcommands.AppointmentScheduleCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
@@ -22,7 +21,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentTime;
 import seedu.address.model.appointment.Description;
-import seedu.address.model.patient.Patient;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -30,43 +28,31 @@ import seedu.address.model.tag.Tag;
  */
 public class ScheduleAppointmentCommandParser implements Parser<AppointmentScheduleCommand> {
 
-    // TODO: resolve Parser interface method.
-    @Override
-    public AppointmentScheduleCommand parse(String userInput) throws ParseException {
-        return null;
-    }
-
     /**
      * Parses the given {@code String} of arguments in the context of the AppointmentScheduleCommand
      * and returns an AppointmentScheduleCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AppointmentScheduleCommand parse(String args, ObservableList<Patient> patientObservableList)
+    @Override
+    public AppointmentScheduleCommand parse(String args)
             throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_APPOINTMENT_START, PREFIX_APPOINTMENT_END, PREFIX_PATIENT,
                         PREFIX_DESCRIPTION, PREFIX_TAG);
-
         if (!arePrefixesPresent(argMultimap, PREFIX_APPOINTMENT_START, PREFIX_APPOINTMENT_END, PREFIX_PATIENT,
                 PREFIX_DESCRIPTION)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AppointmentScheduleCommand.MESSAGE_USAGE));
         }
-
         LocalDateTime startTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_APPOINTMENT_START).get());
         LocalDateTime endTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_APPOINTMENT_END).get());
         AppointmentTime appointmentTime = new AppointmentTime(startTime, endTime);
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-
         Boolean isMissed = false; // isMissed is always initialised to false for newly scheduled appointment
         Boolean isCompleted = false; // isCompleted is always initialised to false for newly scheduled appointment
-
-        // Retrieve patient from patientObservableList
-        int patientIndex = ParserUtil.parsePatient(argMultimap.getValue(PREFIX_PATIENT).get());
-        Patient patient = patientObservableList.get(patientIndex);
-
+        String patient = argMultimap.getValue(PREFIX_PATIENT).get();
         Appointment appointment = new Appointment(appointmentTime, patient, tagList, isCompleted, isMissed,
                 description);
 

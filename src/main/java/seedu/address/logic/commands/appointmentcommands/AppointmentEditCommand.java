@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.appointmentcommands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_END;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_START;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
@@ -8,19 +9,20 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PATIENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentTime;
 import seedu.address.model.appointment.Description;
@@ -34,7 +36,7 @@ public class AppointmentEditCommand extends Command {
     public static final String COMMAND_WORD = "a-edit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the appointment identified "
-            + "by the index number used in the displayed appointment list. "
+            + "by the index number used in the displayed appointment list.\n"
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_APPOINTMENT_START + "START] "
@@ -51,7 +53,7 @@ public class AppointmentEditCommand extends Command {
     public static final String MESSAGE_DUPLICATE_APPOINTMENT = "This appointment already exists in the address book.";
 
     private final Index index;
-    private final AppointmentEditCommand.EditAppointmentDescriptor editAppointmentDescriptor;
+    private final EditAppointmentDescriptor editAppointmentDescriptor;
 
     /**
      * @param index of the appointment in the filtered appointment list to edit
@@ -71,13 +73,14 @@ public class AppointmentEditCommand extends Command {
         List<Appointment> lastShownList = model.getFilteredAppointmentList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
+            throw new CommandException(MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
         }
 
         Appointment appointmentToEdit = lastShownList.get(index.getZeroBased());
-        Appointment editedAppointment = createEditedAppointment(appointmentToEdit, editAppointmentDescriptor);
+        Appointment editedAppointment = createEditedAppointment(appointmentToEdit,
+                editAppointmentDescriptor, model.getAddressBook());
 
-        if (!appointmentToEdit.isSameAppointment(editedAppointment) && model.hasAppointment(editedAppointment)) {
+        if (appointmentToEdit.isSameAppointment(editedAppointment) && model.hasAppointment(editedAppointment)) {
             throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
         }
 
@@ -91,12 +94,16 @@ public class AppointmentEditCommand extends Command {
      * edited with {@code editAppointmentDescriptor}.
      */
     private static Appointment createEditedAppointment(Appointment appointmentToEdit,
-                                                       EditAppointmentDescriptor editAppointmentDescriptor) {
+                                                       EditAppointmentDescriptor editAppointmentDescriptor,
+                                                       ReadOnlyAddressBook addressBook) {
         assert appointmentToEdit != null;
 
-        AppointmentTime updatedAppointmentTime = editAppointmentDescriptor.getAppointmentTime()
-                .orElse(appointmentToEdit.getAppointmentTime());
+        LocalDateTime startTime = editAppointmentDescriptor.getStartTime().orElse(appointmentToEdit.getStartTime());
+        LocalDateTime endTime = editAppointmentDescriptor.getEndTime().orElse(appointmentToEdit.getEndTime());
+        AppointmentTime updatedAppointmentTime = new AppointmentTime(startTime, endTime);
+
         Patient updatedPatient = editAppointmentDescriptor.getPatient().orElse(appointmentToEdit.getPatient());
+
         Description updatedDescription = editAppointmentDescriptor.getDescription()
                 .orElse(appointmentToEdit.getDescription());
         Set<Tag> updatedTags = editAppointmentDescriptor.getTags().orElse(appointmentToEdit.getTags());
@@ -131,8 +138,11 @@ public class AppointmentEditCommand extends Command {
      * corresponding field value of the appointment.
      */
     public static class EditAppointmentDescriptor {
-        private AppointmentTime appointmentTime;
+        private LocalDateTime endTime;
+        private LocalDateTime startTime;
         private Patient patient;
+        private boolean needsParsePatient;
+        private String patientString; // used for EditCommandParser to retrieve patient from Model
         private Boolean isCompleted;
         private Boolean isMissed;
         private Description description;
@@ -145,8 +155,10 @@ public class AppointmentEditCommand extends Command {
          * A defensive copy of {@code tags} is used internally.
          */
         public EditAppointmentDescriptor(EditAppointmentDescriptor toCopy) {
-            setAppointmentTime(toCopy.appointmentTime);
+            setAppointmentTime(toCopy.startTime, toCopy.endTime);
             setPatient(toCopy.patient);
+            setNeedsParsePatient(toCopy.needsParsePatient);
+            setPatientString(toCopy.patientString);
             setIsCompleted(toCopy.isCompleted);
             setIsMissed(toCopy.isMissed);
             setDescription(toCopy.description);
@@ -157,15 +169,20 @@ public class AppointmentEditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(appointmentTime, patient, description, tags);
+            return CollectionUtil.isAnyNonNull(startTime, endTime, patient, patientString, description, tags);
         }
 
-        public void setAppointmentTime(AppointmentTime appointmentTime) {
-            this.appointmentTime = appointmentTime;
+        public void setAppointmentTime(LocalDateTime startTime, LocalDateTime endTime) {
+            this.startTime = startTime;
+            this.endTime = endTime;
         }
 
-        public Optional<AppointmentTime> getAppointmentTime() {
-            return Optional.ofNullable(appointmentTime);
+        public Optional<LocalDateTime> getStartTime() {
+            return Optional.ofNullable(startTime);
+        }
+
+        public Optional<LocalDateTime> getEndTime() {
+            return Optional.ofNullable(endTime);
         }
 
         public void setPatient(Patient patient) {
@@ -173,7 +190,26 @@ public class AppointmentEditCommand extends Command {
         }
 
         public Optional<Patient> getPatient() {
+            // reset to false, already updated to parsed patient
+            setNeedsParsePatient(false);
+
             return Optional.ofNullable(patient);
+        }
+
+        public void setNeedsParsePatient(boolean needsParsePatient) {
+            this.needsParsePatient = needsParsePatient;
+        }
+
+        public Optional<Boolean> getNeedsParsePatient() {
+            return Optional.ofNullable(needsParsePatient);
+        }
+
+        public void setPatientString(String patientString) {
+            this.patientString = patientString;
+        }
+
+        public Optional<String> getPatientString() {
+            return Optional.ofNullable(patientString);
         }
 
         public void setIsCompleted(Boolean isCompleted) {
@@ -232,8 +268,11 @@ public class AppointmentEditCommand extends Command {
             // state check
             EditAppointmentDescriptor e = (EditAppointmentDescriptor) other;
 
-            return getAppointmentTime().equals(e.getAppointmentTime())
+            return getStartTime().equals(e.getStartTime())
+                    && getEndTime().equals(e.getEndTime())
                     && getPatient().equals(e.getPatient())
+                    && getPatientString().equals(e.getPatientString())
+                    && getNeedsParsePatient().equals(e.getNeedsParsePatient())
                     && getIsCompleted().equals(e.getIsCompleted())
                     && getIsMissed().equals(e.getIsMissed())
                     && getDescription().equals(e.getDescription())

@@ -1,8 +1,6 @@
 package seedu.address.commons;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.testutil.TypicalPatients.ALICE;
-import static seedu.address.testutil.TypicalPatients.getTypicalAddressBook;
 
 import java.nio.file.Path;
 
@@ -10,23 +8,29 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import seedu.address.logic.Logic;
+import seedu.address.logic.LogicManager;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.commands.patientcommands.PatientAddCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-
-
+import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.StorageManager;
 
 
 public class UserHistoryManagerTest {
+    private static final String SAMPLE_COMMAND =
+            "p-add n/John Doe g/MALE bd/2018-12-27 bt/A+ p/98765432 e/johnd@example.com a/311, "
+                    + "Clementi"
+                    + " Ave 2, #02-25 t/friends t/owesMoney";
     @TempDir
-    public Path temporaryFolder;
+    public Path testFolder;
+
+    private StorageManager storageManager;
 
     private Model model = new ModelManager();
-    private Logic logic;
+    private LogicManager logic;
     private UserHistoryManager historyManager;
 
     /**
@@ -34,7 +38,14 @@ public class UserHistoryManagerTest {
      */
     @BeforeEach
     public void setUp() {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
+        JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
+        storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
+        logic = new LogicManager(model, storageManager);
+    }
+
+    private Path getTempFilePath(String fileName) {
+        return testFolder.resolve(fileName);
     }
 
     /**
@@ -46,15 +57,16 @@ public class UserHistoryManagerTest {
     }
 
     @Test
-    public void testAddHistory() throws CommandException {
-        CommandResult commandResultOne = new PatientAddCommand(ALICE).execute(model);
+    public void testAddHistory() throws CommandException, ParseException {
+        CommandResult commandResultOne = logic.execute(SAMPLE_COMMAND);
+        System.out.println(model.getUserHistoryManager().getUserHistorySize());
         int size = model.getUserHistoryManager().getUserHistorySize();
         assertEquals(size, 2);
     }
 
     @Test
-    public void testUndoHistory() throws CommandException {
-        CommandResult commandResultOne = new PatientAddCommand(ALICE).execute(model);
+    public void testUndoHistory() throws CommandException, ParseException {
+        CommandResult commandResultOne = logic.execute(SAMPLE_COMMAND);
         int sizeBefore = model.getUserHistoryManager().getUserHistorySize();
         model.getUserHistoryManager().undoHistory();
         int sizeAfter = model.getUserHistoryManager().getUserHistorySize();
@@ -64,7 +76,9 @@ public class UserHistoryManagerTest {
 
     @Test
     public void getHistoryTest() {
-        assertEquals(model.getUserHistoryManager().getHistory().get(0),
+        assertEquals(model.getUserHistoryManager().getHistory().get(0).getKey(),
                 model.getAddressBook().getPatientList());
+        assertEquals(model.getUserHistoryManager().getHistory().get(0).getValue(),
+                model.getAddressBook().getAppointmentList());
     }
 }

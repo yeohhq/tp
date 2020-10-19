@@ -1,10 +1,7 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.TypicalPatients.ALICE;
-import static seedu.address.testutil.TypicalPatients.getTypicalAddressBook;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.nio.file.Path;
 
@@ -14,19 +11,30 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.UserHistoryManager;
 import seedu.address.logic.Logic;
+import seedu.address.logic.LogicManager;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.commands.patientcommands.PatientAddCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
 import seedu.address.model.patient.Patient;
+import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.StorageManager;
 import seedu.address.testutil.PatientBuilder;
 
 
 public class UndoCommandTest {
-    @TempDir
-    public Path temporaryFolder;
 
+    private static final String SAMPLE_COMMAND =
+            "p-add n/John Doe g/MALE bd/2018-12-27 bt/A+ p/98765432 e/johnd@example.com a/311,"
+                    + " Clementi Ave 2, #02-25 t/friends t/owesMoney";
+    private static final String SAMPLE_COMMAND_2 =
+            "p-add n/Kim Guan g/MALE bd/2018-12-27 bt/A+ p/98765432 e/johnd@example.com a/311,"
+                    + " Clementi Ave 2, #02-25 t/friends t/owesMoney";
+
+    @TempDir
+    public Path testFolder;
+    private StorageManager storageManager;
     private Model model = new ModelManager();
     private Logic logic;
     private UserHistoryManager historyManager;
@@ -36,7 +44,14 @@ public class UndoCommandTest {
      */
     @BeforeEach
     public void setUp() {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
+        JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
+        storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
+        logic = new LogicManager(model, storageManager);
+    }
+
+    private Path getTempFilePath(String fileName) {
+        return testFolder.resolve(fileName);
     }
 
     /**
@@ -44,11 +59,13 @@ public class UndoCommandTest {
      * @throws CommandException
      */
     @Test
-    public void testUndo() throws CommandException {
-        Patient validPatient = new PatientBuilder().build();
-        CommandResult commandResult = new PatientAddCommand(validPatient).execute(model);
-        model.undoPatientHistory();
-        assertFalse(model.getAddressBook().getPatientList().contains(validPatient));
+    public void testUndo() throws CommandException, ParseException {
+        CommandResult commandResultOne = logic.execute(SAMPLE_COMMAND);
+        int originalSize = model.getAddressBook().getPatientList().size();
+        model.undoHistory();
+        int newSize = model.getAddressBook().getPatientList().size();
+
+        assertNotEquals(originalSize, newSize);
     }
 
     /**
@@ -56,14 +73,14 @@ public class UndoCommandTest {
      * @throws CommandException
      */
     @Test
-    public void testConsecutiveCommandFollowByUndo() throws CommandException {
-        Patient validPatientOne = new PatientBuilder().build();
-        CommandResult commandResultOne = new PatientAddCommand(validPatientOne).execute(model);
-        CommandResult commandResultTwo = new PatientAddCommand(ALICE).execute(model);
+    public void testConsecutiveCommandFollowByUndo() throws CommandException, ParseException {
+        CommandResult commandResultOne = logic.execute(SAMPLE_COMMAND);
+        CommandResult commandResultTwo = logic.execute(SAMPLE_COMMAND_2);
+        int originalSize = model.getAddressBook().getPatientList().size();
         CommandResult undoCommand = new UndoCommand().execute(model);
+        int newSize = model.getAddressBook().getPatientList().size();
 
-        assertTrue(model.getAddressBook().getPatientList().contains(validPatientOne));
-        assertFalse(model.getAddressBook().getPatientList().contains(ALICE));
+        assertEquals(originalSize, newSize + 1);
     }
 
     /**
@@ -71,15 +88,16 @@ public class UndoCommandTest {
      * @throws CommandException
      */
     @Test
-    public void testConsecutiveCommandFollowedByConsecutiveUndo() throws CommandException {
+    public void testConsecutiveCommandFollowedByConsecutiveUndo() throws CommandException, ParseException {
         Patient validPatientOne = new PatientBuilder().build();
-        CommandResult commandResultOne = new PatientAddCommand(validPatientOne).execute(model);
-        CommandResult commandResultTwo = new PatientAddCommand(ALICE).execute(model);
+        CommandResult commandResultOne = logic.execute(SAMPLE_COMMAND);
+        CommandResult commandResultTwo = logic.execute(SAMPLE_COMMAND_2);
+        int originalSize = model.getAddressBook().getPatientList().size();
         CommandResult undoCommand = new UndoCommand().execute(model);
         CommandResult undoCommandTwo = new UndoCommand().execute(model);
+        int newSize = model.getAddressBook().getPatientList().size();
 
-        assertFalse(model.getAddressBook().getPatientList().contains(validPatientOne));
-        assertFalse(model.getAddressBook().getPatientList().contains(ALICE));
+        assertEquals(originalSize, newSize + 2);
     }
 
     /**
@@ -87,15 +105,13 @@ public class UndoCommandTest {
      * @throws CommandException
      */
     @Test
-    public void testMultipleUndoAfterSingleCommand() throws CommandException {
-        Patient validPatientOne = new PatientBuilder().build();
-        CommandResult commandResultOne = new PatientAddCommand(validPatientOne).execute(model);
+    public void testMultipleUndoAfterSingleCommand() throws CommandException, ParseException {
+        CommandResult commandResultOne = logic.execute(SAMPLE_COMMAND);
 
         try {
             CommandResult undoCommand = new UndoCommand().execute(model);
             CommandResult undoCommandTwo = new UndoCommand().execute(model);
         } catch (CommandException e) {
-            assertFalse(model.getAddressBook().getPatientList().contains(validPatientOne));
             assertEquals(model.getUserHistoryManager().getUserHistorySize(), 1);
         }
     }
