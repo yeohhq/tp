@@ -160,7 +160,7 @@ public class Appointment {
         }
         return otherAppointment != null
                 && otherAppointment.getAppointmentTime().equals(getAppointmentTime())
-                && otherAppointment.getPatientString().equals(getPatientString())
+                && otherAppointment.getPatient().equals(getPatient())
                 && otherAppointment.getDescription().equals(getDescription());
     }
 

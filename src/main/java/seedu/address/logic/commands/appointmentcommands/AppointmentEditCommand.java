@@ -102,7 +102,14 @@ public class AppointmentEditCommand extends Command {
         LocalDateTime endTime = editAppointmentDescriptor.getEndTime().orElse(appointmentToEdit.getEndTime());
         AppointmentTime updatedAppointmentTime = new AppointmentTime(startTime, endTime);
 
-        Patient updatedPatient = editAppointmentDescriptor.getPatient().orElse(appointmentToEdit.getPatient());
+        Patient updatedPatient = appointmentToEdit.getPatient();
+        if (editAppointmentDescriptor.needsParsePatient) {
+            Index patientIndex = Index.fromOneBased(Integer.parseInt(editAppointmentDescriptor
+                    .getPatientString().get()));
+            assert patientIndex.getZeroBased() < addressBook.getPatientList().size()
+                    : MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX;
+            updatedPatient = addressBook.getPatientList().get(patientIndex.getZeroBased());
+        }
 
         Description updatedDescription = editAppointmentDescriptor.getDescription()
                 .orElse(appointmentToEdit.getDescription());
