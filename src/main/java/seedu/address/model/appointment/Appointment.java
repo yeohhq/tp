@@ -34,7 +34,7 @@ public class Appointment {
                        Boolean isCompleted, Boolean isMissed, Description description) {
         this.appointmentTime = appointmentTime;
         this.patient = patient;
-        this.patientString = null;
+        this.patientString = patient.getName().fullName;
         this.isCompleted = isCompleted;
         this.isMissed = isMissed;
         this.description = description;
@@ -160,7 +160,7 @@ public class Appointment {
         }
         return otherAppointment != null
                 && otherAppointment.getAppointmentTime().equals(getAppointmentTime())
-                && otherAppointment.getPatient().equals(getPatient())
+                && otherAppointment.getPatientString().equals(getPatientString())
                 && otherAppointment.getDescription().equals(getDescription());
     }
 
