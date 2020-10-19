@@ -31,7 +31,8 @@ public class AppointmentIsMissedCommand extends Command {
         requireNonNull(model);
         model.updateFilteredAppointmentList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_PATIENTS_LISTED_OVERVIEW, model.getFilteredAppointmentList().size()));
+                String.format(Messages.MESSAGE_APPOINTMENTS_LISTED_OVERVIEW,
+                        model.getFilteredAppointmentList().size()));
     }
 
     @Override
