@@ -373,8 +373,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | Psychiatrist    | delete full patient records                   | remove any irrelevant patient records                                 |
 | `* * *`  | Psychiatrist    | record details about the patient              | access his/her psychotherapy progress.                                |
 | `* * *`  | Psychiatrist    | view my patient’s medical information         | access the type and dosage of medication to provide.                  |
-| `* * *`  | Psychiatrist    | view my patient’s contact information         | I can contact them for their appointments.                            |
-| `* * *`  | Psychiatrist    | store my patient’s reviews/preference         | I can alter the treatment plan to suit his preferences.               |
+| `* * *`  | Psychiatrist    | view my patient’s contact information         | contact them for their appointments.                                  |
+| `* * *`  | Psychiatrist    | store my patient’s reviews/preference         | alter the treatment plan to suit his preferences.                     |
+| `* *`    | Psychiatrist    | search my appointment list by patient name    | access see his progress across his appointments.                      |
+| `* *`    | Psychiatrist    | search my appointment list by tags            | see the trend of patients from similar groups.                        |
+| `* *`    | Psychiatrist    | search my appointment list by current day     | access only the appointments scheduled today.                         |
+| `* *`    | Psychiatrist    | search my appointment list by current week    | view my whole schedule this week.                                     |
 
 *{More to be added}*
 

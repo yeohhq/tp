@@ -25,10 +25,11 @@ AddressBookParser -> AppointmentWithFilterCommandParser
 activate AppointmentWithFilterCommandParser
 
 AppointmentWithFilterCommandParser --> AddressBookParser
-deactivate DeleteCommandParser
+deactivate AppointmentWithFilterCommandParser
 
 AddressBookParser -> AppointmentWithFilterCommandParser : parse("input")
-activate DeleteCommandParser
+activate AppointmentWithFilterCommandParser
+
 
 create AppointmentFilter
 AppointmentWithFilterCommandParser -> AppointmentFilter
