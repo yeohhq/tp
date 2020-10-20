@@ -287,7 +287,53 @@ The unique classes associated to this command as shown from Diagram 4.2.4 are :
   * Cons: Additional overhead every time you add an appointment as you need to know where to insert the command. 
   You also need to update the sequence of storage file every time you schedule an appointment.
 
-#### 4.2.8 List Appointment
+#### 4.2.8 Complete Appointment
+
+###### Implementation
+Sets a specified appointment as completed.
+
+The unique classes associated to this command as shown from Diagram 4.2.8 are :
+1. `AppointmentCommandParser: AppointmentCompleteCommandParser`— Creates a new AppointmentCompleteCommand object.
+1. `AppointmentCommand: AppointmentCompleteCommand`— Identifies the specified appointment from list and passes it to ModelManager to set as completed.
+
+#### 4.2.9 List All Appointments
+
+###### Implementation
+Listing all appointments from the appointment list.
+
+The unique classes associated to this command as shown from Diagram 4.2.9 are :
+1. `AppointmentCommandParser: AppointmentListAllCommandParser`— Creates a new AppointmentListAllCommand object.
+1. `AppointmentCommand: AppointmentListAllCommand`— Keeps appointment list unfiltered.
+
+#### 4.2.10 List Appointments (Upcoming)
+
+###### Implementation
+Listing upcoming appointments works by filtering the appointment list to show only those appointments that are labelled as not completed and not missed.
+
+The unique classes associated to this command as shown from Diagram 4.2.10 are :
+1. `AppointmentWithFilterCommandParser: AppointmentListCommandParser`— Creates a new AppointmentListCommand object.
+1. `AppointmentFilter: SearchAppointmentFilter`— Checks if appointments are both not completed and not missed.
+1. `AppointmentWithFilterCommand: AppointmentListCommand`— Applies the filter to the appointment list.
+
+#### 4.2.11 List Appointments (Completed)
+
+###### Implementation
+Listing completed appointments works by filtering the appointment list to show only those appointments that labelled as completed.
+
+The unique classes associated to this command as shown from Diagram 4.2.11 are :
+1. `AppointmentWithFilterCommandParser: AppointmentIsCompletedCommandParser`— Creates a new AppointmentIsCompletedCommand object.
+1. `AppointmentFilter: SearchAppointmentCompletedFilter`— Checks if appointments are completed.
+1. `AppointmentWithFilterCommand: AppointmentIsCompletedCommand`— Applies the filter to the appointment list.
+
+#### 4.2.12 List Appointment (Missed)
+
+###### Implementation
+Listing missed appointments works by filtering the appointment list to show only those appointments that labelled as missed.
+
+The unique classes associated to this command as shown from Diagram 4.2.12 are :
+1. `AppointmentWithFilterCommandParser: AppointmentIsMissedCommandParser`— Creates a new AppointmentIsMissedCommand object.
+1. `AppointmentFilter: SearchAppointmentMissedFilter`— Checks if appointments are missed.
+1. `AppointmentWithFilterCommand: AppointmentIsMissedCommand`— Applies the filter to the appointment list.
 
 --------------------------------------------------------------------------------------------------------------------
 
