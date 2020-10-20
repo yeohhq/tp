@@ -41,6 +41,7 @@ public class SearchAppointmentWeekFilter implements Predicate<Appointment> {
                 && today.equals(((SearchAppointmentWeekFilter) other).today)); // state check
     }
 
+    // Code is adapted from
     // https://stackoverflow.com/questions/4535583/how-to-detect-if-a-date-is-within-this-or-next-week-in-java
     /**
      * Check if the appointment's date occurs this week.
