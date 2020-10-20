@@ -17,7 +17,6 @@ public class SearchAppointmentTodayFilter implements Predicate<Appointment> {
 
     @Override
     public boolean test(Appointment appointment) {
-
         return appointment.getStartTime().toLocalDate().equals(today);
     }
 

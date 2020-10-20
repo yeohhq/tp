@@ -65,6 +65,7 @@ public class MainApp extends Application {
         model = initModelManager(storage, userPrefs);
 
         logic = new LogicManager(model, storage);
+        logic.execute("a-list");
 
         ui = new UiManager(logic);
     }
