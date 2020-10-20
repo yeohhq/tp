@@ -158,7 +158,7 @@ This section describes some noteworthy details on how certain features are imple
 --------------------------------------------------------------------------------------------------------------------
 ### 4.2 Appointment Commands
 #### 4.2.1 Schedule Appointment
-
+![Interactions Inside the Logic Component for the `a-schedule` Command](images/ScheduleAppointmentSequenceDiagram.png)
 ###### Implementation
 The implementation of scheduling an appointment has a similar execution as adding a patient (see 4.1.1).
 
@@ -195,6 +195,8 @@ The user's input is parsed by the `DeleteAppointmentCommandParser` class which e
 Subsequently, the `LogicManager` executes the `AppointmentDeleteCommand` object to delete the appointment with the given index in `ObservableList<Appointment>`.
 
 #### 4.2.3 Edit Appointment
+
+![Interactions Inside the Logic Component for the `a-edit` Command](images/EditAppointmentSequenceDiagram.png)
 
 ###### Implementation
 The implementation of editing an appointment has a similar execution as editing a patient (see 4.1.4).

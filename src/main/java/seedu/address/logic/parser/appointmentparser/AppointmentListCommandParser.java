@@ -7,7 +7,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 /**
  * Parses input arguments and creates a new AppointmentListCommand object
  */
-public class ListAppointmentCommandParser implements Parser<AppointmentListCommand> {
+public class AppointmentListCommandParser implements Parser<AppointmentListCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AppointmentListCommand
