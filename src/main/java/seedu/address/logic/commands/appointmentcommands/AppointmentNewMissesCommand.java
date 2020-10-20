@@ -3,6 +3,7 @@ package seedu.address.logic.commands.appointmentcommands;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDateTime;
+
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
@@ -11,7 +12,7 @@ import seedu.address.model.Model;
  * Looks through all appointments in the addressbook.
  * Sets all past appointments that have not been completed as missed.
  */
-public class AppointmentNewMissesCommand extends Command{
+public class AppointmentNewMissesCommand extends Command {
 
     public static final String COMMAND_WORD = "a-new-misses";
 

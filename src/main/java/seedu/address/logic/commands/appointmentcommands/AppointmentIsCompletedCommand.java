@@ -1,13 +1,12 @@
 package seedu.address.logic.commands.appointmentcommands;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 import seedu.address.model.filters.appointmentfilters.SearchAppointmentCompletedFilter;
-import seedu.address.model.filters.appointmentfilters.SearchAppointmentMissedFilter;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Finds and lists all completed appointments in the addressbook.

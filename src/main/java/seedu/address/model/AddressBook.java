@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.appointment.Appointment;

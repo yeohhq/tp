@@ -15,7 +15,7 @@ import seedu.address.model.appointment.Appointment;
 /**
  * Sets an existing appointment in the address book as completed.
  */
-public class AppointmentCompleteCommand extends Command{
+public class AppointmentCompleteCommand extends Command {
     public static final String COMMAND_WORD = "a-complete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sets an appointment as completed "

@@ -1,14 +1,11 @@
 package seedu.address.logic.commands.appointmentcommands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 import seedu.address.model.filters.appointmentfilters.SearchAppointmentFilter;
-import seedu.address.model.filters.appointmentfilters.SearchAppointmentTodayFilter;
 
 /**
  * Lists all appointments in the address book that have not been completed or missed to the user.

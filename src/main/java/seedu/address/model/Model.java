@@ -86,11 +86,6 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered patient list */
     ObservableList<Patient> getFilteredPatientList();
 
-    /**
-     * Returns an modifiable view of the filtered patient list.
-     * Only appointments that are not completed and not missed are shown.
-     * This is used only on app start up.
-     */
     // ObservableList<Patient> getStartFilteredPatientList();
 
     /**

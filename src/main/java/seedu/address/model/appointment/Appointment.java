@@ -55,7 +55,6 @@ public class Appointment {
         this.tags.addAll(tags);
     }
 
-
     public AppointmentTime getAppointmentTime() {
         return this.appointmentTime;
     }
@@ -76,10 +75,6 @@ public class Appointment {
         return this.patientString;
     }
 
-    public Index getPatientIndex() {
-        return Index.fromZeroBased(Integer.parseInt(this.patientString));
-    }
-
     public Boolean isMissed() {
         return this.isMissed;
     }
@@ -91,6 +86,13 @@ public class Appointment {
     public Description getDescription() {
         return this.description;
     }
+
+    public Index getPatientIndex() {
+        return Index.fromZeroBased(Integer.parseInt(this.patientString));
+    }
+
+
+
 
     // Method to edit Appointment class directly without use of EditAppointmentDescriptor
     // to try fixing Json format conversion from showing patient field as "null".

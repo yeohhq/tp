@@ -1,14 +1,12 @@
 package seedu.address.logic.parser.appointmentparser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import seedu.address.logic.commands.appointmentcommands.AppointmentListCommand;
-import seedu.address.logic.commands.appointmentcommands.AppointmentTodayCommand;
 import seedu.address.logic.commands.patientcommands.PatientFindCommand;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.filters.appointmentfilters.SearchAppointmentFilter;
-import seedu.address.model.filters.appointmentfilters.SearchAppointmentTodayFilter;
-
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 /**
  * Parses input arguments and creates a new AppointmentListCommand object
