@@ -26,7 +26,7 @@ import seedu.address.model.patient.exceptions.PatientNotFoundException;
  */
 public class UniquePatientList implements Iterable<Patient> {
 
-    private final ObservableList<Patient> internalList = FXCollections.observableArrayList();
+    private ObservableList<Patient> internalList = FXCollections.observableArrayList();
     private final ObservableList<Patient> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
@@ -95,7 +95,6 @@ public class UniquePatientList implements Iterable<Patient> {
         if (!personsAreUnique(patients)) {
             throw new DuplicatePatientException();
         }
-
         internalList.setAll(patients);
     }
 

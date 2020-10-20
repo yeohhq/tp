@@ -46,4 +46,5 @@ public class PatientListPanel extends UiPart<Region> {
         }
     }
 
+
 }
