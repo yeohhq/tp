@@ -236,7 +236,7 @@ Examples:
 
 Edits an existing patient appointment in Archangel.
 
-Format: `a-edit INDEX [start/DATE&TIME] [end/DATE&TIME] [d/DESCRIPTION] [t/TAGS]…`
+Format: `a-edit INDEX [start/DATE&TIME] [end/DATE&TIME] [pt/PATIENT INDEX] [d/DESCRIPTION] [t/TAGS]…`
 
 * Edits the appointment at the specified INDEX. The index refers to the index number shown in the displayed appointment list. The index must be a positive integer 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -245,7 +245,7 @@ Format: `a-edit INDEX [start/DATE&TIME] [end/DATE&TIME] [d/DESCRIPTION] [t/TAGS]
 * You can remove all the appointment’s tags by typing `t/` without specifying any tags after it.
 
 Examples:
-* `a-edit 1 start/2020-09-15 12:00 end/2020-09-15 14:00` Edits the start and end date & time of the 1st appointment to be 15/9/2020 12:00 and 15/9/2020 14:00 respectively.
+* `a-edit 1 start/2020-09-15 12:00 end/2020-09-15 14:00 pt/2` Edits the start and end date & time of the 1st appointment to be 15/9/2020 12:00 and 15/9/2020 14:00 respectively, and edits patient to 2nd patient in patient list.
 * `p-edit 2 d/Review Session /t` Edits the description of the 2nd appointment to be Review Session and clears all existing tags.
 
 #### 2.3.6 Find appointments by tags: `a-tag`
@@ -307,4 +307,3 @@ Find Appointments by Patient         | `a-find KEYWORD [MORE_KEYWORDS]` <br> e.g
 Find Appointments by Tags            | `a-tag KEYWORD [MORE_KEYWORDS]` <br> e.g. `a-find friends`
 Find Appointments by Current Date    | `a-today`
 Find Appointments by Current Week    | `a-upcoming`
-

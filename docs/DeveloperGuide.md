@@ -164,8 +164,67 @@ This section describes some noteworthy details on how certain features are imple
 --------------------------------------------------------------------------------------------------------------------
 ### 4.2 Appointment Commands
 #### 4.2.1 Schedule Appointment
+![Interactions Inside the Logic Component for the `a-schedule` Command](images/ScheduleAppointmentSequenceDiagram.png)
+###### Implementation
+The implementation of scheduling an appointment has a similar execution as adding a patient (see 4.1.1).
+
+The user's input is parsed by the `ScheduleAppointmentCommandParser` class which extends `Parser`, resulting in an `AppointmentScheduleCommand` which extends `Command`.
+Subsequently, the `LogicManager` executes the `AppointmentScheduleCommand` object to schedule an appointment.
+
+The `Appointment` class stores relevant fields (e.g. `AppointmentTime`, `Description`) and the `Patient`, **and/or** a string representing the patient's index in the `ObservableList<Patient>`, depending on which constructor was invoked on creation of an `Appointment` object.
+
+#### Reason for design of implementation:
+The reason for having 2 `Appointment` constructors is to improve the ease of scheduling an appointment by the user using the CLI.
+
+To address the problem of mandatory fields being highly time-consuming, we have decided to allow users to simply input a `patientIndex` to identify the patient from the visible `ObservableList<Patient>` without being concerned with typing the exact name or details of the desired patient to assign to the `Appointment`.
+
+#### Design consideration:
+
+##### Aspect: How `Patient` is stored in an `Appointment` object
+* **Alternative 1 (current choice):** Saves the `Patient` object and/or the `patientIndex` String
+  * Pros: 
+    * Easy to implement, gives a less stringent check for `isSameAppointment` for other Appointment-type commands (e.g. `AppointmentEditCommand`). 
+    * This allows for creation of `Appointment` objects which are not duplicates yet have the same `Patient` and/or `patientIndex` during command execution.
+  * Cons: More test cases necessary to ensure that `patientIndex` is correctly parsed and retrieved from patient list in `AddressBook`.
+
+* **Alternative 2:** Saves only the `Patient` object after parsing the `patientIndex` String
+  * Pros: No extra parsing/handling of `Patient` once `Appointment` object has been created.
+  * Cons: Difficult to edit the patient-field in an `Appointment` object as all fields of the `Patient` object itself must be present.
+  
+
 #### 4.2.2 Delete Appointment
+
+###### Implementation
+The implementation of deleting an appointment has a similar execution as deleting a patient (see 4.1.3).
+
+The user's input is parsed by the `DeleteAppointmentCommandParser` class which extends `Parser`, resulting in an `AppointmentDeleteCommand` which extends `Command`.
+Subsequently, the `LogicManager` executes the `AppointmentDeleteCommand` object to delete the appointment with the given index in `ObservableList<Appointment>`.
+
 #### 4.2.3 Edit Appointment
+
+![Interactions Inside the Logic Component for the `a-edit` Command](images/EditAppointmentSequenceDiagram.png)
+
+###### Implementation
+The implementation of editing an appointment has a similar execution as editing a patient (see 4.1.4).
+
+The user's input is parsed by the `EditAppointmentCommandParser` class which extends `Parser`, resulting in an `AppointmentEditCommand` which extends `Command`.
+Subsequently, the `LogicManager` executes the `AppointmentEditCommand` object to edit the appointment with the given index in `ObservableList<Appointment>`.
+
+#### Reason for design of implementation:
+The reason for having an `EditAppointmentDescriptor` is to enforce immutability by always creating the edited appointment as a new `Appointment` object.
+
+#### Design consideration:
+
+##### Aspect: How `Patient` is edited in an `Appointment` object
+* **Alternative 1 (current choice):** Edits the `Patient` in the `Appointment` using a `patientIndex` String (e.g. `a-edit 1 pt/2`)
+  * Pros: Easy for users to change the patient for the appointment using a single `patientIndex`.
+  * Cons: `patientIndex` has to be carefully parsed and retrieved from a patient list that correctly reflects the patient list on the GUI.
+
+* **Alternative 2:** Edits the `Patient` in the `Appointment` by `patientName` (e.g. `a-edit 1 pt/John Doe`)
+  * Pros: None.
+  * Cons: Greater difficulty for users to input the new `Patient` since the `patientName` may not be unique nor accurate to an existing patient in the patient list.
+  
+
 #### 4.2.4 Find Appointment (Patient)
 ![Sequence Diagram for commands with filter](images/AppointmentWithFilterCommand.png)
 _Diagram 4.2.4 : Appointment Commands with Filters Sequence Diagram_
@@ -409,41 +468,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Schedule a patient**
-
-**MSS**
-
-1.  User requests to show schedule
-2.  AddressBook shows schedule
-3.  User requests to schedule a patient
-4.  AddressBook schedule the patient
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The appointment has conflict with another patient
-
-  Use case ends.
-
-* 3a. The appointment's date/timing is invalid
-
-    * 3a1. AddressBook shows an error message.
-
-      Use case resumes at step 3.
-
 **Use case: Edit a patient**
 
 **MSS**
 
 1.  User requests to view a patient.
-2.  AddressBook shows the patient's informations.
+2.  AddressBook shows the patient's information.
 3.  User requests to the patient's information.
 4.  AddressBook edits the patient's information.
 
     Use case ends.
 
 **Extensions**
+
 * 1a. The patient is not found.
 
     * 1a1. AddressBook shows an error message.
@@ -455,6 +492,52 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. AddressBook shows an error message.
 
       Use case resumes at step 2.
+      
+**Use case: Schedule a patient appointment**
+
+**MSS**
+
+1.  User requests to show appointment list
+2.  AddressBook shows appointment list
+3.  User requests to schedule a patient appointment
+4.  AddressBook schedule the patient appointment
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The appointment has conflict with another appointment.
+
+  Use case ends.
+
+* 3a. The appointment's date/timing is invalid.
+
+    * 3a1. AddressBook shows an error message.
+
+      Use case resumes at step 3.
+      
+**Use case: Delete a patient appointment**
+
+**MSS**
+
+1.  User requests to delete a specific appointment in the list
+2.  AddressBook deletes the appointment 
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The appointment does not exist.
+
+    * 1a1. AddressBook shows an error message.
+  
+      Use case resumes at step 1.
+
+* 1b. The appointment list is empty.
+
+    * 1a1. AddressBook shows an error message.
+  
+      Use case resumes at step 1.
 
 *{More to be added}*
 
