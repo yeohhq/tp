@@ -2,8 +2,10 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.appointment.Appointment;
@@ -159,6 +161,14 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setComplete(Appointment key) {
         appointments.setComplete(key);
+    }
+
+    /**
+     * Set missed appointments from this {@code AddressBook} as missed.
+     * {@code now} is used to determine which appointments have been missed.
+     */
+    public void setMissedAppointments(LocalDateTime now) {
+        appointments.setMissedAppointments(now);
     }
 
     //// util methods

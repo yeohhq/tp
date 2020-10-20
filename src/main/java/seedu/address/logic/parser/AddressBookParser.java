@@ -101,6 +101,9 @@ public class AddressBookParser {
         case AppointmentCompleteCommand.COMMAND_WORD:
             return new AppointmentCompleteCommandParser().parse(arguments);
 
+        case AppointmentNewMissesCommand.COMMAND_WORD:
+            return new AppointmentNewMissesCommandParser().parse();
+
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 

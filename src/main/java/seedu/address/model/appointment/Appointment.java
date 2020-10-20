@@ -164,12 +164,28 @@ public class Appointment {
                 && otherAppointment.getDescription().equals(getDescription());
     }
 
+    /**
+     * Sets appointment as completed.
+     */
     public void setIsCompleted() {
         this.isCompleted = true;
     }
 
+    /**
+     * Sets appointment as missed.
+     */
     public void setIsMissed() {
         this.isMissed = true;
+    }
+
+    /**
+     * Checks if the appointment has been missed.
+     * An appointment has been missed if it ends before LocalDateTime {@code now} and is not completed.
+     */
+    public boolean isMissed(LocalDateTime now) {
+        boolean isBefore = this.appointmentTime.getEnd().isBefore(now);
+        boolean isUncompleted = !this.isCompleted;
+        return isBefore && isUncompleted;
     }
 
     /**
