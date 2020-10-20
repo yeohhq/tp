@@ -87,6 +87,9 @@ public class AddressBookParser {
         case AppointmentIsMissedCommand.COMMAND_WORD:
             return new AppointmentMissedCommandParser().parse(arguments);
 
+        case AppointmentIsCompletedCommand.COMMAND_WORD:
+            return new AppointmentIsCompletedCommandParser().parse(arguments);
+
         case AppointmentTagCommand.COMMAND_WORD:
             return new AppointmentTagCommandParser().parse(arguments);
 
