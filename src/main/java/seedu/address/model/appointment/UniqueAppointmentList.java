@@ -95,9 +95,11 @@ public class UniqueAppointmentList {
      */
     public void setComplete(Appointment toComplete) {
         requireNonNull(toComplete);
-        if (!internalList.remove(toComplete)) {
+        int index = internalList.indexOf(toComplete);
+        if (index == -1) {
             throw new AppointmentNotFoundException();
         }
+        internalList.get(index).setIsCompleted();
     }
 
     public void setAppointments(UniqueAppointmentList replacement) {

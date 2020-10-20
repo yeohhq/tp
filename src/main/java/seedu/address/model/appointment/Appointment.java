@@ -23,8 +23,8 @@ public class Appointment {
     private Patient patient;
     private String patientString;
     private Set<Tag> tags = new HashSet<>();
-    private final Boolean isCompleted;
-    private final Boolean isMissed;
+    private Boolean isCompleted;
+    private Boolean isMissed;
     private Description description;
 
     /**
@@ -162,6 +162,14 @@ public class Appointment {
                 && otherAppointment.getAppointmentTime().equals(getAppointmentTime())
                 && otherAppointment.getPatient().equals(getPatient())
                 && otherAppointment.getDescription().equals(getDescription());
+    }
+
+    public void setIsCompleted() {
+        this.isCompleted = true;
+    }
+
+    public void setIsMissed() {
+        this.isMissed = true;
     }
 
     /**
