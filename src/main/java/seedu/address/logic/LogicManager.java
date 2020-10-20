@@ -50,6 +50,7 @@ public class LogicManager implements Logic {
         if (commandResult.canBeUndone()) {
             model.getUserHistoryManager().addHistory(new Pair(new ArrayList<>(model.getAddressBook().getPatientList()),
                     new ArrayList<>(model.getAddressBook().getAppointmentList())));
+            model.getUserHistoryManager().resetRedoHistory();
         }
         try {
             storage.saveAddressBook(model.getAddressBook());

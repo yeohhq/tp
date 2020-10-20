@@ -23,7 +23,7 @@ import seedu.address.storage.StorageManager;
 import seedu.address.testutil.PatientBuilder;
 
 
-public class UndoCommandTest {
+public class RedoCommandTest {
 
     private static final String SAMPLE_COMMAND =
             "p-add n/John Doe g/MALE bd/2018-12-27 bt/A+ p/98765432 e/johnd@example.com a/311,"
@@ -59,13 +59,14 @@ public class UndoCommandTest {
      * @throws CommandException
      */
     @Test
-    public void testUndo() throws CommandException, ParseException {
+    public void testRedo() throws CommandException, ParseException {
         CommandResult commandResultOne = logic.execute(SAMPLE_COMMAND);
         int originalSize = model.getAddressBook().getPatientList().size();
         model.undoHistory();
+        model.redoHistory();
         int newSize = model.getAddressBook().getPatientList().size();
 
-        assertNotEquals(originalSize, newSize);
+        assertNotEquals(originalSize, newSize - 1);
     }
 
     /**
@@ -73,14 +74,15 @@ public class UndoCommandTest {
      * @throws CommandException
      */
     @Test
-    public void testConsecutiveCommandFollowedByUndo() throws CommandException, ParseException {
+    public void testConsecutiveCommandFollowedByRedo() throws CommandException, ParseException {
         CommandResult commandResultOne = logic.execute(SAMPLE_COMMAND);
         CommandResult commandResultTwo = logic.execute(SAMPLE_COMMAND_2);
         int originalSize = model.getAddressBook().getPatientList().size();
         CommandResult undoCommand = new UndoCommand().execute(model);
+        CommandResult redoCommand = new RedoCommand().execute(model);
         int newSize = model.getAddressBook().getPatientList().size();
 
-        assertEquals(originalSize, newSize + 1);
+        assertEquals(originalSize, newSize);
     }
 
     /**
@@ -88,16 +90,18 @@ public class UndoCommandTest {
      * @throws CommandException
      */
     @Test
-    public void testConsecutiveCommandFollowedByConsecutiveUndo() throws CommandException, ParseException {
+    public void testConsecutiveCommandFollowedByConsecutiveRedo() throws CommandException, ParseException {
         Patient validPatientOne = new PatientBuilder().build();
         CommandResult commandResultOne = logic.execute(SAMPLE_COMMAND);
         CommandResult commandResultTwo = logic.execute(SAMPLE_COMMAND_2);
         int originalSize = model.getAddressBook().getPatientList().size();
         CommandResult undoCommand = new UndoCommand().execute(model);
         CommandResult undoCommandTwo = new UndoCommand().execute(model);
+        CommandResult redoCommand = new RedoCommand().execute(model);
+        CommandResult redoCommandTwo = new RedoCommand().execute(model);
         int newSize = model.getAddressBook().getPatientList().size();
 
-        assertEquals(originalSize, newSize + 2);
+        assertEquals(originalSize, newSize);
     }
 
     /**
@@ -105,15 +109,15 @@ public class UndoCommandTest {
      * @throws CommandException
      */
     @Test
-    public void testMultipleUndoAfterSingleCommand() throws CommandException, ParseException {
+    public void testMultipleRedoAfterSingleUndo() throws CommandException, ParseException {
         CommandResult commandResultOne = logic.execute(SAMPLE_COMMAND);
 
         try {
             CommandResult undoCommand = new UndoCommand().execute(model);
-            CommandResult undoCommandTwo = new UndoCommand().execute(model);
+            CommandResult redoCommand = new RedoCommand().execute(model);
+            CommandResult redoCommandTwo = new RedoCommand().execute(model);
         } catch (CommandException e) {
-            assertEquals(model.getUserHistoryManager().getUserHistorySize(), 1);
+            assertEquals(model.getUserHistoryManager().getUserHistorySize(), 2);
         }
     }
-
 }

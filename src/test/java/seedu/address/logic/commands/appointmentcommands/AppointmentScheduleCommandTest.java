@@ -192,8 +192,13 @@ public class AppointmentScheduleCommandTest {
         public void undoHistory() {
             throw new AssertionError("This method should not be called.");
         }
-    }
 
+        @Override
+        public void redoHistory() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+    }
     /**
      * A Model stub that contains a single appointment.
      */
