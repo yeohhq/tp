@@ -62,6 +62,7 @@ Each of the four components,
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 
 ![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
+_Diagram 3.1 : Logic Class Diagram_
 
 **How the architecture components interact with each other**
 
@@ -74,6 +75,7 @@ The sections below give more details of each component.
 ### 3.2 UI component
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
+_Diagram 3.2 : UI Class Diagram_
 
 **API** :
 [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
@@ -90,6 +92,7 @@ The `UI` component,
 ### 3.3 Logic component
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
+_Diagram 3.3.1 : Delete Sequence Diagram_
 
 **API** :
 [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
@@ -103,6 +106,7 @@ The `UI` component,
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+_Diagram 3.3.2 : Model Class Diagram_
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -110,6 +114,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 ### 3.4 Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
+_Diagram 3.4 : Model Class Diagram_
 
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
@@ -130,6 +135,7 @@ The `Model`,
 ### 3.5 Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
+_Diagram 3.5 : Storage Class Diagram_
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
@@ -220,9 +226,67 @@ The reason for having an `EditAppointmentDescriptor` is to enforce immutability 
   
 
 #### 4.2.4 Find Appointment (Patient)
+![Sequence Diagram for commands with filter](images/AppointmentWithFilterCommand.png)
+_Diagram 4.2.4 : Appointment Commands with Filters Sequence Diagram_
+
+###### Implementation
+The search for appointment by patient name works by filtering the appointment list to show only those appointments with
+the given patient name.
+
+The unique classes associated to this command as shown from Diagram 4.2.4 are :
+1. `AppointmentWithFilterCommandParser: AppointmentFindPatientCommandParser`— Parses input arguments and creates a new AppointmentFindPatientCommand object.
+1. `AppointmentFilter: SearchPatientFilter`— Checks if the appointment contains any patient which contains any keywords form the arguments.
+1. `AppointmentWithFilterCommand: AppointmentFindPatientCommand`— Applies the filter to the appointment list.
 #### 4.2.5 Find Appointment (Tag)
+###### Implementation
+The search for appointment by tags works by filtering the appointment list to show only those appointments with
+the given tags.
+
+The unique classes associated to this command as shown from Diagram 4.2.4 are :
+1. `AppointmentWithFilterCommandParser: AppointmentTagCommandParser`— Parses input arguments and creates a new AppointmentTagCommand object.
+1. `AppointmentFilter: SearchAppointmentTagsFilter`— Checks if the appointment contains any tags with the keywords form the arguments.
+1. `AppointmentWithFilterCommand: AppointmentTagCommand`— Applies the filter to the appointment list.
+
+##### Design considerations
+* **Alternative 1 (current choice):** Store the appointments by date added.
+  * Pros: Easy to implement and less overhead operations when using adding appointments.
+  * Cons: May not be the fastest way to search for appointments.
+
+* **Alternative 2:** Store the appointments by tags and search the dates by Binary Search.
+  * Pros: Search operation for this is faster.
+  * Cons: Additional overhead every time you add an appointment as you need to know where to insert the command. 
+  You also need to update the sequence of storage file by tag every time you schedule an appointment. In addition, 
+  there might be a conflict for those appointments with more than one tags.
+
 #### 4.2.6 Find Appointment (Today)
+###### Implementation
+The search for appointment by the current date works by filtering the appointment list to show only those appointments with
+that occurs on the current day.
+
+The unique classes associated to this command as shown from Diagram 4.2.4 are :
+1. `AppointmentWithFilterCommandParser: AppointmentTodayCommandParser`— Creates a new AppointmentTodayCommand object.
+1. `AppointmentFilter: SearchAppointmentTodayFilter`— Checks if the appointment occurs within the current day.
+1. `AppointmentWithFilterCommand: AppointmentTodayCommand`— Applies the filter to the appointment list.
 #### 4.2.7 Find Appointment (Current Week)
+###### Implementation
+The search for appointment by the current week works by filtering the appointment list to show only those appointments with
+that occurs on the same week (Sunday to Saturday)
+
+The unique classes associated to this command as shown from Diagram 4.2.4 are :
+1. `AppointmentWithFilterCommandParser: AppointmentWeekCommandParser`— Creates a new AppointmentTodayCommand object.
+1. `AppointmentFilter: SearchAppointmentWeekFilter`— Checks if the appointment occurs within the current week.
+1. `AppointmentWithFilterCommand: AppointmentWeekCommand`— Applies the filter to the appointment list.
+
+##### Design considerations
+* **Alternative 1 (current choice):** Store the appointments by date added.
+  * Pros: Easy to implement and less overhead operations when using adding appointments.
+  * Cons: May not be the fastest way to search for appointments.
+
+* **Alternative 2:** Store the appointments by start date and search the dates by Binary Search.
+  * Pros: Search operation for this will be faster.
+  * Cons: Additional overhead every time you add an appointment as you need to know where to insert the command. 
+  You also need to update the sequence of storage file every time you schedule an appointment.
+
 #### 4.2.8 List Appointment
 
 --------------------------------------------------------------------------------------------------------------------
@@ -297,16 +361,16 @@ The following activity diagram summarizes what happens when a user executes a ne
 ![CommitActivityDiagram](images/CommitActivityDiagram.png)
 --->
 
-#### Reason for design of implementation:
+##### Reason for design of implementation:
 The reason for the design of userHistory using a stack is due to the functionality of `undoHistory()`. We want to be able undo the latest changes to the `UniquePatientList` or `UniqueAppointmentList`.
 This follows the `Last In,First Out(LIFO)` design which can be implementated using the `stack` data structure.
 
 A concern using this design is that the memory usage might be undesirable due to the large of memory usage needed to store every user history at each command.
 However, after many test runs, we concluded that the memory usage of the user history was insignificant and thus this design can be safely implememented with no drawbacks.
 
-#### Design consideration:
+##### Design consideration:
 
-##### Aspect: How undo & redo executes
+###### Aspect: How undo & redo executes
 
 * **Alternative 1 (current choice):** Saves the entire address book.
   * Pros: Easy to implement.
@@ -368,8 +432,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | Psychiatrist    | delete full patient records                   | remove any irrelevant patient records                                 |
 | `* * *`  | Psychiatrist    | record details about the patient              | access his/her psychotherapy progress.                                |
 | `* * *`  | Psychiatrist    | view my patient’s medical information         | access the type and dosage of medication to provide.                  |
-| `* * *`  | Psychiatrist    | view my patient’s contact information         | I can contact them for their appointments.                            |
-| `* * *`  | Psychiatrist    | store my patient’s reviews/preference         | I can alter the treatment plan to suit his preferences.               |
+| `* * *`  | Psychiatrist    | view my patient’s contact information         | contact them for their appointments.                                  |
+| `* * *`  | Psychiatrist    | store my patient’s reviews/preference         | alter the treatment plan to suit his preferences.                     |
+| `* *`    | Psychiatrist    | search my appointment list by patient name    | access see his progress across his appointments.                      |
+| `* *`    | Psychiatrist    | search my appointment list by tags            | see the trend of patients from similar groups.                        |
+| `* *`    | Psychiatrist    | search my appointment list by current day     | access only the appointments scheduled today.                         |
+| `* *`    | Psychiatrist    | search my appointment list by current week    | view my whole schedule this week.                                     |
 
 *{More to be added}*
 
