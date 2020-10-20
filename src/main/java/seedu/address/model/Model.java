@@ -105,6 +105,12 @@ public interface Model {
     void deleteAppointment(Appointment target);
 
     /**
+     * Sets the given appointment as completed.
+     * The appointment must exist in the address book.
+     */
+    void completeAppointment(Appointment target);
+
+    /**
      * Adds the given appointment.
      * {@code appointment} must not already exist in the address book.
      */

@@ -142,6 +142,13 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void completeAppointment(Appointment target) {
+        requireAllNonNull(target);
+        addressBook.setComplete(target);
+        updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
+    }
+
+    @Override
     public void addAppointment(Appointment appointment) {
         addressBook.addAppointment(appointment);
         updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);

@@ -153,6 +153,14 @@ public class AddressBook implements ReadOnlyAddressBook {
         appointments.remove(key);
     }
 
+    /**
+     * Set {@code key} from this {@code AddressBook} as completed.
+     * {@code key} must exist in the address book.
+     */
+    public void setComplete(Appointment key) {
+        appointments.setComplete(key);
+    }
+
     //// util methods
 
     @Override

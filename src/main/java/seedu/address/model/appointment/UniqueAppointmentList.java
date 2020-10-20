@@ -89,6 +89,17 @@ public class UniqueAppointmentList {
         }
     }
 
+    /**
+     * Sets the equivalent appointment from the list as completed.
+     * The appointment must exist in the list.
+     */
+    public void setComplete(Appointment toComplete) {
+        requireNonNull(toComplete);
+        if (!internalList.remove(toComplete)) {
+            throw new AppointmentNotFoundException();
+        }
+    }
+
     public void setAppointments(UniqueAppointmentList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
