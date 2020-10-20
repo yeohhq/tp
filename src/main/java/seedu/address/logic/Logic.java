@@ -38,6 +38,13 @@ public interface Logic {
     ObservableList<Appointment> getFilteredAppointmentList();
 
     /**
+     * Returns an modified view of the filtered list of appointments.
+     * Only appointments that are not completed and not missed are shown.
+     * This is only used on app start up.
+     */
+    // ObservableList<Appointment> getStartFilteredAppointmentList();
+
+    /**
      * Returns the user prefs' address book file path.
      */
     Path getAddressBookFilePath();

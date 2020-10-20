@@ -87,6 +87,13 @@ public interface Model {
     ObservableList<Patient> getFilteredPatientList();
 
     /**
+     * Returns an modifiable view of the filtered patient list.
+     * Only appointments that are not completed and not missed are shown.
+     * This is used only on app start up.
+     */
+    // ObservableList<Patient> getStartFilteredPatientList();
+
+    /**
      * Updates the filter of the filtered patient list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
