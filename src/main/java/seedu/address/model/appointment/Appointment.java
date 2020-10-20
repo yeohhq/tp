@@ -184,7 +184,7 @@ public class Appointment {
      * Checks if the appointment has been missed.
      * An appointment has been missed if it ends before LocalDateTime {@code now} and is not completed.
      */
-    public boolean isMissed(LocalDateTime now) {
+    public boolean hasBeenMissed(LocalDateTime now) {
         boolean isBefore = this.appointmentTime.getEnd().isBefore(now);
         boolean isUncompleted = !this.isCompleted;
         return isBefore && isUncompleted;

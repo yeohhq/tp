@@ -110,7 +110,7 @@ public class UniqueAppointmentList {
     public void setMissedAppointments(LocalDateTime now) {
         requireNonNull(now);
         for (Appointment appointment: internalList) {
-            if (appointment.isMissed(now)) {
+            if (appointment.hasBeenMissed(now)) {
                 appointment.setIsMissed();
             }
         }
