@@ -75,6 +75,18 @@ public class UserHistoryManagerTest {
     }
 
     @Test
+    public void testRedoHistory() throws CommandException, ParseException {
+        CommandResult commandResultOne = logic.execute(SAMPLE_COMMAND);
+        int sizeBefore = model.getUserHistoryManager().getUserHistorySize();
+        model.getUserHistoryManager().undoHistory();
+        model.getUserHistoryManager().redoHistory();
+        int sizeAfter = model.getUserHistoryManager().getUserHistorySize();
+        assertEquals(sizeBefore, 2);
+        assertEquals(sizeBefore , sizeAfter);
+    }
+
+
+    @Test
     public void getHistoryTest() {
         assertEquals(model.getUserHistoryManager().getHistory().get(0).getKey(),
                 model.getAddressBook().getPatientList());
