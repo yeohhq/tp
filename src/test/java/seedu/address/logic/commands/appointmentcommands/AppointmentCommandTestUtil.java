@@ -9,6 +9,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PATIENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.time.DayOfWeek;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -28,6 +33,40 @@ import seedu.address.testutil.EditAppointmentDescriptorBuilder;
  */
 public class AppointmentCommandTestUtil {
 
+    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm");
+    // Current day of the week
+    public static final DayOfWeek DAY_OF_WEEK = LocalDateTime.now().getDayOfWeek();
+
+    // Next week start and end date
+    public static final String VALID_START_DATE_NEXT_WEEK = FORMATTER.format(LocalDateTime.now()
+                .with(TemporalAdjusters.next(DAY_OF_WEEK))
+                .with(LocalTime.of(8, 0)));
+    public static final String VALID_END_DATE_NEXT_WEEK = FORMATTER.format(LocalDateTime.now()
+            .with(TemporalAdjusters.next(DAY_OF_WEEK))
+            .with(LocalTime.of(12, 0)));
+
+    // This week Sunday start and end date
+    public static final String VALID_START_DATE_THIS_WEEK_SUNDAY = FORMATTER.format(LocalDateTime.now()
+            .with(TemporalAdjusters.previousOrSame(DayOfWeek.SUNDAY))
+            .with(LocalTime.of(8, 0)));
+    public static final String VALID_END_DATE_THIS_WEEK_SUNDAY = FORMATTER.format(LocalDateTime.now()
+            .with(TemporalAdjusters.previousOrSame(DayOfWeek.SUNDAY))
+            .with(LocalTime.of(12, 0)));
+    // This week Saturday start and end date
+    public static final String VALID_START_DATE_THIS_WEEK_SATURDAY = FORMATTER.format(LocalDateTime.now()
+            .with(TemporalAdjusters.nextOrSame(DayOfWeek.SATURDAY))
+            .with(LocalTime.of(8, 0)));
+    public static final String VALID_END_DATE_THIS_WEEK_SATURDAY = FORMATTER.format(LocalDateTime.now()
+            .with(TemporalAdjusters.nextOrSame(DayOfWeek.SATURDAY))
+            .with(LocalTime.of(12, 0)));
+
+    // Today start and end date
+    public static final String VALID_START_DATE_TODAY = FORMATTER.format(LocalDateTime.now()
+            .with(LocalTime.of(8, 0)));
+    public static final String VALID_END_DATE_TODAY = FORMATTER.format(LocalDateTime.now()
+            .with(LocalTime.of(12, 0)));
+
+
     public static final String VALID_START_ONE = "2020-10-07 08:00";
     public static final String VALID_START_TWO = "2020-08-05 14:00";
     public static final String VALID_END_ONE = "2020-10-07 10:00";
@@ -36,8 +75,16 @@ public class AppointmentCommandTestUtil {
     public static final String VALID_PATIENT_TWO = "1";
     public static final String VALID_DESCRIPTION_ONE = "Review Appointment";
     public static final String VALID_DESCRIPTION_TWO = "Followup Appointment";
+    public static final String VALID_DESCRIPTION_TODAY = "today";
+    public static final String VALID_DESCRIPTION_SUNDAY = "sunday";
+    public static final String VALID_DESCRIPTION_SATURDAY = "saturday";
+    public static final String VALID_DESCRIPTION_NEXT_WEEK = "nextweek";
     public static final String VALID_TAG_ONE = "Review";
     public static final String VALID_TAG_TWO = "Followup";
+    public static final String VALID_TAG_TODAY = "today";
+    public static final String VALID_TAG_SUNDAY = "sunday";
+    public static final String VALID_TAG_SATURDAY = "saturday";
+    public static final String VALID_TAG_NEXT_WEEK = "nextweek";
 
     public static final String START_DESC_ONE = " " + PREFIX_APPOINTMENT_START + VALID_START_ONE;
     public static final String START_DESC_TWO = " " + PREFIX_APPOINTMENT_START + VALID_START_TWO;
@@ -130,4 +177,11 @@ public class AppointmentCommandTestUtil {
 
         assertEquals(1, model.getFilteredAppointmentList().size());
     }
+
+    //    public static void main(String[] args) {
+    //        System.out.println(VALID_START_DATE_NEXT_WEEK + " " + VALID_END_DATE_NEXT_WEEK + "\n"
+    //                + VALID_START_DATE_THIS_WEEK_SATURDAY + " " + VALID_END_DATE_THIS_WEEK_SATURDAY + "\n"
+    //                + VALID_START_DATE_THIS_WEEK_SUNDAY + " " + VALID_END_DATE_THIS_WEEK_SUNDAY + "\n"
+    //                + VALID_START_DATE_TODAY + " " + VALID_END_DATE_TODAY);
+    //    }
 }

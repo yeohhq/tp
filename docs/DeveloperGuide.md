@@ -1,21 +1,35 @@
 ---
 layout: page
-title: Developer Guide
+title: Archangel Developer Guide
 ---
 * Table of Contents
 {:toc}
+--------------------------------------------------------------------------------------------------------------------
+## **1. Introduction**
+### 1.1 Purpose
+This document describes the setting up, design, implementation, documentation of Archangel.
+
+### 1.2 Audience
+The whole documentation is in general for anyone who wants to understand the documentation and implementation
+of Archangel. The following groups are the intended target of this documentation.
+
+1. CS2101/CS2103T Teaching Team - to evaluate Archangel's software architecture, design, 
+implementation and documentation.
+2. CS2103T Students - to understand Archangel's software architecture, design, 
+implementation and documentation in order to enhance and implement some of the features
+inside the software.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+## **2. Setting up**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
+## **3. Design**
 
-### Architecture
+### 3.1 Architecture
 
 <img src="images/ArchitectureDiagram.png" width="450" />
 
@@ -57,7 +71,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 The sections below give more details of each component.
 
-### UI component
+### 3.2 UI component
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -73,7 +87,7 @@ The `UI` component,
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
-### Logic component
+### 3.3 Logic component
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
@@ -93,7 +107,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-### Model component
+### 3.4 Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
@@ -113,7 +127,7 @@ The `Model`,
 </div>
 
 
-### Storage component
+### 3.5 Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
@@ -123,29 +137,54 @@ The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
 * can save the address book data in json format and read it back.
 
-### Common classes
+### 3.6 Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+## **4. Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### 4.1 Patient Commands
+#### 4.1.1 Add Patient
+#### 4.1.2 View Patient
+#### 4.1.3 Delete Patient
+#### 4.1.4 Edit Patient
+#### 4.1.5 Find Patient
+#### 4.1.6 List Patient
 
-#### Proposed Implementation
+--------------------------------------------------------------------------------------------------------------------
+### 4.2 Appointment Commands
+#### 4.2.1 Schedule Appointment
+#### 4.2.2 Delete Appointment
+#### 4.2.3 Edit Appointment
+#### 4.2.4 Find Appointment (Patient)
+#### 4.2.5 Find Appointment (Tag)
+#### 4.2.6 Find Appointment (Today)
+#### 4.2.7 Find Appointment (Current Week)
+#### 4.2.8 List Appointment
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+--------------------------------------------------------------------------------------------------------------------
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+### 4.3 General Commands
+#### 4.3.1 Undo/redo feature
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+###### Implementation
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+The proposed undo/redo mechanism is facilitated by `UserHistoryManager`. It extends `AddressBook` with an undo/redo history, stored internally in `userHistory` as  `Stack<Pair<List<Patient>, List<Appointment>>>`. Additionally, it implements the following operations:
+
+* `UserHistoryManager#addHistory()` — Saves the current address book state in its history.
+* `UserHistoryManager#undoHistory()` — Restores the previous address book state from its history.
+* `UserHistoryManager#redoHistory()` — Restores a previously undone address book state from its history.
+
+These operations are exposed in the `ModelManager` class as `ModelManager#getUserHistoryManager()`, `ModelManager#undoHistory()` and `Model#redoHistory()` respectively.
+
+<!-- 
+//I commented out the UML diagrams as I did not use the same design the AB3. Will design my own diagram in later commits.
+
+Given below is an example usage scenario and how the undo/redo mechanism behaves at each step. 
 
 Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
 
@@ -197,6 +236,14 @@ Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Sinc
 The following activity diagram summarizes what happens when a user executes a new command:
 
 ![CommitActivityDiagram](images/CommitActivityDiagram.png)
+--->
+
+#### Reason for design of implementation:
+The reason for the design of userHistory using a stack is due to the functionality of `undoHistory()`. We want to be able undo the latest changes to the `UniquePatientList` or `UniqueAppointmentList`.
+This follows the `Last In,First Out(LIFO)` design which can be implementated using the `stack` data structure.
+
+A concern using this design is that the memory usage might be undesirable due to the large of memory usage needed to store every user history at each command.
+However, after many test runs, we concluded that the memory usage of the user history was insignificant and thus this design can be safely implememented with no drawbacks.
 
 #### Design consideration:
 
@@ -210,8 +257,13 @@ The following activity diagram summarizes what happens when a user executes a ne
   itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the patient being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
+  
+* **Alternative 3:** Individual command is contained in a `reversible-pair-action` class. When we want to `undo`, we can just call its `pair command`.
+  * Pros: Will use less memory (due to the fact that are not saving any additional data).
+  * Cons: Very difficult to implement, some commands might not have `pair command`(e.g for `edit`, it is own pair command but pair command to call for undo is hard to implement).
 
-_{more aspects and alternatives to be added}_
+#### 4.3.2 Help
+
 
 ### \[Proposed\] Data archiving
 
@@ -220,7 +272,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## **5. Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -230,9 +282,9 @@ _{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+## **6. Appendix: Requirements**
 
-### Product scope
+### 6.1 Product scope
 
 **Target user profile**:
 
@@ -247,7 +299,7 @@ _{Explain here how the data archiving feature will be implemented}_
 **Value proposition**: provide an application for psychiatrists to manage their patient's medical information and their upcoming appointments.
 
 
-### User stories
+### 6.2 User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -262,7 +314,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-### Use cases
+### 6.3 Use cases
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
@@ -338,7 +390,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-### Non-Functional Requirements
+### 6.4 Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 patients without a noticeable sluggishness in performance for typical usage.
@@ -347,7 +399,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-### Glossary
+### 6.5 Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
@@ -355,7 +407,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## **7. Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
@@ -364,7 +416,7 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### Launch and shutdown
+### 7.1 Launch and shutdown
 
 1. Initial launch
 
@@ -381,7 +433,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a patient
+### 7.2 Deleting a patient
 
 1. Deleting a patient while all patients are being shown
 
@@ -398,7 +450,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Viewing a patient
+### 7.3 Viewing a patient
 
 1. Viewing a patient while all patients are being shown
 
@@ -410,7 +462,7 @@ testers are expected to do more *exploratory* testing.
 
 2. _{ more test cases …​ }_
 
-### Saving data
+### 7.4 Saving data
 
 1. Dealing with missing/corrupted data files
 

@@ -17,6 +17,8 @@ import seedu.address.logic.commands.appointmentcommands.AppointmentIsMissedComma
 import seedu.address.logic.commands.appointmentcommands.AppointmentListCommand;
 import seedu.address.logic.commands.appointmentcommands.AppointmentScheduleCommand;
 import seedu.address.logic.commands.appointmentcommands.AppointmentTagCommand;
+import seedu.address.logic.commands.appointmentcommands.AppointmentTodayCommand;
+import seedu.address.logic.commands.appointmentcommands.AppointmentWeekCommand;
 import seedu.address.logic.commands.patientcommands.HelpCommand;
 import seedu.address.logic.commands.patientcommands.PatientAddCommand;
 import seedu.address.logic.commands.patientcommands.PatientDeleteCommand;
@@ -27,6 +29,8 @@ import seedu.address.logic.commands.patientcommands.PatientRemarkCommand;
 import seedu.address.logic.parser.appointmentparser.AppointmentFindPatientCommandParser;
 import seedu.address.logic.parser.appointmentparser.AppointmentMissedCommandParser;
 import seedu.address.logic.parser.appointmentparser.AppointmentTagCommandParser;
+import seedu.address.logic.parser.appointmentparser.AppointmentTodayParser;
+import seedu.address.logic.parser.appointmentparser.AppointmentWeekParser;
 import seedu.address.logic.parser.appointmentparser.DeleteAppointmentCommandParser;
 import seedu.address.logic.parser.appointmentparser.EditAppointmentCommandParser;
 import seedu.address.logic.parser.appointmentparser.ListAppointmentCommandParser;
@@ -100,6 +104,12 @@ public class AddressBookParser {
 
         case AppointmentTagCommand.COMMAND_WORD:
             return new AppointmentTagCommandParser().parse(arguments);
+
+        case AppointmentTodayCommand.COMMAND_WORD:
+            return new AppointmentTodayParser().parse(arguments);
+
+        case AppointmentWeekCommand.COMMAND_WORD:
+            return new AppointmentWeekParser().parse(arguments);
 
         case AppointmentEditCommand.COMMAND_WORD:
             return new EditAppointmentCommandParser().parse(arguments);
