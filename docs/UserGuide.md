@@ -195,13 +195,7 @@ Format: `a-schedule i/INDEXOFPATIENT start/DATE&TIME end/DATE&TIME d/DESCRIPTION
 Examples:
 * `a-schedule i/2 start/2020-09-14 08:00 end/2020-09-14 10:00 d/Review Appointment` schedules an appointment for patient 2 on 2020-09-14 at 08-00 with appointment description Review Appointment.
 
-#### 2.3.2 List all appointments : `a-list`
-
-Shows a list of all patient appointments in Archangel.
-
-Format: `a-list`
-
-#### 2.3.3 Delete an appointment : `a-delete`
+#### 2.3.2 Delete an appointment : `a-delete`
 
 Deletes the specified patient appointment from Archangel.
 
@@ -215,7 +209,46 @@ Examples:
 * `a-list` followed by `a-delete 2` deletes the 2nd appointment in the Archangel.
 * `a-find Review` followed by `a-delete 1` deletes the 1st appointment in the results of the find command.
 
-#### 2.3.4 Find appointments by patient name : `a-find`
+#### 2.3.3 Edit an appointment : `a-edit`
+
+Edits an existing patient appointment in Archangel.
+
+Format: `a-edit INDEX [start/DATE&TIME] [end/DATE&TIME] [pt/PATIENT INDEX] [d/DESCRIPTION] [t/TAGS]…`
+
+* Edits the appointment at the specified INDEX. The index refers to the index number shown in the displayed appointment list. The index must be a positive integer 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing tags, the existing tags of the appointment will be removed i.e adding of tags is not cumulative.
+* You can remove all the appointment’s tags by typing `t/` without specifying any tags after it.
+
+Examples:
+* `a-edit 1 start/2020-09-15 12:00 end/2020-09-15 14:00 pt/2` Edits the start and end date & time of the 1st appointment to be 15/9/2020 12:00 and 15/9/2020 14:00 respectively, and edits patient to 2nd patient in patient list.
+* `p-edit 2 d/Review Session /t` Edits the description of the 2nd appointment to be Review Session and clears all existing tags.
+
+#### 2.3.4 Set appointment as completed : `a-complete`
+
+Sets a patient appointments in Archangel as completed.
+
+Format: `a-complete INDEX`
+
+* Edits the appointment at the specified INDEX. The index refers to the index number shown in the displayed appointment list. The index must be a positive integer 1, 2, 3, …​
+
+Examples:
+* `a-complete 1` Sets the appointment at index 1 as completed.
+
+#### 2.3.5 List all upcoming appointments : `a-list`
+
+Shows a list of all upcoming patient appointments in Archangel.
+
+Format: `a-list`
+
+#### 2.3.6 List all past and present appointments : `a-listall`
+
+Shows a list of all past and present patient appointments in Archangel.
+
+Format: `a-listall`
+
+#### 2.3.7 Find appointments by patient name : `a-find`
 
 Finds appointments whose patient's name contains any of the given keywords.
 
@@ -232,23 +265,7 @@ Examples:
 * `a-find Jack` returns Appointment with Patient name of `Jack Sparrow`
 * `a-find Jack Jill` returns Appointments with Patient name of `Jack Sparrow` and `Jill Ous`
 
-#### 2.3.5 Edit an appointment : `a-edit`
-
-Edits an existing patient appointment in Archangel.
-
-Format: `a-edit INDEX [start/DATE&TIME] [end/DATE&TIME] [pt/PATIENT INDEX] [d/DESCRIPTION] [t/TAGS]…`
-
-* Edits the appointment at the specified INDEX. The index refers to the index number shown in the displayed appointment list. The index must be a positive integer 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the appointment will be removed i.e adding of tags is not cumulative.
-* You can remove all the appointment’s tags by typing `t/` without specifying any tags after it.
-
-Examples:
-* `a-edit 1 start/2020-09-15 12:00 end/2020-09-15 14:00 pt/2` Edits the start and end date & time of the 1st appointment to be 15/9/2020 12:00 and 15/9/2020 14:00 respectively, and edits patient to 2nd patient in patient list.
-* `p-edit 2 d/Review Session /t` Edits the description of the 2nd appointment to be Review Session and clears all existing tags.
-
-#### 2.3.6 Find appointments by tags: `a-tag`
+#### 2.3.7 Find appointments by tags: `a-tag`
 Finds appointments who are tagged by any of the given keywords.
 
 Format: `a-find KEYWORD [MORE_KEYWORDS]`
@@ -264,7 +281,7 @@ Examples:
 * `a-tag friend` returns Appointments tagged `Friend`
 * `a-tag friend enemy`  returns Appointments tagged `Friend` and `Enemy`
 
-#### 2.3.7 Find an appointment by current date: `a-today`
+#### 2.3.8 Find an appointment by current date: `a-today`
 Finds appointments schedule on the current date.
 
 * The search has no keywords
@@ -272,13 +289,23 @@ Finds appointments schedule on the current date.
 Examples:
 * `a-today` returns Appointments scheduled today.
 
-#### 2.3.8 Find an appointment by current date: `a-upcoming`
+#### 2.3.9 Find an appointment by current date: `a-upcoming`
 Finds appointments schedule on the current week.
 
 * The search has no keywords
 
 Examples:
 * `a-upcoming` returns Appointments scheduled this week (from Sunday to Saturday).
+
+#### 2.3.10 List appointments that are completed: `a-completed`
+Shows a list of all appointments that have been completed.
+
+Formal: `a-completed`
+
+#### 2.3.10 List appointments that are missed: `a-missed`
+Shows a list of all appointments that have been missed.
+
+Formal: `a-missed`
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -302,8 +329,12 @@ Help                                 | `help`
 Schedule Appointment                 | `a-schedule i/INDEXOFPATIENT start/DATE&TIME end/DATE&TIME d/DESCRIPTION [t/TAGS]…`​<br> e.g. `a-schedule i/2 start/2020-09-14 08:00 end/2020-09-14 10:00 d/Review Appointment`
 Delete Appointment                   | `a-delete INDEX` <br>e.g. `a-delete 3`
 Edit Appointment                     | `a-edit INDEX [start/DATE&TIME] [end/DATE&TIME] [d/DESCRIPTION] [t/TAGS]…` <br> e.g. `a-edit 2 start/2020-09-15 12:00 end/2020-09-15 14:00`
-List Appointments                    | `a-list`
+Complete Appointments                | `a-complete INDEX`
+List Upcoming Appointments           | `a-list`
+List All Appointments                | `a-listall`
 Find Appointments by Patient         | `a-find KEYWORD [MORE_KEYWORDS]` <br> e.g. `a-find Jack`
 Find Appointments by Tags            | `a-tag KEYWORD [MORE_KEYWORDS]` <br> e.g. `a-find friends`
 Find Appointments by Current Date    | `a-today`
 Find Appointments by Current Week    | `a-upcoming`
+List Appointments by Completed       | `a-completed`
+List Appointments by Missed          | `a-missed`
