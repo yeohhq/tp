@@ -239,7 +239,7 @@ Examples:
 
 Edits an existing patient appointment in Archangel.
 
-Format: `a-edit INDEX [start/DATE&TIME] [end/DATE&TIME] [d/DESCRIPTION] [t/TAGS]…`
+Format: `a-edit INDEX [start/DATE&TIME] [end/DATE&TIME] [pt/PATIENT INDEX] [d/DESCRIPTION] [t/TAGS]…`
 
 * Edits the appointment at the specified INDEX. The index refers to the index number shown in the displayed appointment list. The index must be a positive integer 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -248,7 +248,7 @@ Format: `a-edit INDEX [start/DATE&TIME] [end/DATE&TIME] [d/DESCRIPTION] [t/TAGS]
 * You can remove all the appointment’s tags by typing `t/` without specifying any tags after it.
 
 Examples:
-* `a-edit 1 start/2020-09-15 12:00 end/2020-09-15 14:00` Edits the start and end date & time of the 1st appointment to be 15/9/2020 12:00 and 15/9/2020 14:00 respectively.
+* `a-edit 1 start/2020-09-15 12:00 end/2020-09-15 14:00 pt/2` Edits the start and end date & time of the 1st appointment to be 15/9/2020 12:00 and 15/9/2020 14:00 respectively, and edits patient to 2nd patient in patient list.
 * `p-edit 2 d/Review Session /t` Edits the description of the 2nd appointment to be Review Session and clears all existing tags.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -264,15 +264,15 @@ A: Install the app in the other computer and overwrite the empty data file it cr
 
 Action               | Format, Examples
 ---------------------|------------------------
-Add Patient          | `p-add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…`​ <br> e.g. `p-add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+Add Patient          | `p-add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…`​ <br>e.g. `p-add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 View Patient         | `p-view n/NAME` <br>e.g. `p-view n/Kim Guan`
 Delete Patient       | `p-delete INDEX` <br>e.g. `p-delete 3`
-Edit Patient         | `p-edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br> e.g. `p-edit 2 n/James Lee e/jameslee@example.com`
-Find Patient         | `p-find KEYWORD [MORE_KEYWORDS]` <br> e.g. `p-find James Jake`
+Edit Patient         | `p-edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br>e.g. `p-edit 2 n/James Lee e/jameslee@example.com`
+Find Patient         | `p-find KEYWORD [MORE_KEYWORDS]` <br>e.g. `p-find James Jake`
 List Patients        | `p-list`
 Help                 | `help`
-Schedule Appointment | `a-schedule i/INDEXOFPATIENT start/DATE&TIME end/DATE&TIME d/DESCRIPTION [t/TAGS]…`​<br> e.g. `a-schedule i/2 start/2020-09-14 08:00 end/2020-09-14 10:00 d/Review Appointment`
+Schedule Appointment | `a-schedule i/INDEXOFPATIENT start/DATE&TIME end/DATE&TIME d/DESCRIPTION [t/TAGS]…`​<br>e.g. `a-schedule i/2 start/2020-09-14 08:00 end/2020-09-14 10:00 d/Review Appointment`
 Delete Appointment   | `a-delete INDEX` <br>e.g. `a-delete 3`
-Edit Appointment     | `a-edit INDEX [start/DATE&TIME] [end/DATE&TIME] [d/DESCRIPTION] [t/TAGS]…` <br> e.g. `a-edit 2 start/2020-09-15 12:00 end/2020-09-15 14:00`
-Find Appointment     | `a-find KEYWORD [MORE_KEYWORDS]` <br> e.g. `a-find Review Appointment`
+Edit Appointment     | `a-edit INDEX [start/DATE&TIME] [end/DATE&TIME] [pt/PATIENT INDEX] [d/DESCRIPTION] [t/TAGS]…` <br>e.g. `a-edit 2 start/2020-09-15 12:00 end/2020-09-15 14:00`
+Find Appointment     | `a-find KEYWORD [MORE_KEYWORDS]` <br>e.g. `a-find Review Appointment`
 List Appointments    | `a-list`
