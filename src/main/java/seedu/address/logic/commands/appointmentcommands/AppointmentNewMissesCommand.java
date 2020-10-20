@@ -3,7 +3,6 @@ package seedu.address.logic.commands.appointmentcommands;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDateTime;
-import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
@@ -20,6 +19,8 @@ public class AppointmentNewMissesCommand extends Command{
             + "\n"
             + "Example: " + COMMAND_WORD;
 
+    public static final String MESSAGE_MISS_APPOINTMENT_SUCCESS = "Checked for new missed appointments!";
+
     private final LocalDateTime now;
 
     public AppointmentNewMissesCommand() {
@@ -35,8 +36,7 @@ public class AppointmentNewMissesCommand extends Command{
         requireNonNull(model);
         model.setMissedAppointments(now); // Sets all new missed appointments
         return new CommandResult(
-                String.format(Messages.MESSAGE_APPOINTMENTS_LISTED_OVERVIEW,
-                        model.getFilteredAppointmentList().size()));
+                String.format(MESSAGE_MISS_APPOINTMENT_SUCCESS, model.getFilteredAppointmentList().size()));
     }
 
     @Override
