@@ -42,7 +42,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         this.userHistory = new UserHistoryManager();
-        userHistory.addHistory(new Pair(addressBook.getPatientList(), addressBook.getAppointmentList()));
+        userHistory.initialiseHistory(new Pair(addressBook.getPatientList(), addressBook.getAppointmentList()));
         filteredPatients = new FilteredList<>(this.addressBook.getPatientList());
         filteredAppointments = new FilteredList<>(this.addressBook.getAppointmentList());
     }
@@ -181,7 +181,12 @@ public class ModelManager implements Model {
         addressBook.setAppointments((this.userHistory.getHistory().peek().getValue()));
     }
 
-
+    @Override
+    public void redoHistory() {
+        addressBook.setPatients((this.userHistory.getRedoHistory().peek().getKey()));
+        addressBook.setAppointments((this.userHistory.getRedoHistory().peek().getValue()));
+        this.userHistory.redoHistory();
+    }
 
     //=========== Filtered Patient List Accessors =============================================================
 

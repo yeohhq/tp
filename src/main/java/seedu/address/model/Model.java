@@ -146,9 +146,14 @@ public interface Model {
     UserHistoryManager getUserHistoryManager();
 
     /**
-     * Undo the patient history.
+     * Undo the history.
      */
     void undoHistory();
+
+    /**
+     * Redo the history.
+     */
+    void redoHistory();
 
     // TODO: include undo operations for Appointment class.
 }
