@@ -13,7 +13,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 /**
  * Parses input arguments and creates a new AppointmentListCommand object
  */
-public class ListAppointmentCommandParser implements Parser<AppointmentListCommand> {
+public class AppointmentListCommandParser implements Parser<AppointmentListCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the PatientFindCommand
