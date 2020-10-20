@@ -149,6 +149,10 @@ This section describes some noteworthy details on how certain features are imple
 
 ### 4.1 Patient Commands
 #### 4.1.1 Add Patient
+
+###### Implementation
+
+Step 1. The user executes ` p-add n/John Doe g/MALE bd/2018-12-27 bt/A+ p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25` command to add a Patient with the stated particulars into Arc. The `p-add` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 #### 4.1.2 View Patient
 #### 4.1.3 Delete Patient
 #### 4.1.4 Edit Patient
