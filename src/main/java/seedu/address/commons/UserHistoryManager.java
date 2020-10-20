@@ -48,6 +48,13 @@ public class UserHistoryManager {
         redoHistory.pop();
     }
 
+    /**
+     * Reset the redo history whenever a new command(that is not undo/redo) is called
+     */
+    public void resetRedoHistory() {
+        this.redoHistory.clear();
+    }
+
     public int getUserHistorySize() {
         return userHistory.size();
     }
