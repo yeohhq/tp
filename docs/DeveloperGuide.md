@@ -13,9 +13,9 @@ This document describes the setting up, design, implementation, documentation of
 The whole documentation is in general for anyone who wants to understand the documentation and implementation
 of Archangel. The following groups are the intended target of this documentation.
 
-1. CS2101/CS2103T Teaching Team - to evaluate Archangel's software architecture, design, 
+1. CS2101/CS2103T Teaching Team - to evaluate Archangel's software architecture, design,
 implementation and documentation.
-2. CS2103T Students - to understand Archangel's software architecture, design, 
+2. CS2103T Students - to understand Archangel's software architecture, design,
 implementation and documentation in order to enhance and implement some of the features
 inside the software.
 
@@ -182,15 +182,15 @@ To address the problem of mandatory fields being highly time-consuming, we have 
 
 ##### Aspect: How `Patient` is stored in an `Appointment` object
 * **Alternative 1 (current choice):** Saves the `Patient` object and/or the `patientIndex` String
-  * Pros: 
-    * Easy to implement, gives a less stringent check for `isSameAppointment` for other Appointment-type commands (e.g. `AppointmentEditCommand`). 
+  * Pros:
+    * Easy to implement, gives a less stringent check for `isSameAppointment` for other Appointment-type commands (e.g. `AppointmentEditCommand`).
     * This allows for creation of `Appointment` objects which are not duplicates yet have the same `Patient` and/or `patientIndex` during command execution.
   * Cons: More test cases necessary to ensure that `patientIndex` is correctly parsed and retrieved from patient list in `AddressBook`.
 
 * **Alternative 2:** Saves only the `Patient` object after parsing the `patientIndex` String
   * Pros: No extra parsing/handling of `Patient` once `Appointment` object has been created.
   * Cons: Difficult to edit the patient-field in an `Appointment` object as all fields of the `Patient` object itself must be present.
-  
+
 
 #### 4.2.2 Delete Appointment
 
@@ -223,7 +223,7 @@ The reason for having an `EditAppointmentDescriptor` is to enforce immutability 
 * **Alternative 2:** Edits the `Patient` in the `Appointment` by `patientName` (e.g. `a-edit 1 pt/John Doe`)
   * Pros: None.
   * Cons: Greater difficulty for users to input the new `Patient` since the `patientName` may not be unique nor accurate to an existing patient in the patient list.
-  
+
 
 #### 4.2.4 Find Appointment (Patient)
 ![Sequence Diagram for commands with filter](images/AppointmentWithFilterCommand.png)
@@ -254,8 +254,8 @@ The unique classes associated to this command as shown from Diagram 4.2.4 are :
 
 * **Alternative 2:** Store the appointments by tags and search the dates by Binary Search.
   * Pros: Search operation for this is faster.
-  * Cons: Additional overhead every time you add an appointment as you need to know where to insert the command. 
-  You also need to update the sequence of storage file by tag every time you schedule an appointment. In addition, 
+  * Cons: Additional overhead every time you add an appointment as you need to know where to insert the command.
+  You also need to update the sequence of storage file by tag every time you schedule an appointment. In addition,
   there might be a conflict for those appointments with more than one tags.
 
 #### 4.2.6 Find Appointment (Today)
@@ -284,7 +284,7 @@ The unique classes associated to this command as shown from Diagram 4.2.4 are :
 
 * **Alternative 2:** Store the appointments by start date and search the dates by Binary Search.
   * Pros: Search operation for this will be faster.
-  * Cons: Additional overhead every time you add an appointment as you need to know where to insert the command. 
+  * Cons: Additional overhead every time you add an appointment as you need to know where to insert the command.
   You also need to update the sequence of storage file every time you schedule an appointment.
 
 #### 4.2.8 Complete Appointment
@@ -351,10 +351,10 @@ The proposed undo/redo mechanism is facilitated by `UserHistoryManager`. It exte
 
 These operations are exposed in the `ModelManager` class as `ModelManager#getUserHistoryManager()`, `ModelManager#undoHistory()` and `Model#redoHistory()` respectively.
 
-<!-- 
+<!--
 //I commented out the UML diagrams as I did not use the same design the AB3. Will design my own diagram in later commits.
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step. 
+Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
 
@@ -427,7 +427,7 @@ However, after many test runs, we concluded that the memory usage of the user hi
   itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the patient being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
-  
+
 * **Alternative 3:** Individual command is contained in a `reversible-pair-action` class. When we want to `undo`, we can just call its `pair command`.
   * Pros: Will use less memory (due to the fact that are not saving any additional data).
   * Cons: Very difficult to implement, some commands might not have `pair command`(e.g for `edit`, it is own pair command but pair command to call for undo is hard to implement).
@@ -539,7 +539,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. AddressBook shows an error message.
 
       Use case resumes at step 2.
-      
+
 **Use case: Schedule a patient appointment**
 
 **MSS**
@@ -562,13 +562,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. AddressBook shows an error message.
 
       Use case resumes at step 3.
-      
+
 **Use case: Delete a patient appointment**
 
 **MSS**
 
 1.  User requests to delete a specific appointment in the list
-2.  AddressBook deletes the appointment 
+2.  AddressBook deletes the appointment
 
     Use case ends.
 
@@ -577,13 +577,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. The appointment does not exist.
 
     * 1a1. AddressBook shows an error message.
-  
+
       Use case resumes at step 1.
 
 * 1b. The appointment list is empty.
 
     * 1a1. AddressBook shows an error message.
-  
+
       Use case resumes at step 1.
 
 *{More to be added}*
