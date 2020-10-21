@@ -297,6 +297,7 @@ The unique classes associated to this command as shown from Diagram 4.2.8 are :
 1. `AppointmentCommand: AppointmentCompleteCommand`— Identifies the specified appointment from list and passes it to ModelManager to set as completed.
 
 #### 4.2.9 List All Appointments
+![Sequence Diagram for command to list all appointments in addressbook](images/AppointmentListAllCommand.png)
 
 ###### Implementation
 Listing all appointments from the appointment list.
