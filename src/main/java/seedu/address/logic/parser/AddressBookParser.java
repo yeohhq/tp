@@ -9,14 +9,21 @@ import java.util.regex.Pattern;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.UndoCommand;
+import seedu.address.logic.commands.appointmentcommands.AppointmentCompleteCommand;
 import seedu.address.logic.commands.appointmentcommands.AppointmentDeleteCommand;
 import seedu.address.logic.commands.appointmentcommands.AppointmentEditCommand;
 import seedu.address.logic.commands.appointmentcommands.AppointmentFindPatientCommand;
+import seedu.address.logic.commands.appointmentcommands.AppointmentIsCompletedCommand;
 import seedu.address.logic.commands.appointmentcommands.AppointmentIsMissedCommand;
+import seedu.address.logic.commands.appointmentcommands.AppointmentListAllCommand;
 import seedu.address.logic.commands.appointmentcommands.AppointmentListCommand;
+import seedu.address.logic.commands.appointmentcommands.AppointmentNewMissesCommand;
 import seedu.address.logic.commands.appointmentcommands.AppointmentScheduleCommand;
 import seedu.address.logic.commands.appointmentcommands.AppointmentTagCommand;
+import seedu.address.logic.commands.appointmentcommands.AppointmentTodayCommand;
+import seedu.address.logic.commands.appointmentcommands.AppointmentWeekCommand;
 import seedu.address.logic.commands.patientcommands.HelpCommand;
 import seedu.address.logic.commands.patientcommands.PatientAddCommand;
 import seedu.address.logic.commands.patientcommands.PatientDeleteCommand;
@@ -24,13 +31,19 @@ import seedu.address.logic.commands.patientcommands.PatientEditCommand;
 import seedu.address.logic.commands.patientcommands.PatientFindCommand;
 import seedu.address.logic.commands.patientcommands.PatientListCommand;
 import seedu.address.logic.commands.patientcommands.PatientRemarkCommand;
+import seedu.address.logic.parser.appointmentparser.AppointmentCompleteCommandParser;
+import seedu.address.logic.parser.appointmentparser.AppointmentDeleteCommandParser;
+import seedu.address.logic.parser.appointmentparser.AppointmentEditCommandParser;
 import seedu.address.logic.parser.appointmentparser.AppointmentFindPatientCommandParser;
+import seedu.address.logic.parser.appointmentparser.AppointmentIsCompletedCommandParser;
+import seedu.address.logic.parser.appointmentparser.AppointmentListAllCommandParser;
+import seedu.address.logic.parser.appointmentparser.AppointmentListCommandParser;
 import seedu.address.logic.parser.appointmentparser.AppointmentMissedCommandParser;
+import seedu.address.logic.parser.appointmentparser.AppointmentNewMissesCommandParser;
+import seedu.address.logic.parser.appointmentparser.AppointmentScheduleCommandParser;
 import seedu.address.logic.parser.appointmentparser.AppointmentTagCommandParser;
-import seedu.address.logic.parser.appointmentparser.DeleteAppointmentCommandParser;
-import seedu.address.logic.parser.appointmentparser.EditAppointmentCommandParser;
-import seedu.address.logic.parser.appointmentparser.ListAppointmentCommandParser;
-import seedu.address.logic.parser.appointmentparser.ScheduleAppointmentCommandParser;
+import seedu.address.logic.parser.appointmentparser.AppointmentTodayParser;
+import seedu.address.logic.parser.appointmentparser.AppointmentWeekParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.patientparser.AddCommandParser;
 import seedu.address.logic.parser.patientparser.DeleteCommandParser;
@@ -85,14 +98,17 @@ public class AddressBookParser {
             return new RemarkCommandParser().parse(arguments);
 
         case AppointmentDeleteCommand.COMMAND_WORD:
-            return new DeleteAppointmentCommandParser().parse(arguments);
+            return new AppointmentDeleteCommandParser().parse(arguments);
 
         case AppointmentScheduleCommand.COMMAND_WORD:
             System.out.println("schedule called");
-            return new ScheduleAppointmentCommandParser().parse(arguments);
+            return new AppointmentScheduleCommandParser().parse(arguments);
 
         case AppointmentListCommand.COMMAND_WORD:
-            return new ListAppointmentCommandParser().parse(arguments);
+            return new AppointmentListCommandParser().parse(arguments);
+
+        case AppointmentListAllCommand.COMMAND_WORD:
+            return new AppointmentListAllCommandParser().parse();
 
         case AppointmentFindPatientCommand.COMMAND_WORD:
             return new AppointmentFindPatientCommandParser().parse(arguments);
@@ -100,11 +116,26 @@ public class AddressBookParser {
         case AppointmentIsMissedCommand.COMMAND_WORD:
             return new AppointmentMissedCommandParser().parse(arguments);
 
+        case AppointmentIsCompletedCommand.COMMAND_WORD:
+            return new AppointmentIsCompletedCommandParser().parse(arguments);
+
         case AppointmentTagCommand.COMMAND_WORD:
             return new AppointmentTagCommandParser().parse(arguments);
 
+        case AppointmentTodayCommand.COMMAND_WORD:
+            return new AppointmentTodayParser().parse(arguments);
+
+        case AppointmentWeekCommand.COMMAND_WORD:
+            return new AppointmentWeekParser().parse(arguments);
+
         case AppointmentEditCommand.COMMAND_WORD:
-            return new EditAppointmentCommandParser().parse(arguments);
+            return new AppointmentEditCommandParser().parse(arguments);
+
+        case AppointmentCompleteCommand.COMMAND_WORD:
+            return new AppointmentCompleteCommandParser().parse(arguments);
+
+        case AppointmentNewMissesCommand.COMMAND_WORD:
+            return new AppointmentNewMissesCommandParser().parse();
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
@@ -117,6 +148,9 @@ public class AddressBookParser {
 
         case UndoCommand.COMMAND_WORD:
             return new UndoCommand();
+
+        case RedoCommand.COMMAND_WORD:
+            return new RedoCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

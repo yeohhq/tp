@@ -6,23 +6,22 @@ import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
-import seedu.address.model.filters.appointmentfilters.SearchAppointmentMissedFilter;
-
+import seedu.address.model.filters.appointmentfilters.SearchAppointmentWeekFilter;
 
 /**
- * Finds and lists all appointments missed appointments in the addressbook.
+ * Finds and lists all the appointments this week in the addressbook.
  */
-public class AppointmentIsMissedCommand extends Command {
+public class AppointmentWeekCommand extends Command {
 
-    public static final String COMMAND_WORD = "a-missed";
+    public static final String COMMAND_WORD = "a-upcoming";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all missed appointments. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all the appointments this week. "
             + "\n"
             + "Example: " + COMMAND_WORD;
 
-    private final SearchAppointmentMissedFilter predicate;
+    private final SearchAppointmentWeekFilter predicate;
 
-    public AppointmentIsMissedCommand(SearchAppointmentMissedFilter predicate) {
+    public AppointmentWeekCommand(SearchAppointmentWeekFilter predicate) {
         this.predicate = predicate;
     }
 
@@ -38,7 +37,7 @@ public class AppointmentIsMissedCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AppointmentIsMissedCommand // instanceof handles nulls
-                && predicate.equals(((AppointmentIsMissedCommand) other).predicate)); // state check
+                || (other instanceof AppointmentWeekCommand // instanceof handles nulls
+                && predicate.equals(((AppointmentWeekCommand) other).predicate)); // state check
     }
 }

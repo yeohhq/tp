@@ -50,6 +50,7 @@ public class LogicManager implements Logic {
         if (commandResult.canBeUndone()) {
             model.getUserHistoryManager().addHistory(new Pair(new ArrayList<>(model.getAddressBook().getPatientList()),
                     new ArrayList<>(model.getAddressBook().getAppointmentList())));
+            model.getUserHistoryManager().resetRedoHistory();
         }
         try {
             storage.saveAddressBook(model.getAddressBook());
@@ -74,6 +75,13 @@ public class LogicManager implements Logic {
     public ObservableList<Appointment> getFilteredAppointmentList() {
         return model.getFilteredAppointmentList();
     }
+
+    /*
+    @Override
+    public ObservableList<Appointment> getStartFilteredAppointmentList() {
+        return model.getStartFilteredAppointmentList();
+    }
+    */
 
     @Override
     public Path getAddressBookFilePath() {

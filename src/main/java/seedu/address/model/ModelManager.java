@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.time.LocalDateTime;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -41,7 +42,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         this.userHistory = new UserHistoryManager();
-        userHistory.addHistory(new Pair(addressBook.getPatientList(), addressBook.getAppointmentList()));
+        userHistory.initialiseHistory(new Pair(addressBook.getPatientList(), addressBook.getAppointmentList()));
         filteredPatients = new FilteredList<>(this.addressBook.getPatientList());
         filteredAppointments = new FilteredList<>(this.addressBook.getAppointmentList());
     }
@@ -142,6 +143,13 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void completeAppointment(Appointment target) {
+        requireAllNonNull(target);
+        addressBook.setComplete(target);
+        updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
+    }
+
+    @Override
     public void addAppointment(Appointment appointment) {
         addressBook.addAppointment(appointment);
         updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
@@ -155,6 +163,13 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setMissedAppointments(LocalDateTime now) {
+        requireNonNull(now);
+        addressBook.setMissedAppointments(now);
+    }
+
+
+    @Override
     public UserHistoryManager getUserHistoryManager() {
         return this.userHistory;
     }
@@ -164,6 +179,13 @@ public class ModelManager implements Model {
         this.userHistory.undoHistory();
         addressBook.setPatients((this.userHistory.getHistory().peek().getKey()));
         addressBook.setAppointments((this.userHistory.getHistory().peek().getValue()));
+    }
+
+    @Override
+    public void redoHistory() {
+        addressBook.setPatients((this.userHistory.getRedoHistory().peek().getKey()));
+        addressBook.setAppointments((this.userHistory.getRedoHistory().peek().getValue()));
+        this.userHistory.redoHistory();
     }
 
     //=========== Filtered Patient List Accessors =============================================================
@@ -193,6 +215,11 @@ public class ModelManager implements Model {
     public ObservableList<Appointment> getFilteredAppointmentList() {
         return filteredAppointments;
     }
+
+    /*
+    @Override
+    public ObservableList<Appointment> getStartFilteredAppointmentList() {}
+     */
 
     @Override
     public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {

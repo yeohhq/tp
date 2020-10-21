@@ -60,9 +60,14 @@ public class JsonAdaptedAppointment {
      * Converts a given {@code Appointment} into this class for Jackson use.
      */
     public JsonAdaptedAppointment(Appointment source) {
+        String patient1;
         System.out.println(source);
         appointmentTime = source.getAppointmentTime().toString();
-        patient = source.getPatientString();
+        patient1 = source.getPatientString();
+        if (patient1 == null) {
+            patient1 = source.getPatient().getName().fullName;
+        }
+        patient = patient1;
         description = source.getDescription().toString();
         isCompleted = source.isCompleted().toString();
         isMissed = source.isMissed().toString();
@@ -109,8 +114,8 @@ public class JsonAdaptedAppointment {
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, Boolean.class.getSimpleName()));
         }
-        final boolean modelIsCompleted = Boolean.getBoolean(isCompleted);
-        final boolean modelIsMissed = Boolean.getBoolean(isMissed);
+        final boolean modelIsCompleted = Boolean.parseBoolean(isCompleted);
+        final boolean modelIsMissed = Boolean.parseBoolean(isMissed);
         final Set<Tag> modelTags = new HashSet<>(appointmentTags);
         Appointment appointment = new Appointment(modelAppointmentTime, modelPatientString,
                 modelTags, modelIsCompleted, modelIsMissed, modelDescription);
