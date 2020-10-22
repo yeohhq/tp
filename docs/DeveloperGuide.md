@@ -155,7 +155,7 @@ This section describes some noteworthy details on how certain features are imple
 
 ### 4.1 Patient Commands
 
-###### Before we dive in
+##### 4.1.1 Before we dive in
 
 It is important to know the architectural design of the app to be able to understand this section.
 Here is a summary of the logic flow:
@@ -166,14 +166,14 @@ Here is a summary of the logic flow:
 5. After the tasks are completed, the `parse(String args)` method will return a `Command` object to the `LogicManager` for execution.
 6. `Command` object's `execute()` method will be called and the `Model` will be modified with the change determined by the user's input.
 
-###### Focus
+##### 4.1.2 Focus
 As the previous Design section illustrated the general architecture of the app, this section aims to illustrate what happens at the deeper levels.
 This section will focus on what happens in the various command parsers, i.e. `AddCommandParser` , `EditCommandParser`.
 This section will also focus on what happens when the respective command is executed. 
 
-#### 4.1.1 Add Patient
+#### 4.1.3 Add Patient
 
-###### Implementation
+##### 4.1.3.1 Implementation
 
 The arguments of an Add command includes the necessary fields required to create a `Patient` object.
 
@@ -187,9 +187,9 @@ What happens at `AddCommandParser().parse(arguments)`:
 
 This is how Adding of Patients is implemented.
 
-#### 4.1.2 Delete Patient
+#### 4.1.4 Delete Patient
 
-###### Implementation
+##### 4.1.4.1 Implementation
 
 The arguments of a Delete command includes the `index` of the Patient to be deleted.
 
@@ -203,9 +203,9 @@ What happens at `DeleteCommandParser().parse(arguments)`:
 This is how Deleting of Patients is implemented.
 
 
-#### 4.1.3 Edit Patient
+#### 4.1.5 Edit Patient
 
-###### Implementation
+##### 4.1.5.1 Implementation
 
 The arguments of an Edit command includes the `index` of the Patient selected for changes and the `changes` the User want to make to the individual fields of a single `Patient`.
 
@@ -219,9 +219,9 @@ PatientFindCommand This object contains the `index` of the `Patient` selected fo
 
 This is how Editing of Patient information is implemented.
 
-#### 4.1.4 Find Patient
+#### 4.1.6 Find Patient
 
-###### Implementation
+##### 4.1.6.1 Implementation
 
 The arguments of an Find command includes the `Keywords` that the User wants to search up. `Keywords` are seperated by spaces.
 
@@ -238,7 +238,7 @@ This is how Find Patient is implemented.
 ### 4.2 Appointment Commands
 #### 4.2.1 Schedule Appointment
 ![Interactions Inside the Logic Component for the `a-schedule` Command](images/ScheduleAppointmentSequenceDiagram.png)
-###### Implementation
+##### 4.2.1.1 Implementation
 The implementation of scheduling an appointment has a similar execution as adding a patient (see 4.1.1).
 
 The user's input is parsed by the `ScheduleAppointmentCommandParser` class which extends `Parser`, resulting in an `AppointmentScheduleCommand` which extends `Command`.
@@ -246,14 +246,14 @@ Subsequently, the `LogicManager` executes the `AppointmentScheduleCommand` objec
 
 The `Appointment` class stores relevant fields (e.g. `AppointmentTime`, `Description`) and the `Patient`, **and/or** a string representing the patient's index in the `ObservableList<Patient>`, depending on which constructor was invoked on creation of an `Appointment` object.
 
-#### Reason for design of implementation:
+##### 4.2.1.2 Reason for design of implementation:
 The reason for having 2 `Appointment` constructors is to improve the ease of scheduling an appointment by the user using the CLI.
 
 To address the problem of mandatory fields being highly time-consuming, we have decided to allow users to simply input a `patientIndex` to identify the patient from the visible `ObservableList<Patient>` without being concerned with typing the exact name or details of the desired patient to assign to the `Appointment`.
 
-#### Design consideration:
+##### 4.2.1.3 Design consideration:
 
-##### Aspect: How `Patient` is stored in an `Appointment` object
+###### 4.2.1.3.1 Aspect: How `Patient` is stored in an `Appointment` object
 * **Alternative 1 (current choice):** Saves the `Patient` object and/or the `patientIndex` String
   * Pros:
     * Easy to implement, gives a less stringent check for `isSameAppointment` for other Appointment-type commands (e.g. `AppointmentEditCommand`).
@@ -267,7 +267,7 @@ To address the problem of mandatory fields being highly time-consuming, we have 
 
 #### 4.2.2 Delete Appointment
 
-###### Implementation
+##### 4.2.2.1 Implementation
 The implementation of deleting an appointment has a similar execution as deleting a patient (see 4.1.3).
 
 The user's input is parsed by the `DeleteAppointmentCommandParser` class which extends `Parser`, resulting in an `AppointmentDeleteCommand` which extends `Command`.
@@ -277,18 +277,18 @@ Subsequently, the `LogicManager` executes the `AppointmentDeleteCommand` object 
 
 ![Interactions Inside the Logic Component for the `a-edit` Command](images/EditAppointmentSequenceDiagram.png)
 
-###### Implementation
+##### 4.2.3.1 Implementation
 The implementation of editing an appointment has a similar execution as editing a patient (see 4.1.4).
 
 The user's input is parsed by the `EditAppointmentCommandParser` class which extends `Parser`, resulting in an `AppointmentEditCommand` which extends `Command`.
 Subsequently, the `LogicManager` executes the `AppointmentEditCommand` object to edit the appointment with the given index in `ObservableList<Appointment>`.
 
-#### Reason for design of implementation:
+##### 4.2.3.2 Reason for design of implementation:
 The reason for having an `EditAppointmentDescriptor` is to enforce immutability by always creating the edited appointment as a new `Appointment` object.
 
-#### Design consideration:
+##### 4.2.3.3 Design consideration:
 
-##### Aspect: How `Patient` is edited in an `Appointment` object
+###### 4.2.3.3.1 Aspect: How `Patient` is edited in an `Appointment` object
 * **Alternative 1 (current choice):** Edits the `Patient` in the `Appointment` using a `patientIndex` String (e.g. `a-edit 1 pt/2`)
   * Pros: Easy for users to change the patient for the appointment using a single `patientIndex`.
   * Cons: `patientIndex` has to be carefully parsed and retrieved from a patient list that correctly reflects the patient list on the GUI.
@@ -302,7 +302,7 @@ The reason for having an `EditAppointmentDescriptor` is to enforce immutability 
 ![Sequence Diagram for commands with filter](images/AppointmentWithFilterCommand.png)
 _Diagram 4.2.4 : Appointment Commands with Filters Sequence Diagram_
 
-###### Implementation
+##### 4.2.4.1 Implementation
 The search for appointment by patient name works by filtering the appointment list to show only those appointments with
 the given patient name.
 
@@ -311,7 +311,7 @@ The unique classes associated to this command as shown from Diagram 4.2.4 are :
 1. `AppointmentFilter: SearchPatientFilter`— Checks if the appointment contains any patient which contains any keywords form the arguments.
 1. `AppointmentWithFilterCommand: AppointmentFindPatientCommand`— Applies the filter to the appointment list.
 #### 4.2.5 Find Appointment (Tag)
-###### Implementation
+##### 4.2.5.1 Implementation
 The search for appointment by tags works by filtering the appointment list to show only those appointments with
 the given tags.
 
@@ -320,7 +320,7 @@ The unique classes associated to this command as shown from Diagram 4.2.4 are :
 1. `AppointmentFilter: SearchAppointmentTagsFilter`— Checks if the appointment contains any tags with the keywords form the arguments.
 1. `AppointmentWithFilterCommand: AppointmentTagCommand`— Applies the filter to the appointment list.
 
-##### Design considerations
+##### 4.2.5.2 Design considerations
 * **Alternative 1 (current choice):** Store the appointments by date added.
   * Pros: Easy to implement and less overhead operations when using adding appointments.
   * Cons: May not be the fastest way to search for appointments.
@@ -332,7 +332,7 @@ The unique classes associated to this command as shown from Diagram 4.2.4 are :
   there might be a conflict for those appointments with more than one tags.
 
 #### 4.2.6 Find Appointment (Today)
-###### Implementation
+##### 4.2.6.1 Implementation
 The search for appointment by the current date works by filtering the appointment list to show only those appointments with
 that occurs on the current day.
 
@@ -341,7 +341,7 @@ The unique classes associated to this command as shown from Diagram 4.2.4 are :
 1. `AppointmentFilter: SearchAppointmentTodayFilter`— Checks if the appointment occurs within the current day.
 1. `AppointmentWithFilterCommand: AppointmentTodayCommand`— Applies the filter to the appointment list.
 #### 4.2.7 Find Appointment (Current Week)
-###### Implementation
+##### 4.2.7.1 Implementation
 The search for appointment by the current week works by filtering the appointment list to show only those appointments with
 that occurs on the same week (Sunday to Saturday)
 
@@ -350,7 +350,7 @@ The unique classes associated to this command as shown from Diagram 4.2.4 are :
 1. `AppointmentFilter: SearchAppointmentWeekFilter`— Checks if the appointment occurs within the current week.
 1. `AppointmentWithFilterCommand: AppointmentWeekCommand`— Applies the filter to the appointment list.
 
-##### Design considerations
+##### 4.2.7.2 Design considerations
 * **Alternative 1 (current choice):** Store the appointments by date added.
   * Pros: Easy to implement and less overhead operations when using adding appointments.
   * Cons: May not be the fastest way to search for appointments.
@@ -362,7 +362,7 @@ The unique classes associated to this command as shown from Diagram 4.2.4 are :
 
 #### 4.2.8 Complete Appointment
 
-###### Implementation
+##### 4.2.8.1 Implementation
 Sets a specified appointment as completed.
 
 The unique classes associated to this command as shown from Diagram 4.2.8 are :
@@ -372,7 +372,7 @@ The unique classes associated to this command as shown from Diagram 4.2.8 are :
 #### 4.2.9 List All Appointments
 ![Sequence Diagram for command to list all appointments in addressbook](images/AppointmentListAllCommand.png)
 
-###### Implementation
+##### 4.2.9.1 Implementation
 Listing all appointments from the appointment list.
 
 The unique classes associated to this command as shown from Diagram 4.2.9 are :
@@ -381,7 +381,7 @@ The unique classes associated to this command as shown from Diagram 4.2.9 are :
 
 #### 4.2.10 List Appointments (Upcoming)
 
-###### Implementation
+##### 4.2.10.1 Implementation
 Listing upcoming appointments works by filtering the appointment list to show only those appointments that are labelled as not completed and not missed.
 
 The unique classes associated to this command as shown from Diagram 4.2.10 are :
@@ -391,7 +391,7 @@ The unique classes associated to this command as shown from Diagram 4.2.10 are :
 
 #### 4.2.11 List Appointments (Completed)
 
-###### Implementation
+##### 4.2.11.1 Implementation
 Listing completed appointments works by filtering the appointment list to show only those appointments that labelled as completed.
 
 The unique classes associated to this command as shown from Diagram 4.2.11 are :
@@ -401,7 +401,7 @@ The unique classes associated to this command as shown from Diagram 4.2.11 are :
 
 #### 4.2.12 List Appointment (Missed)
 
-###### Implementation
+##### 4.2.12.1 Implementation
 Listing missed appointments works by filtering the appointment list to show only those appointments that labelled as missed.
 
 The unique classes associated to this command as shown from Diagram 4.2.12 are :
@@ -414,7 +414,7 @@ The unique classes associated to this command as shown from Diagram 4.2.12 are :
 ### 4.3 General Commands
 #### 4.3.1 Undo/redo feature
 
-###### Implementation
+##### 4.3.1.1 Implementation
 
 The proposed undo/redo mechanism is facilitated by `UserHistoryManager`. It extends `AddressBook` with an undo/redo history, stored internally in `userHistory` as  `Stack<Pair<List<Patient>, List<Appointment>>>`. Additionally, it implements the following operations:
 
@@ -481,16 +481,16 @@ The following activity diagram summarizes what happens when a user executes a ne
 ![CommitActivityDiagram](images/CommitActivityDiagram.png)
 --->
 
-##### Reason for design of implementation:
+##### 4.3.1.2 Reason for design of implementation:
 The reason for the design of userHistory using a stack is due to the functionality of `undoHistory()`. We want to be able undo the latest changes to the `UniquePatientList` or `UniqueAppointmentList`.
 This follows the `Last In,First Out(LIFO)` design which can be implementated using the `stack` data structure.
 
 A concern using this design is that the memory usage might be undesirable due to the large of memory usage needed to store every user history at each command.
 However, after many test runs, we concluded that the memory usage of the user history was insignificant and thus this design can be safely implememented with no drawbacks.
 
-##### Design consideration:
+##### 4.3.1.2 Design consideration:
 
-###### Aspect: How undo & redo executes
+###### 4.3.1.2.1 Aspect: How undo & redo executes
 
 * **Alternative 1 (current choice):** Saves the entire address book.
   * Pros: Easy to implement.
