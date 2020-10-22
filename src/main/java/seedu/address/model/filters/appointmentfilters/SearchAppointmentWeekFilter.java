@@ -4,9 +4,6 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.temporal.TemporalAdjusters;
 import java.util.function.Predicate;
-import java.util.logging.Level;
-import java.util.logging.LogManager;
-import java.util.logging.Logger;
 
 import seedu.address.model.appointment.Appointment;
 
@@ -17,11 +14,6 @@ public class SearchAppointmentWeekFilter implements Predicate<Appointment> {
     private LocalDate today;
     private LocalDate thisWeekSunday;
     private LocalDate thisWeekSaturday;
-    private static final Logger LOGGER = Logger.getLogger("SearchAppointmentWeekFilter");
-
-    private static final String ASSERTION_ERROR = "Invalid appointment start and end date";
-    private static final String LOG = "Valid appointment start and end date";
-
 
 
     /**
@@ -35,8 +27,6 @@ public class SearchAppointmentWeekFilter implements Predicate<Appointment> {
 
     @Override
     public boolean test(Appointment appointment) {
-        assert appointment.getStartTime().isBefore(appointment.getEndTime()) : ASSERTION_ERROR;
-        LOGGER.log(Level.WARNING, LOG);
         LocalDate appointmentStartDate = appointment.getStartTime().toLocalDate();
         LocalDate appointmentEndDate = appointment.getEndTime().toLocalDate();
 
