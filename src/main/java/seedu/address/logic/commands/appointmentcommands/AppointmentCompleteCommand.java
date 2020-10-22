@@ -26,10 +26,10 @@ public class AppointmentCompleteCommand extends Command {
     public static final String MESSAGE_COMPLETE_APPOINTMENT_SUCCESS = "Completed Appointment: %1$s";
     public static final String MESSAGE_ALREADY_COMPLETE = "This appointment has already been completed.";
     public static final String MESSAGE_ALREADY_MISSED = "This appointment has already been missed.";
-    public static final String ASSERT_ALREADY_COMPLETE = "AppointmentCompleteCommand should not run on appointments" +
-            "which already been completed.";
-    public static final String ASSERT_ALREADY_MISSED = "AppointmentCompleteCommand should not run on appointments" +
-            "which already been missed.";
+    public static final String ASSERT_ALREADY_COMPLETE = "AppointmentCompleteCommand should not run on appointments"
+            + "which already been completed.";
+    public static final String ASSERT_ALREADY_MISSED = "AppointmentCompleteCommand should not run on appointments"
+            + "which already been missed.";
 
     private final Index targetIndex;
 
