@@ -11,10 +11,10 @@ import seedu.address.model.appointment.Appointment;
  * Filter appointments  {@code Appointment}'s {@code Patient}'s {@code startDate} that matches today's date.
  */
 public class SearchAppointmentTodayFilter implements Predicate<Appointment> {
-    private LocalDate today;
     private static final Logger LOGGER = Logger.getLogger("SearchAppointmentWeekFilter");
     private static final String ASSERTION_ERROR = "Invalid appointment start and end date";
     private static final String LOG = "Valid appointment start and end date";
+    private LocalDate today;
 
     public SearchAppointmentTodayFilter() {
         this.today = LocalDate.now();
