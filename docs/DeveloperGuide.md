@@ -31,7 +31,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ### 3.1 Architecture
 
-<img src="images/ArchitectureDiagram.png" width="450" />
+![Design Architecture of App](images/ArchitectureDiagram.png)
 
 The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
 
@@ -68,7 +68,7 @@ _Diagram 3.1 : Logic Class Diagram_
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+![Interaction between components](images/ArchitectureSequenceDiagram.png)
 
 The sections below give more details of each component.
 
@@ -80,7 +80,7 @@ _Diagram 3.2 : UI Class Diagram_
 **API** :
 [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PatientListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -122,11 +122,11 @@ The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
 * stores the address book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* exposes an unmodifiable `ObservableList<Patient>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Patient` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Patient` needing their own `Tag` object.<br>
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
 </div>
@@ -154,12 +154,85 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 This section describes some noteworthy details on how certain features are implemented.
 
 ### 4.1 Patient Commands
+
+###### Before we dive in
+
+It is important to know the architectural design of the app to be able to understand this section.
+Here is a summary of the logic flow:
+1. User inputs into command line
+2. `LogicManager` handles the input, and calls `AddressBookParser`'s `parseCommand(String userInput)` method with the input as its argument.
+3. `AddressBookParser`'s `parseCommand(String userInput)` method will create the respective `CommandParser` object and call its `parse(String args)` method with the input from the previous step.
+4. This `parse(String args)` method mentioned above will carry out its tasks required for the specific command.
+5. After the tasks are completed, the `parse(String args)` method will return a `Command` object to the `LogicManager` for execution.
+6. `Command` object's `execute()` method will be called and the `Model` will be modified with the change determined by the user's input.
+
+###### Focus
+As the previous Design section illustrated the general architecture of the app, this section aims to illustrate what happens at the deeper levels.
+This section will focus on what happens in the various command parsers, i.e. `AddCommandParser` , `EditCommandParser`.
+This section will also focus on what happens when the respective command is executed. 
+
 #### 4.1.1 Add Patient
-#### 4.1.2 View Patient
-#### 4.1.3 Delete Patient
-#### 4.1.4 Edit Patient
-#### 4.1.5 Find Patient
-#### 4.1.6 List Patient
+
+###### Implementation
+
+The arguments of an Add command includes the necessary fields required to create a `Patient` object.
+
+What happens at `AddCommandParser().parse(arguments)`:
+1. The argument will be used to make an `ArgumentMultimap` object via the `ArgumentTokenizer.tokenize()` method.
+2. As every field of a `Patient` is its respective object, the `AddCommandParser().parse(arguments)` method will use `ParserUtil`'s parse methods for each field to create the new respective field object.
+3. Once all the field objects are created, a new `Patient` object is created with all the field objects as arguments for its constructor.
+4. A `PatientAddCommand` object is created that stores the newly created `Patient` object, and it is returned to the `LogicManager`.
+5. This `PatientEditCommand` object will stored under the `command` variable and then be executed by the `LogicManager`.
+6. At execution, the `Patient` object stored in the `PatientEditCommand` object will be added.
+
+This is how Adding of Patients is implemented.
+
+#### 4.1.2 Delete Patient
+
+###### Implementation
+
+The arguments of a Delete command includes the `index` of the Patient to be deleted.
+
+What happens at `DeleteCommandParser().parse(arguments)`:
+1. An `Index` object will be created by `ParserUtil`'s `parseIndex(args)` method.
+2. A new `PatientDeleteCommand` object will be created, storing the `Index` object and it is then returned to the `LogicManager`.
+3. This `PatientEditCommand` object will stored under the `command` variable and then be executed by the `LogicManager`.
+4. At execution, the `Index` object stored in the `PatientDeleteCommand` object will be used to locate the `Patient` object to be deleted.
+5. Located `Patient` object will be deleted. 
+
+This is how Deleting of Patients is implemented.
+
+
+#### 4.1.3 Edit Patient
+
+###### Implementation
+
+The arguments of an Edit command includes the `index` of the Patient selected for changes and the `changes` the User want to make to the individual fields of a single `Patient`.
+
+What happens at `EditCommandParser().parse(arguments)`:
+1. An `EditPatientDescriptor` object is first created. An `EditPatientDescriptor` object contains all fields that a `Patient` has and acts as a placeholder for the changes.
+2. For each field input present in the argument, that respective field of the `EditPatientDescriptor` object will be set accordingly. 
+PatientFindCommand This object contains the `index` of the `Patient` selected for changes, and the `EditPatientDescriptor` object created in Step 1 and fully modified by Step 2.
+4. This `PatientEditCommand` object will stored under the `command` variable and then be executed by the `LogicManager`.
+5. At execution, an `editedPatient` object will be created. This `editedPatient` object contains all fields that a Patient has and acts as a placeholder for both the changes from the `EditPatientDescriptor` object and unchanged fields of the original `Patient`.
+6. Since the `editedPatient` object will contain the corrected set of fields to be reflected on the original Patient, the `PatientEditCommand` will replace the current `Patient` object with the `editedPatient` object.
+
+This is how Editing of Patient information is implemented.
+
+#### 4.1.4 Find Patient
+
+###### Implementation
+
+The arguments of an Find command includes the `Keywords` that the User wants to search up. `Keywords` are seperated by spaces.
+
+What happens at `FindCommandParser().parse(arguments)`:
+1. `Keywords` are put into an `nameKeywords` array.
+2. A new `SearchNameFilter` object is created with the `nameKeywords` array converted to a List.
+3. A new `PatientFindCommand` object is created with the `SearchNameFilter` object, and it is then returned to the `LogicManager` for execution.
+4. At execution, a list filtered with only those that are related to the `Keywords` is shown.
+
+This is how Find Patient is implemented.
+
 
 --------------------------------------------------------------------------------------------------------------------
 ### 4.2 Appointment Commands
