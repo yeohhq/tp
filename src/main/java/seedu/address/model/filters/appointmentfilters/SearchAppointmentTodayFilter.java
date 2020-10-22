@@ -2,8 +2,6 @@ package seedu.address.model.filters.appointmentfilters;
 
 import java.time.LocalDate;
 import java.util.function.Predicate;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import seedu.address.model.appointment.Appointment;
 
@@ -12,9 +10,6 @@ import seedu.address.model.appointment.Appointment;
  */
 public class SearchAppointmentTodayFilter implements Predicate<Appointment> {
     private LocalDate today;
-    private static final Logger LOGGER = Logger.getLogger("SearchAppointmentWeekFilter");
-    private static final String ASSERTION_ERROR = "Invalid appointment start and end date";
-    private static final String LOG = "Valid appointment start and end date";
 
     public SearchAppointmentTodayFilter() {
         this.today = LocalDate.now();
@@ -22,8 +17,6 @@ public class SearchAppointmentTodayFilter implements Predicate<Appointment> {
 
     @Override
     public boolean test(Appointment appointment) {
-        assert appointment.getStartTime().isBefore(appointment.getEndTime()) : ASSERTION_ERROR;
-        LOGGER.log(Level.WARNING, LOG);
         return appointment.getStartTime().toLocalDate().equals(today);
     }
 
