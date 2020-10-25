@@ -314,7 +314,11 @@ Undo the previous command in Archangel.
 
 Format: `undo`
 
-* The command has no keywords
+* This command has no keywords
+* This command does not work with filter commands (`a-completed`,`a-missed`,`a-upcoming`,`a-today`,`a-find`,`a-list`)
+  as its implementation purpose is to assist the user in undo-ing his changes, filter commands do not make changes to 
+  the data.
+* This command can be succeeded by a `redo` command.
 
 Examples:
 * `p-edit 2 d/Review Session /t` followed by `undo` undoes the edit command and make no changes to Archangel.
@@ -324,7 +328,8 @@ Redo the previous command(`undo`) in Archangel.
 
 Format: `redo`
 
-* The command has no keywords
+* This command has no keywords
+* This command must be preceded by `undo`
 
 Examples:
 * `p-edit 2 d/Review Session /t` followed by `undo` then `redo` redoes the `undo` command and carries out the edit command.
