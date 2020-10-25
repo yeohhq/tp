@@ -298,8 +298,8 @@ The reason for having an `EditAppointmentDescriptor` is to enforce immutability 
   * Cons: Greater difficulty for users to input the new `Patient` since the `patientName` may not be unique nor accurate to an existing patient in the patient list.
 
 
-#### 4.2.4 Find Appointment (Patient)
-![Sequence Diagram for commands with filter](images/AppointmentWithFilterCommand.png)
+#### 4.2.4 Filter Appointment Commands
+![Sequence Diagram for commands with filter](images/AppointmentFindPatientSequenceDiagram.png)
 _Diagram 4.2.4 : Appointment Commands with Filters Sequence Diagram_
 
 ##### 4.2.4.1 Implementation
