@@ -299,28 +299,44 @@ The reason for having an `EditAppointmentDescriptor` is to enforce immutability 
 
 
 #### 4.2.4 Filter Appointment Commands
-![Sequence Diagram for commands with filter](images/AppointmentFindPatientSequenceDiagram.png)
-_Diagram 4.2.4 : Appointment Commands with Filters Sequence Diagram_
 
-##### 4.2.4.1 Implementation
+##### 4.2.4.2 Structure
+
+Commands involving filtering of the appointment work similarly by using filters to obtain the appointments needed. For this section, we will be exploring `AppointmentFindPatientCommand` which filters Appointments containing Patients whose name includes the given user input. 
+The Command, Parser and Predicate in the class diagram below can be replaced by different sets of values from Diagram 4.2.4.2.
+ 
+ ![Class Diagram for commands with filter](images/AppointmentFindPatientCommandDiagram.png)
+ _Diagram 4.2.4.1 : Appointment Commands with Filters Class Diagram_
+ 
+
+ Filter Appointment Commands including both its Parser and Predicate are listed below:
+
+| Command                          | Parser                              | Predicate                        | Filters List by:                 |
+|----------------------------------|-------------------------------------|----------------------------------|----------------------------------|
+| 1. AppointmentFindPatientCommand | AppointmentFindPatientCommandParser | SearchPatientFilter              | Patient Name                     |
+| 2. AppointmentTodayCommand       | AppointmentTodayCommandParser       | SearchAppointmentTodayFilter     | Appointments occurring today     |
+| 3. AppointmentWeekCommand        | AppointmentWeekCommandParser        | SearchAppointmentWeekFilter      | Appointments occurring this week |
+| 4. AppointmentTagCommand         | AppointmentTagCommandParser         | SearchAppointmentTagsFilter      | Appointment Tag                  |
+| 5. AppointmentIsMissedCommand    | AppointmentMissedCommandParser      | SearchAppointmentMissedFilter    | Missed Appointments              |
+| 6. AppointmentIsCompletedCommand | AppointmentIsCompletedCommandParser | SearchAppointmentCompletedFilter | Completed Appointments           |
+| 7. AppointmentListCommand        | AppointmentListCommandParser        | SearchAppointmentFilter          | Pending Appointments             |
+ _Diagram 4.2.4.2 : Appointment Commands with Filters Class Diagram_
+
+
+
+##### 4.2.4.2 Implementation
 The search for appointment by patient name works by filtering the appointment list to show only those appointments with
 the given patient name.
 
-The unique classes associated to this command as shown from Diagram 4.2.4 are :
-1. `AppointmentWithFilterCommandParser: AppointmentFindPatientCommandParser`— Parses input arguments and creates a new AppointmentFindPatientCommand object.
-1. `AppointmentFilter: SearchPatientFilter`— Checks if the appointment contains any patient which contains any keywords form the arguments.
-1. `AppointmentWithFilterCommand: AppointmentFindPatientCommand`— Applies the filter to the appointment list.
-#### 4.2.5 Find Appointment (Tag)
-##### 4.2.5.1 Implementation
-The search for appointment by tags works by filtering the appointment list to show only those appointments with
-the given tags.
+![Sequence Diagram for commands with filter](images/AppointmentFindPatientSequenceDiagram.png)
+_Diagram 4.2.3.3 : Appointment Commands with Filters Sequence Diagram_
 
-The unique classes associated to this command as shown from Diagram 4.2.4 are :
-1. `AppointmentWithFilterCommandParser: AppointmentTagCommandParser`— Parses input arguments and creates a new AppointmentTagCommand object.
-1. `AppointmentFilter: SearchAppointmentTagsFilter`— Checks if the appointment contains any tags with the keywords form the arguments.
-1. `AppointmentWithFilterCommand: AppointmentTagCommand`— Applies the filter to the appointment list.
+The unique classes associated to `AppointmentFindPatientCommand`  command:
+1. `AppointmentFindPatientCommandParser`— Parses input arguments and creates a new AppointmentFindPatientCommand object.
+1. `SearchPatientFilter`— Checks if the appointment contains any patient which contains any keywords form the arguments.
+1. `AppointmentFindPatientCommand`— Applies the filter to the appointment list.
 
-##### 4.2.5.2 Design considerations
+##### 4.2.4.3 Design considerations
 * **Alternative 1 (current choice):** Store the appointments by date added.
   * Pros: Easy to implement and less overhead operations when using adding appointments.
   * Cons: May not be the fastest way to search for appointments.
@@ -331,83 +347,26 @@ The unique classes associated to this command as shown from Diagram 4.2.4 are :
   You also need to update the sequence of storage file by tag every time you schedule an appointment. In addition,
   there might be a conflict for those appointments with more than one tags.
 
-#### 4.2.6 Find Appointment (Today)
-##### 4.2.6.1 Implementation
-The search for appointment by the current date works by filtering the appointment list to show only those appointments with
-that occurs on the current day.
 
-The unique classes associated to this command as shown from Diagram 4.2.4 are :
-1. `AppointmentWithFilterCommandParser: AppointmentTodayCommandParser`— Creates a new AppointmentTodayCommand object.
-1. `AppointmentFilter: SearchAppointmentTodayFilter`— Checks if the appointment occurs within the current day.
-1. `AppointmentWithFilterCommand: AppointmentTodayCommand`— Applies the filter to the appointment list.
-#### 4.2.7 Find Appointment (Current Week)
-##### 4.2.7.1 Implementation
-The search for appointment by the current week works by filtering the appointment list to show only those appointments with
-that occurs on the same week (Sunday to Saturday)
+#### 4.2.5 Complete Appointment
 
-The unique classes associated to this command as shown from Diagram 4.2.4 are :
-1. `AppointmentWithFilterCommandParser: AppointmentWeekCommandParser`— Creates a new AppointmentTodayCommand object.
-1. `AppointmentFilter: SearchAppointmentWeekFilter`— Checks if the appointment occurs within the current week.
-1. `AppointmentWithFilterCommand: AppointmentWeekCommand`— Applies the filter to the appointment list.
-
-##### 4.2.7.2 Design considerations
-* **Alternative 1 (current choice):** Store the appointments by date added.
-  * Pros: Easy to implement and less overhead operations when using adding appointments.
-  * Cons: May not be the fastest way to search for appointments.
-
-* **Alternative 2:** Store the appointments by start date and search the dates by Binary Search.
-  * Pros: Search operation for this will be faster.
-  * Cons: Additional overhead every time you add an appointment as you need to know where to insert the command.
-  You also need to update the sequence of storage file every time you schedule an appointment.
-
-#### 4.2.8 Complete Appointment
-
-##### 4.2.8.1 Implementation
+##### 4.2.5.1 Implementation
 Sets a specified appointment as completed.
 
 The unique classes associated to this command as shown from Diagram 4.2.8 are :
 1. `AppointmentCommandParser: AppointmentCompleteCommandParser`— Creates a new AppointmentCompleteCommand object.
 1. `AppointmentCommand: AppointmentCompleteCommand`— Identifies the specified appointment from list and passes it to ModelManager to set as completed.
 
-#### 4.2.9 List All Appointments
+#### 4.2.6 List All Appointments
 ![Sequence Diagram for command to list all appointments in addressbook](images/AppointmentListAllCommand.png)
 
-##### 4.2.9.1 Implementation
+##### 4.2.6.1 Implementation
 Listing all appointments from the appointment list.
 
 The unique classes associated to this command as shown from Diagram 4.2.9 are :
 1. `AppointmentCommandParser: AppointmentListAllCommandParser`— Creates a new AppointmentListAllCommand object.
 1. `AppointmentCommand: AppointmentListAllCommand`— Keeps appointment list unfiltered.
 
-#### 4.2.10 List Appointments (Upcoming)
-
-##### 4.2.10.1 Implementation
-Listing upcoming appointments works by filtering the appointment list to show only those appointments that are labelled as not completed and not missed.
-
-The unique classes associated to this command as shown from Diagram 4.2.10 are :
-1. `AppointmentWithFilterCommandParser: AppointmentListCommandParser`— Creates a new AppointmentListCommand object.
-1. `AppointmentFilter: SearchAppointmentFilter`— Checks if appointments are both not completed and not missed.
-1. `AppointmentWithFilterCommand: AppointmentListCommand`— Applies the filter to the appointment list.
-
-#### 4.2.11 List Appointments (Completed)
-
-##### 4.2.11.1 Implementation
-Listing completed appointments works by filtering the appointment list to show only those appointments that labelled as completed.
-
-The unique classes associated to this command as shown from Diagram 4.2.11 are :
-1. `AppointmentWithFilterCommandParser: AppointmentIsCompletedCommandParser`— Creates a new AppointmentIsCompletedCommand object.
-1. `AppointmentFilter: SearchAppointmentCompletedFilter`— Checks if appointments are completed.
-1. `AppointmentWithFilterCommand: AppointmentIsCompletedCommand`— Applies the filter to the appointment list.
-
-#### 4.2.12 List Appointment (Missed)
-
-##### 4.2.12.1 Implementation
-Listing missed appointments works by filtering the appointment list to show only those appointments that labelled as missed.
-
-The unique classes associated to this command as shown from Diagram 4.2.12 are :
-1. `AppointmentWithFilterCommandParser: AppointmentIsMissedCommandParser`— Creates a new AppointmentIsMissedCommand object.
-1. `AppointmentFilter: SearchAppointmentMissedFilter`— Checks if appointments are missed.
-1. `AppointmentWithFilterCommand: AppointmentIsMissedCommand`— Applies the filter to the appointment list.
 
 --------------------------------------------------------------------------------------------------------------------
 

@@ -78,7 +78,3 @@ deactivate AppointmentFindPatientCommand
 [<--LogicManager
 deactivate LogicManager
 @enduml
-
-1. `AppointmentFindPatientCommandParser: AppointmentFindPatientCommandParser`— Parses input arguments and creates a new AppointmentFindPatientCommand object.
-1. `SearchPatientFilter: SearchPatientFilter`— Checks if the appointment contains any patient which contains any keywords form the arguments.
-1. `AppointmentFindPatientCommand: AppointmentFindPatientCommand`— Applies the filter to the appointment list.
