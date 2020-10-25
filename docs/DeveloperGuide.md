@@ -169,7 +169,7 @@ Here is a summary of the logic flow:
 ##### 4.1.2 Focus
 As the previous Design section illustrated the general architecture of the app, this section aims to illustrate what happens at the deeper levels.
 This section will focus on what happens in the various command parsers, i.e. `AddCommandParser` , `EditCommandParser`.
-This section will also focus on what happens when the respective command is executed. 
+This section will also focus on what happens when the respective command is executed.
 
 #### 4.1.3 Add Patient
 
@@ -198,7 +198,7 @@ What happens at `DeleteCommandParser().parse(arguments)`:
 2. A new `PatientDeleteCommand` object will be created, storing the `Index` object and it is then returned to the `LogicManager`.
 3. This `PatientEditCommand` object will stored under the `command` variable and then be executed by the `LogicManager`.
 4. At execution, the `Index` object stored in the `PatientDeleteCommand` object will be used to locate the `Patient` object to be deleted.
-5. Located `Patient` object will be deleted. 
+5. Located `Patient` object will be deleted.
 
 This is how Deleting of Patients is implemented.
 
@@ -211,7 +211,7 @@ The arguments of an Edit command includes the `index` of the Patient selected fo
 
 What happens at `EditCommandParser().parse(arguments)`:
 1. An `EditPatientDescriptor` object is first created. An `EditPatientDescriptor` object contains all fields that a `Patient` has and acts as a placeholder for the changes.
-2. For each field input present in the argument, that respective field of the `EditPatientDescriptor` object will be set accordingly. 
+2. For each field input present in the argument, that respective field of the `EditPatientDescriptor` object will be set accordingly.
 PatientFindCommand This object contains the `index` of the `Patient` selected for changes, and the `EditPatientDescriptor` object created in Step 1 and fully modified by Step 2.
 4. This `PatientEditCommand` object will stored under the `command` variable and then be executed by the `LogicManager`.
 5. At execution, an `editedPatient` object will be created. This `editedPatient` object contains all fields that a Patient has and acts as a placeholder for both the changes from the `EditPatientDescriptor` object and unchanged fields of the original `Patient`.
@@ -302,13 +302,10 @@ The reason for having an `EditAppointmentDescriptor` is to enforce immutability 
 
 ##### 4.2.4.2 Structure
 
-Commands involving filtering of the appointment work similarly by using filters to obtain the appointments needed. For this section, we will be exploring `AppointmentFindPatientCommand` which filters Appointments containing Patients whose name includes the given user input. 
+Commands involving filtering of the appointment work similarly by using filters to obtain the appointments needed. For this section, we will be exploring `AppointmentFindPatientCommand` which filters Appointments containing Patients whose name includes the given user input.
 The Command, Parser and Predicate in the class diagram below can be replaced by different sets of values from Diagram 4.2.4.2.
- 
  ![Class Diagram for commands with filter](images/AppointmentFindPatientCommandDiagram.png)
  _Diagram 4.2.4.1 : Appointment Commands with Filters Class Diagram_
- 
-
  Filter Appointment Commands including both its Parser and Predicate are listed below:
 
 | Command                          | Parser                              | Predicate                        | Filters List by:                 |
