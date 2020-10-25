@@ -306,6 +306,29 @@ Formal: `a-completed`
 Shows a list of all appointments that have been missed.
 
 Formal: `a-missed`
+
+### 2.4 General Commands
+
+#### 2.4.1 Undo the previous command : `undo`
+Undo the previous command in Archangel.
+
+Format: `undo`
+
+* The command has no keywords
+
+Examples:
+* `p-edit 2 d/Review Session /t` followed by `undo` undoes the edit command and make no changes to Archangel.
+
+#### 2.4.2 Redo the previous command : `redo`
+Redo the previous command(`undo`) in Archangel.
+
+Format: `redo`
+
+* The command has no keywords
+
+Examples:
+* `p-edit 2 d/Review Session /t` followed by `undo` then `redo` redoes the `undo` command and carries out the edit command.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -338,3 +361,8 @@ Find Appointments by Current Date    | `a-today`
 Find Appointments by Current Week    | `a-upcoming`
 List Appointments by Completed       | `a-completed`
 List Appointments by Missed          | `a-missed`
+Undo the previous command            | `undo`
+Redo the previous command            | `redo`
+
+
+
