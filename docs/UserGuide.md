@@ -234,8 +234,8 @@ Sets the specified patient appointment in Archangel as completed.
 
 Format: `a-complete INDEX`
 
-* Edits the appointment at the specified INDEX. 
-* The index refers to the index number shown in the displayed appointment list. 
+* Edits the appointment at the specified INDEX.
+* The index refers to the index number shown in the displayed appointment list.
 * The index must be a positive integer 1, 2, 3, …​
 
 Examples:
@@ -327,7 +327,6 @@ Format: `undo`
 
 Examples:
 * `p-edit 2 d/Review Session /t` followed by `undo` undoes the edit command and make no changes to Archangel.
-
 #### 2.4.2 Redoing the previous command : `redo`
 Redo your previous command(`undo`) in Archangel.
 

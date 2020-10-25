@@ -20,5 +20,8 @@ JsonUserPrefsStorage .left.|> UserPrefsStorage
 JsonAddressBookStorage .left.|> AddressBookStorage
 JsonAddressBookStorage .down.> JsonSerializableAddressBookStorage
 JsonSerializableAddressBookStorage .right.> JsonSerializablePatient
+JsonSerializableAddressBookStorage .down.> JsonSerializableAppointment
 JsonSerializablePatient .right.> JsonAdaptedTag
+JsonSerializableAppointment .right.> JsonAdaptedTag
+
 @enduml
