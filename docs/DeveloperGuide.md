@@ -317,6 +317,7 @@ The Command, Parser and Predicate in the class diagram below can be replaced by 
 | 5. AppointmentIsMissedCommand    | AppointmentMissedCommandParser      | SearchAppointmentMissedFilter    | Missed Appointments              |
 | 6. AppointmentIsCompletedCommand | AppointmentIsCompletedCommandParser | SearchAppointmentCompletedFilter | Completed Appointments           |
 | 7. AppointmentListCommand        | AppointmentListCommandParser        | SearchAppointmentFilter          | Pending Appointments             |
+
  _Diagram 4.2.4.2 : Appointment Commands with Filters Class Diagram_
 
 
