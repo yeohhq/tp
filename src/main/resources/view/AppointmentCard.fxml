@@ -33,7 +33,6 @@
                <Font name="System Bold" size="15.0" />
             </font>
          </Label>
-   
                   </HBox>
          <Label fx:id="isCompleted" styleClass="cell_small_label" text="Completed:" wrapText="true" GridPane.columnIndex="6">
          <font>
