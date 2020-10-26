@@ -3,64 +3,130 @@
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Scene?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.stage.Stage?>
 
-<fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="Address App" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
+<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" resizable="false" title="Archangel" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
   <scene>
     <Scene>
-      <stylesheets>
-        <URL value="@DarkTheme.css" />
-        <URL value="@Extensions.css" />
-      </stylesheets>
-
-      <VBox>
-        <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
-          <Menu mnemonicParsing="false" text="File">
-            <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
-          </Menu>
-        </MenuBar>
-
-        <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
-          <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
-          </padding>
-        </StackPane>
-
-        <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
-                   minHeight="100" prefHeight="100" maxHeight="100">
-          <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
-          </padding>
-        </StackPane>
-
-        <VBox fx:id="patientList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
-          <padding>
-            <Insets top="10" right="10" bottom="10" left="10" />
-          </padding>
-          <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-        </VBox>
-        <VBox fx:id="appointmentList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
-          <padding>
-            <Insets top="10" right="10" bottom="10" left="10" />
-          </padding>
-          <StackPane fx:id="appointmentListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-        </VBox>
-
-        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
-      </VBox>
+         <BorderPane minHeight="900.0" minWidth="900.0" prefHeight="200.0" prefWidth="800.0">
+            <top>
+           <MenuBar fx:id="menuBar" BorderPane.alignment="CENTER">
+             <Menu mnemonicParsing="false" text="File">
+               <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
+             </Menu>
+             <Menu mnemonicParsing="false" text="Help">
+               <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
+             </Menu>
+           </MenuBar>
+            </top>
+            <center>
+               <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
+                  <children>
+                 <VBox fx:id="appointmentList" minWidth="500.0" prefHeight="9.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+                   <padding>
+                     <Insets bottom="10" left="10" right="10" top="10" />
+                   </padding>
+                        <Label text="Appointments" textFill="#37b4ee">
+                           <font>
+                              <Font size="26.0" />
+                           </font></Label>
+                        <GridPane minWidth="500.0" prefHeight="75.0" prefWidth="500.0">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="130.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="130.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="166.0" minWidth="10.0" prefWidth="200.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="130.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="130.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints />
+                           </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER_LEFT" minHeight="50.0" spacing="5">
+                                 <children>
+                                    <Label fx:id="id" styleClass="cell_big_label">
+                                       <minWidth>
+                                          <Region fx:constant="USE_PREF_SIZE" />
+                                       </minWidth>
+                                    </Label>
+                                    <Label fx:id="appointmentStartTime" prefHeight="105.0" prefWidth="70.0" styleClass="cell_big_label" text="Start Date" textFill="#37b4ee" wrapText="true">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font></Label>
+                                 </children>
+                              </HBox>
+                              <Label fx:id="isCompleted" styleClass="cell_small_label" text="Completed:" textFill="#37b4ee" wrapText="true" GridPane.columnIndex="6" />
+                              <Label fx:id="isMissed" styleClass="cell_small_label" text="Missed:" textFill="#37b4ee" wrapText="true" GridPane.columnIndex="5" />
+                              <Label fx:id="description" prefWidth="70.0" styleClass="cell_small_label" text="Details" textFill="#37b4ee" textOverrun="CLIP" wrapText="true" GridPane.columnIndex="3">
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="appointmentEndTime" prefHeight="105.0" prefWidth="70.0" styleClass="cell_big_label" text="End Date" textFill="#37b4ee" wrapText="true" GridPane.columnIndex="1" />
+                              <Label fx:id="patientName" styleClass="cell_small_label" text="Patient" textFill="#37b4ee" wrapText="true" GridPane.columnIndex="2" />
+                              <Label fx:id="description1" prefWidth="70.0" styleClass="cell_small_label" text="Tags" textFill="#37b4ee" textOverrun="CLIP" wrapText="true" GridPane.columnIndex="4">
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                        </GridPane>
+                   <StackPane fx:id="appointmentListPanelPlaceholder" minHeight="500.0" minWidth="500.0" prefHeight="728.0" prefWidth="500.0" style="-fx-background-color: #ffffff;" />
+                             <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" minWidth="500.0" prefHeight="100" styleClass="pane-with-border" />
+                             <StackPane fx:id="commandBoxPlaceholder" minWidth="500.0" styleClass="pane-with-border" VBox.vgrow="NEVER" />
+                 </VBox>
+                  </children>
+               </VBox>
+            </center>
+            <bottom>
+                    <StackPane fx:id="statusbarPlaceholder" BorderPane.alignment="CENTER" />
+            </bottom>
+            <left>
+               <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+            </left>
+            <right>
+               <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+                  <children>
+                          <VBox fx:id="patientList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+                   <padding>
+                     <Insets bottom="10" left="10" right="10" top="10" />
+                   </padding>
+                        <Label text="Patients" textFill="#37b4ee">
+                           <font>
+                              <Font name="System Bold" size="26.0" />
+                           </font></Label>
+                   <StackPane fx:id="personListPanelPlaceholder" prefHeight="590.0" prefWidth="320.0" VBox.vgrow="ALWAYS" />
+                 </VBox>
+                  </children>
+               </VBox>
+            </right>
+         </BorderPane>
+         <stylesheets>
+            <URL value="@Extensions.css" />
+            <URL value="@WhiteBlueTheme.css" />
+         </stylesheets>
     </Scene>
   </scene>
 </fx:root>
