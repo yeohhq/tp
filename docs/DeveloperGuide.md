@@ -442,7 +442,7 @@ Step 3. The user executes `add n/David …​` to add a new patient. The `add` c
 
 </div>
 
-Step 4. The user now decides that adding the patient was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoHistory()`, which will cause call `UserHistoryManager#undoHistory()`,popping the stack, adding the current history to `redoHistory` and removing the current history from `UserHistoryManager`. 
+Step 4. The user now decides that adding the patient was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoHistory()`, which will cause call `UserHistoryManager#undoHistory()`,popping the `userHistory` stack, adding the current history to `redoHistory` and removing the current history from `UserHistory`. 
 `AddressBook#setPatients` and `AddressBook#setAppointments` will be called, modifying the `AddressBook` and undo-ing the history.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
@@ -460,13 +460,13 @@ The following sequence diagram shows how the undo operation works:
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoHistory()`, which calls `UserHistoryManager#redoHistory()`, popping the stack
+The `redo` command does the opposite — it calls `Model#redoHistory()`, which calls `UserHistoryManager#redoHistory()`, popping the `redoHistory` stack,modifying the `AddressBook` and redo-ing the history.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+Step 5. The user then decides to execute the command `a-list`. Commands that do not modify the address book, such as `a-list`, will usually not call `Model#undoHistory()` or `Model#redoHistory()`. Thus, the `UserHistory` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
@@ -499,14 +499,7 @@ However, after many test runs, we concluded that the memory usage of the user hi
 * **Alternative 3:** Individual command is contained in a `reversible-pair-action` class. When we want to `undo`, we can just call its `pair command`.
   * Pros: Will use less memory (due to the fact that are not saving any additional data).
   * Cons: Very difficult to implement, some commands might not have `pair command`(e.g for `edit`, it is own pair command but pair command to call for undo is hard to implement).
-
-#### 4.3.2 Help
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
-
+  
 --------------------------------------------------------------------------------------------------------------------
 
 ## **5. Documentation, logging, testing, configuration, dev-ops**

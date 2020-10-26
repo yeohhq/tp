@@ -3,7 +3,7 @@
 skinparam ClassFontColor #000000
 skinparam ClassBorderColor #000000
 
-title After command "undo"
+title After command "list" (note that userHistory remains unchanged)
 
 package UserHistory <<rectangle>> {
     class State1 as "__uh0:InitialUserHistory__"
@@ -13,6 +13,8 @@ package UserHistory <<rectangle>> {
 
 State1 -[hidden]right-> State2
 State2 -[hidden]right-> State3
+
+hide State3
 
 class Pointer as "Current History" #FFA500
 
