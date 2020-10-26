@@ -13,8 +13,8 @@ Class HelpWindow
 Class ResultDisplay
 Class PatientListPanel
 Class PatientCard
-Class AppointmentCard
 Class AppointmentListPanel
+Class AppointmentCard
 Class StatusBarFooter
 Class CommandBox
 }
@@ -53,8 +53,8 @@ AppointmentCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow -down-|> UiPart
 
-AppointmentCard ..> Model
-PatientCard ..> Model
+AppointmentCard .> Model
+PatientCard .> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
