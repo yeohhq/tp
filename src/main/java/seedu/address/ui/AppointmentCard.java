@@ -1,5 +1,8 @@
 package seedu.address.ui;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
@@ -15,6 +18,7 @@ import seedu.address.model.appointment.Appointment;
 public class AppointmentCard extends UiPart<Region> {
 
     private static final String FXML = "AppointmentCard.fxml";
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd\n HH:mm");
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -41,7 +45,10 @@ public class AppointmentCard extends UiPart<Region> {
     @FXML
     private Label tag;
     @FXML
-    private Label appointmentTime;
+    private Label appointmentStartTime;
+    @FXML
+    private Label appointmentEndTime;
+
     @FXML
     private FlowPane tags;
 
@@ -52,12 +59,14 @@ public class AppointmentCard extends UiPart<Region> {
     public AppointmentCard(Appointment appointment, int displayedIndex) {
         super(FXML);
         this.appointment = appointment;
+
         id.setText(displayedIndex + ". ");
         description.setText(appointment.getDescription().toString());
         patientName.setText(appointment.getPatientString());
-        isCompleted.setText("Completed: " + appointment.isCompleted().toString());
-        appointmentTime.setText(appointment.getAppointmentTime().toString());
-        isMissed.setText("Missed: " + appointment.isMissed().toString());
+        isCompleted.setText(appointment.isMissed() ? "Yes" : "No");
+        appointmentStartTime.setText(appointment.getStartTime().format(formatter));
+        appointmentEndTime.setText(appointment.getEndTime().format(formatter));
+        isMissed.setText(appointment.isMissed() ? "Yes" : "No");
         appointment.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
