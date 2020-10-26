@@ -235,6 +235,9 @@ This is how Deleting of Patients is implemented.
 
 #### 4.1.5 Edit Patient
 
+![Interactions Inside the Logic Component for the `p-edit` Command](images/PatientEditCommandSequenceDiagram.png)
+<br></br>_Diagram 4.1.5 : PatientEditCommand Sequence Diagram_
+
 ##### Implementation
 
 The arguments of an Edit patient command includes the `INDEX` of the Patient selected for changes and the `changes` the User wants to make to the individual fields of a single `Patient`.
@@ -267,6 +270,11 @@ This is how Find Patient is implemented.
 
 --------------------------------------------------------------------------------------------------------------------
 ### 4.2 Appointment Commands
+
+In this section, we will introduce all Appointment-type commands and how they work. 
+Due to similar implementation of Appointment-type and Patient-type commands 
+(e.g. `p-edit` and `a-edit` make use of the same logic), we will be referring to the patient-type counterpart of the same command where applicable.
+Any noteworthy details will still be included under each Appointment-type command below.
 
 #### 4.2.1 Schedule Appointment
 
@@ -311,8 +319,6 @@ Subsequently, the `LogicManager` executes the `AppointmentDeleteCommand` object 
 --->
 
 #### 4.2.3 Edit Appointment
-
-![Interactions Inside the Logic Component for the `a-edit` Command](images/EditAppointmentSequenceDiagram.png)
 
 ##### Implementation
 The implementation of editing an appointment has a similar execution as editing a patient (see 4.1.5).
