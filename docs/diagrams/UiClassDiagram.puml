@@ -48,16 +48,18 @@ ResultDisplay --|> UiPart
 CommandBox --|> UiPart
 PatientListPanel --|> UiPart
 PatientCard --|> UiPart
+AppointmentListPanel --|> UiPart
 AppointmentCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow -down-|> UiPart
 
-PatientCard .> Model
 AppointmentCard .> Model
+PatientCard .> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
-PatientListPanel -[hidden]left- HelpWindow
+StatusBarFooter -[hidden]left- ResultDisplay
+AppointmentListPanel -[hidden]down- PatientCard
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter

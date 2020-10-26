@@ -15,7 +15,6 @@ participant ":Model" as Model MODEL_COLOR
 end box
 
 [-> LogicManager : execute(input)
-note left of LogicManager: Input example:\n"a-edit 1\nstart/2020-01-25 08:00\nend/2020-01-25 12:00\npt/1 d/check up"
 activate LogicManager
 
 LogicManager -> AddressBookParser : parseCommand(input)

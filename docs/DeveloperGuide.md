@@ -157,6 +157,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 ## **4. Implementation**
 
+As the previous Design section illustrated the general architecture of the app, this section aims to illustrate what happens at the deeper levels.
 This section describes some noteworthy details on how certain features are implemented.
 
 ### 4.1 Patient Commands
@@ -199,7 +200,7 @@ This section will also focus on what happens when the respective commands are ex
 ##### Implementation
 
 The Add patient command has a highly similar logic and implementation as a Delete patient command (see Diagram 4.1.2 and 3.3.2).
-The only notable difference is that an Add patient command does not require parsing of an `INDEX`. (i.e. `parse("1")` is not applicable)
+The only notable difference is that an Add patient command does not require parsing of an `Index`. (i.e. `parse("1")` is not applicable)
 <br></br>On execution, the `Patient` object stored in the `PatientAddCommand` object will be added to the Model.
 
 <!--
@@ -219,7 +220,7 @@ This is how Adding of Patients is implemented.
 
 ##### Implementation
 
-The arguments of a Delete patient command includes the `INDEX` of the Patient to be deleted (see Diagram 4.1.2 and 3.3.2).
+The arguments of a Delete patient command includes the `Index` of the Patient to be deleted (see Diagram 4.1.2 and 3.3.2).
 <br></br>On execution, the `Index` object stored in the `PatientDeleteCommand` object will be used to locate the `Patient` object to be deleted from the Model.
 
 <!--
@@ -228,7 +229,7 @@ What happens at `DeleteCommandParser().parse(arguments)`:
 2. A new `PatientDeleteCommand` object will be created, storing the `Index` object and it is then returned to the `LogicManager`.
 3. This `PatientEditCommand` object will stored under the `command` variable and then be executed by the `LogicManager`.
 4. At execution, the `Index` object stored in the `PatientDeleteCommand` object will be used to locate the `Patient` object to be deleted.
-5. Located `Patient` object will be deleted. 
+5. Located `Patient` object will be deleted.
 
 This is how Deleting of Patients is implemented.
 --->
@@ -240,13 +241,12 @@ This is how Deleting of Patients is implemented.
 
 ##### Implementation
 
-The arguments of an Edit patient command includes the `INDEX` of the Patient selected for changes and the `changes` the User wants to make to the individual fields of a single `Patient`.
+With reference to Diagram 4.1.5 above, the arguments of an Edit patient command includes the `Index` of the Patient selected for changes and the `changes` the User wants to make to the individual fields of a single `Patient`.
 <br></br>
-<!-- TO INCLUDE: PatientEditCommandDiagram --->
 What happens at `EditCommandParser().parse(arguments)`:
 1. An `EditPatientDescriptor` object is first created. An `EditPatientDescriptor` object contains all fields that a `Patient` has and acts as a placeholder for the changes.
-2. For each field input present in the argument, that respective field of the `EditPatientDescriptor` object will be set accordingly. 
-PatientFindCommand This object contains the `index` of the `Patient` selected for changes, and the `EditPatientDescriptor` object created in Step 1 and fully modified by Step 2.
+2. For each field input present in the argument, that respective field of the `EditPatientDescriptor` object will be set accordingly.
+PatientFindCommand This object contains the `Index` of the `Patient` selected for changes, and the `EditPatientDescriptor` object created in Step 1 and fully modified by Step 2.
 4. This `PatientEditCommand` object will stored under the `command` variable and then be executed by the `LogicManager`.
 5. At execution, an `editedPatient` object will be created. This `editedPatient` object contains all fields that a Patient has and acts as a placeholder for both the changes from the `EditPatientDescriptor` object and unchanged fields of the original `Patient`.
 6. Since the `editedPatient` object will contain the corrected set of fields to be reflected on the original Patient, the `PatientEditCommand` will replace the current `Patient` object with the `editedPatient` object.
@@ -278,7 +278,7 @@ Any noteworthy details will still be included under each Appointment-type comman
 
 #### 4.2.1 Schedule Appointment
 
-##### Implementation
+##### 4.2.1.1 Implementation
 The implementation of scheduling an appointment has a similar execution as adding a patient (see 4.1.3).
 
 <!--
@@ -288,13 +288,13 @@ Subsequently, the `LogicManager` executes the `AppointmentScheduleCommand` objec
 
 The `Appointment` class stores relevant fields (e.g. `AppointmentTime`, `Description`) and the `Patient`, **and/or** a string representing the patient's index in the `ObservableList<Patient>`, depending on which constructor is invoked during execution.
 
-##### Reason for design of implementation:
+##### 4.2.1.2 Reason for design of implementation:
 <!-- TO INCLUDE: AppointmentEditCommandActivityDiagram --->
 The reason for having 2 `Appointment` constructors is to improve the ease of scheduling an appointment by the user using the CLI.
 
 To address the problem of mandatory fields being highly time-consuming, we have decided to allow users to simply input a `patientIndex` to identify the patient from the visible `ObservableList<Patient>` without being concerned with typing the exact name or details of the desired patient to assign to the `Appointment`.
 
-##### Design consideration:
+##### 4.2.1.3 Design consideration:
 
 ###### Aspect: How `Patient` is stored in an `Appointment` object
 * **Alternative 1 (current choice):** Saves the `Patient` object and/or the `patientIndex` String
@@ -320,7 +320,7 @@ Subsequently, the `LogicManager` executes the `AppointmentDeleteCommand` object 
 
 #### 4.2.3 Edit Appointment
 
-##### Implementation
+##### 4.2.3.1 Implementation
 The implementation of editing an appointment has a similar execution as editing a patient (see 4.1.5).
 
 <!--
@@ -328,10 +328,10 @@ The user's input is parsed by the `EditAppointmentCommandParser` class which ext
 Subsequently, the `LogicManager` executes the `AppointmentEditCommand` object to edit the appointment with the given index in `ObservableList<Appointment>`.
 --->
 
-##### Reason for design of implementation:
+##### 4.2.3.2 Reason for design of implementation:
 The reason for having an `EditAppointmentDescriptor` is to enforce immutability by always creating the edited appointment as a new `Appointment` object.
 
-##### Design consideration:
+##### 4.2.3.3 Design consideration:
 
 ###### Aspect: How `Patient` is edited in an `Appointment` object
 * **Alternative 1 (current choice):** Edits the `Patient` in the `Appointment` using a `patientIndex` String (e.g. `a-edit 1 pt/2`)
@@ -343,31 +343,41 @@ The reason for having an `EditAppointmentDescriptor` is to enforce immutability 
   * Cons: Greater difficulty for users to input the new `Patient` since the `patientName` may not be unique nor accurate to an existing patient in the patient list.
 
 
-#### 4.2.4 Find Appointment (Patient)
-![Sequence Diagram for commands with filter](images/AppointmentWithFilterCommand.png)
-_Diagram 4.2.4 : Appointment Commands with Filters Sequence Diagram_
+#### 4.2.4 Filter Appointment Commands
 
-##### Implementation
+##### 4.2.4.1 Structure
+
+Commands involving filtering of the appointment work similarly by using filters to obtain the appointments needed. For this section, we will be exploring `AppointmentFindPatientCommand` which filters Appointments containing Patients whose name includes the given user input.
+The Command, Parser and Predicate in the class diagram below can be replaced by different sets of values from Diagram 4.2.4.1b.
+ ![Class Diagram for commands with filter](images/AppointmentFindPatientCommandDiagram.png)
+ <br></br>_Diagram 4.2.4.1a : Appointment Commands with Filters Class Diagram_
+ <br></br>Filter Appointment Commands including both its Parser and Predicate are listed below:
+
+| Command                          | Parser                              | Predicate                        | Filters List by:                 |
+|----------------------------------|-------------------------------------|----------------------------------|----------------------------------|
+| 1. AppointmentFindPatientCommand | AppointmentFindPatientCommandParser | SearchPatientFilter              | Patient Name                     |
+| 2. AppointmentTodayCommand       | AppointmentTodayCommandParser       | SearchAppointmentTodayFilter     | Appointments occurring today     |
+| 3. AppointmentWeekCommand        | AppointmentWeekCommandParser        | SearchAppointmentWeekFilter      | Appointments occurring this week |
+| 4. AppointmentTagCommand         | AppointmentTagCommandParser         | SearchAppointmentTagsFilter      | Appointment Tag                  |
+| 5. AppointmentIsMissedCommand    | AppointmentMissedCommandParser      | SearchAppointmentMissedFilter    | Missed Appointments              |
+| 6. AppointmentIsCompletedCommand | AppointmentIsCompletedCommandParser | SearchAppointmentCompletedFilter | Completed Appointments           |
+| 7. AppointmentListCommand        | AppointmentListCommandParser        | SearchAppointmentFilter          | Pending Appointments             |
+
+ <br></br>_Diagram 4.2.4.1b : Appointment Commands with Filters Class Diagram_
+
+##### 4.2.4.2 Implementation
 The search for appointment by patient name works by filtering the appointment list to show only those appointments with
 the given patient name.
 
-The unique classes associated to this command as shown from Diagram 4.2.4 are :
-1. `AppointmentWithFilterCommandParser: AppointmentFindPatientCommandParser`— Parses input arguments and creates a new AppointmentFindPatientCommand object.
-2. `AppointmentFilter: SearchPatientFilter`— Checks if the appointment contains any patient which contains any keywords form the arguments.
-3. `AppointmentWithFilterCommand: AppointmentFindPatientCommand`— Applies the filter to the appointment list.
+![Sequence Diagram for commands with filter](images/AppointmentFindPatientSequenceDiagram.png)
+<br></br>_Diagram 4.2.4.2 : Appointment Commands with Filters Sequence Diagram_
 
-#### 4.2.5 Find Appointment (Tag)
+The unique classes associated to `AppointmentFindPatientCommand`  command:
+1. `AppointmentFindPatientCommandParser`— Parses input arguments and creates a new AppointmentFindPatientCommand object.
+2. `SearchPatientFilter`— Checks if the appointment contains any patient which contains any keywords form the arguments.
+3. `AppointmentFindPatientCommand`— Applies the filter to the appointment list.
 
-##### Implementation
-The search for appointment by tags works by filtering the appointment list to show only those appointments with
-the given tags.
-
-The unique classes associated to this command as shown from Diagram 4.2.4 are :
-1. `AppointmentWithFilterCommandParser: AppointmentTagCommandParser`— Parses input arguments and creates a new AppointmentTagCommand object.
-2. `AppointmentFilter: SearchAppointmentTagsFilter`— Checks if the appointment contains any tags with the keywords form the arguments.
-3. `AppointmentWithFilterCommand: AppointmentTagCommand`— Applies the filter to the appointment list.
-
-##### Design considerations
+##### 4.2.4.3 Design considerations
 * **Alternative 1 (current choice):** Store the appointments by date added.
   * Pros: Easy to implement and less overhead operations when using adding appointments.
   * Cons: May not be the fastest way to search for appointments.
@@ -378,86 +388,25 @@ The unique classes associated to this command as shown from Diagram 4.2.4 are :
   You also need to update the sequence of storage file by tag every time you schedule an appointment. In addition,
   there might be a conflict for those appointments with more than one tags.
 
-#### 4.2.6 Find Appointment (Today)
-
-##### Implementation
-The search for appointment by the current date works by filtering the appointment list to show only those appointments with
-that occurs on the current day.
-
-The unique classes associated to this command as shown from Diagram 4.2.4 are :
-1. `AppointmentWithFilterCommandParser: AppointmentTodayCommandParser`— Creates a new AppointmentTodayCommand object.
-2. `AppointmentFilter: SearchAppointmentTodayFilter`— Checks if the appointment occurs within the current day.
-3. `AppointmentWithFilterCommand: AppointmentTodayCommand`— Applies the filter to the appointment list.
-
-#### 4.2.7 Find Appointment (Current Week)
-
-##### Implementation
-The search for appointment by the current week works by filtering the appointment list to show only those appointments with
-that occurs on the same week (Sunday to Saturday)
-
-The unique classes associated to this command as shown from Diagram 4.2.4 are :
-1. `AppointmentWithFilterCommandParser: AppointmentWeekCommandParser`— Creates a new AppointmentTodayCommand object.
-2. `AppointmentFilter: SearchAppointmentWeekFilter`— Checks if the appointment occurs within the current week.
-3. `AppointmentWithFilterCommand: AppointmentWeekCommand`— Applies the filter to the appointment list.
-
-##### Design considerations
-* **Alternative 1 (current choice):** Store the appointments by date added.
-  * Pros: Easy to implement and less overhead operations when using adding appointments.
-  * Cons: May not be the fastest way to search for appointments.
-
-* **Alternative 2:** Store the appointments by start date and search the dates by Binary Search.
-  * Pros: Search operation for this will be faster.
-  * Cons: Additional overhead every time you add an appointment as you need to know where to insert the command.
-  You also need to update the sequence of storage file every time you schedule an appointment.
-
-#### 4.2.8 Complete Appointment
-
-##### Implementation
-Sets a specified appointment as completed.
-
-The unique classes associated to this command as shown from Diagram 4.2.8 are :
-1. `AppointmentCommandParser: AppointmentCompleteCommandParser`— Creates a new AppointmentCompleteCommand object.
-2. `AppointmentCommand: AppointmentCompleteCommand`— Identifies the specified appointment from list and passes it to ModelManager to set as completed.
-
-#### 4.2.9 List All Appointments
+#### 4.2.5 List All Appointments
 ![Sequence Diagram for command to list all appointments in addressbook](images/AppointmentListAllCommand.png)
+<br></br>_Diagram 4.2.5 : Appointment List All Command Sequence Diagram_
 
 ##### Implementation
 Listing all appointments from the appointment list.
 
-The unique classes associated to this command as shown from Diagram 4.2.9 are :
+The unique classes associated to this command as shown from Diagram 4.2.6 are :
 1. `AppointmentCommandParser: AppointmentListAllCommandParser`— Creates a new AppointmentListAllCommand object.
 2. `AppointmentCommand: AppointmentListAllCommand`— Keeps appointment list unfiltered.
 
-#### 4.2.10 List Appointments (Upcoming)
+#### 4.2.6 Complete Appointment
 
 ##### Implementation
-Listing upcoming appointments works by filtering the appointment list to show only those appointments that are labelled as not completed and not missed.
+Sets a specified appointment as completed.
 
-The unique classes associated to this command as shown from Diagram 4.2.10 are :
-1. `AppointmentWithFilterCommandParser: AppointmentListCommandParser`— Creates a new AppointmentListCommand object.
-2. `AppointmentFilter: SearchAppointmentFilter`— Checks if appointments are both not completed and not missed.
-3. `AppointmentWithFilterCommand: AppointmentListCommand`— Applies the filter to the appointment list.
-
-#### 4.2.11 List Appointments (Completed)
-
-##### Implementation
-Listing completed appointments works by filtering the appointment list to show only those appointments that labelled as completed.
-
-The unique classes associated to this command as shown from Diagram 4.2.11 are :
-1. `AppointmentWithFilterCommandParser: AppointmentIsCompletedCommandParser`— Creates a new AppointmentIsCompletedCommand object.
-2. `AppointmentFilter: SearchAppointmentCompletedFilter`— Checks if appointments are completed.
-3. `AppointmentWithFilterCommand: AppointmentIsCompletedCommand`— Applies the filter to the appointment list.
-
-#### 4.2.12 List Appointment (Missed)
-
-##### Implementation
-Listing missed appointments works by filtering the appointment list to show only those appointments that labelled as missed.
-
-The unique classes associated to this command as shown from Diagram 4.2.12 are :
-1. `AppointmentWithFilterCommandParser: AppointmentIsMissedCommandParser`— Creates a new AppointmentIsMissedCommand object.
-2. `AppointmentFilter: SearchAppointmentMissedFilter`— Checks if appointments are missed.
-3. `AppointmentWithFilterCommand: AppointmentIsMissedCommand`— Applies the filter to the appointment list.
+The unique classes associated to this command as shown from Diagram 4.2.5 are :
+1. `AppointmentCommandParser: AppointmentCompleteCommandParser`— Creates a new AppointmentCompleteCommand object.
+2. `AppointmentCommand: AppointmentCompleteCommand`— Identifies the specified appointment from list and passes it to ModelManager to set as completed.
 
 --------------------------------------------------------------------------------------------------------------------
 
