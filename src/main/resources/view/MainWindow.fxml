@@ -19,7 +19,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="Archangel" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" resizable="false" title="Archangel" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -93,7 +93,7 @@
                               </Label>
                            </children>
                         </GridPane>
-                   <StackPane fx:id="appointmentListPanelPlaceholder" minHeight="500.0" minWidth="500.0" style="-fx-background-color: #ffffff;" />
+                   <StackPane fx:id="appointmentListPanelPlaceholder" minHeight="500.0" minWidth="500.0" prefHeight="728.0" prefWidth="500.0" style="-fx-background-color: #ffffff;" />
                              <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" minWidth="500.0" prefHeight="100" styleClass="pane-with-border" />
                              <StackPane fx:id="commandBoxPlaceholder" minWidth="500.0" styleClass="pane-with-border" VBox.vgrow="NEVER" />
                  </VBox>
