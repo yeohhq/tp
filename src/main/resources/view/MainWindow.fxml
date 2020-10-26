@@ -39,13 +39,11 @@
                         <Label text="Appointments" />
                    <StackPane fx:id="appointmentListPanelPlaceholder" style="-fx-background-color: #ffffff;" VBox.vgrow="ALWAYS" />
                  </VBox>
-         
                           <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
                    <padding>
                      <Insets bottom="5" left="10" right="10" top="5" />
                    </padding>
                  </StackPane>
-         
                           <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
                    <padding>
                      <Insets bottom="5" left="10" right="10" top="5" />
@@ -55,7 +53,6 @@
                </VBox>
             </center>
             <bottom>
-   
                     <StackPane fx:id="statusbarPlaceholder" BorderPane.alignment="CENTER" />
             </bottom>
             <left>
