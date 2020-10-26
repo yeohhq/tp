@@ -321,8 +321,7 @@ Format: `undo`
 
 * This command has no keywords
 * This command does not work with filter commands (`a-completed`,`a-missed`,`a-upcoming`,`a-today`,`a-find`,`a-list`)
-  as its implementation purpose is to assist the user in undo-ing his changes, filter commands do not make changes to 
-  the data.
+  as its implementation purpose is to assist the user in undo-ing his changes, filter commands do not make changes to the data.
 * This command can be succeeded by a `redo` command.
 
 Examples:

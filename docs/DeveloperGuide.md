@@ -22,7 +22,7 @@ inside the software.
 ### 1.3 How to use this guide
 This Developer Guide is written in a top-down manner, starting with the overall architecture of Archangel, followed by in-depth descriptions of individual features implemented.
 <br></br>To navigate to a specific section in this guide, you can click on individual headers in the **Table of Contents** at the top of this markdown document to jump to that section.
-Within each section, we have also provided brief introductory statements where necessary. 
+Within each section, we have also provided brief introductory statements where necessary.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -165,7 +165,7 @@ This section describes some noteworthy details on how certain features are imple
 ##### 4.1.1 Before we dive in
 
 It is important to know the architectural design of the app to be able to understand this section.
-Please ensure that you have read section **3.3 Logic components** before diving deeper into this section as most implemented features make use of the same principles.  
+Please ensure that you have read section **3.3 Logic components** before diving deeper into this section as most implemented features make use of the same principles.
 
 <!-- // Commented this out as it seems to be mostly repeating section 3.3
 Here is a summary of the logic flow:
@@ -192,7 +192,7 @@ In each `PatientXYZCommand` class, there are static messages as follows:
 
 As the previous Design section illustrated the general architecture of the app, this section aims to illustrate what happens at the deeper levels.
 This section will focus on what happens in the various command parsers, i.e. `AddCommandParser` , `EditCommandParser`.
-This section will also focus on what happens when the respective commands are executed. 
+This section will also focus on what happens when the respective commands are executed.
 --->
 
 #### 4.1.3 Add Patient
@@ -271,8 +271,8 @@ This is how Find Patient is implemented.
 --------------------------------------------------------------------------------------------------------------------
 ### 4.2 Appointment Commands
 
-In this section, we will introduce all Appointment-type commands and how they work. 
-Due to similar implementation of Appointment-type and Patient-type commands 
+In this section, we will introduce all Appointment-type commands and how they work.
+Due to similar implementation of Appointment-type and Patient-type commands
 (e.g. `p-edit` and `a-edit` make use of the same logic), we will be referring to the patient-type counterpart of the same command where applicable.
 Any noteworthy details will still be included under each Appointment-type command below.
 
@@ -624,7 +624,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. The appointment has conflict with another appointment.
-    
+
     * 1a1. AddressBook shows an error message.
 
       Use case resumes at step 1.
