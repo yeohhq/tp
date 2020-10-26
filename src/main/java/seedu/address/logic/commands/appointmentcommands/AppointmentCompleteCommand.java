@@ -61,7 +61,8 @@ public class AppointmentCompleteCommand extends Command {
         assert appointmentToComplete.isMissed() : ASSERT_ALREADY_MISSED;
 
         model.completeAppointment(appointmentToComplete);
-        return new CommandResult(String.format(MESSAGE_COMPLETE_APPOINTMENT_SUCCESS, appointmentToComplete));
+        return new CommandResult(String.format(MESSAGE_COMPLETE_APPOINTMENT_SUCCESS, appointmentToComplete),
+                  false, false, true);
     }
 
     @Override
