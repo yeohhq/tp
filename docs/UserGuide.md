@@ -327,6 +327,7 @@ Format: `undo`
 
 Examples:
 * `p-edit 2 d/Review Session /t` followed by `undo` undoes the edit command and make no changes to Archangel.
+
 #### 2.4.2 Redoing the previous command : `redo`
 Redo your previous command(`undo`) in Archangel.
 
