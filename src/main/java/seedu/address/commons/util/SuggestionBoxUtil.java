@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class SuggestionBoxUtil {
-    static private ArrayList<String> suggestions;
-
+    /**
+     * Creates a list a default suggestions.
+     */
     public static ArrayList<String> createSuggestions() {
-        suggestions = new ArrayList<>();
+        ArrayList<String> suggestions = new ArrayList<>();
         suggestions.addAll(
                 Arrays.asList(
                         //for patient commands
@@ -35,8 +36,7 @@ public class SuggestionBoxUtil {
                         "redo"
                 )
         );
-
-                return suggestions;
+        return suggestions;
     }
 
 }
