@@ -442,7 +442,7 @@ Step 3. The user executes `add n/David …​` to add a new patient. The `add` c
 
 </div>
 
-Step 4. The user now decides that adding the patient was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoHistory()`, which will cause call `UserHistoryManager#undoHistory()`,popping the `userHistory` stack, adding the current history to `redoHistory` and removing the current history from `UserHistory`. 
+Step 4. The user now decides that adding the patient was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoHistory()`, which will cause call `UserHistoryManager#undoHistory()`,popping the `userHistory` stack, adding the current history to `redoHistory` and removing the current history from `UserHistory`.
 `AddressBook#setPatients` and `AddressBook#setAppointments` will be called, modifying the `AddressBook` and undo-ing the history.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
@@ -499,7 +499,6 @@ However, after many test runs, we concluded that the memory usage of the user hi
 * **Alternative 3:** Individual command is contained in a `reversible-pair-action` class. When we want to `undo`, we can just call its `pair command`.
   * Pros: Will use less memory (due to the fact that are not saving any additional data).
   * Cons: Very difficult to implement, some commands might not have `pair command`(e.g for `edit`, it is own pair command but pair command to call for undo is hard to implement).
-  
 --------------------------------------------------------------------------------------------------------------------
 
 ## **5. Documentation, logging, testing, configuration, dev-ops**
