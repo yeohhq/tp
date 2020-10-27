@@ -76,6 +76,8 @@ public class AppointmentCompleteCommand extends Command {
 
     /**
      * Creates and returns a completed {@code Appointment} with the details of {@code appointmentToComplete).
+     * @param appointmentToComplete
+     * @return
      */
     private static Appointment createCompletedAppointment(Appointment appointmentToComplete) {
 
