@@ -74,11 +74,6 @@ public class AppointmentCompleteCommand extends Command {
                   false, false, true);
     }
 
-    /**
-     * Creates and returns a completed {@code Appointment} with the details of {@code appointmentToComplete).
-     * @param appointmentToComplete
-     * @return
-     */
     private static Appointment createCompletedAppointment(Appointment appointmentToComplete) {
 
         assert appointmentToComplete != null;
