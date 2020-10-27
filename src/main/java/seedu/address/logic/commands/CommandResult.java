@@ -27,7 +27,7 @@ public class CommandResult {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
-        this.canUndo = true;
+        this.canUndo = false;
     }
 
     /**
@@ -35,7 +35,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, true);
+        this(feedbackToUser, false, false, false);
     }
 
     /**

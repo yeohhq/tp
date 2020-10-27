@@ -46,20 +46,6 @@ public class UiManager implements Ui {
             mainWindow = new MainWindow(primaryStage, logic);
             mainWindow.show(); //This should be called before creating other UI parts
             mainWindow.fillInnerParts();
-
-            /*calender stuff
-            BorderPane root = new BorderPane();
-            Scene scene = new Scene(root, 400, 400);
-            DatePickerSkin datePickerSkin = new DatePickerSkin(new DatePicker(LocalDate.now()));
-            Node popupContent = datePickerSkin.getPopupContent();
-            root.setCenter(popupContent);
-            calenderWindow = new MainWindow(anotherStage,logic);
-            calenderWindow.show();
-            anotherStage.setScene(scene);
-             */
-
-
-
         } catch (Throwable e) {
             logger.severe(StringUtil.getDetails(e));
             showFatalErrorDialogAndShutdown("Fatal error during initializing", e);
