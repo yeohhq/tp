@@ -1,9 +1,15 @@
 package seedu.address.ui;
 
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
+import jfxtras.icalendarfx.VCalendar;
 import jfxtras.scene.control.agenda.icalendar.ICalendarAgenda;
+import seedu.address.model.appointment.Appointment;
+
+import static seedu.address.commons.util.VEventConverterUtil.apptsToVEventsConverter;
 
 /**
  * A ui for the calendar displayed in one of the tabs of the application.
@@ -20,11 +26,20 @@ public class CalendarPanel extends UiPart<Region> {
     /**
      * Creates a {@code Calendar} with a blank {@code Agenda}.
      */
-    public CalendarPanel() { // TODO: change constructor to enable linking to main logic
+    public CalendarPanel(ObservableList<Appointment> apptList) { // TODO: change constructor to enable linking to main logic
         super(FXML);
-        calendar = new ICalendarAgenda();
+        VCalendar vCalendar = new VCalendar().withVEvents(apptsToVEventsConverter(apptList));
+        calendar = new ICalendarAgenda(vCalendar);
         disableMouseInteraction(calendar);
         calendarPlaceholder.getChildren().add(calendar);
+        apptList.addListener((ListChangeListener.Change<? extends Appointment> c) -> {
+            calendarPlaceholder.getChildren().clear();
+            VCalendar vCalendarNew = new VCalendar().withVEvents(apptsToVEventsConverter(c.getList()));
+            calendar = new ICalendarAgenda(vCalendarNew);
+            disableMouseInteraction(calendar);
+            calendarPlaceholder.getChildren().add(calendar);
+        });
+
     }
 
     private static void disableMouseInteraction(ICalendarAgenda agenda) {

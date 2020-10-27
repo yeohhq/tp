@@ -126,7 +126,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
 
-        calendarPanel = new CalendarPanel();
+        calendarPanel = new CalendarPanel(logic.getFilteredAppointmentList());
         Region r = calendarPanel.getRoot();
         calendarPanelPlaceholder.getChildren().add(r);
 
