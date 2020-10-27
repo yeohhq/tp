@@ -12,7 +12,6 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentTime;
 import seedu.address.model.appointment.Description;
@@ -62,7 +61,7 @@ public class AppointmentCompleteCommand extends Command {
         if (appointmentToComplete.isCompleted()) {
             throw new CommandException(MESSAGE_ALREADY_COMPLETE);
         } //else if (appointmentToComplete.isMissed()) {
-          //  throw new CommandException(MESSAGE_ALREADY_MISSED);
+        //      throw new CommandException(MESSAGE_ALREADY_MISSED);
         // }
         assert appointmentToComplete.isCompleted() : ASSERT_ALREADY_COMPLETE;
         // assert appointmentToComplete.isMissed() : ASSERT_ALREADY_MISSED;
@@ -76,7 +75,7 @@ public class AppointmentCompleteCommand extends Command {
     }
 
     /**
-     * Creates and returns a completed {@code Appointment} with the details of {@code AppointmentToComplete).
+     * Creates and returns a completed {@code Appointment} with the details of {@code appointmentToComplete).
      */
     private static Appointment createCompletedAppointment(Appointment appointmentToComplete) {
 
