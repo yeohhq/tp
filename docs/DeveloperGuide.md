@@ -727,3 +727,10 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 2. _{ more test cases …​ }_
+
+### 8.1 Acknowledgments
+
+####8.1.1 Code Related
+1. Implementation of Calendar feature using iCalendarAgenda
+   Credits to  Tae Kwon(https://github.com/ktaekwon000) from CS2103T-W11-4 for sharing his code base and knowledge
+   of iCalendarAgenda.

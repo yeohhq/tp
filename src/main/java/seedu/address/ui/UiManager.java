@@ -1,17 +1,11 @@
 package seedu.address.ui;
 
-import java.time.LocalDate;
 import java.util.logging.Logger;
 
 import javafx.application.Platform;
-import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.skin.DatePickerSkin;
 import javafx.scene.image.Image;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
@@ -52,21 +46,6 @@ public class UiManager implements Ui {
             mainWindow = new MainWindow(primaryStage, logic);
             mainWindow.show(); //This should be called before creating other UI parts
             mainWindow.fillInnerParts();
-
-            /*
-            BorderPane root = new BorderPane();
-            Scene scene = new Scene(root, 400, 400);
-            DatePickerSkin datePickerSkin = new DatePickerSkin(new DatePicker(LocalDate.now()));
-            Node popupContent = datePickerSkin.getPopupContent();
-            root.setCenter(popupContent);
-            calenderWindow = new MainWindow(anotherStage,logic);
-            calenderWindow.show();
-            anotherStage.setScene(scene);
-            */
-
-
-
-
         } catch (Throwable e) {
             logger.severe(StringUtil.getDetails(e));
             showFatalErrorDialogAndShutdown("Fatal error during initializing", e);

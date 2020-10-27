@@ -51,7 +51,6 @@ public class CommandResult {
         this.showHelp = showHelp;
         this.exit = exit;
         this.canUndo = canUndo;
-        System.out.println(canUndo);
     }
 
     public String getFeedbackToUser() {

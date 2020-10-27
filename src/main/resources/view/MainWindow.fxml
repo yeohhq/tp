@@ -43,7 +43,11 @@
                              <padding>
                                  <Insets bottom="10" left="10" right="10" top="10" />
                              </padding>
-                             <Label text="Calendar" />
+                             <Label text="Calendar" textFill="#37b4ee">
+                             <font>
+                                 <Font name="System Bold" size="26.0" />
+                             </font>
+                             </Label>
                              <StackPane fx:id="calendarPanelPlaceholder" VBox.vgrow="ALWAYS" />
                          </VBox>
                      </children>
