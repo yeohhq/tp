@@ -51,7 +51,8 @@ public class PatientDeleteCommand extends Command {
 
         // patient fields has changed, need to delete appointments that contain the deleted patient
         assert patientToDelete != null;
-        SearchPatientFilter patientFilter = new SearchPatientFilter(Collections.singletonList(patientToDelete.getName().fullName));
+        SearchPatientFilter patientFilter =
+                new SearchPatientFilter(Collections.singletonList(patientToDelete.getName().fullName));
         model.updateFilteredAppointmentList(patientFilter);
 
         if (model.getFilteredAppointmentList() != null) { // appointments containing deleted patient exists

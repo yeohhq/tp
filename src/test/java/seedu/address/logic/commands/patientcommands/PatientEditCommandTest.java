@@ -72,7 +72,7 @@ public class PatientEditCommandTest {
     }
 
     @Test
-    public void execute_noFieldSpecifiedUnfilteredList_success() {
+    public void execute_noFieldSpecifiedUnfilteredList_failure() {
         PatientEditCommand patientEditCommand =
                                         new PatientEditCommand(INDEX_FIRST_PATIENT, new EditPatientDescriptor());
         Patient editedPatient = model.getFilteredPatientList().get(INDEX_FIRST_PATIENT.getZeroBased());

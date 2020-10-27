@@ -23,7 +23,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.appointmentcommands.AppointmentEditCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
@@ -102,8 +101,8 @@ public class PatientEditCommand extends Command {
         model.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
 
         // patient fields has changed, need to update appointments that contain the edited patient
-        assert !patientToEdit.isSamePatient(editedPatient);
-        SearchPatientFilter patientFilter = new SearchPatientFilter(Collections.singletonList(patientToEdit.getName().fullName));
+        SearchPatientFilter patientFilter =
+                new SearchPatientFilter(Collections.singletonList(patientToEdit.getName().fullName));
         model.updateFilteredAppointmentList(patientFilter);
 
         if (model.getFilteredAppointmentList() != null) { // appointments containing edited patient exists
