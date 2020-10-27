@@ -88,6 +88,7 @@ public class AppointmentScheduleCommand extends Command {
                 throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
             }
             model.addAppointment(toSchedule);
+            model.getFilteredAppointmentList();
 
             return new CommandResult(String.format(MESSAGE_SUCCESS, toSchedule));
         } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
