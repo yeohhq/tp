@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PATIENTS;
 
 import java.util.Collections;
@@ -24,6 +25,8 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.filters.appointmentfilters.SearchPatientFilter;
 import seedu.address.model.patient.Address;
 import seedu.address.model.patient.Birthdate;
 import seedu.address.model.patient.BloodType;
@@ -96,6 +99,19 @@ public class PatientEditCommand extends Command {
 
         model.setPatient(patientToEdit, editedPatient);
         model.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
+
+        // patient fields has changed, need to update appointments that contain the edited patient
+        SearchPatientFilter patientFilter =
+                new SearchPatientFilter(Collections.singletonList(patientToEdit.getName().fullName));
+        model.updateFilteredAppointmentList(patientFilter);
+
+        if (model.getFilteredAppointmentList() != null) { // appointments containing edited patient exists
+            for (Appointment appointment : model.getFilteredAppointmentList()) {
+                appointment.updatePatient(patientToEdit, editedPatient);
+            }
+        }
+        model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
+
         return new CommandResult(String.format(MESSAGE_EDIT_PATIENT_SUCCESS, editedPatient));
     }
 
