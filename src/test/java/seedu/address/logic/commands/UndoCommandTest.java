@@ -73,7 +73,7 @@ public class UndoCommandTest {
      * @throws CommandException
      */
     @Test
-    public void testConsecutiveCommandFollowByUndo() throws CommandException, ParseException {
+    public void testConsecutiveCommandFollowedByUndo() throws CommandException, ParseException {
         CommandResult commandResultOne = logic.execute(SAMPLE_COMMAND);
         CommandResult commandResultTwo = logic.execute(SAMPLE_COMMAND_2);
         int originalSize = model.getAddressBook().getPatientList().size();

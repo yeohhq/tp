@@ -23,8 +23,8 @@ public class Appointment {
     private Patient patient;
     private String patientString;
     private Set<Tag> tags = new HashSet<>();
-    private final Boolean isCompleted;
-    private final Boolean isMissed;
+    private Boolean isCompleted;
+    private Boolean isMissed;
     private Description description;
 
     /**
@@ -55,7 +55,6 @@ public class Appointment {
         this.tags.addAll(tags);
     }
 
-
     public AppointmentTime getAppointmentTime() {
         return this.appointmentTime;
     }
@@ -76,10 +75,6 @@ public class Appointment {
         return this.patientString;
     }
 
-    public Index getPatientIndex() {
-        return Index.fromZeroBased(Integer.parseInt(this.patientString));
-    }
-
     public Boolean isMissed() {
         return this.isMissed;
     }
@@ -92,30 +87,9 @@ public class Appointment {
         return this.description;
     }
 
-    // Method to edit Appointment class directly without use of EditAppointmentDescriptor
-    // to try fixing Json format conversion from showing patient field as "null".
-    // *Note: still does not fix "null" issue.
-
-    //    /**
-    //     * Updates all fields with EditAppointmentDescriptor fields
-    //     * @param descriptor
-    //     */
-    //    public void updateWithEditAppointmentDescriptor(EditAppointmentDescriptor descriptor,
-    //                                                    ReadOnlyAddressBook addressBook) {
-    //        LocalDateTime startTime = descriptor.getStartTime().orElse(this.getStartTime());
-    //        LocalDateTime endTime = descriptor.getEndTime().orElse(this.getEndTime());
-    //        appointmentTime =  new AppointmentTime(startTime, endTime);
-    //
-    //        if (descriptor.needsParsePatient) {
-    //            int patientIndex = descriptor.getPatientIndex().get().getZeroBased();
-    //            assert patientIndex < addressBook.getPatientList().size() :
-    //            MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX;
-    //            patient = addressBook.getPatientList().get(patientIndex);
-    //        }
-    //
-    //        description = descriptor.getDescription().orElse(this.getDescription());
-    //        tags = descriptor.getTags().orElse(this.getTags());
-    //    }
+    public Index getPatientIndex() {
+        return Index.fromZeroBased(Integer.parseInt(this.patientString));
+    }
 
     /**
      * Parses patientString to change patient field in appointment from Json format.
@@ -143,6 +117,18 @@ public class Appointment {
     }
 
     /**
+     * Updates patient in appointment if Patient has fields that are edited.
+     * @param currentPatient Patient to verify this is the correct appointment to update patient.
+     * @param updatedPatient Patient to update current patient with.
+     */
+    public void updatePatient(Patient currentPatient, Patient updatedPatient) {
+        assert currentPatient.isSamePatient(this.patient);
+
+        this.patient = updatedPatient;
+        this.patientString = updatedPatient.getName().fullName;
+    }
+
+    /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
@@ -162,6 +148,30 @@ public class Appointment {
                 && otherAppointment.getAppointmentTime().equals(getAppointmentTime())
                 && otherAppointment.getPatient().equals(getPatient())
                 && otherAppointment.getDescription().equals(getDescription());
+    }
+
+    /**
+     * Sets appointment as completed.
+     */
+    public void setIsCompleted() {
+        this.isCompleted = true;
+    }
+
+    /**
+     * Sets appointment as missed.
+     */
+    public void setIsMissed() {
+        this.isMissed = true;
+    }
+
+    /**
+     * Checks if the appointment has been missed.
+     * An appointment has been missed if it ends before LocalDateTime {@code now} and is not completed.
+     */
+    public boolean hasBeenMissed(LocalDateTime now) {
+        boolean isBefore = this.appointmentTime.getEnd().isBefore(now);
+        boolean isUncompleted = !this.isCompleted;
+        return isBefore && isUncompleted;
     }
 
     /**

@@ -16,7 +16,6 @@ public class UndoCommand extends Command {
             throw new CommandException(MESSAGE_NO_UNDO_HISTORY_ERROR);
         } else {
             model.undoHistory();
-            System.out.println(model.getUserHistoryManager().getHistory());
             return new CommandResult("Command undone.", false, false, false);
         }
     }
