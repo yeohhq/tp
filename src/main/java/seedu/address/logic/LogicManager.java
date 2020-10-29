@@ -106,7 +106,7 @@ public class LogicManager implements Logic {
 
     @Override
     public void checkNewlyMissedAppointments() throws ParseException, CommandException {
-        Command command = addressBookParser.parseCommand("a-newmisses");
+        Command command = addressBookParser.parseCommand("a-new-misses");
         command.execute(model);
     }
 }
