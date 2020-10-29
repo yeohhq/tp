@@ -1,7 +1,9 @@
 package seedu.address.logic.commands.patientcommands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
 
+import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
@@ -10,6 +12,8 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.filters.appointmentfilters.SearchPatientFilter;
 import seedu.address.model.patient.Patient;
 
 /**
@@ -21,6 +25,7 @@ public class PatientDeleteCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the patient identified by the index number used in the displayed patient list.\n"
+            + "*Note: Deleting a patient also deletes any appointments that contains the deleted patient."
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
@@ -42,7 +47,21 @@ public class PatientDeleteCommand extends Command {
         }
 
         Patient patientToDelete = lastShownList.get(targetIndex.getZeroBased());
+
+        // patient fields has changed, need to delete appointments that contain the deleted patient
+        assert patientToDelete != null;
+        final String[] splitName = patientToDelete.getName().fullName.split("\\s+");
+        SearchPatientFilter patientFilter = new SearchPatientFilter(Arrays.asList(splitName));
+        model.updateFilteredAppointmentList(patientFilter);
+
+        List<Appointment> appointmentList = model.getFilteredAppointmentList();
+        while (appointmentList.size() != 0) {
+            model.deleteAppointment(appointmentList.get(0));
+        }
+        model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
+
         model.deletePatient(patientToDelete);
+
         return new CommandResult(String.format(MESSAGE_DELETE_PATIENT_SUCCESS, patientToDelete));
     }
 
