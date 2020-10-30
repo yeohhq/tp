@@ -89,7 +89,7 @@ public class AppointmentCompleteCommand extends Command {
         Set<Tag> tags = appointmentToComplete.getTags();
 
         Boolean isCompleted = true;
-        Boolean isMissed = appointmentToComplete.isMissed();
+        Boolean isMissed = false;
 
         return new Appointment(appointmentTime, patient, tags, isCompleted, isMissed,
                 description);
