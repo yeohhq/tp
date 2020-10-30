@@ -39,10 +39,16 @@ public class TimerThread extends Thread {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            try {
-                Thread.sleep(15000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            for (int i = 0; i < 12; i++) {
+                if (!running) {
+                    break;
+                } else {
+                    try {
+                        Thread.sleep(5000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
         }
 
