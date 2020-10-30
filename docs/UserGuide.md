@@ -119,6 +119,7 @@ Format: `p-edit INDEX [n/NAME] [g/GENDER] [bd/BIRTHDATE] [bt/BLOODTYPE] [p/PHONE
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the patient will be removed i.e adding of tags is not cumulative.
 * You can remove all the patient’s tags by typing `t/` without specifying any tags after it.
+* Note: Editing a patient will also update the patient in Appointments that contain the patient.
 
 Examples:
 * `p-edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be 91234567 and johndoe@example.com respectively.
@@ -178,6 +179,7 @@ Format: `p-delete INDEX`
 * Deletes the patient at the specified INDEX.
 * The index refers to the index number shown in the displayed patient list.
 * The index must be a positive integer 1, 2, 3, …​
+* Note: Deleting a patient will also all Appointments that contains the deleted patient.
 
 Examples:
 * `p-list` followed by `p-delete 2` deletes the 2nd patient in the Archangel.
