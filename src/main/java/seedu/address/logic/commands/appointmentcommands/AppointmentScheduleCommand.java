@@ -31,7 +31,7 @@ public class AppointmentScheduleCommand extends Command {
             + PREFIX_APPOINTMENT_START + "START "
             + PREFIX_APPOINTMENT_END + "END "
             + PREFIX_PATIENT + "PATIENT "
-            + PREFIX_DESCRIPTION + "BLOOD_TYPE "
+            + PREFIX_DESCRIPTION + "DESCRIPTION "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_APPOINTMENT_START + "2020-01-25 08:00 "
