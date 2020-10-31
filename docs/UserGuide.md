@@ -198,6 +198,7 @@ Format: `a-schedule pt/INDEX start/DATE&TIME end/DATE&TIME d/DESCRIPTION [t/TAGS
 * Appointment time (i.e. duration from `start` to `end`) cannot overlap with another existing appointment.
 * Schedules patient appointment for patient at INDEX in the displayed patient list.
 * Appointment will be set to input DATE (format: YYYY-MM-DD) and TIME (format: HH:MM).
+* Appointment time must be indicated as HH:MM (i.e. 9AM must be `09:00`, and not `9:00`).
 
 Examples:
 * `a-schedule pt/2 start/2020-09-14 08:00 end/2020-09-14 10:00 d/Review Appointment` schedules an appointment for patient 2 on 2020-09-14 at 08-00 with appointment description Review Appointment.
