@@ -12,7 +12,7 @@ public class AppointmentTime {
         "AppointmentTime must be valid, and start must be before end.\n"
         + "AppointmentTime must also not overlap with an existing Appointment's time.\n"
         + "*Note: Time indicated must be XX:XX (i.e. 9AM must be input as 09:00 instead of 9:00).\n"
-        + "Eg: start/2020-10-07 08:00 end/2020-10-07 10:00";
+        + "Eg: start/2020-12-07 08:00 end/2020-12-07 10:00";
 
     // Data fields
     private final LocalDateTime start;
