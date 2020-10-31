@@ -12,6 +12,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.appointment.AppointmentTime;
 import seedu.address.model.appointment.Description;
 import seedu.address.model.patient.Address;
 import seedu.address.model.patient.Birthdate;
@@ -169,7 +170,7 @@ public class ParserUtil {
         try {
             localDateTime = LocalDateTime.parse(trimmedDateTime, DATE_FORMATTER);
         } catch (DateTimeParseException e) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            throw new ParseException(AppointmentTime.MESSAGE_CONSTRAINTS);
         }
         return localDateTime;
     }
