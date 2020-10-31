@@ -9,9 +9,9 @@ import java.util.Objects;
 public class AppointmentTime {
 
     public static final String MESSAGE_CONSTRAINTS =
-        "AppointmentTime must be valid (i.e. start must be before end) "
-        + "and must not overlap with an existing Appointment's time."
-        + "*Note: Time indicated must be XX:XX (i.e. 9AM must be input as 09:00 instead of 9:00)."
+        "AppointmentTime must be valid (i.e. start must be before end)\n"
+        + "and must not overlap with an existing Appointment's time.\n"
+        + "*Note: Time indicated must be XX:XX (i.e. 9AM must be input as 09:00 instead of 9:00).\n"
         + "Eg: start/2020-10-07 08:00 end/2020-10-07 10:00";
 
     // Data fields
