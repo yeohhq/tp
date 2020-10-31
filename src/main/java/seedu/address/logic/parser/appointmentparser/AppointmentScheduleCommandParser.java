@@ -12,7 +12,6 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.appointmentcommands.AppointmentScheduleCommand;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
