@@ -16,6 +16,7 @@ import seedu.address.commons.UserHistoryManager;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.patient.Address;
 import seedu.address.model.patient.Patient;
 
 /**
@@ -49,6 +50,10 @@ public class ModelManager implements Model {
 
     public ModelManager() {
         this(new AddressBook(), new UserPrefs());
+    }
+
+    public ModelManager getModel(){
+        return this;
     }
 
     //=========== UserPrefs ==================================================================================

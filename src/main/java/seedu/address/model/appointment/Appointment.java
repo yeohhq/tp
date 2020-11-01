@@ -55,6 +55,46 @@ public class Appointment {
         this.tags.addAll(tags);
     }
 
+    public Appointment(Appointment appointment) {
+//        this.appointmentTime = new AppointmentTime(appointment.appointmentTime.getStart(),
+//                appointment.appointmentTime.getEnd());
+//        this.patient = new Patient(appointment.patient);
+//        String patientStringCopy = appointment.patient.getName().fullName;
+//        this.patientString = patientStringCopy;
+//        boolean apptCompleted = appointment.isCompleted.booleanValue();
+//        this.isCompleted = apptCompleted;
+//        boolean apptMissed = appointment.isMissed.booleanValue();
+//        this.isMissed = apptMissed;
+//        String apptDescription = appointment.description.toString();
+//        this.description = new Description(apptDescription);
+//        Set<Tag> copy = new HashSet<>();
+//        copy.addAll(appointment.tags);
+//        this.tags.addAll(copy);
+        this(appointment.getAppointmentTime(), appointment.getPatient(), appointment.getTags(),
+                appointment.isCompleted,
+                appointment.isMissed, appointment.getDescription());
+    }
+
+    public Appointment(Appointment appointment, Patient patientCopy) {
+//        this.appointmentTime = new AppointmentTime(appointment.appointmentTime.getStart(),
+//                appointment.appointmentTime.getEnd());
+//        this.patient = new Patient(appointment.patient);
+//        String patientStringCopy = appointment.patient.getName().fullName;
+//        this.patientString = patientStringCopy;
+//        boolean apptCompleted = appointment.isCompleted.booleanValue();
+//        this.isCompleted = apptCompleted;
+//        boolean apptMissed = appointment.isMissed.booleanValue();
+//        this.isMissed = apptMissed;
+//        String apptDescription = appointment.description.toString();
+//        this.description = new Description(apptDescription);
+//        Set<Tag> copy = new HashSet<>();
+//        copy.addAll(appointment.tags);
+//        this.tags.addAll(copy);
+        this(appointment.getAppointmentTime(), new Patient(patientCopy), appointment.getTags(),
+                appointment.isCompleted,
+                appointment.isMissed, appointment.getDescription());
+    }
+
     public AppointmentTime getAppointmentTime() {
         return this.appointmentTime;
     }
@@ -122,7 +162,7 @@ public class Appointment {
      * @param updatedPatient Patient to update current patient with.
      */
     public void updatePatient(Patient currentPatient, Patient updatedPatient) {
-        assert currentPatient.isSamePatient(this.patient);
+            assert currentPatient.isSamePatient(this.patient);
 
         this.patient = updatedPatient;
         this.patientString = updatedPatient.getName().fullName;

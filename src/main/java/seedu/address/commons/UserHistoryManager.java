@@ -1,5 +1,6 @@
 package seedu.address.commons;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
@@ -22,14 +23,15 @@ public class UserHistoryManager {
 
     public void initialiseHistory(Pair<List<Patient>, List<Appointment>> pair) {
         this.userHistory.add(pair);
+        System.out.println("initial"+userHistory.peek().getValue());
     }
 
     /**
      * Add user history to stack
      * @param p current user history
      */
-    public void addHistory(Pair p) {
-        userHistory.add(p);
+    public void addHistory(Pair<List<Patient>, List<Appointment>> p) {
+            userHistory.add(p);
     }
 
     /**
@@ -44,6 +46,7 @@ public class UserHistoryManager {
      * Redo the user history
      */
     public void redoHistory() {
+        System.out.println(redoHistory.peek().getValue());
         this.userHistory.add(redoHistory.peek());
         redoHistory.pop();
     }
