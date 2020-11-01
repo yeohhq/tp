@@ -51,10 +51,11 @@ public class AppointmentScheduleCommandParser implements Parser<AppointmentSched
         }
         LocalDateTime startTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_APPOINTMENT_START).get());
         LocalDateTime endTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_APPOINTMENT_END).get());
+
         // cannot schedule an Appointment before now.
-        if (startTime.isBefore(LocalDateTime.now()) || endTime.isBefore(LocalDateTime.now())) {
-            throw new ParseException(MESSAGE_CONSTRAINTS);
-        }
+        //        if (startTime.isBefore(LocalDateTime.now()) || endTime.isBefore(LocalDateTime.now())) {
+        //            throw new ParseException(MESSAGE_CONSTRAINTS);
+        //        }
 
         AppointmentTime appointmentTime = new AppointmentTime(startTime, endTime);
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
