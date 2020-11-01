@@ -97,6 +97,7 @@ public class AppointmentScheduleCommand extends Command {
             if (model.hasAppointment(toSchedule)) {
                 throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
             }
+
             model.addAppointment(toSchedule);
             model.getFilteredAppointmentList();
 
