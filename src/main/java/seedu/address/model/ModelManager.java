@@ -173,7 +173,6 @@ public class ModelManager implements Model {
         addressBook.setMissedAppointments(now);
     }
 
-
     @Override
     public UserHistoryManager getUserHistoryManager() {
         return this.userHistory;
@@ -220,11 +219,6 @@ public class ModelManager implements Model {
     public ObservableList<Appointment> getFilteredAppointmentList() {
         return filteredAppointments;
     }
-
-    /*
-    @Override
-    public ObservableList<Appointment> getStartFilteredAppointmentList() {}
-     */
 
     @Override
     public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
