@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
@@ -27,32 +26,16 @@
             <Region fx:constant="USE_PREF_SIZE" />
           </minWidth>
         </Label>
-        <Label fx:id="name" styleClass="cell_big_label" text="\$first" wrapText="true">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font></Label>
+        <Label fx:id="name" styleClass="cell_big_label" text="\$first" wrapText="true" />
       </HBox>
       <FlowPane fx:id="tags" />
-      <Label fx:id="gender" styleClass="cell_small_label" text="\$gender" wrapText="true">
-            <font>
-               <Font size="12.0" />
-            </font></Label>
-      <Label fx:id="birthdate" styleClass="cell_small_label" text="\$birthdate" wrapText="true">
-            <font>
-               <Font size="12.0" />
-            </font></Label>
-      <Label fx:id="bloodtype" styleClass="cell_small_label" text="\$bloodtype" wrapText="true">
-            <font>
-               <Font size="12.0" />
-            </font></Label>
-      <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" wrapText="true">
-            <font>
-               <Font size="12.0" />
-            </font></Label>
-      <Label fx:id="remark" styleClass="cell_small_label" text="\$remark" wrapText="true">
-            <font>
-               <Font size="12.0" />
-            </font></Label>
+      <Label fx:id="gender" styleClass="cell_small_label" text="\$gender" wrapText="true" />
+      <Label fx:id="birthdate" styleClass="cell_small_label" text="\$birthdate" wrapText="true" />
+      <Label fx:id="bloodtype" styleClass="cell_small_label" text="\$bloodtype" wrapText="true" />
+      <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" wrapText="true" />
+      <Label fx:id="address" styleClass="cell_small_label" text="\$address" wrapText="true" />
+      <Label fx:id="email" styleClass="cell_small_label" text="\$email" wrapText="true" />
+      <Label fx:id="remark" styleClass="cell_small_label" text="\$remark" wrapText="true" />
     </VBox>
       <rowConstraints>
          <RowConstraints />
