@@ -358,7 +358,7 @@ A: Install the app in the other computer and overwrite the empty data file it cr
 ## Command summary
 
 Action                               | Format, Examples | Compatible with `undo`
--------------------------------------|------------------------------------------------------------------------------
+-------------------------------------|------------------------------------------------------------------------------ | ---------------------------------------
 Add Patient                          | `p-add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…`​ <br> e.g. `p-add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |  **YES**
 List Patients                        | `p-list` | **NO**
 Edit Patient                         | `p-edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br> e.g. `p-edit 2 n/James Lee e/jameslee@example.com` | **NO**
