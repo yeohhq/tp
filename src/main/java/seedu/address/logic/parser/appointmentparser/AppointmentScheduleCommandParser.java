@@ -28,9 +28,12 @@ import seedu.address.model.tag.Tag;
  */
 public class AppointmentScheduleCommandParser implements Parser<AppointmentScheduleCommand> {
 
-    public static final String MESSAGE_CONSTRAINTS =
+    public static final String APPOINTMENT_BACKDATED_ERROR_MESSAGE =
             "Appointments can only be scheduled for future appointment time.\n"
             + "i.e. you cannot schedule an Appointment before the current time.";
+
+    public static final String APPOINTMENT_DURATION_ERROR_MESSAGE =
+            "Appointment duration cannot exceed 24 hours.";
 
     /**
      * Parses the given {@code String} of arguments in the context of the AppointmentScheduleCommand
@@ -54,7 +57,12 @@ public class AppointmentScheduleCommandParser implements Parser<AppointmentSched
 
         // cannot schedule an Appointment before now.
         if (startTime.isBefore(LocalDateTime.now()) || endTime.isBefore(LocalDateTime.now())) {
-            throw new ParseException(MESSAGE_CONSTRAINTS);
+            throw new ParseException(APPOINTMENT_BACKDATED_ERROR_MESSAGE);
+        }
+
+        // cannot schedule an Appointment for more than 24 hours.
+        if (startTime.plusHours(24).isBefore(endTime)) {
+            throw new ParseException(APPOINTMENT_DURATION_ERROR_MESSAGE);
         }
 
         AppointmentTime appointmentTime = new AppointmentTime(startTime, endTime);
