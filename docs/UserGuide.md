@@ -330,7 +330,7 @@ Format: `undo`
   It also does not work with `p-edit` as the design requires patient details to be accurate as of time schedule, such that the
   records can accurately reflect the patient's conditions at the time of the appointment.
 * A list of commands that can be undone can be found in the table under Command Summary.
-* This command can be succeeded by a `redo` command 
+* This command can be succeeded by a `redo` command
 
 Examples:
 * `p-delete 2` followed by `undo` undoes the edit command and make no changes to Archangel.
