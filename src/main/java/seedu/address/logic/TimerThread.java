@@ -21,7 +21,7 @@ public class TimerThread extends Thread {
     }
 
     /**
-     * Executes the AppointmentNesMissesCommand at regular intervals.
+     * Executes the AppointmentNesMissesCommand at one minute intervals.
      */
     public void run() {
         try {
