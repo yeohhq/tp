@@ -248,13 +248,13 @@ Examples:
 
 #### 2.3.5 Listing all upcoming appointments : `a-list`
 
-Shows a list of all your upcoming patient appointments in Archangel.
+Shows a list of all your uncompleted patient appointments in Archangel.
 
 Format: `a-list`
 
 #### 2.3.6 Listing all past and present appointments : `a-listall`
 
-Shows a list of all your past and present patient appointments in Archangel.
+Shows a list of all your patient appointments in Archangel.
 
 Format: `a-listall`
 
@@ -292,7 +292,7 @@ Examples:
 * `a-tag friend enemy`  returns Appointments tagged `Friend` and `Enemy`
 
 #### 2.3.9 Finding an appointment by current date: `a-today`
-Finds your appointments scheduled on the current date.
+Finds your uncompleted appointments scheduled on the current date.
 
 Format: `a-today`
 
@@ -300,7 +300,7 @@ Examples:
 * `a-today` returns Appointments scheduled today.
 
 #### 2.3.10 Finding an appointment by current week: `a-upcoming`
-Finds your appointments scheduled in the current week.
+Finds your uncompleted appointments scheduled in the current week.
 
 Format: `a-upcoming`
 
