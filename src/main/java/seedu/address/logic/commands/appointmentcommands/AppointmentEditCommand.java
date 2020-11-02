@@ -45,6 +45,7 @@ public class AppointmentEditCommand extends Command {
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_APPOINTMENT_START + "2020-02-05 09:00 "
+            + PREFIX_APPOINTMENT_END + "2020-02-05 10:00 "
             + PREFIX_DESCRIPTION + "Therapy session";
 
     public static final String MESSAGE_EDIT_APPOINTMENT_SUCCESS = "Edited Appointment: %1$s";

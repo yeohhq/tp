@@ -122,7 +122,7 @@ public class Appointment {
      * @param updatedPatient Patient to update current patient with.
      */
     public void updatePatient(Patient currentPatient, Patient updatedPatient) {
-        assert currentPatient.isSamePatient(this.patient);
+            assert currentPatient.isSamePatient(this.patient);
 
         this.patient = updatedPatient;
         this.patientString = updatedPatient.getName().fullName;

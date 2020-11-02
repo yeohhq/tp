@@ -485,6 +485,13 @@ However, after many test runs, we concluded that the memory usage of the user hi
 
 ##### Design consideration:
 
+* This command does not work with filter commands (`a-completed`,`a-missed`,`a-upcoming`,`a-today`,`a-find`,`a-list`)
+  as its implementation purpose is to assist the user in undo-ing his changes, filter commands do not make changes to the data.
+  It also does not work with `p-edit` as the design requires patient details to be accurate as of time schedule, such that the
+  records can accurately reflect the patient's conditions at the time of the appointment. 
+  With this concern in mind, we disabled `undo` for `p-edit` and the user can simply execute another `p-edit` command to undo 
+  his changes.
+
 ###### Aspect: How undo & redo executes
 
 * **Alternative 1 (current choice):** Saves the entire address book.
