@@ -1,12 +1,12 @@
 package seedu.address.model.appointment;
 
-import javafx.collections.ObservableList;
-
 import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
+
+import javafx.collections.ObservableList;
 
 public class AppointmentTime {
 
@@ -14,7 +14,8 @@ public class AppointmentTime {
         "(1) AppointmentTime must be valid, and start must be before end.\n"
         + "(2) AppointmentTime start and end must be maximally 24 hours apart.\n"
         + "(3) AppointmentTime must also not overlap with an existing Appointment's time.\n"
-        + "* Note: Date indicated must be YYYY-MM-DD (i.e. 1th Jan 2020 must be input as 2020-01-01 instead of 2020-1-1).\n"
+        + "* Note: Date indicated must be YYYY-MM-DD"
+        + "(i.e. 1th Jan 2020 must be input as 2020-01-01 instead of 2020-1-1).\n"
         + "* Note: Time indicated must be XX:XX (i.e. 9AM must be input as 09:00 instead of 9:00).\n"
         + "Eg: start/2020-12-07 08:00 end/2020-12-07 10:00";
 
