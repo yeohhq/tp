@@ -331,6 +331,7 @@ Format: `undo`
   records can accurately reflect the patient's conditions at the time of the appointment.
 * A list of commands that can be undone can be found in the table under Command Summary.
 * This command can be succeeded by a `redo` command 
+
 Examples:
 * `p-delete 2` followed by `undo` undoes the edit command and make no changes to Archangel.
 
@@ -377,7 +378,7 @@ Find Appointments by Tags            | `a-tag KEYWORD [MORE_KEYWORDS]` <br> e.g.
 Find Appointments by Current Date    | `a-today` | **NO**
 Find Appointments by Current Week    | `a-upcoming` | **NO**
 List Appointments by Completed       | `a-completed`| **NO**
-List Appointments by Missed          | `a-missed` | **NO** 
+List Appointments by Missed          | `a-missed` | **NO**
 Undo the previous command            | `undo` | **NO**
 Redo the previous command            | `redo` | **NO**
 
