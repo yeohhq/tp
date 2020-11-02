@@ -35,13 +35,9 @@ public class PatientCard extends UiPart<Region> {
     @FXML
     private Label birthdate;
     @FXML
-    private Label bloodtype;
-    @FXML
     private Label id;
     @FXML
     private Label phone;
-    @FXML
-    private Label remark;
     @FXML
     private FlowPane tags;
 
@@ -55,11 +51,7 @@ public class PatientCard extends UiPart<Region> {
         name.setText(patient.getName().fullName);
         gender.setText("Sex: " + patient.getGender().value);
         birthdate.setText("DOB: " + patient.getBirthdate().value);
-        bloodtype.setText("Blood Type: " + patient.getBloodType().value);
         phone.setText("Phone: " + patient.getPhone().value);
-//        address.setText("Address: " + patient.getAddress().value);
-        remark.setText("Remark: " + patient.getRemark().value);
-//        email.setText("Email: " + patient.getEmail().value);
         patient.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

@@ -20,7 +20,7 @@
       <padding>
         <Insets bottom="5" left="15" right="5" top="5" />
       </padding>
-      <HBox alignment="CENTER_LEFT" spacing="5">
+      <HBox alignment="CENTER_LEFT">
         <Label fx:id="id" styleClass="cell_big_label">
           <minWidth>
             <!-- Ensures that the label text is never truncated -->
@@ -30,29 +30,40 @@
         <Label fx:id="name" styleClass="cell_big_label" text="\$first" wrapText="true">
                <font>
                   <Font name="System Bold" size="14.0" />
-               </font></Label>
+               </font>
+            </Label>
       </HBox>
-      <FlowPane fx:id="tags" />
       <Label fx:id="gender" styleClass="cell_small_label" text="\$gender" wrapText="true">
             <font>
-               <Font size="12.0" />
-            </font></Label>
+               <Font size="11.0" />
+            </font>
+            <padding>
+               <Insets left="10.0" />
+            </padding></Label>
       <Label fx:id="birthdate" styleClass="cell_small_label" text="\$birthdate" wrapText="true">
             <font>
-               <Font size="12.0" />
-            </font></Label>
-      <Label fx:id="bloodtype" styleClass="cell_small_label" text="\$bloodtype" wrapText="true">
-            <font>
-               <Font size="12.0" />
-            </font></Label>
+               <Font size="11.0" />
+            </font>
+            <padding>
+               <Insets left="10.0" />
+            </padding>
+            <VBox.margin>
+               <Insets />
+            </VBox.margin></Label>
       <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" wrapText="true">
             <font>
-               <Font size="12.0" />
-            </font></Label>
-      <Label fx:id="remark" styleClass="cell_small_label" text="\$remark" wrapText="true">
-            <font>
-               <Font size="12.0" />
-            </font></Label>
+               <Font size="11.0" />
+            </font>
+            <VBox.margin>
+               <Insets />
+            </VBox.margin>
+            <padding>
+               <Insets left="10.0" />
+            </padding></Label>
+      <FlowPane fx:id="tags">
+            <padding>
+               <Insets left="10.0" />
+            </padding></FlowPane>
     </VBox>
       <rowConstraints>
          <RowConstraints />
