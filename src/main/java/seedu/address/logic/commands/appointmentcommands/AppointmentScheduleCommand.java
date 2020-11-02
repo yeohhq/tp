@@ -1,13 +1,14 @@
 package seedu.address.logic.commands.appointmentcommands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_APPOINTMENT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_APPOINTMENT_SLOT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_END;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_START;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PATIENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import javafx.collections.ObservableList;
@@ -17,6 +18,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.AppointmentTime;
 import seedu.address.model.patient.Patient;
 
 /**
@@ -40,12 +42,9 @@ public class AppointmentScheduleCommand extends Command {
             + PREFIX_DESCRIPTION + "Medical checkup "
             + PREFIX_TAG + "LowPriority";
 
-    public static final String MESSAGE_SUCCESS = "New appointment scheduled: %1$s";
-    public static final String MESSAGE_DUPLICATE_APPOINTMENT = "This appointment already exists in Archangel";
-    public static final String MESSAGE_MISSING_PATIENT = "This patient is not in Archangel";
-    public static final String MESSAGE_WRONG_INDEX = "We have some problem with your index";
-    public static final String MESSAGE_INVALID_APPOINTMENT_SLOT = "That time slot is already taken";
-
+    public static final String MESSAGE_SUCCESS = "New appointment scheduled: %1$s.";
+    public static final String MESSAGE_MISSING_PATIENT = "This patient is not in Archangel.";
+    public static final String MESSAGE_WRONG_INDEX = "You have entered an invalid index.";
 
     private final Appointment toSchedule;
 
@@ -89,7 +88,7 @@ public class AppointmentScheduleCommand extends Command {
             }
 
             // Appointment slot is already taken
-            if (!isValidTimeSlot(appointmentList, toSchedule)) {
+            if (!AppointmentTime.isValidTimeSlot(appointmentList, toSchedule)) {
                 throw new CommandException(MESSAGE_INVALID_APPOINTMENT_SLOT);
             }
 
@@ -113,24 +112,5 @@ public class AppointmentScheduleCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof AppointmentScheduleCommand // instanceof handles nulls
                 && toSchedule.equals(((AppointmentScheduleCommand) other).toSchedule));
-    }
-
-    private Boolean isValidTimeSlot(ObservableList<Appointment> appointmentList, Appointment appointment) {
-        LocalDateTime startDate = appointment.getStartTime();
-        LocalDateTime endDate = appointment.getEndTime();
-
-        for (Appointment currentAppointment : appointmentList) {
-            LocalDateTime currentStartDate = currentAppointment.getStartTime();
-            LocalDateTime currentEndDate = currentAppointment.getEndTime();
-            // startDate or endDate is in between currentAppointment slot
-            // current Appointment slot is within new appointment slot
-            if (startDate.isAfter(currentStartDate) && startDate.isBefore(currentEndDate)
-                    || endDate.isAfter(currentStartDate) && endDate.isBefore(currentEndDate)
-                    || startDate.isBefore(currentStartDate) && endDate.isAfter(currentEndDate)
-                    || startDate.isEqual(currentStartDate) || endDate.isEqual(currentEndDate)) {
-                return false;
-            }
-        }
-        return true;
     }
 }

@@ -1,5 +1,7 @@
 package seedu.address.logic.parser.appointmentparser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_APPOINTMENT_BACKDATED;
+import static seedu.address.commons.core.Messages.MESSAGE_APPOINTMENT_DURATION;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_END;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_START;
@@ -28,10 +30,6 @@ import seedu.address.model.tag.Tag;
  */
 public class AppointmentScheduleCommandParser implements Parser<AppointmentScheduleCommand> {
 
-    public static final String MESSAGE_CONSTRAINTS =
-            "Appointments can only be scheduled for future appointment time.\n"
-            + "i.e. you cannot schedule an Appointment before the current time.";
-
     /**
      * Parses the given {@code String} of arguments in the context of the AppointmentScheduleCommand
      * and returns an AppointmentScheduleCommand object for execution.
@@ -54,7 +52,12 @@ public class AppointmentScheduleCommandParser implements Parser<AppointmentSched
 
         // cannot schedule an Appointment before now.
         if (startTime.isBefore(LocalDateTime.now()) || endTime.isBefore(LocalDateTime.now())) {
-            throw new ParseException(MESSAGE_CONSTRAINTS);
+            throw new ParseException(MESSAGE_APPOINTMENT_BACKDATED);
+        }
+
+        // cannot schedule an Appointment for more than 24 hours.
+        if (startTime.plusHours(24).isBefore(endTime)) {
+            throw new ParseException(MESSAGE_APPOINTMENT_DURATION);
         }
 
         AppointmentTime appointmentTime = new AppointmentTime(startTime, endTime);

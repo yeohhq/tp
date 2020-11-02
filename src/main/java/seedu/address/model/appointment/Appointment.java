@@ -207,17 +207,17 @@ public class Appointment {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getDescription())
-                .append(" Start: ")
+                .append("\nStart: ")
                 .append(getStartTime())
-                .append(" End: ")
+                .append("\nEnd: ")
                 .append(getEndTime())
-                .append(" Patient: ")
-                .append(getPatient())
-                .append(" isMissed: ")
+                .append("\nPatient: ")
+                .append(getPatient().getName().fullName)
+                .append("\nisMissed: ")
                 .append(isMissed())
-                .append(" isCompleted: ")
+                .append("\nisCompleted: ")
                 .append(isCompleted())
-                .append(" Tags: ");
+                .append("\nTags: ");
         getTags().forEach(builder::append);
         return builder.toString();
     }

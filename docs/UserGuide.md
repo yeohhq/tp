@@ -194,10 +194,11 @@ Schedules a new patient appointment in Archangel.
 
 Format: `a-schedule pt/INDEX start/DATE&TIME end/DATE&TIME d/DESCRIPTION [t/TAGS]…`
 
-* TAGS should be alphanumeric.
-* Appointment time (i.e. duration from `start` to `end`) cannot overlap with another existing appointment.
 * Schedules patient appointment for patient at INDEX in the displayed patient list.
 * Appointment will be set to input DATE (format: YYYY-MM-DD) and TIME (format: HH:MM).
+* TAGS should be alphanumeric.
+* Appointment time (i.e. duration from `start` to `end`) cannot overlap with another existing appointment.
+* Appointment duration should not exceed 24 hours.
 * Appointment time must be indicated as HH:MM (i.e. 9AM must be `09:00`, and not `9:00`).
 
 Examples:

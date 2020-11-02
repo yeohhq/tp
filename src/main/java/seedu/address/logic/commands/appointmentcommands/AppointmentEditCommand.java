@@ -1,7 +1,10 @@
 package seedu.address.logic.commands.appointmentcommands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_APPOINTMENT_DURATION;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_APPOINTMENT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_APPOINTMENT_SLOT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_END;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_START;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
@@ -50,7 +53,6 @@ public class AppointmentEditCommand extends Command {
 
     public static final String MESSAGE_EDIT_APPOINTMENT_SUCCESS = "Edited Appointment: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_APPOINTMENT = "This appointment already exists in the address book.";
 
     private final Index index;
     private final EditAppointmentDescriptor editAppointmentDescriptor;
@@ -77,11 +79,21 @@ public class AppointmentEditCommand extends Command {
         }
 
         Appointment appointmentToEdit = lastShownList.get(index.getZeroBased());
-        Appointment editedAppointment = createEditedAppointment(appointmentToEdit,
-                editAppointmentDescriptor, model.getAddressBook());
+        Appointment editedAppointment = null;
+        try {
+            editedAppointment = createEditedAppointment(appointmentToEdit,
+                    editAppointmentDescriptor, model.getAddressBook());
+        } catch (CommandException e) {
+            throw new CommandException(e.getMessage());
+        }
 
         if (appointmentToEdit.isSameAppointment(editedAppointment) && model.hasAppointment(editedAppointment)) {
             throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
+        }
+
+        // Appointment slot is already taken
+        if (!AppointmentTime.isValidTimeSlot(model.getFilteredAppointmentList(), editedAppointment)) {
+            throw new CommandException(MESSAGE_INVALID_APPOINTMENT_SLOT);
         }
 
         model.setAppointment(appointmentToEdit, editedAppointment);
@@ -96,12 +108,23 @@ public class AppointmentEditCommand extends Command {
      */
     private static Appointment createEditedAppointment(Appointment appointmentToEdit,
                                                        EditAppointmentDescriptor editAppointmentDescriptor,
-                                                       ReadOnlyAddressBook addressBook) {
+                                                       ReadOnlyAddressBook addressBook) throws CommandException {
         assert appointmentToEdit != null;
 
         LocalDateTime startTime = editAppointmentDescriptor.getStartTime().orElse(appointmentToEdit.getStartTime());
         LocalDateTime endTime = editAppointmentDescriptor.getEndTime().orElse(appointmentToEdit.getEndTime());
-        AppointmentTime updatedAppointmentTime = new AppointmentTime(startTime, endTime);
+
+        // cannot schedule an Appointment for more than 24 hours.
+        if (startTime.plusHours(24).isBefore(endTime)) {
+            throw new CommandException(MESSAGE_APPOINTMENT_DURATION);
+        }
+
+        AppointmentTime updatedAppointmentTime = null;
+        try {
+            updatedAppointmentTime = new AppointmentTime(startTime, endTime);
+        } catch (Exception e) {
+            throw new CommandException(AppointmentTime.MESSAGE_CONSTRAINTS);
+        }
 
         Patient updatedPatient = appointmentToEdit.getPatient();
         if (editAppointmentDescriptor.needsParsePatient) {
