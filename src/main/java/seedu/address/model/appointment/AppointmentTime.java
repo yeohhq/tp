@@ -1,5 +1,7 @@
 package seedu.address.model.appointment;
 
+import javafx.collections.ObservableList;
+
 import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -9,9 +11,11 @@ import java.util.Objects;
 public class AppointmentTime {
 
     public static final String MESSAGE_CONSTRAINTS =
-        "AppointmentTime must be valid, and start must be before end.\n"
-        + "AppointmentTime must also not overlap with an existing Appointment's time.\n"
-        + "*Note: Time indicated must be XX:XX (i.e. 9AM must be input as 09:00 instead of 9:00).\n"
+        "(1) AppointmentTime must be valid, and start must be before end.\n"
+        + "(2) AppointmentTime start and end must be maximally 24 hours apart.\n"
+        + "(3) AppointmentTime must also not overlap with an existing Appointment's time.\n"
+        + "* Note: Date indicated must be YYYY-MM-DD (i.e. 1th Jan 2020 must be input as 2020-01-01 instead of 2020-1-1).\n"
+        + "* Note: Time indicated must be XX:XX (i.e. 9AM must be input as 09:00 instead of 9:00).\n"
         + "Eg: start/2020-12-07 08:00 end/2020-12-07 10:00";
 
     // Data fields
@@ -36,6 +40,31 @@ public class AppointmentTime {
         requireAllNonNull(start, end);
         if (start.isAfter(end)) {
             return false;
+        }
+        return true;
+    }
+
+    /**
+     * Checks for any overlapping AppointmentTime with all other appointments in appointmentList.
+     * @param appointmentList list of all appointments in Archangel.
+     * @param appointment Appointment to schedule/edit
+     * @return true if no overlapping AppointmentTime, else false.
+     */
+    public static Boolean isValidTimeSlot(ObservableList<Appointment> appointmentList, Appointment appointment) {
+        LocalDateTime startDate = appointment.getStartTime();
+        LocalDateTime endDate = appointment.getEndTime();
+
+        for (Appointment currentAppointment : appointmentList) {
+            LocalDateTime currentStartDate = currentAppointment.getStartTime();
+            LocalDateTime currentEndDate = currentAppointment.getEndTime();
+            // startDate or endDate is in between currentAppointment slot
+            // current Appointment slot is within new appointment slot
+            if (startDate.isAfter(currentStartDate) && startDate.isBefore(currentEndDate)
+                    || endDate.isAfter(currentStartDate) && endDate.isBefore(currentEndDate)
+                    || startDate.isBefore(currentStartDate) && endDate.isAfter(currentEndDate)
+                    || startDate.isEqual(currentStartDate) || endDate.isEqual(currentEndDate)) {
+                return false;
+            }
         }
         return true;
     }
