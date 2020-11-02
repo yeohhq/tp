@@ -331,7 +331,7 @@ Format: `undo`
   It also does not work with `p-edit` as the design requires patient details to be accurate as of time schedule, such that the
   records can accurately reflect the patient's conditions at the time of the appointment.
 * A list of commands that can be undone can be found in the table under Command Summary.
-* This command can be succeeded by a `redo` command 
+* This command can be succeeded by a `redo` command
 
 Examples:
 * `p-delete 2` followed by `undo` undoes the edit command and make no changes to Archangel.
@@ -360,7 +360,7 @@ A: Install the app in the other computer and overwrite the empty data file it cr
 
 Action                               | Format, Examples | Compatible with `undo`
 -------------------------------------|------------------------------------------------------------------------------ | ---------------------------------------
-Add Patient                          | `p-add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…`​ <br> e.g. `p-add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |  **YES**
+Add Patient                          | `p-add n/NAME g/GENDER bd/YYYY-MM-DD bt/BLOODTYPE p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…`​ <br> e.g. `p-add n/John Doe g/MALE bd/2018-12-27 bt/A+ p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25` |  **YES**
 List Patients                        | `p-list` | **NO**
 Edit Patient                         | `p-edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br> e.g. `p-edit 2 n/James Lee e/jameslee@example.com` | **NO**
 Find Patient                         | `p-find KEYWORD [MORE_KEYWORDS]` <br> e.g. `p-find James Jake` | **NO**
@@ -368,7 +368,7 @@ Delete Patient                       | `p-delete INDEX` <br>e.g. `p-delete 3` | 
 Adding Patient Remark                | `p-remark INDEX r/REMARK` <br>e.g. `p-remark 1 r/Likes to swim.` | **YES**
 Removing Patient Remark              | `p-remark INDEX` <br>e.g. `p-remark 3` | **YES**
 Help                                 | `help` | **NO**
-Schedule Appointment                 | `a-schedule pt/INDEXOFPATIENT start/DATE&TIME end/DATE&TIME d/DESCRIPTION [t/TAGS]…`​<br> e.g. `a-schedule pt/2 start/2020-09-14 08:00 end/2020-09-14 10:00 d/Review Appointment` | **YES**
+Schedule Appointment                 | `a-schedule pt/INDEXOFPATIENT start/DATE&TIME end/DATE&TIME d/DESCRIPTION [t/TAGS]…`​<br> e.g. `a-schedule pt/2 start/2020-11-21 08:00 end/2020-11-21 10:00 d/Review Appointment` | **YES**
 Delete Appointment                   | `a-delete INDEX` <br>e.g. `a-delete 3` | **YES**
 Edit Appointment                     | `a-edit INDEX [start/DATE&TIME] [end/DATE&TIME] [d/DESCRIPTION] [t/TAGS]…` <br> e.g. `a-edit 2 start/2020-09-15 12:00 end/2020-09-15 14:00` | **YES**
 Complete Appointments                | `a-complete INDEX` | **YES**
@@ -379,7 +379,7 @@ Find Appointments by Tags            | `a-tag KEYWORD [MORE_KEYWORDS]` <br> e.g.
 Find Appointments by Current Date    | `a-today` | **NO**
 Find Appointments by Current Week    | `a-upcoming` | **NO**
 List Appointments by Completed       | `a-completed`| **NO**
-List Appointments by Missed          | `a-missed` | **NO** 
+List Appointments by Missed          | `a-missed` | **NO**
 Undo the previous command            | `undo` | **NO**
 Redo the previous command            | `redo` | **NO**
 
