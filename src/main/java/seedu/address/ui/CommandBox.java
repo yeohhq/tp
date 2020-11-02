@@ -123,6 +123,20 @@ public class CommandBox extends UiPart<Region> {
             //            });
             menuItems.add(item);
         }
+        if (count == 1) {
+            final String result = searchResult.get(0);
+            Label entryLabel = new Label(result);
+            CustomMenuItem item = new CustomMenuItem(entryLabel, true);
+            //            item.setOnAction(new EventHandler<ActionEvent>()
+            //            {
+            //                @Override
+            //                public void handle(ActionEvent actionEvent) {
+            //                    commandTextField.setText(result);
+            //                    suggestionPopup.hide();
+            //                }
+            //            });
+            menuItems.add(item);
+        }
         suggestionPopup.getItems().clear();
         suggestionPopup.getItems().addAll(menuItems);
 
