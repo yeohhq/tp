@@ -65,7 +65,7 @@ public class PatientRemarkCommand extends Command {
         model.setPatient(patientToEdit, editedPatient);
         model.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
 
-        return new CommandResult(generateSuccessMessage(editedPatient),false,false,true);
+        return new CommandResult(generateSuccessMessage(editedPatient), false, false, true);
     }
 
     /**

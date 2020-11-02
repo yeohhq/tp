@@ -63,7 +63,7 @@ public class PatientDeleteCommand extends Command {
         model.deletePatient(patientToDelete);
 
         return new CommandResult(String.format(MESSAGE_DELETE_PATIENT_SUCCESS, patientToDelete),
-                false,false,true);
+                 false, false, true);
     }
 
     @Override

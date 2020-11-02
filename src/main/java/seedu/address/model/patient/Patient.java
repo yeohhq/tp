@@ -50,31 +50,6 @@ public class Patient {
         this.tags.addAll(tags);
     }
 
-    public Patient(Patient patient) {
-//        String patientNameCopy = patient.name.toString();
-//        this.name = new Name(patientNameCopy);
-//        String patientGender = patient.gender.toString();
-//        this.gender = new Gender(patientGender);
-//        String patientBirthdate = patient.birthdate.toString();
-//        this.birthdate = new Birthdate(patientBirthdate);
-//        String patientBloodType = patient.bloodtype.toString();
-//        this.bloodtype = new BloodType(patientBloodType);
-//        String patientPhone = patient.phone.toString();
-//        this.phone = new Phone(patientPhone);
-//        String patientEmail = patient.email.toString();
-//        this.email = new Email(patientEmail);
-//        String patientAddress = patient.address.toString();
-//        this.address = new Address(patientAddress);
-//        String patientRemark = patient.remark.toString();
-//        this.remark = new Remark(patientRemark);
-//        Set<Tag> copy = new HashSet<>();
-//        copy.addAll(patient.tags);
-//        this.tags.addAll(copy);
-        this(patient.getName(),patient.getGender(),patient.getBirthdate(),patient.getBloodType(),patient.getPhone()
-        , patient.getEmail(), patient.getAddress() , patient.getRemark(), patient.getTags());
-        System.out.println(patient.getName());
-    }
-
     public Name getName() {
         return name;
     }

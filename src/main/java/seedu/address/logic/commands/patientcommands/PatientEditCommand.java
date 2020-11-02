@@ -114,7 +114,7 @@ public class PatientEditCommand extends Command {
         model.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
 
         return new CommandResult(String.format(MESSAGE_EDIT_PATIENT_SUCCESS, editedPatient),
-                false,false,false);
+                 false, false, false);
     }
 
     /**

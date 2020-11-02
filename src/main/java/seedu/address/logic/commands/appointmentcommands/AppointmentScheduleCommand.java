@@ -102,7 +102,7 @@ public class AppointmentScheduleCommand extends Command {
             model.getFilteredAppointmentList();
 
             return new CommandResult(String.format(MESSAGE_SUCCESS, toSchedule),
-                    false,false,true);
+                     false, false, true);
         } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
             throw new CommandException(MESSAGE_WRONG_INDEX);
         }
