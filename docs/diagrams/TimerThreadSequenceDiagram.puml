@@ -79,5 +79,5 @@ deactivate LogicManager
 end
 
 TimerThread -> MainApp
-deactivate TimerThread
+deactivate
 @enduml

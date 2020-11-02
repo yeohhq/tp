@@ -488,7 +488,7 @@ However, after many test runs, we concluded that the memory usage of the user hi
 * This command does not work with filter commands (`a-completed`,`a-missed`,`a-upcoming`,`a-today`,`a-find`,`a-list`)
   as its implementation purpose is to assist the user in undo-ing his changes, filter commands do not make changes to the data.
   It also does not work with `p-edit` as the design requires patient details to be accurate as of time schedule, such that the
-  records can accurately reflect the patient's conditions at the time of the appointment. 
+  records can accurately reflect the patient's conditions at the time of the appointment.
   With this concern in mind, we disabled `undo` for `p-edit` and the user can simply execute another `p-edit` command to undo 
   his changes.
 
@@ -531,7 +531,7 @@ its `parse()` method.
 which end time has been passed by 30 minutes will be labelled as missed.
 7. Steps 2 to 6 will repeat until the application is closed.
 8. On closing the application, `MainApp` calls the `TimerThread` object's `setStop()` method which will break the thread
-out of the loop. 
+out of the loop.
 
 ![TimerThreadSequenceDiagram](images/TimerThreadSequenceDiagram.png)
 
