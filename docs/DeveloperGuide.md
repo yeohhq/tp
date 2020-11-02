@@ -485,6 +485,12 @@ However, after many test runs, we concluded that the memory usage of the user hi
 
 ##### Design consideration:
 
+* This command does not work with filter commands (`a-completed`,`a-missed`,`a-upcoming`,`a-today`,`a-find`,`a-list`)
+  as its implementation purpose is to assist the user in undo-ing his changes, filter commands do not make changes to the data.
+  It also does not work with `p-edit` as the design requires patient details to be accurate as of time schedule, such that the
+  records can accurately reflect the patient's conditions at the time of the appointment.With this concern in mind, we disabled `undo` for `p-edit` and the user can simply execute another `p-edit` command to undo 
+  his changes.
+
 ###### Aspect: How undo & redo executes
 
 * **Alternative 1 (current choice):** Saves the entire address book.
@@ -499,6 +505,54 @@ However, after many test runs, we concluded that the memory usage of the user hi
 * **Alternative 3:** Individual command is contained in a `reversible-pair-action` class. When we want to `undo`, we can just call its `pair command`.
   * Pros: Will use less memory (due to the fact that are not saving any additional data).
   * Cons: Very difficult to implement, some commands might not have `pair command`(e.g for `edit`, it is own pair command but pair command to call for undo is hard to implement).
+
+--------------------------------------------------------------------------------------------------------------------
+
+### 4.4 Multi-threading
+
+#### 4.4.1 Timer Thread
+
+##### Implementation
+
+The TimerThread is a separate thread used for automatic tracking of missed appointments, and is created upon application launch.
+
+Here is a summary of how the Timer Thread work:
+1. On initialization, `MainApp` creates an instance of `TimerThread` and calls it's `run()` method to being running the
+thread.
+2. While `TimerThread` is running, it sleeps for 10 seconds using the `Thread.sleep` method.
+3. After sleeping, `TimerThread` will call `LogicManager`'s `checkNewlyMissedAppointments`, which in turn will call
+`AddressBookParser` to `parseCommand("a-new-misses"))`.
+3. `AddressBookParser`'s `parseCommand("a-new-misses")` method will create a `NewMissesCommandParser` object and call
+its `parse()` method.
+4. This `parse()` method mentioned above will create a `AppointmentNewMissesCommand`.
+5. The `parse()` method will return a `AppointmentNewMissesCommand` object to the `LogicManager` for execution.
+6. `AppointmentNewMissesCommand` object's `execute()` method will be called and within `Model`, every `Appointment`
+which end time has been passed by 30 minutes will be labelled as missed.
+7. Steps 2 to 6 will repeat until the application is closed.
+8. On closing the application, `MainApp` calls the `TimerThread` object's `setStop()` method which will break the thread
+out of the loop.
+
+![TimerThreadSequenceDiagram](images/TimerThreadSequenceDiagram.png)
+
+##### Reason for design of implementation:
+
+The reason for having a timer on a separate thread from the main app functionality to prevent the interrupting the
+commands input by the user.
+
+For ease of use, the user is not required to input any command for the `TimerThread` to run.
+
+##### Design consideration:
+
+* **Alternative 1 (current choice):** Refresh for new misses in 1 minute intervals.
+  * Pros: Less behind the scenes computation overhead, allowing for a smoother user experience.
+  * Cons: Appointments may be labelled missed up to a minute late. However, this is a minor inconvenience and most
+  likely will not be noticed by the user.
+
+* **Alternative 2:** Refresh for new misses in 10 second intervals.
+  * Pros: Appointments will be guaranteed to be correctly labelled.
+  * Cons: Additional computation overhead, leading to slower application perform. This problem will be emphasized even
+  greater as more appointments are stored.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **5. Documentation, logging, testing, configuration, dev-ops**

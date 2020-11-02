@@ -51,6 +51,10 @@ public class ModelManager implements Model {
         this(new AddressBook(), new UserPrefs());
     }
 
+    public ModelManager getModel() {
+        return this;
+    }
+
     //=========== UserPrefs ==================================================================================
 
     @Override

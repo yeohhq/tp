@@ -122,7 +122,7 @@ public class Appointment {
      * @param updatedPatient Patient to update current patient with.
      */
     public void updatePatient(Patient currentPatient, Patient updatedPatient) {
-        assert currentPatient.isSamePatient(this.patient);
+            assert currentPatient.isSamePatient(this.patient);
 
         this.patient = updatedPatient;
         this.patientString = updatedPatient.getName().fullName;
@@ -169,7 +169,7 @@ public class Appointment {
      * An appointment has been missed if it ends before LocalDateTime {@code now} and is not completed.
      */
     public boolean hasBeenMissed(LocalDateTime now) {
-        boolean isBefore = this.appointmentTime.getEnd().isBefore(now);
+        boolean isBefore = this.appointmentTime.getEnd().plusMinutes(30).isBefore(now);
         boolean isUncompleted = !this.isCompleted;
         return isBefore && isUncompleted;
     }
