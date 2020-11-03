@@ -75,7 +75,7 @@ public class CommandBox extends UiPart<Region> {
                     if (suggestions.size() > 0) {
                         populatePopup(searchResult);
                         if (!suggestionPopup.isShowing()) {
-                            suggestionPopup.show(commandTextField, Side.TOP, 0, 0);
+                            suggestionPopup.show(commandTextField, Side.BOTTOM, 0, 0);
                         } else {
                             suggestionPopup.hide();
                         }
