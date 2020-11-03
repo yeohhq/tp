@@ -145,9 +145,14 @@ public class Appointment {
             return true;
         }
         return otherAppointment != null
+                // to allow editing of appointmentTime
                 && otherAppointment.getAppointmentTime().equals(getAppointmentTime())
+                // to allow editing of patient
                 && otherAppointment.getPatient().equals(getPatient())
-                && otherAppointment.getDescription().equals(getDescription());
+                // to allow editing of description
+                && otherAppointment.getDescription().equals(getDescription())
+                // to allow editing of tags
+                && otherAppointment.getTags().equals(getTags());
     }
 
     /**
