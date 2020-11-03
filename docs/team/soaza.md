@@ -24,7 +24,7 @@ Given below are my contributions to the project.
   * Highlights: This feature had to be integrated with the current data that is stored inside Archangel. It required one to think out of the box and make careful analysis of what resource 
   was already available.
   * Credits: *Package used: JFxtras-agenda and thanks to [Taekwon](https://github.com/ktaekwon000) for his help in setting up the package*
-![CalendarFeature](https://github.com/soaza/tp/blob/branch-1.4-PPP/docs/images/CalendarTab.png)
+![CalendarFeature](https://raw.githubusercontent.com/soaza/tp/branch-1.4-PPP/docs/images/CalendarTab.png)
   
 * **New Feature**: Add a suggestion box feature to suggest the input format for users when typing their commands. 
   * What it does: Allows the user to view all the possible commands that matches what the user has already typed.
