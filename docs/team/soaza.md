@@ -18,40 +18,40 @@ Given below are my contributions to the project.
   * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
   * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
 
-
 * **New Feature**: Add a Calendar feature built using JFXtra's Agenda's extension,iCalendarAgenda. 
-![CalendarFeature](images/CalendarTab.png)
+
+![CalendarFeature](https://github.com/soaza/tp/blob/branch-1.4-PPP/docs/images/CalendarTab.png)
+
   * What it does: Allows the user to view all the appointments that have been scheduled in an integrated surface.
   * Justification: This feature improves the product significantly because a user can have a clean overview of his/her upcoming schedule and keep track of it in an organised manner.
   * Highlights: This feature had to be integrated with the current data that is stored inside Archangel. It required one to think out of the box and make careful analysis of what resource 
   was already available.
-  * Credits: *JFxtras-agenda*
+  * Credits: *Package used: JFxtras-agenda and thanks to [Taekwon](https://github.com/ktaekwon000) for his help in setting up the package*
+  
+* **New Feature**: Add a suggestion box feature to suggest the input format for users when typing their commands. 
+  * What it does: Allows the user to view all the possible commands that matches what the user has already typed.
+  * Justification: This feature improves the user experience significantly because the user can use the application efficiently without the worry of having to memorise the available command.
+  * Highlights: This feature had to be integrated with the commands that is available within Archangel. It required me to improvise upon what was already provided in the UI and analyse the product from the user's perspective. The implementation had some challenges in displaying what was to be suggested to the user but was later overcame with good knowledge of Java.
+  * Credits: *Design built upon: [code reference](https://gist.github.com/floralvikings/10290131)*
 
 
-* **Code contributed**: [RepoSense link]()
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=soaza&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=zoom&zA=soaza&zR=AY2021S1-CS2103T-W11-1%2Ftp%5Bmaster%5D&zACS=144.46666666666667&zS=2020-08-14&zFS=soaza&zU=2020-11-03&zMG=false&zFTF=commit&zFGS=groupByRepos&zFR=false)
 
-* **Project management**:
-  * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
+* **Project management**: Team Lead
+  * Assigned team members what functionalities each of us had to implement to prevent any conflict and provide a better workflow. 
+  * Managed the team every week on what was to be completed by upcoming deadlines.
+  * Created milestones (`v1.2`-`v1.4`) to organise deadlines and work to be completed.
+  * Managed releases `v1.2` - `v1.4` (3 releases) on GitHub
 
 * **Enhancements to existing features**:
-  * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-  * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
-
+  * Updated the GUI to show Appointments (Pull requests [\#58](https://github.com/AY2021S1-CS2103T-W11-1/tp/pull/58))
+  
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `delete` and `find` [\#72]()
-    * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
+    * Added documentation for the features `undo` and `redo` (Pull request [\#69](https://github.com/AY2021S1-CS2103T-W11-1/tp/pull/69))
   * Developer Guide:
-    * Added implementation details of the `delete` feature.
-
-* **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
-
+    * Added implementation details of the `undo` and `redo`. (Pull request [\#114](https://github.com/AY2021S1-CS2103T-W11-1/tp/pull/114))
+    
 * **Tools**:
-  * Integrated a third party library (Natty) to the project ([\#42]())
-  * Integrated a new Github plugin (CircleCI) to the team repo
+  * Integrated a third party library (iCalendarAgenda) to the project (Pull request [\#114](https://github.com/AY2021S1-CS2103T-W11-1/tp/pull/114))
 
-* _{you can add/remove categories in the list above}_
