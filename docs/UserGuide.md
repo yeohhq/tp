@@ -229,6 +229,7 @@ Format: `a-edit INDEX [start/DATE&TIME] [end/DATE&TIME] [pt/PATIENT INDEX] [d/DE
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the appointment will be removed i.e adding of tags is not cumulative.
 * You can remove all the appointment’s tags by typing `t/` without specifying any tags after it.
+* Tags must be alphanumeric and individual tags cannot be separated by spaces (i.e. `HighPriority` is a valid input, while `High Priority` is an invalid input).
 
 Examples:
 * `a-edit 1 start/2020-09-15 12:00 end/2020-09-15 14:00 pt/2` Edits the start and end date & time of the 1st appointment to be 15/9/2020 12:00 and 15/9/2020 14:00 respectively, and edits patient to 2nd patient in patient list.

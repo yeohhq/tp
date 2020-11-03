@@ -18,6 +18,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.Command;
@@ -91,8 +93,12 @@ public class AppointmentEditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
         }
 
+        // Create a copy of appointment list without appointmentToEdit to check for overlapping appointmentTime.
+        ObservableList<Appointment> appointmentListWithoutOriginal = FXCollections.observableArrayList();
+        appointmentListWithoutOriginal.addAll(model.getFilteredAppointmentList());
+        appointmentListWithoutOriginal.remove(appointmentToEdit);
         // Appointment slot is already taken
-        if (!AppointmentTime.isValidTimeSlot(model.getFilteredAppointmentList(), editedAppointment)) {
+        if (!AppointmentTime.isValidTimeSlot(appointmentListWithoutOriginal, editedAppointment)) {
             throw new CommandException(MESSAGE_INVALID_APPOINTMENT_SLOT);
         }
 
