@@ -16,4 +16,4 @@ title: Archangel
 
 **Acknowledgements**
 
-* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
+* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5), [JFXtra-Agenda](http://jfxtras.org/doc/8.0/jfxtras-agenda/jfxtras/scene/control/agenda/Agenda.html)
