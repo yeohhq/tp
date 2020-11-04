@@ -9,8 +9,8 @@ It supports adding, editing, deleting of patients/appointments and facilitates s
 If you can type fast, Archangel can get your patient management appointment done faster than traditional GUI apps.
 
 <div style="text-align: center; padding-bottom: 2em">
-![GUI_Interface_1](images/GUI_Labelled_1.png)
-![GUI_Interface_2](images/GUI_Labelled_2.png)
+<img src="images/GUI_Labelled_1.png" width="95%" /> <br />
+<img src="images/GUI_Labelled_2.png" width="95%" /> <br />
 Figure 1.1: <i>The user interface of Archangel.</i>
 </div>
 
