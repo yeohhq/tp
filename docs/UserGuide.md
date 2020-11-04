@@ -8,6 +8,12 @@ Archangel integrates storing of patient data and scheduling patient appointments
 It supports adding, editing, deleting of patients/appointments and facilitates search using filter commands to help improve your experience in handling patient data.
 If you can type fast, Archangel can get your patient management appointment done faster than traditional GUI apps.
 
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/GUI_Labelled_1.png" width="95%" /> <br />
+<img src="images/GUI_Labelled_2.png" width="95%" /> <br />
+Figure 0: <i>The user interface of Archangel.</i>
+</div>
+
 * Table of Contents
 {:toc}
 
@@ -22,7 +28,7 @@ If you can type fast, Archangel can get your patient management appointment done
 3. Copy the file to the folder you want to use as the _home folder_ for Archangel.
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+   ![Ui](images/GUI.png)
 
 5. Type the command in the command box and press `Enter` to execute it. e.g. typing `help` and pressing `Enter` will open the help window.<br>
    Some example commands you can try:
@@ -322,7 +328,16 @@ Format: `a-missed`
 ### 2.4 General Commands
 
 #### 2.4.1 Undoing the previous command : `undo`
-Undo your previous command in Archangel.
+"Oops, I accidentally deleted the wrong appointment!", fret not! You can undo your commands through the command `undo`
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/UserGuide/Undo_Example_1.png" width="95%" /> <br />
+Figure 2.4.1.1: <i>Before `a-delete 1`.</i>
+<img src="images/UserGuide/Undo_Example_2.png" width="95%" /> <br />
+Figure 2.4.1.2: <i>After `a-delete 1`(James is gone!).</i>
+<img src="images/UserGuide/Undo_Example_3.png" width="95%" /> <br />
+Figure 2.4.1.3: <i>After `undo`(James is back!).</i>
+</div>
 
 Format: `undo`
 
@@ -338,7 +353,17 @@ Examples:
 * `p-delete 2` followed by `undo` undoes the edit command and make no changes to Archangel.
 
 #### 2.4.2 Redoing the previous command : `redo`
-Redo your previous command(`undo`) in Archangel.
+When there is an `undo`, there is always a `redo`! You can always `redo` commands that you `undo` previously!
+
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/UserGuide/Undo_Example_2.png" width="95%" /> <br />
+Figure 2.4.1.2: <i>After `a-delete 1`(James is gone!).</i>
+<img src="images/UserGuide/Undo_Example_3.png" width="95%" /> <br />
+Figure 2.4.1.3: <i>After `undo`(James is back!).</i>
+<img src="images/UserGuide/Redo_Example_1.png" width="95%" /> <br />
+Figure 2.4.1.3: <i>After `redo`(James is gone!).</i>
+</div>
 
 Format: `redo`
 
@@ -346,7 +371,7 @@ Format: `redo`
 * This command must be preceded by `undo`
 
 Examples:
-* `p-delete 2` followed by `undo` then `redo` redoes the `undo` command and carries out the delete command.
+* `p-delete 1` followed by `undo` then `redo` redoes the `undo` command and carries out the delete command.
 
 --------------------------------------------------------------------------------------------------------------------
 
