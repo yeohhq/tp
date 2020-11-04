@@ -1,8 +1,8 @@
 package seedu.address.model.filters.appointmentfilters;
 
-import seedu.address.model.appointment.Appointment;
-
 import java.util.function.Predicate;
+
+import seedu.address.model.appointment.Appointment;
 
 public class SearchSpecificPatientHashcodeFilter implements Predicate<Appointment> {
     private final int hashcode;
