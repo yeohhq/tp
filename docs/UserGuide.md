@@ -8,6 +8,12 @@ Archangel integrates storing of patient data and scheduling patient appointments
 It supports adding, editing, deleting of patients/appointments and facilitates search using filter commands to help improve your experience in handling patient data.
 If you can type fast, Archangel can get your patient management appointment done faster than traditional GUI apps.
 
+<div style="text-align: center; padding-bottom: 2em">
+![GUI_Interface_1](images/GUI_Labelled_1.png)
+![GUI_Interface_2](images/GUI_Labelled_2.png)
+Figure 1.1: <i>The user interface of Archangel.</i>
+</div>
+
 * Table of Contents
 {:toc}
 
