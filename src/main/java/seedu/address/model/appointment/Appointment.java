@@ -7,7 +7,6 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.tag.Tag;
@@ -87,10 +86,6 @@ public class Appointment {
         return this.description;
     }
 
-    public Index getPatientIndex() {
-        return Index.fromZeroBased(Integer.parseInt(this.patientString));
-    }
-
     /**
      * Parses patientString to change patient field in appointment from Json format.
      * @param addressBook
@@ -122,7 +117,7 @@ public class Appointment {
      * @param updatedPatient Patient to update current patient with.
      */
     public void updatePatient(Patient currentPatient, Patient updatedPatient) {
-        assert currentPatient.isSamePatient(this.patient);
+            assert currentPatient.isSamePatient(this.patient);
 
         this.patient = updatedPatient;
         this.patientString = updatedPatient.getName().fullName;
@@ -145,9 +140,14 @@ public class Appointment {
             return true;
         }
         return otherAppointment != null
+                // to allow editing of appointmentTime
                 && otherAppointment.getAppointmentTime().equals(getAppointmentTime())
+                // to allow editing of patient
                 && otherAppointment.getPatient().equals(getPatient())
-                && otherAppointment.getDescription().equals(getDescription());
+                // to allow editing of description
+                && otherAppointment.getDescription().equals(getDescription())
+                // to allow editing of tags
+                && otherAppointment.getTags().equals(getTags());
     }
 
     /**
@@ -169,7 +169,7 @@ public class Appointment {
      * An appointment has been missed if it ends before LocalDateTime {@code now} and is not completed.
      */
     public boolean hasBeenMissed(LocalDateTime now) {
-        boolean isBefore = this.appointmentTime.getEnd().isBefore(now);
+        boolean isBefore = this.appointmentTime.getEnd().plusMinutes(30).isBefore(now);
         boolean isUncompleted = !this.isCompleted;
         return isBefore && isUncompleted;
     }
@@ -207,17 +207,17 @@ public class Appointment {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getDescription())
-                .append(" Start: ")
+                .append("\nStart: ")
                 .append(getStartTime())
-                .append(" End: ")
+                .append("\nEnd: ")
                 .append(getEndTime())
-                .append(" Patient: ")
-                .append(getPatient())
-                .append(" isMissed: ")
+                .append("\nPatient: ")
+                .append(getPatient().getName().fullName)
+                .append("\nisMissed: ")
                 .append(isMissed())
-                .append(" isCompleted: ")
+                .append("\nisCompleted: ")
                 .append(isCompleted())
-                .append(" Tags: ");
+                .append("\nTags: ");
         getTags().forEach(builder::append);
         return builder.toString();
     }

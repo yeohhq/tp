@@ -8,6 +8,12 @@ Archangel integrates storing of patient data and scheduling patient appointments
 It supports adding, editing, deleting of patients/appointments and facilitates search using filter commands to help improve your experience in handling patient data.
 If you can type fast, Archangel can get your patient management appointment done faster than traditional GUI apps.
 
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/GUI_Labelled_1.png" width="95%" /> <br />
+<img src="images/GUI_Labelled_2.png" width="95%" /> <br />
+Figure 0: <i>The user interface of Archangel.</i>
+</div>
+
 * Table of Contents
 {:toc}
 
@@ -22,7 +28,7 @@ If you can type fast, Archangel can get your patient management appointment done
 3. Copy the file to the folder you want to use as the _home folder_ for Archangel.
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+   ![Ui](images/GUI.png)
 
 5. Type the command in the command box and press `Enter` to execute it. e.g. typing `help` and pressing `Enter` will open the help window.<br>
    Some example commands you can try:
@@ -196,6 +202,10 @@ Format: `a-schedule pt/INDEX start/DATE&TIME end/DATE&TIME d/DESCRIPTION [t/TAGS
 
 * Schedules patient appointment for patient at INDEX in the displayed patient list.
 * Appointment will be set to input DATE (format: YYYY-MM-DD) and TIME (format: HH:MM).
+* TAGS should be alphanumeric.
+* Appointment time (i.e. duration from `start` to `end`) cannot overlap with another existing appointment.
+* Appointment duration should not exceed 24 hours.
+* Appointment time must be indicated as HH:MM (i.e. 9AM must be `09:00`, and not `9:00`).
 
 Examples:
 * `a-schedule pt/2 start/2020-09-14 08:00 end/2020-09-14 10:00 d/Review Appointment` schedules an appointment for patient 2 on 2020-09-14 at 08-00 with appointment description Review Appointment.
@@ -225,6 +235,7 @@ Format: `a-edit INDEX [start/DATE&TIME] [end/DATE&TIME] [pt/PATIENT INDEX] [d/DE
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the appointment will be removed i.e adding of tags is not cumulative.
 * You can remove all the appointment’s tags by typing `t/` without specifying any tags after it.
+* Tags must be alphanumeric and individual tags cannot be separated by spaces (i.e. `HighPriority` is a valid input, while `High Priority` is an invalid input).
 
 Examples:
 * `a-edit 1 start/2020-09-15 12:00 end/2020-09-15 14:00 pt/2` Edits the start and end date & time of the 1st appointment to be 15/9/2020 12:00 and 15/9/2020 14:00 respectively, and edits patient to 2nd patient in patient list.
@@ -245,13 +256,13 @@ Examples:
 
 #### 2.3.5 Listing all upcoming appointments : `a-list`
 
-Shows a list of all your upcoming patient appointments in Archangel.
+Shows a list of all your uncompleted patient appointments in Archangel.
 
 Format: `a-list`
 
 #### 2.3.6 Listing all past and present appointments : `a-listall`
 
-Shows a list of all your past and present patient appointments in Archangel.
+Shows a list of all your patient appointments in Archangel.
 
 Format: `a-listall`
 
@@ -289,7 +300,7 @@ Examples:
 * `a-tag friend enemy`  returns Appointments tagged `Friend` and `Enemy`
 
 #### 2.3.9 Finding an appointment by current date: `a-today`
-Finds your appointments scheduled on the current date.
+Finds your uncompleted appointments scheduled on the current date.
 
 Format: `a-today`
 
@@ -297,7 +308,7 @@ Examples:
 * `a-today` returns Appointments scheduled today.
 
 #### 2.3.10 Finding an appointment by current week: `a-upcoming`
-Finds your appointments scheduled in the current week.
+Finds your uncompleted appointments scheduled in the current week.
 
 Format: `a-upcoming`
 
@@ -317,20 +328,42 @@ Format: `a-missed`
 ### 2.4 General Commands
 
 #### 2.4.1 Undoing the previous command : `undo`
-Undo your previous command in Archangel.
+"Oops, I accidentally deleted the wrong appointment!", fret not! You can undo your commands through the command `undo`
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/UserGuide/Undo_Example_1.png" width="95%" /> <br />
+Figure 2.4.1.1: <i>Before `a-delete 1`.</i>
+<img src="images/UserGuide/Undo_Example_2.png" width="95%" /> <br />
+Figure 2.4.1.2: <i>After `a-delete 1`(James is gone!).</i>
+<img src="images/UserGuide/Undo_Example_3.png" width="95%" /> <br />
+Figure 2.4.1.3: <i>After `undo`(James is back!).</i>
+</div>
 
 Format: `undo`
 
 * This command has no keywords
 * This command does not work with filter commands (`a-completed`,`a-missed`,`a-upcoming`,`a-today`,`a-find`,`a-list`)
   as its implementation purpose is to assist the user in undo-ing his changes, filter commands do not make changes to the data.
-* This command can be succeeded by a `redo` command.
+  It also does not work with `p-edit` as the design requires patient details to be accurate as of time schedule, such that the
+  records can accurately reflect the patient's conditions at the time of the appointment.
+* A list of commands that can be undone can be found in the table under Command Summary.
+* This command can be succeeded by a `redo` command
 
 Examples:
-* `p-edit 2 d/Review Session /t` followed by `undo` undoes the edit command and make no changes to Archangel.
+* `p-delete 2` followed by `undo` undoes the edit command and make no changes to Archangel.
 
 #### 2.4.2 Redoing the previous command : `redo`
-Redo your previous command(`undo`) in Archangel.
+When there is an `undo`, there is always a `redo`! You can always `redo` commands that you `undo` previously!
+
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/UserGuide/Undo_Example_2.png" width="95%" /> <br />
+Figure 2.4.2.1: <i>After `a-delete 1`(James is gone!).</i>
+<img src="images/UserGuide/Undo_Example_3.png" width="95%" /> <br />
+Figure 2.4.2.2: <i>After `undo`(James is back!).</i>
+<img src="images/UserGuide/Redo_Example_1.png" width="95%" /> <br />
+Figure 2.4.2.3: <i>After `redo`(James is gone!).</i>
+</div>
 
 Format: `redo`
 
@@ -338,7 +371,7 @@ Format: `redo`
 * This command must be preceded by `undo`
 
 Examples:
-* `p-edit 2 d/Review Session /t` followed by `undo` then `redo` redoes the `undo` command and carries out the edit command.
+* `p-delete 1` followed by `undo` then `redo` redoes the `undo` command and carries out the delete command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -351,30 +384,30 @@ A: Install the app in the other computer and overwrite the empty data file it cr
 
 ## Command summary
 
-Action                               | Format, Examples
--------------------------------------|------------------------------------------------------------------------------
-Add Patient                          | `p-add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…`​ <br> e.g. `p-add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-List Patients                        | `p-list`
-Edit Patient                         | `p-edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br> e.g. `p-edit 2 n/James Lee e/jameslee@example.com`
-Find Patient                         | `p-find KEYWORD [MORE_KEYWORDS]` <br> e.g. `p-find James Jake`
-Delete Patient                       | `p-delete INDEX` <br>e.g. `p-delete 3`
-Adding Patient Remark                | `p-remark INDEX r/REMARK` <br>e.g. `p-remark 1 r/Likes to swim.`
-Removing Patient Remark              | `p-remark INDEX` <br>e.g. `p-remark 3`
-Help                                 | `help`
-Schedule Appointment                 | `a-schedule i/INDEXOFPATIENT start/DATE&TIME end/DATE&TIME d/DESCRIPTION [t/TAGS]…`​<br> e.g. `a-schedule i/2 start/2020-09-14 08:00 end/2020-09-14 10:00 d/Review Appointment`
-Delete Appointment                   | `a-delete INDEX` <br>e.g. `a-delete 3`
-Edit Appointment                     | `a-edit INDEX [start/DATE&TIME] [end/DATE&TIME] [d/DESCRIPTION] [t/TAGS]…` <br> e.g. `a-edit 2 start/2020-09-15 12:00 end/2020-09-15 14:00`
-Complete Appointments                | `a-complete INDEX`
-List Upcoming Appointments           | `a-list`
-List All Appointments                | `a-listall`
-Find Appointments by Patient         | `a-find KEYWORD [MORE_KEYWORDS]` <br> e.g. `a-find Jack`
-Find Appointments by Tags            | `a-tag KEYWORD [MORE_KEYWORDS]` <br> e.g. `a-find friends`
-Find Appointments by Current Date    | `a-today`
-Find Appointments by Current Week    | `a-upcoming`
-List Appointments by Completed       | `a-completed`
-List Appointments by Missed          | `a-missed`
-Undo the previous command            | `undo`
-Redo the previous command            | `redo`
+Action                               | Format, Examples | Compatible with `undo`
+-------------------------------------|------------------------------------------------------------------------------ | ---------------------------------------
+Add Patient                          | `p-add n/NAME g/GENDER bd/YYYY-MM-DD bt/BLOODTYPE p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…`​ <br> e.g. `p-add n/John Doe g/MALE bd/2018-12-27 bt/A+ p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25` |  **YES**
+List Patients                        | `p-list` | **NO**
+Edit Patient                         | `p-edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br> e.g. `p-edit 2 n/James Lee e/jameslee@example.com` | **NO**
+Find Patient                         | `p-find KEYWORD [MORE_KEYWORDS]` <br> e.g. `p-find James Jake` | **NO**
+Delete Patient                       | `p-delete INDEX` <br>e.g. `p-delete 3` | **YES**
+Adding Patient Remark                | `p-remark INDEX r/REMARK` <br>e.g. `p-remark 1 r/Likes to swim.` | **YES**
+Removing Patient Remark              | `p-remark INDEX` <br>e.g. `p-remark 3` | **YES**
+Help                                 | `help` | **NO**
+Schedule Appointment                 | `a-schedule pt/INDEXOFPATIENT start/DATE&TIME end/DATE&TIME d/DESCRIPTION [t/TAGS]…`​<br> e.g. `a-schedule pt/2 start/2020-11-21 08:00 end/2020-11-21 10:00 d/Review Appointment` | **YES**
+Delete Appointment                   | `a-delete INDEX` <br>e.g. `a-delete 3` | **YES**
+Edit Appointment                     | `a-edit INDEX [start/DATE&TIME] [end/DATE&TIME] [d/DESCRIPTION] [t/TAGS]…` <br> e.g. `a-edit 2 start/2020-09-15 12:00 end/2020-09-15 14:00` | **YES**
+Complete Appointments                | `a-complete INDEX` | **YES**
+List Upcoming Appointments           | `a-list` | **NO**
+List All Appointments                | `a-listall` | **NO**
+Find Appointments by Patient         | `a-find KEYWORD [MORE_KEYWORDS]` <br> e.g. `a-find Jack` | **NO**
+Find Appointments by Tags            | `a-tag KEYWORD [MORE_KEYWORDS]` <br> e.g. `a-find friends` | **NO**
+Find Appointments by Current Date    | `a-today` | **NO**
+Find Appointments by Current Week    | `a-upcoming` | **NO**
+List Appointments by Completed       | `a-completed`| **NO**
+List Appointments by Missed          | `a-missed` | **NO**
+Undo the previous command            | `undo` | **NO**
+Redo the previous command            | `redo` | **NO**
 
 
 

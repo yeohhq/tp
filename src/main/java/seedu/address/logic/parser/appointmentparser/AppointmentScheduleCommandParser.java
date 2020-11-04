@@ -1,5 +1,7 @@
 package seedu.address.logic.parser.appointmentparser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_APPOINTMENT_BACKDATED;
+import static seedu.address.commons.core.Messages.MESSAGE_APPOINTMENT_DURATION;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_END;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_START;
@@ -47,6 +49,17 @@ public class AppointmentScheduleCommandParser implements Parser<AppointmentSched
         }
         LocalDateTime startTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_APPOINTMENT_START).get());
         LocalDateTime endTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_APPOINTMENT_END).get());
+
+        // cannot schedule an Appointment before now.
+        if (startTime.isBefore(LocalDateTime.now()) || endTime.isBefore(LocalDateTime.now())) {
+            throw new ParseException(MESSAGE_APPOINTMENT_BACKDATED);
+        }
+
+        // cannot schedule an Appointment for more than 24 hours.
+        if (startTime.plusHours(24).isBefore(endTime)) {
+            throw new ParseException(MESSAGE_APPOINTMENT_DURATION);
+        }
+
         AppointmentTime appointmentTime = new AppointmentTime(startTime, endTime);
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
