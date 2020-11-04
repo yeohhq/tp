@@ -21,7 +21,7 @@
 
 <fx:root minHeight="700.0" minWidth="700.0" onCloseRequest="#handleExit" title="Archangel" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
-    <Image url="@/images/address_book_32.png" />
+    <Image url="@/images/Archangel.png" />
   </icons>
   <scene>
     <Scene>
