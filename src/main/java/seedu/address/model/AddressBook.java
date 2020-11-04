@@ -142,7 +142,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setAppointment(Appointment target, Appointment editedAppointment) {
         requireNonNull(editedAppointment);
-
         appointments.setAppointment(target, editedAppointment);
     }
 

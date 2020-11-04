@@ -7,7 +7,6 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.tag.Tag;
@@ -85,10 +84,6 @@ public class Appointment {
 
     public Description getDescription() {
         return this.description;
-    }
-
-    public Index getPatientIndex() {
-        return Index.fromZeroBased(Integer.parseInt(this.patientString));
     }
 
     /**
