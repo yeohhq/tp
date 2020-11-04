@@ -23,8 +23,6 @@ import seedu.address.model.tag.Tag;
  */
 public class JsonAdaptedAppointment {
 
-    // TODO: Implement this class to handle Patient storage and retrieval.
-
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Appointment's %s field is missing!";
 
     private final String appointmentTime;
@@ -121,8 +119,6 @@ public class JsonAdaptedAppointment {
                 modelTags, modelIsCompleted, modelIsMissed, modelDescription);
         appointment.parsePatient(addressBook);
         return appointment;
-
-
     }
 
 }
