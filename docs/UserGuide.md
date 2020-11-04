@@ -371,7 +371,7 @@ Format: `redo`
 * This command must be preceded by `undo`
 
 Examples:
-* `p-delete 2` followed by `undo` then `redo` redoes the `undo` command and carries out the delete command.
+* `p-delete 1` followed by `undo` then `redo` redoes the `undo` command and carries out the delete command.
 
 --------------------------------------------------------------------------------------------------------------------
 
