@@ -358,9 +358,9 @@ When there is an `undo`, there is always a `redo`! You can always `redo` command
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/UserGuide/Undo_Example_2.png" width="95%" /> <br />
-Figure 2.4.2.2: <i>After `a-delete 1`(James is gone!).</i>
+Figure 2.4.2.1: <i>After `a-delete 1`(James is gone!).</i>
 <img src="images/UserGuide/Undo_Example_3.png" width="95%" /> <br />
-Figure 2.4.2.3: <i>After `undo`(James is back!).</i>
+Figure 2.4.2.2: <i>After `undo`(James is back!).</i>
 <img src="images/UserGuide/Redo_Example_1.png" width="95%" /> <br />
 Figure 2.4.2.3: <i>After `redo`(James is gone!).</i>
 </div>
