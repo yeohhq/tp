@@ -6,7 +6,7 @@ title: Yeoh Hui Qing's Project Portfolio Page
 ## Project: Archangel
 
 Archangel is a desktop address book application used for managing patient data and appointment scheduling for medical professionals.
-The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 30 kLoC.
+The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
 Given below are my contributions to the project.
 
