@@ -11,7 +11,7 @@ If you can type fast, Archangel can get your patient management appointment done
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/GUI_Labelled_1.png" width="95%" /> <br />
 <img src="images/GUI_Labelled_2.png" width="95%" /> <br />
-Figure 1.1: <i>The user interface of Archangel.</i>
+Figure 0: <i>The user interface of Archangel.</i>
 </div>
 
 * Table of Contents
@@ -328,7 +328,16 @@ Format: `a-missed`
 ### 2.4 General Commands
 
 #### 2.4.1 Undoing the previous command : `undo`
-Undo your previous command in Archangel.
+"Oops, I accidentally deleted the wrong appointment!", fret not! You can undo your commands through the command `undo`
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/UserGuide/Undo_Example_1.png" width="95%" /> <br />
+Figure 2.4.1.1: <i>Before `a-delete 1`.</i>
+<img src="images/UserGuide/Undo_Example_2.png" width="95%" /> <br />
+Figure 2.4.1.2: <i>After `a-delete 1`(James is gone!).</i>
+<img src="images/UserGuide/Undo_Example_3.png" width="95%" /> <br />
+Figure 2.4.1.3: <i>After `undo`(James is back!).</i>
+</div>
 
 Format: `undo`
 
@@ -344,7 +353,17 @@ Examples:
 * `p-delete 2` followed by `undo` undoes the edit command and make no changes to Archangel.
 
 #### 2.4.2 Redoing the previous command : `redo`
-Redo your previous command(`undo`) in Archangel.
+When there is an `undo`, there is always a `redo`! You can always `redo` commands that you `undo` previously!
+
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/UserGuide/Undo_Example_2.png" width="95%" /> <br />
+Figure 2.4.1.2: <i>After `a-delete 1`(James is gone!).</i>
+<img src="images/UserGuide/Undo_Example_3.png" width="95%" /> <br />
+Figure 2.4.1.3: <i>After `undo`(James is back!).</i>
+<img src="images/UserGuide/Redo_Example_1.png" width="95%" /> <br />
+Figure 2.4.1.3: <i>After `redo`(James is gone!).</i>
+</div>
 
 Format: `redo`
 
