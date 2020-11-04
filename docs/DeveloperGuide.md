@@ -127,7 +127,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
+* stores Archangel's data.
 * exposes an unmodifiable `ObservableList<Patient>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
@@ -147,7 +147,7 @@ The `Model`,
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
+* can save Archangel's data in json format and read it back.
 
 ### 3.6 Common classes
 
@@ -389,7 +389,7 @@ The unique classes associated to `AppointmentFindPatientCommand`  command:
   there might be a conflict for those appointments with more than one tags.
 
 #### 4.2.5 List All Appointments
-![Sequence Diagram for command to list all appointments in addressbook](images/AppointmentListAllCommand.png)
+![Sequence Diagram for command to list all appointments in Archangel](images/AppointmentListAllCommand.png)
 <br></br>_Diagram 4.2.5 : Appointment List All Command Sequence Diagram_
 
 ##### Implementation
@@ -397,7 +397,7 @@ Listing all past and upcoming appointments from the appointment list.
 
 The unique classes associated to this command as shown from Diagram 4.2.6 are :
 1. `AppointmentCommandParser: AppointmentListAllCommandParser`— Creates a new AppointmentListAllCommand object.
-2. `AppointmentCommand: AppointmentListAllCommand`— Updates filtered appointment list to show all appointments in address bok.
+2. `AppointmentCommand: AppointmentListAllCommand`— Updates filtered appointment list to show all appointments in Archangel.
 
 #### 4.2.6 Complete Appointment
 
@@ -485,6 +485,12 @@ However, after many test runs, we concluded that the memory usage of the user hi
 
 ##### Design consideration:
 
+* This command does not work with filter commands (`a-completed`,`a-missed`,`a-upcoming`,`a-today`,`a-find`,`a-list`)
+  as its implementation purpose is to assist the user in undo-ing his changes, filter commands do not make changes to the data.
+  It also does not work with `p-edit` as the design requires patient details to be accurate as of time schedule, such that the
+  records can accurately reflect the patient's conditions at the time of the appointment.With this concern in mind, we disabled `undo` for `p-edit` and the user can simply execute another `p-edit` command to undo
+  his changes.
+
 ###### Aspect: How undo & redo executes
 
 * **Alternative 1 (current choice):** Saves the entire address book.
@@ -499,6 +505,54 @@ However, after many test runs, we concluded that the memory usage of the user hi
 * **Alternative 3:** Individual command is contained in a `reversible-pair-action` class. When we want to `undo`, we can just call its `pair command`.
   * Pros: Will use less memory (due to the fact that are not saving any additional data).
   * Cons: Very difficult to implement, some commands might not have `pair command`(e.g for `edit`, it is own pair command but pair command to call for undo is hard to implement).
+
+--------------------------------------------------------------------------------------------------------------------
+
+### 4.4 Multi-threading
+
+#### 4.4.1 Timer Thread
+
+##### Implementation
+
+The TimerThread is a separate thread used for automatic tracking of missed appointments, and is created upon application launch.
+
+Here is a summary of how the Timer Thread work:
+1. On initialization, `MainApp` creates an instance of `TimerThread` and calls it's `run()` method to being running the
+thread.
+2. While `TimerThread` is running, it sleeps for 10 seconds using the `Thread.sleep` method.
+3. After sleeping, `TimerThread` will call `LogicManager`'s `checkNewlyMissedAppointments`, which in turn will call
+`AddressBookParser` to `parseCommand("a-new-misses"))`.
+3. `AddressBookParser`'s `parseCommand("a-new-misses")` method will create a `NewMissesCommandParser` object and call
+its `parse()` method.
+4. This `parse()` method mentioned above will create a `AppointmentNewMissesCommand`.
+5. The `parse()` method will return a `AppointmentNewMissesCommand` object to the `LogicManager` for execution.
+6. `AppointmentNewMissesCommand` object's `execute()` method will be called and within `Model`, every `Appointment`
+which end time has been passed by 30 minutes will be labelled as missed.
+7. Steps 2 to 6 will repeat until the application is closed.
+8. On closing the application, `MainApp` calls the `TimerThread` object's `setStop()` method which will break the thread
+out of the loop.
+
+![TimerThreadSequenceDiagram](images/TimerThreadSequenceDiagram.png)
+
+##### Reason for design of implementation:
+
+The reason for having a timer on a separate thread from the main app functionality to prevent the interrupting the
+commands input by the user.
+
+For ease of use, the user is not required to input any command for the `TimerThread` to run.
+
+##### Design consideration:
+
+* **Alternative 1 (current choice):** Refresh for new misses in 1 minute intervals.
+  * Pros: Less behind the scenes computation overhead, allowing for a smoother user experience.
+  * Cons: Appointments may be labelled missed up to a minute late. However, this is a minor inconvenience and most
+  likely will not be noticed by the user.
+
+* **Alternative 2:** Refresh for new misses in 10 second intervals.
+  * Pros: Appointments will be guaranteed to be correctly labelled.
+  * Cons: Additional computation overhead, leading to slower application perform. This problem will be emphasized even
+  greater as more appointments are stored.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **5. Documentation, logging, testing, configuration, dev-ops**
@@ -549,16 +603,39 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### 6.3 Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `Archangel` (the AddressBook) and the **Actor** is the `user`, unless specified otherwise)
+
+**Use case: Add a patient**
+
+**MSS**
+
+1.  User requests to add a new patient to the list.
+2.  Archangel adds the patient.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The patient already exists in the list.
+
+    * 1a1. Archangel shows duplicate patient error message.
+
+      Use case resumes at step 1.
+
+* 1b. User inputs are invalid/incomplete.
+
+    * 1b1. Archangel shows an error message.
+
+      Use case resumes at step 1.
 
 **Use case: Delete a patient**
 
 **MSS**
 
-1.  User requests to list patients
-2.  AddressBook shows a list of patients
-3.  User requests to delete a specific patient in the list
-4.  AddressBook deletes the patient
+1.  User requests to list patients.
+2.  Archangel shows a list of patients.
+3.  User requests to delete a specific patient in the list.
+4.  Archangel deletes the patient.
 
     Use case ends.
 
@@ -570,7 +647,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. Archangel shows an error message.
 
       Use case resumes at step 2.
 
@@ -578,10 +655,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to view a patient.
-2.  AddressBook shows the patient's information.
-3.  User requests to the patient's information.
-4.  AddressBook edits the patient's information.
+1.  User requests to find a patient.
+2.  Archangel shows the patient's information.
+3.  User requests to edit the patient's information.
+4.  Archangel edits the patient's information.
 
     Use case ends.
 
@@ -589,13 +666,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The patient is not found.
 
-    * 1a1. AddressBook shows an error message.
+    * 1a1. Archangel shows an error message.
 
       Use case ends.
 
 * 3a. The patient is not found.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. Archangel shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. User inputs fields that are invalid/does not satisfy requirements.
+
+    * 3b1. Archangel shows an error message.
 
       Use case resumes at step 2.
 
@@ -603,8 +686,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to schedule a patient appointment
-2.  AddressBook schedule the patient appointment
+1.  User requests to schedule a patient appointment.
+2.  Archangel schedule the patient appointment.
 
     Use case ends.
 
@@ -612,13 +695,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The appointment has conflict with another appointment.
 
-    * 1a1. AddressBook shows an error message.
+    * 1a1. Archangel shows an error message.
 
       Use case resumes at step 1.
 
 * 1b. The appointment's date/timing is invalid.
 
-    * 1b1. AddressBook shows an error message.
+    * 1b1. Archangel shows an error message.
+
+      Use case resumes at step 1.
+
+* 1c. The patient to be added to the appointment does not exist.
+
+    * 1c1. Archangel shows an error message.
 
       Use case resumes at step 1.
 
@@ -626,8 +715,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to delete a specific appointment in the list
-2.  AddressBook deletes the appointment
+1.  User requests to delete a specific appointment in the list.
+2.  Archangel deletes the appointment.
 
     Use case ends.
 
@@ -635,17 +724,55 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The appointment does not exist.
 
-    * 1a1. AddressBook shows an error message.
+    * 1a1. Archangel shows an error message.
 
       Use case resumes at step 1.
 
 * 1b. The appointment list is empty.
 
-    * 1a1. AddressBook shows an error message.
+    * 1a1. Archangel shows an error message.
 
       Use case resumes at step 1.
 
-*{More to be added}*
+**Use case: Edit an appointment**
+
+**MSS**
+
+1.  User requests to edit the appointment's information.
+2.  Archangel edits the appointment's information.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The appointment is not found.
+
+    * 1a1. Archangel shows an error message.
+
+      Use case ends.
+
+* 1b. User inputs fields that are invalid/does not satisfy requirements.
+
+    * 1b1. Archangel shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: Close Archangel program**
+
+**MSS**
+
+1.  User finishes using Archangel program.
+2.  User closes the program.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The user does not close the program using the correct command/action.
+
+    * 1a1. Archangel continues to run.
+
+      Use case ends.
 
 ### 6.4 Non-Functional Requirements
 
@@ -660,7 +787,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
-* **Priority Patient**: A patient that requires more attention that the typical patient.
+* **Priority Patient**: A patient who requires more attention than the typical patient.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -707,19 +834,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### 7.3 Viewing a patient
-
-1. Viewing a patient while all patients are shown
-
-   1. Test case: `view Kim Guan`<br>
-      Expected: Details of patient named 'Kim Guan' is shown.
-
-   2. Other incorrect delete commands to try: `view`, `view x`, `...` (where x is not in the list)<br>
-      Expected: Error details shown in status message. Status bar remains the same.
-
-2. _{ more test cases …​ }_
-
-### 7.4 Saving data
+### 7.3 Saving data
 
 1. Dealing with missing/corrupted data files
 

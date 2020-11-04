@@ -51,6 +51,10 @@ public class ModelManager implements Model {
         this(new AddressBook(), new UserPrefs());
     }
 
+    public ModelManager getModel() {
+        return this;
+    }
+
     //=========== UserPrefs ==================================================================================
 
     @Override
@@ -139,27 +143,23 @@ public class ModelManager implements Model {
     @Override
     public void deleteAppointment(Appointment target) {
         addressBook.removeAppointment(target);
-        // updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
     }
 
     @Override
     public void completeAppointment(Appointment target) {
         requireAllNonNull(target);
         addressBook.setComplete(target);
-        // updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
     }
 
     @Override
     public void addAppointment(Appointment appointment) {
         addressBook.addAppointment(appointment);
-        // updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
     }
 
     @Override
     public void setAppointment(Appointment target, Appointment editedAppointment) {
         requireAllNonNull(target, editedAppointment);
         addressBook.setAppointment(target, editedAppointment);
-        // updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
     }
 
     @Override
@@ -167,7 +167,6 @@ public class ModelManager implements Model {
         requireNonNull(now);
         addressBook.setMissedAppointments(now);
     }
-
 
     @Override
     public UserHistoryManager getUserHistoryManager() {
@@ -215,11 +214,6 @@ public class ModelManager implements Model {
     public ObservableList<Appointment> getFilteredAppointmentList() {
         return filteredAppointments;
     }
-
-    /*
-    @Override
-    public ObservableList<Appointment> getStartFilteredAppointmentList() {}
-     */
 
     @Override
     public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
