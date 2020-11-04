@@ -61,7 +61,7 @@ public class AppointmentScheduleCommand extends Command {
         try {
             requireNonNull(model);
             ReadOnlyAddressBook addressBook = model.getAddressBook();
-            ObservableList<Patient> patientList = addressBook.getPatientList();
+            ObservableList<Patient> patientList = model.getFilteredPatientList();
             ObservableList<Appointment> appointmentList = addressBook.getAppointmentList();
 
             // Target index inside the unique patient list
