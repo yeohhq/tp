@@ -458,9 +458,9 @@ Examples:
 <img src="images/UserGuide/Undo_Example_1.png" width="150%"> <br />
 Figure 2.4.1.1: <i>Before `a-delete 1`.</i>
 <img src="images/UserGuide/Undo_Example_2.png" width="150%" /> <br />
-Figure 2.4.1.2: <i>After `a-delete 1`(James is gone!).</i>
+Figure 2.4.1.2: <i>After `a-delete 1`(Roy is gone!).</i>
 <img src="images/UserGuide/Undo_Example_3.png" width="150%" /> <br />
-Figure 2.4.1.3: <i>After `undo`(James is back!).</i>
+Figure 2.4.1.3: <i>After `undo`(Roy is back!).</i>
 
 
 #### 2.4.2 Redoing the previous command : `redo`
@@ -480,11 +480,11 @@ Examples:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/UserGuide/Undo_Example_2.png" width="150%" /> <br />
-Figure 2.4.2.1: <i>After `a-delete 1`(James is gone!).</i>
+Figure 2.4.2.1: <i>After `a-delete 1`(Roy is gone!).</i>
 <img src="images/UserGuide/Undo_Example_3.png" width="150%" /> <br />
-Figure 2.4.2.2: <i>After `undo`(James is back!).</i>
+Figure 2.4.2.2: <i>After `undo`(Roy is back!).</i>
 <img src="images/UserGuide/Redo_Example_1.png" width="150%" /> <br />
-Figure 2.4.2.3: <i>After `redo`(James is gone!).</i>
+Figure 2.4.2.3: <i>After `redo`(Roy is gone!).</i>
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
