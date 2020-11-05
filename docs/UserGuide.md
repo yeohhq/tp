@@ -455,13 +455,14 @@ Format: `undo`
 Examples:
 * `p-delete 1` followed by `undo` undoes the edit command and make no changes to Archangel.
 
+<div style="text-align: center; padding-bottom: 2em">
 <img src="images/UserGuide/Undo_Example_1.png" width="150%"> <br />
 Figure 2.4.1.1: <i>Before `a-delete 1`.</i>
 <img src="images/UserGuide/Undo_Example_2.png" width="150%" /> <br />
 Figure 2.4.1.2: <i>After `a-delete 1`(Roy is gone!).</i>
 <img src="images/UserGuide/Undo_Example_3.png" width="150%" /> <br />
 Figure 2.4.1.3: <i>After `undo`(Roy is back!).</i>
-
+</div>
 
 #### 2.4.2 Redoing the previous command : `redo`
 When there is an `undo`, there is always a `redo`! You can always `redo` commands that you `undo` previously!
@@ -477,21 +478,34 @@ Format: `redo`
 Examples:
 * `p-delete 1` followed by `undo` then `redo` redoes the `undo` command and carries out the delete command.
 
-
+<div style="text-align: center; padding-bottom: 2em">
 <img src="images/UserGuide/Undo_Example_2.png" width="150%" /> <br />
 Figure 2.4.2.1: <i>After `a-delete 1`(Roy is gone!).</i>
 <img src="images/UserGuide/Undo_Example_3.png" width="150%" /> <br />
 Figure 2.4.2.2: <i>After `undo`(Roy is back!).</i>
 <img src="images/UserGuide/Redo_Example_1.png" width="150%" /> <br />
 Figure 2.4.2.3: <i>After `redo`(Roy is gone!).</i>
+</div>
 
 ### 2.5 Miscellaneous Features
 
-## 2.5.1 Suggestion Box
+#### 2.5.1 Suggestion Box
 Find it troublesome to keep referring to the User Guide for the format of commands? You can always refer to the suggestion box which is shown once you typing your commands. As you type letter by letter, the suggestion box will automatically match your input to the most similar command, allowing you to refer to it on the go!
 
+<div style="text-align: center; padding-bottom: 2em">
 ![Suggestion Box](https://github.com/AY2021S1-CS2103T-W11-1/tp/blob/master/docs/images/UserGuide/Suggestion_Box.gif)
 Figure 2.5.1: <i>The suggestion box provides the format as you insert a `p-add` command.</i>
+</div>
+
+#### 2.5.2 In-built Calendar feature
+You can refer to the in-built calendar feature to view all the appointments within the week at a glance. 
+
+<div style="text-align: center; padding-bottom: 2em">
+![Calendar Button](https://github.com/AY2021S1-CS2103T-W11-1/tp/blob/master/docs/images/UserGuide/CalendarButton.png)  <br />
+Figure 2.5.2.1: <i>Click on the calendar button.</i>  
+![Calendar View](https://github.com/AY2021S1-CS2103T-W11-1/tp/blob/master/docs/images/UserGuide/CalendarView.png)  <br />
+Figure 2.5.2.1: <i>The calendar panel will be shown with all the appointments in the week listed.</i>  
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
