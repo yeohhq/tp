@@ -820,8 +820,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-**Extensions**
-
 * 1a. User has not undone any command.
 
     * 1a1. Archangel shows an error message.
@@ -857,8 +855,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### 6.5 Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
-* **Priority Patient**: A patient who requires more attention than the typical patient.
 
 --------------------------------------------------------------------------------------------------------------------
 
