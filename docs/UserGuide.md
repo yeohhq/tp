@@ -354,13 +354,13 @@ Format: `a-missed`
 Format: `undo`
 
 <div markdown="span" class="alert alert-primary">
-:information_source: **Things to Note:** <br /> 
-* This command has no keywords <br />
-* This command does not work with filter commands (`a-completed`,`a-missed`,`a-upcoming`,`a-today`,`a-find`,`a-list`) <br />
-  as its implementation purpose is to assist the user in undo-ing his changes, filter commands do not make changes to the data. <br />
-  It also does not work with `p-edit` as the design requires patient details to be accurate as of time schedule, such that the <br />
+:information_source: **Things to Note:**  <br />
+* This command has no keywords  <br />
+* This command does not work with filter commands (`a-completed`,`a-missed`,`a-upcoming`,`a-today`,`a-find`,`a-list`)  <br />
+  as its implementation purpose is to assist the user in undo-ing his changes, filter commands do not make changes to the data.  <br />
+  It also does not work with `p-edit` as the design requires patient details to be accurate as of time schedule, such that the  
   records can accurately reflect the patient's conditions at the time of the appointment. <br />
-* A list of commands that can be undone can be found in the table under Command Summary. <br />
+* A list of commands that can be undone can be found in the table under Command Summary.  <br />
 * This command can be succeeded by a `redo` command
 </div>
 
