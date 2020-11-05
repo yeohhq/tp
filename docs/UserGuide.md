@@ -351,8 +351,6 @@ Format: `a-missed`
 #### 2.4.1 Undoing the previous command : `undo`
 "Oops, I accidentally deleted the wrong appointment!", fret not! You can undo your commands through the command `undo`
 
-Format: `undo`
-
 <div markdown="span" class="alert alert-primary">
 :information_source: **Things to Note:**  <br />
 * This command has no keywords  <br />
@@ -364,6 +362,7 @@ Format: `undo`
 * This command can be succeeded by a `redo` command
 </div>
 
+Format: `undo`
 
 Examples:
 * `p-delete 2` followed by `undo` undoes the edit command and make no changes to Archangel.
@@ -381,14 +380,13 @@ Figure 2.4.1.3: <i>After `undo`(James is back!).</i>
 #### 2.4.2 Redoing the previous command : `redo`
 When there is an `undo`, there is always a `redo`! You can always `redo` commands that you `undo` previously!
 
-Format: `redo`
-
 <div markdown="span" class="alert alert-primary">
 :information_source: **Things to Note:** 
 * This command has no keywords
 * This command must be preceded by `undo`
 </div>
 
+Format: `undo`
 
 Examples:
 * `p-delete 1` followed by `undo` then `redo` redoes the `undo` command and carries out the delete command.
