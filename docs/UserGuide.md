@@ -210,8 +210,7 @@ Examples:
 
 #### 2.3.1 Scheduling an appointment : `a-schedule`
 
-Schedules a new patient appointment in Archangel.
-![Schedule Appointment](images/userguide/a-schedule.png)
+Now that you have patients, it is time to schedule your first appointment! Scheduling an appointment is as simple as adding a patient!
 
 Format: `a-schedule pt/INDEX start/DATE&TIME end/DATE&TIME d/DESCRIPTION [t/TAGS]…`
 
@@ -225,10 +224,16 @@ Format: `a-schedule pt/INDEX start/DATE&TIME end/DATE&TIME d/DESCRIPTION [t/TAGS
 Examples:
 * `a-schedule pt/2 start/2020-09-14 08:00 end/2020-09-14 10:00 d/Review Appointment` schedules an appointment for patient 2 on 2020-09-14 at 08-00 with appointment description Review Appointment.
 
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/UserGuide/Schedule_Example_1.png" width="95%" /> <br />
+Figure 2.4.1.1: <i>Before `a-schedule`.</i>
+<img src="images/UserGuide/Schedule_Example_2.png" width="95%" /> <br />
+Figure 2.4.1.2: <i>After `a-schedule`(New appointment added to list!).</i>
+</div>
+
 #### 2.3.2 Deleting an appointment : `a-delete`
 
-Deletes the specified patient appointment from Archangel.
-![Delete Appointment](images/userguide/a-delete.png)
+Oh no! Your patient just called to cancel his appointment! Since we would not be needing it anymore, let's delete the appointment.
 
 Format: `a-delete INDEX`
 
@@ -240,10 +245,16 @@ Examples:
 * `a-list` followed by `a-delete 2` deletes the 2nd appointment in the Archangel.
 * `a-find Review` followed by `a-delete 1` deletes the 1st appointment in the results of the find command.
 
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/UserGuide/Delete_Example_1.png" width="95%" /> <br />
+Figure 2.4.1.1: <i>Before `a-delete`.</i>
+<img src="images/UserGuide/Delete_Example_2.png" width="95%" /> <br />
+Figure 2.4.1.2: <i>After `a-delete'(Appointment is gone!).</i>
+</div>
+
 #### 2.3.3 Editing an appointment : `a-edit`
 
-Edits the specified patient appointment that already exists in Archangel.
-![Edit Appointment](images/userguide/a-edit.png)
+What if your patients decides to change his appointment details? Archangel allows you to edit existing patient appointments.
 
 Format: `a-edit INDEX [start/DATE&TIME] [end/DATE&TIME] [pt/PATIENT INDEX] [d/DESCRIPTION] [t/TAGS]…`
 
@@ -258,10 +269,17 @@ Examples:
 * `a-edit 1 start/2020-09-15 12:00 end/2020-09-15 14:00 pt/2` Edits the start and end date & time of the 1st appointment to be 15/9/2020 12:00 and 15/9/2020 14:00 respectively, and edits patient to 2nd patient in patient list.
 * `p-edit 2 bd/1998-09-15 ` Edits the 2nd Patient on the PatientList to have a birthdate of 1998-09-15.
 
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/UserGuide/Edit_Example_1.png" width="95%" /> <br />
+Figure 2.4.1.1: <i>Before `a-edit`.</i>
+<img src="images/UserGuide/Edit_Example_2.png" width="95%" /> <br />
+Figure 2.4.1.2: <i>After `a-edit`(Appointment details changed!).</i>
+</div>
+
 #### 2.3.4 Setting appointment as completed : `a-complete`
 
-Sets the specified patient appointment in Archangel as completed.
-![Complete Appointment](images/userguide/a-complete.png)
+You have just finished an appointment. Instead of deleting it, let's set it as completed. This way it will be hidden from you by default,
+but you can still find it using specific commands.
 
 Format: `a-complete INDEX`
 
@@ -272,24 +290,46 @@ Format: `a-complete INDEX`
 Examples:
 * `a-complete 1` Sets the appointment at index 1 as completed.
 
-#### 2.3.5 Listing all upcoming appointments : `a-list`
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/UserGuide/Complete_Example_1.png" width="95%" /> <br />
+Figure 2.4.1.1: <i>Before `a-complete 1`.</i>
+<img src="images/UserGuide/Complete_Example_2.png" width="95%" /> <br />
+Figure 2.4.1.2: <i>After `a-complete 1`(Appointment 1 is now labelled as Done).</i>
+</div>
 
-Shows a list of all your uncompleted patient appointments in Archangel.
-![List Appointments](images/userguide/a-list.png)
+#### 2.3.5 Listing all past and present appointments : `a-listall`
 
-Format: `a-list`
-
-#### 2.3.6 Listing all past and present appointments : `a-listall`
-
-Shows a list of all your patient appointments in Archangel.
-![List All Appointments](images/userguide/a-listall.png)
+You can also view a combined list of all appointments including missed, completed and upcoming patient appointments.
 
 Format: `a-listall`
 
-#### 2.3.7 Finding appointments by patient name : `a-find`
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/UserGuide/ListAll_Example_1.png" width="95%" /> <br />
+Figure 2.4.1.1: <i>Before `a-listall`.</i>
+<img src="images/UserGuide/ListAll_Example_2.png" width="95%" /> <br />
+Figure 2.4.1.2: <i>After `a-listall`.</i>
+</div>
+
+#### 2.3.6 Filtering appointment list
+
+If you are looking for a specific appointment, Archangel allows you to filter your appointment list in many different ways.
+
+##### 2.3.6.1 Listing all upcoming appointments : `a-list`
+
+Shows a list of all your uncompleted patient appointments in Archangel.
+
+Format: `a-list`
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/UserGuide/List_Example_1.png" width="95%" /> <br />
+Figure 2.4.1.1: <i>Before `a-list`.</i>
+<img src="images/UserGuide/List_Example_2.png" width="95%" /> <br />
+Figure 2.4.1.2: <i>After `a-list`.</i>
+</div>
+
+##### 2.3.6.2 Finding appointments by patient name : `a-find`
 
 Finds your appointments which the patient's name contains any of the given keywords.
-![Find Appointments](images/userguide/a-find.png)
 
 Format: `a-find KEYWORD [MORE_KEYWORDS]`
 
@@ -304,7 +344,14 @@ Examples:
 * `a-find Jack` returns Appointment with Patient name of `Jack Sparrow`
 * `a-find Jack Jill` returns Appointments with Patient name of `Jack Sparrow` and `Jill Ous`
 
-#### 2.3.8 Finding appointments by tags: `a-tag`
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/UserGuide/Find_Example_1.png" width="95%" /> <br />
+Figure 2.4.1.1: <i>Before `a-find jack`.</i>
+<img src="images/UserGuide/Find_Example_2.png" width="95%" /> <br />
+Figure 2.4.1.2: <i>After `a-find jack`.</i>
+</div>
+
+##### 2.3.6.3 Finding appointments by tags: `a-tag`
 Finds your appointments which are tagged by any of the given keywords.
 
 Format: `a-find KEYWORD [MORE_KEYWORDS]`
@@ -320,7 +367,14 @@ Examples:
 * `a-tag friend` returns Appointments tagged `Friend`
 * `a-tag friend enemy`  returns Appointments tagged `Friend` and `Enemy`
 
-#### 2.3.9 Finding an appointment by current date: `a-today`
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/UserGuide/Tag_Example_1.png" width="95%" /> <br />
+Figure 2.4.1.1: <i>Before `a-tag`.</i>
+<img src="images/UserGuide/Tag_Example_2.png" width="95%" /> <br />
+Figure 2.4.1.2: <i>After `a-tag`.</i>
+</div>
+
+##### 2.3.6.4 Finding an appointment by current date: `a-today`
 Finds your uncompleted appointments scheduled on the current date.
 
 Format: `a-today`
@@ -328,23 +382,57 @@ Format: `a-today`
 Examples:
 * `a-today` returns Appointments scheduled today.
 
-#### 2.3.10 Finding an appointment by current week: `a-upcoming`
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/UserGuide/Today_Example_1.png" width="95%" /> <br />
+Figure 2.4.1.1: <i>Before `a-today`.</i>
+<img src="images/UserGuide/Today_Example_2.png" width="95%" /> <br />
+Figure 2.4.1.2: <i>After `a-today`.</i>
+</div>
+
+##### 2.3.6.5 Finding an appointment by current week: `a-upcoming`
 Finds your uncompleted appointments scheduled in the current week.
 
 Format: `a-upcoming`
 
 Examples:
-* `a-upcoming` returns Appointments scheduled this week (from Sunday to Saturday).
+* `a-upcoming` returns uncompleted Appointments scheduled this week (from Sunday to Saturday).
 
-#### 2.3.11 Listing appointments that are completed: `a-completed`
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/UserGuide/Upcoming_Example_1.png" width="95%" /> <br />
+Figure 2.4.1.1: <i>Before `a-upcoming`.</i>
+<img src="images/UserGuide/Upcoming_Example_2.png" width="95%" /> <br />
+Figure 2.4.1.2: <i>After `a-upcoming`.</i>
+</div>
+
+##### 2.3.6.6 Listing appointments that are completed: `a-completed`
 Shows a list of all your appointments that have been completed.
 
 Format: `a-completed`
 
-#### 2.3.12 Listing appointments that are missed: `a-missed`
+Examples:
+* `a-completed` returns all completed Appointments.
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/UserGuide/Completed_Example_1.png" width="95%" /> <br />
+Figure 2.4.1.1: <i>Before `a-completed`.</i>
+<img src="images/UserGuide/Completed_Example_2.png" width="95%" /> <br />
+Figure 2.4.1.2: <i>After `a-completed`.</i>
+</div>
+
+##### 2.3.6.7 Listing appointments that are missed: `a-missed`
 Shows a list of all your appointments that have been missed.
 
 Format: `a-missed`
+
+Examples:
+* `a-missed` returns all missed Appointments.
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/UserGuide/Missed_Example_1.png" width="95%" /> <br />
+Figure 2.4.1.1: <i>Before `a-missed`.</i>
+<img src="images/UserGuide/Missed_Example_2.png" width="95%" /> <br />
+Figure 2.4.1.2: <i>After `a-missed`.</i>
+</div>
 
 ### 2.4 General Commands
 
