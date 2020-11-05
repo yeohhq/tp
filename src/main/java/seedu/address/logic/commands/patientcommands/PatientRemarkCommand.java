@@ -73,7 +73,7 @@ public class PatientRemarkCommand extends Command {
      * {@code patientToEdit}.
      */
     private String generateSuccessMessage(Patient patientToEdit) {
-        String message = !remark.value.isEmpty() ? MESSAGE_ADD_REMARK_SUCCESS : MESSAGE_DELETE_REMARK_SUCCESS;
+        String message = !remark.toString().isEmpty() ? MESSAGE_ADD_REMARK_SUCCESS : MESSAGE_DELETE_REMARK_SUCCESS;
         return String.format(message, patientToEdit);
     }
 
