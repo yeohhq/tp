@@ -582,7 +582,7 @@ Figure 2.5.1: <i>The suggestion box provides the format as you insert a `p-add` 
 You can refer to the in-built calendar feature to view all the appointments within the week at a glance. 
 
 <div style="text-align: center; padding-bottom: 2em">
-<img src="https://github.com/AY2021S1-CS2103T-W11-1/tp/blob/master/docs/images/UserGuide/CalendarButton.png" width="95%" /> <br />
+<img src="https://github.com/AY2021S1-CS2103T-W11-1/tp/blob/master/docs/images/UserGuide/CalendarButton.png" width="50%" /> <br />
 Figure 2.5.2.1: <i>Click on the calendar button.</i>  
 <img src="https://github.com/AY2021S1-CS2103T-W11-1/tp/blob/master/docs/images/UserGuide/CalendarView.png" width="95%" /> <br />
 Figure 2.5.2.2: <i>The calendar panel will be shown with all the appointments in the week listed.</i>  
