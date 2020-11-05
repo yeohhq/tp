@@ -3,6 +3,13 @@ layout: page
 title: User Guide
 ---
 
+* Table of Contents
+{:toc}
+
+--------------------------------------------------------------------------------------------------------------------
+
+## 1 Introduction
+
 Archangel is a desktop application for managing patient appointments, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 Archangel integrates storing of patient data and scheduling patient appointments in a single application.
 It supports adding, editing, deleting of patients/appointments and facilitates search using filter commands to help improve your experience in handling patient data.
@@ -14,12 +21,14 @@ If you can type fast, Archangel can get your patient management appointment done
 Figure 0: <i>The user interface of Archangel.</i>
 </div>
 
-* Table of Contents
-{:toc}
+### 1.2 User Guide Icons
 
---------------------------------------------------------------------------------------------------------------------
+These are icons that are used throughout this User Guide for better readability:
+- :bulb: — A useful tip for the users when using Archangel.
+- :information_source: — A point for users to take note of.
+- `code` — Indicates commands that will be type into the <i>command box</i> (see below)
 
-## 1. Quick start
+## 1.3 Quick start
 
 1. Ensure you have Java 11 or above installed in your Computer.
 
@@ -344,6 +353,8 @@ Format: `a-missed`
 
 Format: `undo`
 
+<div markdown="span" class="alert alert-primary">
+:information_source: **Things to Note:** 
 * This command has no keywords
 * This command does not work with filter commands (`a-completed`,`a-missed`,`a-upcoming`,`a-today`,`a-find`,`a-list`)
   as its implementation purpose is to assist the user in undo-ing his changes, filter commands do not make changes to the data.
@@ -351,6 +362,8 @@ Format: `undo`
   records can accurately reflect the patient's conditions at the time of the appointment.
 * A list of commands that can be undone can be found in the table under Command Summary.
 * This command can be succeeded by a `redo` command
+</div>
+
 
 Examples:
 * `p-delete 2` followed by `undo` undoes the edit command and make no changes to Archangel.
@@ -370,8 +383,12 @@ When there is an `undo`, there is always a `redo`! You can always `redo` command
 
 Format: `redo`
 
+<div markdown="span" class="alert alert-primary">
+:information_source: **Things to Note:** 
 * This command has no keywords
 * This command must be preceded by `undo`
+</div>
+
 
 Examples:
 * `p-delete 1` followed by `undo` then `redo` redoes the `undo` command and carries out the delete command.
