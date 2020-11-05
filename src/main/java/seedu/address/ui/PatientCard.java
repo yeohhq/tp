@@ -46,6 +46,9 @@ public class PatientCard extends UiPart<Region> {
     private Label address;
     @FXML
     private Label email;
+    @FXML
+    private Label remark;
+
 
     /**
      * Creates a {@code PersonCode} with the given {@code Patient} and index to display.
@@ -62,6 +65,7 @@ public class PatientCard extends UiPart<Region> {
         gender.setText(patient.getGender().value);
         birthdate.setText(patient.getBirthdate().value);
         phone.setText(patient.getPhone().value);
+        remark.setText(patient.getRemark().value);
         patient.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
