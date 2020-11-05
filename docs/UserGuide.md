@@ -104,25 +104,48 @@ The Archangel data is saved in the hard disk automatically after any command tha
 #### 2.2.1 Adding a patient: `p-add`
 
 Adds a patient to Archangel.
-![Add Patient](images/userguide/p-add.png)
+
+"A new patient has contacted me and wants to make an appointment. First, I have to add him along with his details to Archangel!" One of the most fundamental use of Archangel; to store patient data, can be done through the command `p-add`
+
+<div markdown="span" class="alert alert-primary">
+:information_source: **Things to Note:**  <br />
+* Compulsory fields include NAME, GENDER, BIRTHDATE, BLOODTYPE, PHONE_NUMBER, EMAIL and ADDRESS <br />
+* TAGS are not compulsory <br />
+* BIRTHDATE should be in YYYY/MM/DD format. <br />
+* BLOODTYPE can be only one of the following per patient: `A+`, `A-`, `B+`, `B-`, `O`, `O+`, `O-`, `AB+`, `AB-` <br />
+* At initial launch of Archangel, there is a pre-loaded sample list of Patients. <br />
+</div>
 
 Format: `p-add n/NAME g/GENDER bd/BIRTHDATE bt/BLOODTYPE p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…`​
 
-* BIRTHDATE should be in YYYY/MM/DD format.
-* BLOODTYPE can be only one of the following per patient: `A+`, `A-`, `B+`, `B-`, `O`, `O+`, `O-`, `AB+`, `AB-`
+Examples:
+* `p-add n/John Doe g/MALE bd/2018-12-27 bt/A+ p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25` adds a Patient with the mentioned information into Archangel.
+
+<insert initial archangel state pic here>
+
+Figure 2.1.1.1: Before `p-add n/John Doe g/MALE bd/2018-12-27 bt/A+ p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25`.
+
+<insert pic for after adding john doe>
+
+Figure 2.1.1.1: After `p-add n/John Doe g/MALE bd/2018-12-27 bt/A+ p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25`.
 
 <div markdown="span" class="alert alert-primary">:bulb: Tip:
-A patient can have any number of tags (including 0)
+A patient can have any number of tags (including 0) 
 </div>
 
 Examples:
-* `p-add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+* `p-add n/John Doe g/MALE bd/2018-12-27 bt/A+ p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney`
 * `p-add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
 #### 2.2.2 Listing all patients : `p-list`
 
-Shows a list of all your patients in Archangel.
-![List Patients](images/userguide/p-list.png)
+"I want to see all of my patients in one list." You can do so with the command `p-list`
+
+<div markdown="span" class="alert alert-primary">
+:information_source: **Things to Note:**  <br />
+* This is the default for Archangel, whenever Archangel is started, the patient list on the right is what you will see on `p-list`.
+
+</div>
 
 Format: `p-list`
 
