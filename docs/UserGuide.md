@@ -413,12 +413,15 @@ Finds your appointments which the patient's name contains any of the given keywo
 
 Format: `a-find KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `jack` will match `Jack`
-* The order of the keywords does not matter. e.g. `Jack Jill` will match `Jill Jack`
-* Only the patient name inside the appointment is searched.
-* Only full words will be matched e.g. `Jack` will not match `Jacky`
-* Appointments matching at least one keyword will be returned (i.e. OR search).
+<div markdown="span" class="alert alert-primary">
+:information_source: **Things to Note:**  <br />
+* The search is case-insensitive. e.g `charlotte` will match `Charlotte` <br />
+* The order of the keywords does not matter. e.g. `Jack Jill` will match `Jill Jack` <br />
+* Only the patient name inside the appointment is searched. <br />
+* Only full words will be matched e.g. `Charlotte` will not match `Charlotttee` <br />
+* Appointments matching at least one keyword will be returned (i.e. OR search). <br />
   e.g. `Jack Jill` will return Appointments with Patient name of `Jack Sparrow`, `Jill Ous`
+</div>
 
 Examples:
 * `a-find Charlotte` returns Appointment with Patient name of `Charlotte Oliveiro`
@@ -434,18 +437,21 @@ Figure 2.4.1.2: <i>After `a-find Charlotte`.</i>
 ##### 2.3.6.3 Finding appointments by tags: `a-tag`
 Finds your appointments which are tagged by any of the given keywords.
 
-Format: `a-find KEYWORD [MORE_KEYWORDS]`
+<div markdown="span" class="alert alert-primary">
+:information_source: **Things to Note:**  <br />
+* The search is case-insensitive. e.g `friends` will match `Friends` <br />
+* The order of the keywords does not matter. e.g. `friends enemy` will match `Friends Enemy` <br />
+* Only the tags inside the appointment will be searched. <br />
+* Only full words will be matched e.g. `Friend` will not match `Friends` <br />
+* Appointments matching at least one keyword will be returned (i.e. OR search). <br />
+  e.g. `friends enemy` will return Appointment tagged with `Friends`, `Enemy`
+</div>
 
-* The search is case-insensitive. e.g `friends` will match `Friends`
-* The order of the keywords does not matter. e.g. `friends enemy` will match `Friends Enemy`
-* Only the tags inside the appointment will be searched.
-* Only full words will be matched e.g. `Friend` will not match `Friends`
-* Appointments matching at least one keyword will be returned (i.e. OR search).
-  e.g. `friends enemy` will return Appointment tagged with `Friends`, `Jill Ous`
+Format: `a-find KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 * `a-tag LowPriority` returns Appointments tagged `LowPriority`
-* `a-tag friend enemy`  returns Appointments tagged `Friend` and `Enemy`
+* `a-tag friend enemy`  returns Appointments tagged `Friend` and `Enemy` or both
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/UserGuide/a-tag_1.png" width="95%" /> <br />
