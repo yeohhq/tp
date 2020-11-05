@@ -121,16 +121,15 @@ Format: `p-add n/NAME g/GENDER bd/BIRTHDATE bt/BLOODTYPE p/PHONE_NUMBER e/EMAIL 
 Examples:
 * `p-add n/John Doe g/MALE bd/2018-12-27 bt/A+ p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25` adds a Patient with the mentioned information into Archangel.
 
-<insert initial archangel state pic here>
-
-Figure 2.1.1.1: Before `p-add n/John Doe g/MALE bd/2018-12-27 bt/A+ p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25`.
-
-<insert pic for after adding john doe>
-
-Figure 2.1.1.1: After `p-add n/John Doe g/MALE bd/2018-12-27 bt/A+ p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25`.
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/UserGuide/filler_image_for_huiqing.png" width="95%" /> <br />
+Figure 2.2.1.1: <i>Figure 2.1.1.1: Before `p-add n/John Doe g/MALE bd/2018-12-27 bt/A+ p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25`.</i>
+<img src="images/UserGuide/filler_image_for_huiqing.png" width="95%" /> <br />
+Figure 2.2.1.2: <i>After `Figure 2.1.1.1: After `p-add n/John Doe g/MALE bd/2018-12-27 bt/A+ p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25`.</i>
+</div>
 
 <div markdown="span" class="alert alert-primary">:bulb: Tip:
-A patient can have any number of tags (including 0) 
+A patient can have any number of tags (including 0)
 </div>
 
 Examples:
@@ -143,90 +142,149 @@ Examples:
 
 <div markdown="span" class="alert alert-primary">
 :information_source: **Things to Note:**  <br />
-* This is the default for Archangel, whenever Archangel is started, the patient list on the right is what you will see on `p-list`.
-
+* This is the default for Archangel, whenever Archangel is started, the patient list on the right is what you will see on `p-list`. <br />
+* Typical use case for this command is to change the current patient list that is being viewed back to the All-Patients list. <br />
 </div>
 
 Format: `p-list`
 
+Examples:
+* `p-find alex` followed by `p-list` changes the patient list under view from patients with alex in their names to the All-Patients list
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/UserGuide/filler_image_for_huiqing.png" width="95%" /> <br />
+Figure 2.2.2.1: <i>Initial state of Archangel at launch(All-Patient list is the list under view!).</i>
+<img src="images/UserGuide/filler_image_for_huiqing.png" width="95%" /> <br />
+Figure 2.2.2.2: <i>After `p-find alex`(All-Patients list changed to List of Patients with Alex in their name!).</i>
+<img src="images/UserGuide/filler_image_for_huiqing.png" width="95%" /> <br />
+Figure 2.2.2.3: <i>After `p-list`(All-Patient list is back as the list under view!).</i>
+</div>
+
 #### 2.2.3 Editing a patient : `p-edit`
 
-Edits an existing patient in the Archangel.
-![Edit Patient](images/userguide/p-edit.png)
+"Oh no, I keyed in one of my patient's information incorrectly." Do not worry, as you can change your patients' particulars with the command `p-edit`
 
-Format: `p-edit INDEX [n/NAME] [g/GENDER] [bd/BIRTHDATE] [bt/BLOODTYPE] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
-
+<div markdown="span" class="alert alert-primary">
+:information_source: **Things to Note:**  <br />
 * Edits the patient at the specified INDEX. The index refers to the index number shown in the displayed patient list. The index must be a positive integer 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the patient will be removed i.e adding of tags is not cumulative.
 * You can remove all the patient’s tags by typing `t/` without specifying any tags after it.
+* For editting of remarks, please look at the commands specifically related to remarks.
 * Note: Editing a patient will also update the patient in Appointments that contain the patient.
+</div>
+
+Format: `p-edit INDEX [n/NAME] [g/GENDER] [bd/BIRTHDATE] [bt/BLOODTYPE] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+
 
 Examples:
 * `p-edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be 91234567 and johndoe@example.com respectively.
 * `p-edit 2 n/Betsy Crower t/` Edits the name of the 2nd patient to be Betsy Crower and clears all existing tags.
 
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/UserGuide/filler_image_for_huiqing.png" width="95%" /> <br />
+Figure 2.2.3.1: <i>Initial state of Archangel at launch(All-Patient list is the list under view!).</i>
+<img src="images/UserGuide/filler_image_for_huiqing.png" width="95%" /> <br />
+Figure 2.2.3.2: <i>After `p-edit 2 n/Betsy Crower`(Patient at index 2 on the patient list has their name changed to Betsy Crower!).</i>
+</div>
+
 #### 2.2.4 Locating patients by name: `p-find`
 
-Finds patients whose names contain any of the given keywords.
-![Find Patient](images/userguide/p-find.png)
+"I want to find all patients with Yeoh in their names" You can find all of these patients with the command `p-find`
 
-Format: `p-find KEYWORD [MORE_KEYWORDS]`
-
+<div markdown="span" class="alert alert-primary">
+:information_source: **Things to Note:**  <br />
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name will be searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
 * Persons matching at least one keyword will be returned (i.e. OR search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+</div>
+
+Format: `p-find KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 * `p-find John` returns `John Chew` and `John Doe`
 * `p-find alex david` returns `Alex Yeoh`, `David Li`<br>
 
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/UserGuide/filler_image_for_huiqing.png" width="95%" /> <br />
+Figure 2.2.4.1: <i>Initial state of Archangel at launch(All-Patient list is the list under view!).</i>
+<img src="images/UserGuide/filler_image_for_huiqing.png" width="95%" /> <br />
+Figure 2.2.4.2: <i>After `p-find Yeoh`(All patients with Yeoh in their names will be displayed!).</i>
+</div>
+
 #### 2.2.5 Giving a patient a Remark : `p-remark`
 
-Stores your remark under the patient's information.
-Recommended usage would be to store Allergies, Preferences, etc.
+"One of my patients has allergies. I want to be able to store this information." You can store special information using the command `p-remark`.
 
-Format: `p-remark INDEX r/REMARK`
-
+<div markdown="span" class="alert alert-primary">
+:information_source: **Things to Note:**  <br />
 * Store a remark for the patient at the specified INDEX.
 * The index refers to the index number shown in the displayed patient list.
 * The index must be a positive integer 1, 2, 3, …​
+</div>
+
+Format: `p-remark INDEX r/REMARK`
 
 Examples:
-* `p-remark 1 r/Likes to swim.` gives the 1st patient in the list a remark of `Likes to swim.`
+* `p-remark 1 r/Allergic to nuts.` gives the 1st patient in the list a remark of `Allergic to nuts.`
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/UserGuide/filler_image_for_huiqing.png" width="95%" /> <br />
+Figure 2.2.5.1: <i>Before `p-remark 1 /rAllergic to nuts` (patient Alex Yeoh has no remarks.)</i>
+<img src="images/UserGuide/filler_image_for_huiqing.png" width="95%" /> <br />
+Figure 2.2.5.2: <i>After `p-remark 1 /rAllergic to nuts` (Alex Yeoh now has a remark that says "Allergic to nuts!".</i>
+</div>
 
 #### 2.2.6 Removing a patient's Remark : `p-remark`
 
-Removes all of your remarks under the patient's information.
+"I want to remove the remark of a patient." You can remove remarks using the command `p-remark`.
 
-Format: `p-remark INDEX`
-
+<div markdown="span" class="alert alert-primary">
+:information_source: **Things to Note:**  <br />
 * Removes all your remarks for the patient at the specified INDEX.
 * The index refers to the index number shown in the displayed patient list.
 * The index must be a positive integer 1, 2, 3, …​
+</div>
+
+Format: `p-remark INDEX`
 
 Examples:
 * `p-remark 1` removes the Remark of the 1st patient on the list.
 
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/UserGuide/filler_image_for_huiqing.png" width="95%" /> <br />
+Figure 2.2.6.1: <i>Before `p-remark 1` (patient Alex Yeoh has a remark that says "Allergic to nuts!".)</i>
+<img src="images/UserGuide/filler_image_for_huiqing.png" width="95%" /> <br />
+Figure 2.2.6.2: <i>After `p-remark 1` (Alex Yeoh no longer has a remark!)</i>
+</div>
+
 #### 2.2.7 Deleting a patient : `p-delete`
 
-Deletes the specified patient from the Archangel.
-![Delete Patient](images/userguide/p-delete.png)
+"One of my patients will no longer be visiting. I want to be remove him from Archangel so it looks less cluttered." You can remove patients from Archangel using the command `p-delete`.
 
-Format: `p-delete INDEX`
-
+<div markdown="span" class="alert alert-primary">
+:information_source: **Things to Note:**  <br />
 * Deletes the patient at the specified INDEX.
 * The index refers to the index number shown in the displayed patient list.
 * The index must be a positive integer 1, 2, 3, …​
-* Note: Deleting a patient will also all Appointments that contains the deleted patient.
+* Note: Deleting a patient will also delete all Appointments that contains the deleted patient.
+</div>
+
+Format: `p-delete INDEX`
 
 Examples:
-* `p-list` followed by `p-delete 2` deletes the 2nd patient in the Archangel.
-* `p-find Betsy` followed by `p-delete 1` deletes the 1st patient in the results of the find command.
+* `p-delete 1` deletes the 1st patient in Archangel and also deletes all of his/her appointment.
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/UserGuide/filler_image_for_huiqing.png" width="95%" /> <br />
+Figure 2.2.7.1: <i>Before p-delete 1 (patient Alex Yeoh is in the patient list, and the appointment list shows an appointment under Alex Yeoh.)</i>
+<img src="images/UserGuide/filler_image_for_huiqing.png" width="95%" /> <br />
+Figure 2.2.7.2: <i>After `p-delete 1` (Alex Yeoh is no longer on the patient list, every appointment under Alex Yeoh is removed from the all-appointments list)</i>
+</div>
 
 
 ### 2.3 Appointment Features
