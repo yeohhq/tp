@@ -27,15 +27,21 @@ Given below are my contributions to the project.
   * What it does: Allows the user to view the appointments stored in AddressBook based on their completed and missed status.
   * Justification:
   * Highlights: 
+  
+* **New Feature**: Added the ability for Archangel to automatically check for newly missed appointments.
+  * What it does: At intervals of 1 minute, scans through the appointment list and labels past uncompleted appointments as missed. 
+  * Justification: This feature improves the user experience significantly because it removes the need for users to manually find and label missed appointments.
+  * Highlights: 
 
-* **Code contributed**:
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=chshen1998&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=zoom&zFR=false&zA=chshen1998&zR=AY2021S1-CS2103T-W11-1%2Ftp%5Bmaster%5D&zACS=226.12238805970148&zS=2020-08-14&zFS=w11&zU=2020-11-05&zMG=false&zFTF=commit&zFGS=groupByRepos)
 
 * **Project management**: 
   * 
   * 
 
 * **Enhancements to existing features**:
-  * 
+  * Wrote tests and test utilities for Appointment related commands.
+  * Updated the default view of Archangel to not include completed/missed commands.
 
 * **Documentation**:
   * User Guide:
