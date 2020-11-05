@@ -156,6 +156,8 @@ public class Patient {
                 .append(getEmail())
                 .append("\nAddress: ")
                 .append(getAddress())
+                .append("\nRemark: ")
+                .append(getRemark() == null ? "" : getRemark().value)
                 .append("\nTags: ");
         getTags().forEach(builder::append);
         return builder.toString();
