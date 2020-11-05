@@ -386,7 +386,7 @@ When there is an `undo`, there is always a `redo`! You can always `redo` command
 * This command must be preceded by `undo`
 </div>
 
-Format: `undo`
+Format: `redo`
 
 Examples:
 * `p-delete 1` followed by `undo` then `redo` redoes the `undo` command and carries out the delete command.
