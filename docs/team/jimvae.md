@@ -27,7 +27,7 @@ Given below are my contributions to the project.
   * Credits: *Original CS2103T AddressBook implementation of `PatientFindCommand` was heavily referenced for the implementation of `AppointmentTagCommand` and `AppointmentFindPatientCommand`.*
   
 * **New Feature**: Overall UI and Tabs
-  * What it does: Cleaner and more user-friendly UI, which separated Archangel from the original AddressBook. I also replaced all the wrapper to AnchorPane.
+  * What it does: Cleaner and more user-friendly UI, which separated Archangel from the original AddressBook. I also replaced all the wrapper to AnchorPane and implemented tabs for the dashboard and calendar.
   * Justification: The change in UI helped us implement other features like Calendar and ensured that you have the patient list all times.
   * Highlights: The application became more intuitive and suited our team of clinical data management app.
   * Credits: The idea, and the base code to organise the ui in tabs came from [KeepToo Youtube Channel](https://www.youtube.com/watch?v=ZVtys3GgkMo)
