@@ -122,10 +122,10 @@ Examples:
 * `p-add n/John Doe g/MALE bd/2018-12-27 bt/A+ p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25` adds a Patient with the mentioned information into Archangel.
 
 <div style="text-align: center; padding-bottom: 2em">
-<img src="images/UserGuide/filler_image_for_huiqing.png" width="95%" /> <br />
-Figure 2.2.1.1: <i>Figure 2.1.1.1: Before `p-add n/John Doe g/MALE bd/2018-12-27 bt/A+ p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25`.</i>
-<img src="images/UserGuide/filler_image_for_huiqing.png" width="95%" /> <br />
-Figure 2.2.1.2: <i>After `Figure 2.1.1.1: After `p-add n/John Doe g/MALE bd/2018-12-27 bt/A+ p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25`.</i>
+<img src="images/UserGuide/p-add_1.png" width="95%" /> <br />
+Figure 2.2.1.1: <i>Before `p-add n/John Doe g/MALE bd/2018-12-27 bt/A+ p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25`.</i>
+<img src="images/UserGuide/p-add_2.png" width="95%" /> <br />
+Figure 2.2.1.2: <i>After `p-add n/John Doe g/MALE bd/2018-12-27 bt/A+ p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25`.</i>
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: Tip:
@@ -152,12 +152,12 @@ Examples:
 * `p-find alex` followed by `p-list` changes the patient list under view from patients with alex in their names to the All-Patients list
 
 <div style="text-align: center; padding-bottom: 2em">
-<img src="images/UserGuide/filler_image_for_huiqing.png" width="95%" /> <br />
-Figure 2.2.2.1: <i>Initial state of Archangel at launch(All-Patient list is the list under view!).</i>
-<img src="images/UserGuide/filler_image_for_huiqing.png" width="95%" /> <br />
-Figure 2.2.2.2: <i>After `p-find alex`(All-Patients list changed to List of Patients with Alex in their name!).</i>
-<img src="images/UserGuide/filler_image_for_huiqing.png" width="95%" /> <br />
-Figure 2.2.2.3: <i>After `p-list`(All-Patient list is back as the list under view!).</i>
+<img src="images/UserGuide/p-list_1.png" width="95%" /> <br />
+Figure 2.2.2.1: <i>Initial state of Archangel at launch (All-Patient list is the list under view!).</i>
+<img src="images/UserGuide/p-list_2.png" width="95%" /> <br />
+Figure 2.2.2.2: <i>After `p-find alex` (All-Patients list changed to List of Patients with Alex in their name!).</i>
+<img src="images/UserGuide/p-list_3.png" width="95%" /> <br />
+Figure 2.2.2.3: <i>After `p-list` (All-Patient list is back as the list under view!).</i>
 </div>
 
 #### 2.2.3 Editing a patient : `p-edit`
@@ -183,15 +183,15 @@ Examples:
 * `p-edit 2 n/Betsy Crower t/` Edits the name of the 2nd patient to be Betsy Crower and clears all existing tags.
 
 <div style="text-align: center; padding-bottom: 2em">
-<img src="images/UserGuide/filler_image_for_huiqing.png" width="95%" /> <br />
-Figure 2.2.3.1: <i>Initial state of Archangel at launch(All-Patient list is the list under view!).</i>
-<img src="images/UserGuide/filler_image_for_huiqing.png" width="95%" /> <br />
-Figure 2.2.3.2: <i>After `p-edit 2 n/Betsy Crower`(Patient at index 2 on the patient list has their name changed to Betsy Crower!).</i>
+<img src="images/UserGuide/p-edit_1.png" width="95%" /> <br />
+Figure 2.2.3.1: <i>Initial state of Archangel at launch (All-Patient list is the list under view!).</i>
+<img src="images/UserGuide/p-edit_2.png" width="95%" /> <br />
+Figure 2.2.3.2: <i>After `p-edit 2 n/Betsy Crower`(Patient at index 2 on the patient list has their name changed to Betsy Crower! Affected appointments also have their patient updated!).</i>
 </div>
 
 #### 2.2.4 Locating patients by name: `p-find`
 
-"I want to find all patients with Yeoh in their names" You can find all of these patients with the command `p-find`
+"I want to find all patients with 'Yeoh' in their names!" You can find all of these patients with the command `p-find Yeoh` or `p-find yeoh`.
 
 <div markdown="span" class="alert alert-primary">
 :information_source: **Things to Note:**  <br />
@@ -210,10 +210,10 @@ Examples:
 * `p-find alex david` returns `Alex Yeoh`, `David Li`<br>
 
 <div style="text-align: center; padding-bottom: 2em">
-<img src="images/UserGuide/filler_image_for_huiqing.png" width="95%" /> <br />
-Figure 2.2.4.1: <i>Initial state of Archangel at launch(All-Patient list is the list under view!).</i>
-<img src="images/UserGuide/filler_image_for_huiqing.png" width="95%" /> <br />
-Figure 2.2.4.2: <i>After `p-find Yeoh`(All patients with Yeoh in their names will be displayed!).</i>
+<img src="images/UserGuide/p-find_1.png" width="95%" /> <br />
+Figure 2.2.4.1: <i>Initial state of Archangel at launch (All-Patient list is the list under view!).</i>
+<img src="images/UserGuide/p-find_2.png" width="95%" /> <br />
+Figure 2.2.4.2: <i>After `p-find Yeoh` (All patients with 'Yeoh' in their names will be displayed!).</i>
 </div>
 
 #### 2.2.5 Giving a patient a Remark : `p-remark`
@@ -233,10 +233,10 @@ Examples:
 * `p-remark 1 r/Allergic to nuts.` gives the 1st patient in the list a remark of `Allergic to nuts.`
 
 <div style="text-align: center; padding-bottom: 2em">
-<img src="images/UserGuide/filler_image_for_huiqing.png" width="95%" /> <br />
-Figure 2.2.5.1: <i>Before `p-remark 1 /rAllergic to nuts` (patient Alex Yeoh has no remarks.)</i>
-<img src="images/UserGuide/filler_image_for_huiqing.png" width="95%" /> <br />
-Figure 2.2.5.2: <i>After `p-remark 1 /rAllergic to nuts` (Alex Yeoh now has a remark that says "Allergic to nuts!".</i>
+<img src="images/UserGuide/p-remark_1.png" width="95%" /> <br />
+Figure 2.2.5.1: <i>Before `p-remark 1 r/Allergic to nuts` (patient Alex Yeoh has no remarks.)</i>
+<img src="images/UserGuide/p-remark_2.png" width="95%" /> <br />
+Figure 2.2.5.2: <i>After `p-remark 1 r/Allergic to nuts` (Alex Yeoh now has a remark that says "Allergic to nuts!".</i>
 </div>
 
 #### 2.2.6 Removing a patient's Remark : `p-remark`
@@ -256,9 +256,9 @@ Examples:
 * `p-remark 1` removes the Remark of the 1st patient on the list.
 
 <div style="text-align: center; padding-bottom: 2em">
-<img src="images/UserGuide/filler_image_for_huiqing.png" width="95%" /> <br />
+<img src="images/UserGuide/p-remark_3.png" width="95%" /> <br />
 Figure 2.2.6.1: <i>Before `p-remark 1` (patient Alex Yeoh has a remark that says "Allergic to nuts!".)</i>
-<img src="images/UserGuide/filler_image_for_huiqing.png" width="95%" /> <br />
+<img src="images/UserGuide/p-remark_4.png" width="95%" /> <br />
 Figure 2.2.6.2: <i>After `p-remark 1` (Alex Yeoh no longer has a remark!)</i>
 </div>
 
@@ -280,10 +280,10 @@ Examples:
 * `p-delete 1` deletes the 1st patient in Archangel and also deletes all of his/her appointment.
 
 <div style="text-align: center; padding-bottom: 2em">
-<img src="images/UserGuide/filler_image_for_huiqing.png" width="95%" /> <br />
+<img src="images/UserGuide/p-delete_1.png" width="95%" /> <br />
 Figure 2.2.7.1: <i>Before p-delete 1 (patient Alex Yeoh is in the patient list, and the appointment list shows an appointment under Alex Yeoh.)</i>
-<img src="images/UserGuide/filler_image_for_huiqing.png" width="95%" /> <br />
-Figure 2.2.7.2: <i>After `p-delete 1` (Alex Yeoh is no longer on the patient list, every appointment under Alex Yeoh is removed from the all-appointments list)</i>
+<img src="images/UserGuide/p-delete_2.png" width="95%" /> <br />
+Figure 2.2.7.2: <i>After `p-delete 1` (Alex Yeoh is no longer on the patient list, every appointment under Alex Yeoh is also removed from the all-appointments list!)</i>
 </div>
 
 
@@ -303,12 +303,12 @@ Format: `a-schedule pt/INDEX start/DATE&TIME end/DATE&TIME d/DESCRIPTION [t/TAGS
 * Appointment time must be indicated as HH:MM (i.e. 9AM must be `09:00`, and not `9:00`).
 
 Examples:
-* `a-schedule pt/2 start/2020-09-14 08:00 end/2020-09-14 10:00 d/Review Appointment` schedules an appointment for patient 2 on 2020-09-14 at 08-00 with appointment description Review Appointment.
+* `a-schedule pt/2 start/2020-12-14 08:00 end/2020-12-14 10:00 d/Review Appointment` schedules an appointment for patient 2 on 2020-12-14 at 08-00 with appointment description Review Appointment.
 
 <div style="text-align: center; padding-bottom: 2em">
-<img src="images/UserGuide/Schedule_Example_1.png" width="95%" /> <br />
+<img src="images/UserGuide/a-schedule_1.png" width="95%" /> <br />
 Figure 2.4.1.1: <i>Before `a-schedule`.</i>
-<img src="images/UserGuide/Schedule_Example_2.png" width="95%" /> <br />
+<img src="images/UserGuide/a-schedule_2.png" width="95%" /> <br />
 Figure 2.4.1.2: <i>After `a-schedule`(New appointment added to list!).</i>
 </div>
 
@@ -327,9 +327,9 @@ Examples:
 * `a-find Review` followed by `a-delete 1` deletes the 1st appointment in the results of the find command.
 
 <div style="text-align: center; padding-bottom: 2em">
-<img src="images/UserGuide/Delete_Example_1.png" width="95%" /> <br />
+<img src="images/UserGuide/a-delete_1.png" width="95%" /> <br />
 Figure 2.4.1.1: <i>Before `a-delete`.</i>
-<img src="images/UserGuide/Delete_Example_2.png" width="95%" /> <br />
+<img src="images/UserGuide/a-delete_2.png" width="95%" /> <br />
 Figure 2.4.1.2: <i>After `a-delete'(Appointment is gone!).</i>
 </div>
 
@@ -347,13 +347,12 @@ Format: `a-edit INDEX [start/DATE&TIME] [end/DATE&TIME] [pt/PATIENT INDEX] [d/DE
 * Tags must be alphanumeric and individual tags cannot be separated by spaces (i.e. `HighPriority` is a valid input, while `High Priority` is an invalid input).
 
 Examples:
-* `a-edit 1 start/2020-09-15 12:00 end/2020-09-15 14:00 pt/2` Edits the start and end date & time of the 1st appointment to be 15/9/2020 12:00 and 15/9/2020 14:00 respectively, and edits patient to 2nd patient in patient list.
-* `p-edit 2 bd/1998-09-15 ` Edits the 2nd Patient on the PatientList to have a birthdate of 1998-09-15.
+* `a-edit 1 start/2020-11-15 12:00 end/2020-11-15 14:00 pt/2` Edits the start and end date & time of the 1st appointment to be 15/9/2020 12:00 and 15/9/2020 14:00 respectively, and edits patient to 2nd patient in patient list.
 
 <div style="text-align: center; padding-bottom: 2em">
-<img src="images/UserGuide/Edit_Example_1.png" width="95%" /> <br />
+<img src="images/UserGuide/a-edit_1.png" width="95%" /> <br />
 Figure 2.4.1.1: <i>Before `a-edit`.</i>
-<img src="images/UserGuide/Edit_Example_2.png" width="95%" /> <br />
+<img src="images/UserGuide/a-edit_2.png" width="95%" /> <br />
 Figure 2.4.1.2: <i>After `a-edit`(Appointment details changed!).</i>
 </div>
 
@@ -372,9 +371,9 @@ Examples:
 * `a-complete 1` Sets the appointment at index 1 as completed.
 
 <div style="text-align: center; padding-bottom: 2em">
-<img src="images/UserGuide/Complete_Example_1.png" width="95%" /> <br />
+<img src="images/UserGuide/a-complete_1.png" width="95%" /> <br />
 Figure 2.4.1.1: <i>Before `a-complete 1`.</i>
-<img src="images/UserGuide/Complete_Example_2.png" width="95%" /> <br />
+<img src="images/UserGuide/a-complete_2.png" width="95%" /> <br />
 Figure 2.4.1.2: <i>After `a-complete 1`(Appointment 1 is now labelled as Done).</i>
 </div>
 
@@ -385,9 +384,9 @@ You can also view a combined list of all appointments including missed, complete
 Format: `a-listall`
 
 <div style="text-align: center; padding-bottom: 2em">
-<img src="images/UserGuide/ListAll_Example_1.png" width="95%" /> <br />
+<img src="images/UserGuide/a-listall_1.png" width="95%" /> <br />
 Figure 2.4.1.1: <i>Before `a-listall`.</i>
-<img src="images/UserGuide/ListAll_Example_2.png" width="95%" /> <br />
+<img src="images/UserGuide/a-listall_2.png" width="95%" /> <br />
 Figure 2.4.1.2: <i>After `a-listall`.</i>
 </div>
 
@@ -402,9 +401,9 @@ Shows a list of all your uncompleted patient appointments in Archangel.
 Format: `a-list`
 
 <div style="text-align: center; padding-bottom: 2em">
-<img src="images/UserGuide/List_Example_1.png" width="95%" /> <br />
+<img src="images/UserGuide/a-list_1.png" width="95%" /> <br />
 Figure 2.4.1.1: <i>Before `a-list`.</i>
-<img src="images/UserGuide/List_Example_2.png" width="95%" /> <br />
+<img src="images/UserGuide/a-list_2.png" width="95%" /> <br />
 Figure 2.4.1.2: <i>After `a-list`.</i>
 </div>
 
@@ -422,14 +421,14 @@ Format: `a-find KEYWORD [MORE_KEYWORDS]`
   e.g. `Jack Jill` will return Appointments with Patient name of `Jack Sparrow`, `Jill Ous`
 
 Examples:
-* `a-find Jack` returns Appointment with Patient name of `Jack Sparrow`
+* `a-find Charlotte` returns Appointment with Patient name of `Charlotte Oliveiro`
 * `a-find Jack Jill` returns Appointments with Patient name of `Jack Sparrow` and `Jill Ous`
 
 <div style="text-align: center; padding-bottom: 2em">
-<img src="images/UserGuide/Find_Example_1.png" width="95%" /> <br />
-Figure 2.4.1.1: <i>Before `a-find jack`.</i>
-<img src="images/UserGuide/Find_Example_2.png" width="95%" /> <br />
-Figure 2.4.1.2: <i>After `a-find jack`.</i>
+<img src="images/UserGuide/a-find_1.png" width="95%" /> <br />
+Figure 2.4.1.1: <i>Before `a-find Charlotte`.</i>
+<img src="images/UserGuide/a-find_2.png" width="95%" /> <br />
+Figure 2.4.1.2: <i>After `a-find Charlotte`.</i>
 </div>
 
 ##### 2.3.6.3 Finding appointments by tags: `a-tag`
@@ -445,13 +444,13 @@ Format: `a-find KEYWORD [MORE_KEYWORDS]`
   e.g. `friends enemy` will return Appointment tagged with `Friends`, `Jill Ous`
 
 Examples:
-* `a-tag friend` returns Appointments tagged `Friend`
+* `a-tag LowPriority` returns Appointments tagged `LowPriority`
 * `a-tag friend enemy`  returns Appointments tagged `Friend` and `Enemy`
 
 <div style="text-align: center; padding-bottom: 2em">
-<img src="images/UserGuide/Tag_Example_1.png" width="95%" /> <br />
+<img src="images/UserGuide/a-tag_1.png" width="95%" /> <br />
 Figure 2.4.1.1: <i>Before `a-tag`.</i>
-<img src="images/UserGuide/Tag_Example_2.png" width="95%" /> <br />
+<img src="images/UserGuide/a-tag_2.png" width="95%" /> <br />
 Figure 2.4.1.2: <i>After `a-tag`.</i>
 </div>
 
@@ -464,9 +463,9 @@ Examples:
 * `a-today` returns Appointments scheduled today.
 
 <div style="text-align: center; padding-bottom: 2em">
-<img src="images/UserGuide/Today_Example_1.png" width="95%" /> <br />
+<img src="images/UserGuide/a-today_1.png" width="95%" /> <br />
 Figure 2.4.1.1: <i>Before `a-today`.</i>
-<img src="images/UserGuide/Today_Example_2.png" width="95%" /> <br />
+<img src="images/UserGuide/a-today_2.png" width="95%" /> <br />
 Figure 2.4.1.2: <i>After `a-today`.</i>
 </div>
 
@@ -479,9 +478,9 @@ Examples:
 * `a-upcoming` returns uncompleted Appointments scheduled this week (from Sunday to Saturday).
 
 <div style="text-align: center; padding-bottom: 2em">
-<img src="images/UserGuide/Upcoming_Example_1.png" width="95%" /> <br />
+<img src="images/UserGuide/unfilteredAppointmentViewDefault.png" width="95%" /> <br />
 Figure 2.4.1.1: <i>Before `a-upcoming`.</i>
-<img src="images/UserGuide/Upcoming_Example_2.png" width="95%" /> <br />
+<img src="images/UserGuide/a-upcoming.png" width="95%" /> <br />
 Figure 2.4.1.2: <i>After `a-upcoming`.</i>
 </div>
 
@@ -494,14 +493,20 @@ Examples:
 * `a-completed` returns all completed Appointments.
 
 <div style="text-align: center; padding-bottom: 2em">
-<img src="images/UserGuide/Completed_Example_1.png" width="95%" /> <br />
+<img src="images/UserGuide/unfilteredAppointmentViewDefault.png" width="95%" /> <br />
 Figure 2.4.1.1: <i>Before `a-completed`.</i>
-<img src="images/UserGuide/Completed_Example_2.png" width="95%" /> <br />
+<img src="images/UserGuide/a-completed.png" width="95%" /> <br />
 Figure 2.4.1.2: <i>After `a-completed`.</i>
 </div>
 
 ##### 2.3.6.7 Listing appointments that are missed: `a-missed`
 Shows a list of all your appointments that have been missed.
+
+<div markdown="span" class="alert alert-primary">
+:information_source: **Things to Note:**  <br />
+* Only appointments with end time more than 30 minutes from current time will be reflected as 'Missed'.  <br />
+* This is to allow for patients who are late to have a short buffer should they still make it for the appointment.
+</div>
 
 Format: `a-missed`
 
@@ -509,9 +514,9 @@ Examples:
 * `a-missed` returns all missed Appointments.
 
 <div style="text-align: center; padding-bottom: 2em">
-<img src="images/UserGuide/Missed_Example_1.png" width="95%" /> <br />
+<img src="images/UserGuide/unfilteredAppointmentViewDefault.png" width="95%" /> <br />
 Figure 2.4.1.1: <i>Before `a-missed`.</i>
-<img src="images/UserGuide/Missed_Example_2.png" width="95%" /> <br />
+<img src="images/UserGuide/a-missed.png" width="95%" /> <br />
 Figure 2.4.1.2: <i>After `a-missed`.</i>
 </div>
 
@@ -525,7 +530,7 @@ Figure 2.4.1.2: <i>After `a-missed`.</i>
 * This command has no keywords  <br />
 * This command does not work with filter commands (`a-completed`,`a-missed`,`a-upcoming`,`a-today`,`a-find`,`a-list`)  <br />
   as its implementation purpose is to assist the user in undo-ing his changes, filter commands do not make changes to the data.  <br />
-  It also does not work with `p-edit` as the design requires patient details to be accurate as of time schedule, such that the  
+  It also does not work with `p-edit` as the design requires patient details to be accurate as of time schedule, such that the
   records can accurately reflect the patient's conditions at the time of the appointment. <br />
 * A list of commands that can be undone can be found in the table under Command Summary.  <br />
 * This command can be succeeded by a `redo` command
@@ -579,13 +584,13 @@ Figure 2.5.1: <i>The suggestion box provides the format as you insert a `p-add` 
 </div>
 
 #### 2.5.2 In-built Calendar feature
-You can refer to the in-built calendar feature to view all the appointments within the week at a glance. 
+You can refer to the in-built calendar feature to view all the appointments within the week at a glance.
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="https://raw.githubusercontent.com/AY2021S1-CS2103T-W11-1/tp/master/docs/images/UserGuide/CalendarButton.png" width="50%" /> <br />
-Figure 2.5.2.1: <i>Click on the calendar button.</i>  
+Figure 2.5.2.1: <i>Click on the calendar button.</i>
 <img src="https://raw.githubusercontent.com/AY2021S1-CS2103T-W11-1/tp/master/docs/images/UserGuide/CalendarView.png" width="95%" /> <br />
-Figure 2.5.2.2: <i>The calendar panel will be shown with all the appointments in the week listed.</i>  
+Figure 2.5.2.2: <i>The calendar panel will be shown with all the appointments in the week listed.</i>
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
