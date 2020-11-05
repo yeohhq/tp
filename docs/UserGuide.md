@@ -3,6 +3,13 @@ layout: page
 title: User Guide
 ---
 
+* Table of Contents
+{:toc}
+
+--------------------------------------------------------------------------------------------------------------------
+
+## 1 Introduction
+
 Archangel is a desktop application for managing patient appointments, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 Archangel integrates storing of patient data and scheduling patient appointments in a single application.
 It supports adding, editing, deleting of patients/appointments and facilitates search using filter commands to help improve your experience in handling patient data.
@@ -14,12 +21,14 @@ If you can type fast, Archangel can get your patient management appointment done
 Figure 0: <i>The user interface of Archangel.</i>
 </div>
 
-* Table of Contents
-{:toc}
+### 1.2 User Guide Icons
 
---------------------------------------------------------------------------------------------------------------------
+These are icons that are used throughout this User Guide for better readability:
+- :bulb: — A useful tip for the users when using Archangel.
+- :information_source: — A point for users to take note of.
+- `code` — Indicates commands that will be type into the <i>command box</i> (see below)
 
-## 1. Quick start
+### 1.3 Quick start
 
 1. Ensure you have Java 11 or above installed in your Computer.
 
@@ -342,47 +351,51 @@ Format: `a-missed`
 #### 2.4.1 Undoing the previous command : `undo`
 "Oops, I accidentally deleted the wrong appointment!", fret not! You can undo your commands through the command `undo`
 
+<div markdown="span" class="alert alert-primary">
+:information_source: **Things to Note:**  <br />
+* This command has no keywords  <br />
+* This command does not work with filter commands (`a-completed`,`a-missed`,`a-upcoming`,`a-today`,`a-find`,`a-list`)  <br />
+  as its implementation purpose is to assist the user in undo-ing his changes, filter commands do not make changes to the data.  <br />
+  It also does not work with `p-edit` as the design requires patient details to be accurate as of time schedule, such that the  
+  records can accurately reflect the patient's conditions at the time of the appointment. <br />
+* A list of commands that can be undone can be found in the table under Command Summary.  <br />
+* This command can be succeeded by a `redo` command
+</div>
+
 Format: `undo`
 
-* This command has no keywords
-* This command does not work with filter commands (`a-completed`,`a-missed`,`a-upcoming`,`a-today`,`a-find`,`a-list`)
-  as its implementation purpose is to assist the user in undo-ing his changes, filter commands do not make changes to the data.
-  It also does not work with `p-edit` as the design requires patient details to be accurate as of time schedule, such that the
-  records can accurately reflect the patient's conditions at the time of the appointment.
-* A list of commands that can be undone can be found in the table under Command Summary.
-* This command can be succeeded by a `redo` command
-
 Examples:
-* `p-delete 2` followed by `undo` undoes the edit command and make no changes to Archangel.
+* `p-delete 1` followed by `undo` undoes the edit command and make no changes to Archangel.
 
-<div style="text-align: center; padding-bottom: 2em">
-<img src="images/UserGuide/Undo_Example_1.png" width="95%" /> <br />
+<img src="images/UserGuide/Undo_Example_1.png" width="1000px"> <br />
 Figure 2.4.1.1: <i>Before `a-delete 1`.</i>
-<img src="images/UserGuide/Undo_Example_2.png" width="95%" /> <br />
+<img src="images/UserGuide/Undo_Example_2.png" width="150%" /> <br />
 Figure 2.4.1.2: <i>After `a-delete 1`(James is gone!).</i>
-<img src="images/UserGuide/Undo_Example_3.png" width="95%" /> <br />
+<img src="images/UserGuide/Undo_Example_3.png" width="150%" /> <br />
 Figure 2.4.1.3: <i>After `undo`(James is back!).</i>
-</div>
 
 
 #### 2.4.2 Redoing the previous command : `redo`
 When there is an `undo`, there is always a `redo`! You can always `redo` commands that you `undo` previously!
 
-Format: `redo`
-
-* This command has no keywords
+<div markdown="span" class="alert alert-primary">
+:information_source: **Things to Note:**  <br />
+* This command has no keywords  <br />
 * This command must be preceded by `undo`
+</div>
+
+Format: `redo`
 
 Examples:
 * `p-delete 1` followed by `undo` then `redo` redoes the `undo` command and carries out the delete command.
 
 
 <div style="text-align: center; padding-bottom: 2em">
-<img src="images/UserGuide/Undo_Example_2.png" width="95%" /> <br />
+<img src="images/UserGuide/Undo_Example_2.png" width="150%" /> <br />
 Figure 2.4.2.1: <i>After `a-delete 1`(James is gone!).</i>
-<img src="images/UserGuide/Undo_Example_3.png" width="95%" /> <br />
+<img src="images/UserGuide/Undo_Example_3.png" width="150%" /> <br />
 Figure 2.4.2.2: <i>After `undo`(James is back!).</i>
-<img src="images/UserGuide/Redo_Example_1.png" width="95%" /> <br />
+<img src="images/UserGuide/Redo_Example_1.png" width="150%" /> <br />
 Figure 2.4.2.3: <i>After `redo`(James is gone!).</i>
 </div>
 
