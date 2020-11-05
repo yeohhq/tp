@@ -381,8 +381,8 @@ Figure 2.4.1.3: <i>After `undo`(James is back!).</i>
 When there is an `undo`, there is always a `redo`! You can always `redo` commands that you `undo` previously!
 
 <div markdown="span" class="alert alert-primary">
-:information_source: **Things to Note:** 
-* This command has no keywords
+:information_source: **Things to Note:**  <br />
+* This command has no keywords  <br />
 * This command must be preceded by `undo`
 </div>
 
