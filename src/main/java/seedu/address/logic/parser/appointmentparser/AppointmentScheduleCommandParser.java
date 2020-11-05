@@ -60,7 +60,13 @@ public class AppointmentScheduleCommandParser implements Parser<AppointmentSched
             throw new ParseException(MESSAGE_APPOINTMENT_DURATION);
         }
 
-        AppointmentTime appointmentTime = new AppointmentTime(startTime, endTime);
+        AppointmentTime appointmentTime = null;
+        try {
+            appointmentTime = new AppointmentTime(startTime, endTime);
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(AppointmentTime.MESSAGE_CONSTRAINTS);
+        }
+
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Boolean isMissed = false; // isMissed is always initialised to false for newly scheduled appointment

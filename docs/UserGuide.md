@@ -95,6 +95,8 @@ The Archangel data is saved in the hard disk automatically after any command tha
 #### 2.2.1 Adding a patient: `p-add`
 
 Adds a patient to Archangel.
+![Add Patient](images/userguide/p-add.png)
+
 Format: `p-add n/NAME g/GENDER bd/BIRTHDATE bt/BLOODTYPE p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…`​
 
 * BIRTHDATE should be in YYYY/MM/DD format.
@@ -111,12 +113,14 @@ Examples:
 #### 2.2.2 Listing all patients : `p-list`
 
 Shows a list of all your patients in Archangel.
+![List Patients](images/userguide/p-list.png)
 
 Format: `p-list`
 
 #### 2.2.3 Editing a patient : `p-edit`
 
 Edits an existing patient in the Archangel.
+![Edit Patient](images/userguide/p-edit.png)
 
 Format: `p-edit INDEX [n/NAME] [g/GENDER] [bd/BIRTHDATE] [bt/BLOODTYPE] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
@@ -134,6 +138,7 @@ Examples:
 #### 2.2.4 Locating patients by name: `p-find`
 
 Finds patients whose names contain any of the given keywords.
+![Find Patient](images/userguide/p-find.png)
 
 Format: `p-find KEYWORD [MORE_KEYWORDS]`
 
@@ -145,9 +150,8 @@ Format: `p-find KEYWORD [MORE_KEYWORDS]`
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
-* `p-find John` returns `john` and `John Doe`
+* `p-find John` returns `John Chew` and `John Doe`
 * `p-find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
 
 #### 2.2.5 Giving a patient a Remark : `p-remark`
 
@@ -179,6 +183,7 @@ Examples:
 #### 2.2.7 Deleting a patient : `p-delete`
 
 Deletes the specified patient from the Archangel.
+![Delete Patient](images/userguide/p-delete.png)
 
 Format: `p-delete INDEX`
 
@@ -197,6 +202,7 @@ Examples:
 #### 2.3.1 Scheduling an appointment : `a-schedule`
 
 Schedules a new patient appointment in Archangel.
+![Schedule Appointment](images/userguide/a-schedule.png)
 
 Format: `a-schedule pt/INDEX start/DATE&TIME end/DATE&TIME d/DESCRIPTION [t/TAGS]…`
 
@@ -213,6 +219,7 @@ Examples:
 #### 2.3.2 Deleting an appointment : `a-delete`
 
 Deletes the specified patient appointment from Archangel.
+![Delete Appointment](images/userguide/a-delete.png)
 
 Format: `a-delete INDEX`
 
@@ -227,6 +234,7 @@ Examples:
 #### 2.3.3 Editing an appointment : `a-edit`
 
 Edits the specified patient appointment that already exists in Archangel.
+![Edit Appointment](images/userguide/a-edit.png)
 
 Format: `a-edit INDEX [start/DATE&TIME] [end/DATE&TIME] [pt/PATIENT INDEX] [d/DESCRIPTION] [t/TAGS]…`
 
@@ -244,6 +252,7 @@ Examples:
 #### 2.3.4 Setting appointment as completed : `a-complete`
 
 Sets the specified patient appointment in Archangel as completed.
+![Complete Appointment](images/userguide/a-complete.png)
 
 Format: `a-complete INDEX`
 
@@ -257,18 +266,21 @@ Examples:
 #### 2.3.5 Listing all upcoming appointments : `a-list`
 
 Shows a list of all your uncompleted patient appointments in Archangel.
+![List Appointments](images/userguide/a-list.png)
 
 Format: `a-list`
 
 #### 2.3.6 Listing all past and present appointments : `a-listall`
 
 Shows a list of all your patient appointments in Archangel.
+![List All Appointments](images/userguide/a-listall.png)
 
 Format: `a-listall`
 
 #### 2.3.7 Finding appointments by patient name : `a-find`
 
 Finds your appointments which the patient's name contains any of the given keywords.
+![Find Appointments](images/userguide/a-find.png)
 
 Format: `a-find KEYWORD [MORE_KEYWORDS]`
 

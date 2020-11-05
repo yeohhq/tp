@@ -3,7 +3,6 @@ package seedu.address.logic.commands.patientcommands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
 
-import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
@@ -13,7 +12,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.filters.appointmentfilters.SearchPatientFilter;
+import seedu.address.model.filters.appointmentfilters.SearchSpecificPatientHashcodeFilter;
 import seedu.address.model.patient.Patient;
 
 /**
@@ -50,8 +49,8 @@ public class PatientDeleteCommand extends Command {
 
         // patient fields has changed, need to delete appointments that contain the deleted patient
         assert patientToDelete != null;
-        final String[] splitName = patientToDelete.getName().fullName.split("\\s+");
-        SearchPatientFilter patientFilter = new SearchPatientFilter(Arrays.asList(splitName));
+        SearchSpecificPatientHashcodeFilter patientFilter =
+                new SearchSpecificPatientHashcodeFilter(patientToDelete.hashCode());
         model.updateFilteredAppointmentList(patientFilter);
 
         List<Appointment> appointmentList = model.getFilteredAppointmentList();
