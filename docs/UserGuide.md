@@ -490,7 +490,7 @@ Figure 2.4.2.3: <i>After `redo`(Roy is gone!).</i>
 ## 2.5.1 Suggestion Box
 Find it troublesome to keep referring to the User Guide for the format of commands? You can always refer to the suggestion box which is shown once you typing your commands. As you type letter by letter, the suggestion box will automatically match your input to the most similar command, allowing you to refer to it on the go!
 
-![Suggestion Box](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
+![Suggestion Box](https://github.com/AY2021S1-CS2103T-W11-1/tp/blob/master/docs/images/UserGuide/Suggestion_Box.mov)
 Figure 2.5.1: <i>The suggestion box provides the format as you insert a `p-add` command.</i>
 
 --------------------------------------------------------------------------------------------------------------------
