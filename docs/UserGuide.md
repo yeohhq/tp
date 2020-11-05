@@ -28,7 +28,7 @@ These are icons that are used throughout this User Guide for better readability:
 - :information_source: — A point for users to take note of.
 - `code` — Indicates commands that will be type into the <i>command box</i> (see below)
 
-## 1.3 Quick start
+### 1.3 Quick start
 
 1. Ensure you have Java 11 or above installed in your Computer.
 
@@ -354,13 +354,13 @@ Format: `a-missed`
 Format: `undo`
 
 <div markdown="span" class="alert alert-primary">
-:information_source: **Things to Note:** 
-* This command has no keywords
-* This command does not work with filter commands (`a-completed`,`a-missed`,`a-upcoming`,`a-today`,`a-find`,`a-list`)
-  as its implementation purpose is to assist the user in undo-ing his changes, filter commands do not make changes to the data.
-  It also does not work with `p-edit` as the design requires patient details to be accurate as of time schedule, such that the
-  records can accurately reflect the patient's conditions at the time of the appointment.
-* A list of commands that can be undone can be found in the table under Command Summary.
+:information_source: **Things to Note:** <br /> 
+* This command has no keywords <br />
+* This command does not work with filter commands (`a-completed`,`a-missed`,`a-upcoming`,`a-today`,`a-find`,`a-list`) <br />
+  as its implementation purpose is to assist the user in undo-ing his changes, filter commands do not make changes to the data. <br />
+  It also does not work with `p-edit` as the design requires patient details to be accurate as of time schedule, such that the <br />
+  records can accurately reflect the patient's conditions at the time of the appointment. <br />
+* A list of commands that can be undone can be found in the table under Command Summary. <br />
 * This command can be succeeded by a `redo` command
 </div>
 
