@@ -342,15 +342,25 @@ The reason for having an `EditAppointmentDescriptor` is to enforce immutability 
   * Pros: None.
   * Cons: Greater difficulty for users to input the new `Patient` since the `patientName` may not be unique nor accurate to an existing patient in the patient list.
 
+#### 4.2.4 Complete Appointment
 
-#### 4.2.4 Filter Appointment Commands
+##### Implementation
+Sets a specified appointment as completed. The implementation of setting an appointment as completed has a similar
+execution as editing as appointment (see 4.2.3).
 
-##### 4.2.4.1 Structure
+The unique classes associated to this command are :
+1. `AppointmentCommandParser: AppointmentCompleteCommandParser`— Creates a new AppointmentCompleteCommand object.
+2. `AppointmentCommand: AppointmentCompleteCommand`— Identifies the specified appointment from list and passes it to ModelManager to set as completed.
+
+
+#### 4.2.5 Filter Appointment Commands
+
+##### 4.2.5.1 Structure
 
 Commands involving filtering of the appointment work similarly by using filters to obtain the appointments needed. For this section, we will be exploring `AppointmentFindPatientCommand` which filters Appointments containing Patients whose name includes the given user input.
-The Command, Parser and Predicate in the class diagram below can be replaced by different sets of values from Diagram 4.2.4.1b.
+The Command, Parser and Predicate in the class diagram below can be replaced by different sets of values from Diagram 4.2.5.1b.
  ![Class Diagram for commands with filter](images/AppointmentFindPatientCommandDiagram.png)
- <br></br>_Diagram 4.2.4.1a : Appointment Commands with Filters Class Diagram_
+ <br></br>_Diagram 4.2.5.1a : Appointment Commands with Filters Class Diagram_
  <br></br>Filter Appointment Commands including both its Parser and Predicate are listed below:
 
 | Command                          | Parser                              | Predicate                        | Filters List by:                 |
@@ -363,21 +373,23 @@ The Command, Parser and Predicate in the class diagram below can be replaced by 
 | 6. AppointmentIsCompletedCommand | AppointmentIsCompletedCommandParser | SearchAppointmentCompletedFilter | Completed Appointments           |
 | 7. AppointmentListCommand        | AppointmentListCommandParser        | SearchAppointmentFilter          | Pending Appointments             |
 
- <br></br>_Diagram 4.2.4.1b : Appointment Commands with Filters Class Diagram_
+ <br></br>_Diagram 4.2.5.1b : Appointment Commands with Filters Class Diagram
 
-##### 4.2.4.2 Implementation
+##### 4.2.5.2 Implementation
 The search for appointment by patient name works by filtering the appointment list to show only those appointments with
 the given patient name.
 
 ![Sequence Diagram for commands with filter](images/AppointmentFindPatientSequenceDiagram.png)
-<br></br>_Diagram 4.2.4.2 : Appointment Commands with Filters Sequence Diagram_
+<br></br>_Diagram 4.2.5.2 : Appointment Commands with Filters Sequence Diagram
 
 The unique classes associated to `AppointmentFindPatientCommand`  command:
 1. `AppointmentFindPatientCommandParser`— Parses input arguments and creates a new AppointmentFindPatientCommand object.
 2. `SearchPatientFilter`— Checks if the appointment contains any patient which contains any keywords form the arguments.
 3. `AppointmentFindPatientCommand`— Applies the filter to the appointment list.
 
-##### 4.2.4.3 Design considerations
+The implementation of all listing filter appointment commands have a similar execution as `AppointmentFindPatientCommand`.
+
+##### 4.2.5.3 Design considerations
 * **Alternative 1 (current choice):** Store the appointments by date added.
   * Pros: Easy to implement and less overhead operations when using adding appointments.
   * Cons: May not be the fastest way to search for appointments.
@@ -388,9 +400,9 @@ The unique classes associated to `AppointmentFindPatientCommand`  command:
   You also need to update the sequence of storage file by tag every time you schedule an appointment. In addition,
   there might be a conflict for those appointments with more than one tags.
 
-#### 4.2.5 List All Appointments
+#### 4.2.6 List All Appointments
 ![Sequence Diagram for command to list all appointments in Archangel](images/AppointmentListAllCommand.png)
-<br></br>_Diagram 4.2.5 : Appointment List All Command Sequence Diagram_
+<br></br>_Diagram 4.2.6 : Appointment List All Command Sequence Diagram
 
 ##### Implementation
 Listing all past and upcoming appointments from the appointment list.
@@ -398,15 +410,6 @@ Listing all past and upcoming appointments from the appointment list.
 The unique classes associated to this command as shown from Diagram 4.2.6 are :
 1. `AppointmentCommandParser: AppointmentListAllCommandParser`— Creates a new AppointmentListAllCommand object.
 2. `AppointmentCommand: AppointmentListAllCommand`— Updates filtered appointment list to show all appointments in Archangel.
-
-#### 4.2.6 Complete Appointment
-
-##### Implementation
-Sets a specified appointment as completed.
-
-The unique classes associated to this command as shown from Diagram 4.2.5 are :
-1. `AppointmentCommandParser: AppointmentCompleteCommandParser`— Creates a new AppointmentCompleteCommand object.
-2. `AppointmentCommand: AppointmentCompleteCommand`— Identifies the specified appointment from list and passes it to ModelManager to set as completed.
 
 --------------------------------------------------------------------------------------------------------------------
 
