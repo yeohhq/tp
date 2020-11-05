@@ -18,7 +18,7 @@ If you can type fast, Archangel can get your patient management appointment done
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/GUI_Labelled_1.png" width="95%" /> <br />
 <img src="images/GUI_Labelled_2.png" width="95%" /> <br />
-Figure 0: <i>The user interface of Archangel.</i>
+Figure 1: <i>The user interface of Archangel.</i>
 </div>
 
 ### 1.2 User Guide Icons
@@ -484,6 +484,14 @@ Figure 2.4.2.1: <i>After `a-delete 1`(Roy is gone!).</i>
 Figure 2.4.2.2: <i>After `undo`(Roy is back!).</i>
 <img src="images/UserGuide/Redo_Example_1.png" width="150%" /> <br />
 Figure 2.4.2.3: <i>After `redo`(Roy is gone!).</i>
+
+### 2.5 Miscellaneous Features
+
+## 2.5.1 Suggestion Box
+Find it troublesome to keep referring to the User Guide for the format of commands? You can always refer to the suggestion box which is shown once you typing your commands. As you type letter by letter, the suggestion box will automatically match your input to the most similar command, allowing you to refer to it on the go!
+
+![Suggestion Box](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
+Figure 2.5.1: <i>The suggestion box provides the format as you insert a `p-add` command.</i>
 
 --------------------------------------------------------------------------------------------------------------------
 
