@@ -791,6 +791,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  Archangel displays only upcoming appointments.
 
     Use case ends.
+    
+**Use case: Undo command**
+
+**MSS**
+
+1.  User requests to undo a previous command.
+2.  Archangel reverts back to state before previous command.
+
+    Use case ends.
+
+**Extensions**
+
+**Use case: Redo command**
+
+**MSS**
+
+1.  User requests to redo a command that was undone.
+2.  Archangel reverts back to state before undo command.
+
+    Use case ends.
+
+**Extensions**
 
 **Use case: Close Archangel program**
 
