@@ -759,6 +759,38 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. Archangel shows an error message.
 
       Use case resumes at step 1.
+      
+**Use case: Complete an appointment**
+
+**MSS**
+
+1.  User requests to set an appointment as completed.
+2.  Archangel sets the appointment as completed.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The appointment is not found.
+
+    * 1a1. Archangel shows an error message.
+
+      Use case ends.
+
+* 1b. The appointment list is empty.
+
+    * 1a1. Archangel shows an error message.
+
+      Use case resumes at step 1.
+      
+**Use case: Filter appointment list**
+
+**MSS**
+
+1.  User requests to view only upcoming appointments.
+2.  Archangel displays only upcoming appointments.
+
+    Use case ends.
 
 **Use case: Close Archangel program**
 
