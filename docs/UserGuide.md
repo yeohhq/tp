@@ -574,7 +574,7 @@ Figure 2.4.2.3: <i>After `redo`(Roy is gone!).</i>
 Find it troublesome to keep referring to the User Guide for the format of commands? You can always refer to the suggestion box which is shown once you typing your commands. As you type letter by letter, the suggestion box will automatically match your input to the most similar command, allowing you to refer to it on the go!
 
 <div style="text-align: center; padding-bottom: 2em">
-<img src="https://github.com/AY2021S1-CS2103T-W11-1/tp/blob/master/docs/images/UserGuide/Suggestion_Box.gif" width="95%" /> <br />
+<img src="https://raw.githubusercontent.com/AY2021S1-CS2103T-W11-1/tp/master/docs/images/UserGuide/Suggestion_Box.gif" width="95%" /> <br />
 Figure 2.5.1: <i>The suggestion box provides the format as you insert a `p-add` command.</i>
 </div>
 
@@ -582,9 +582,9 @@ Figure 2.5.1: <i>The suggestion box provides the format as you insert a `p-add` 
 You can refer to the in-built calendar feature to view all the appointments within the week at a glance. 
 
 <div style="text-align: center; padding-bottom: 2em">
-<img src="https://github.com/AY2021S1-CS2103T-W11-1/tp/blob/master/docs/images/UserGuide/CalendarButton.png" width="50%" /> <br />
+<img src="https://raw.githubusercontent.com/AY2021S1-CS2103T-W11-1/tp/master/docs/images/UserGuide/CalendarButton.png" width="50%" /> <br />
 Figure 2.5.2.1: <i>Click on the calendar button.</i>  
-<img src="https://github.com/AY2021S1-CS2103T-W11-1/tp/blob/master/docs/images/UserGuide/CalendarView.png" width="95%" /> <br />
+<img src="https://raw.githubusercontent.com/AY2021S1-CS2103T-W11-1/tp/master/docs/images/UserGuide/CalendarView.png" width="95%" /> <br />
 Figure 2.5.2.2: <i>The calendar panel will be shown with all the appointments in the week listed.</i>  
 </div>
 
