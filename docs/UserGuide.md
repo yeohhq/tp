@@ -365,7 +365,7 @@ Format: `a-missed`
 Format: `undo`
 
 Examples:
-* `p-delete 2` followed by `undo` undoes the edit command and make no changes to Archangel.
+* `p-delete 1` followed by `undo` undoes the edit command and make no changes to Archangel.
 
 <img src="images/UserGuide/Undo_Example_1.png" width="1000px"> <br />
 Figure 2.4.1.1: <i>Before `a-delete 1`.</i>
