@@ -803,6 +803,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
+* 1a. User has not executed any undo-able commands.
+
+    * 1a1. Archangel shows an error message.
+
+      Use case ends.
+
 **Use case: Redo command**
 
 **MSS**
@@ -813,6 +819,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 **Extensions**
+
+**Extensions**
+
+* 1a. User has not undone any command.
+
+    * 1a1. Archangel shows an error message.
+
+      Use case ends.
 
 **Use case: Close Archangel program**
 
