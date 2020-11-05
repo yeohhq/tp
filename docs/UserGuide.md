@@ -530,7 +530,7 @@ Figure 2.4.1.2: <i>After `a-missed`.</i>
 * This command has no keywords  <br />
 * This command does not work with filter commands (`a-completed`,`a-missed`,`a-upcoming`,`a-today`,`a-find`,`a-list`)  <br />
   as its implementation purpose is to assist the user in undo-ing his changes, filter commands do not make changes to the data.  <br />
-  It also does not work with `p-edit` as the design requires patient details to be accurate as of time schedule, such that the  
+  It also does not work with `p-edit` as the design requires patient details to be accurate as of time schedule, such that the
   records can accurately reflect the patient's conditions at the time of the appointment. <br />
 * A list of commands that can be undone can be found in the table under Command Summary.  <br />
 * This command can be succeeded by a `redo` command
@@ -584,13 +584,13 @@ Figure 2.5.1: <i>The suggestion box provides the format as you insert a `p-add` 
 </div>
 
 #### 2.5.2 In-built Calendar feature
-You can refer to the in-built calendar feature to view all the appointments within the week at a glance. 
+You can refer to the in-built calendar feature to view all the appointments within the week at a glance.
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="https://raw.githubusercontent.com/AY2021S1-CS2103T-W11-1/tp/master/docs/images/UserGuide/CalendarButton.png" width="50%" /> <br />
-Figure 2.5.2.1: <i>Click on the calendar button.</i>  
+Figure 2.5.2.1: <i>Click on the calendar button.</i>
 <img src="https://raw.githubusercontent.com/AY2021S1-CS2103T-W11-1/tp/master/docs/images/UserGuide/CalendarView.png" width="95%" /> <br />
-Figure 2.5.2.2: <i>The calendar panel will be shown with all the appointments in the week listed.</i>  
+Figure 2.5.2.2: <i>The calendar panel will be shown with all the appointments in the week listed.</i>
 </div>
 
 --------------------------------------------------------------------------------------------------------------------

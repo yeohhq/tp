@@ -759,7 +759,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. Archangel shows an error message.
 
       Use case resumes at step 1.
-      
+
 **Use case: Complete an appointment**
 
 **MSS**
@@ -782,7 +782,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. Archangel shows an error message.
 
       Use case resumes at step 1.
-      
+
 **Use case: Filter appointment list**
 
 **MSS**
@@ -791,7 +791,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  Archangel displays only upcoming appointments.
 
     Use case ends.
-    
+
 **Use case: Undo command**
 
 **MSS**
