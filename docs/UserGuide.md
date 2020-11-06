@@ -166,13 +166,13 @@ Figure 2.2.2.3: <i>After `p-list` (All-Patient list is back as the list under vi
 
 <div markdown="span" class="alert alert-primary">
 :information_source: **Things to Note:**  <br />
-* Edits the patient at the specified INDEX. The index refers to the index number shown in the displayed patient list. The index must be a positive integer 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the patient will be removed i.e adding of tags is not cumulative.
-* You can remove all the patient’s tags by typing `t/` without specifying any tags after it.
-* For editting of remarks, please look at the commands specifically related to remarks.
-* Note: Editing a patient will also update the patient in Appointments that contain the patient.
+* Edits the patient at the specified INDEX. The index refers to the index number shown in the displayed patient list. The index must be a positive integer 1, 2, 3, …​ <br />
+* At least one of the optional fields must be provided. <br />
+* Existing values will be updated to the input values. <br />
+* When editing tags, the existing tags of the patient will be removed i.e adding of tags is not cumulative. <br />
+* You can remove all the patient’s tags by typing `t/` without specifying any tags after it. <br />
+* For editting of remarks, please look at the commands specifically related to remarks. <br />
+* Note: Editing a patient will also update the patient in Appointments that contain the patient. <br />
 </div>
 
 Format: `p-edit INDEX [n/NAME] [g/GENDER] [bd/BIRTHDATE] [bt/BLOODTYPE] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
@@ -195,11 +195,11 @@ Figure 2.2.3.2: <i>After `p-edit 2 n/Betsy Crower`(Patient at index 2 on the pat
 
 <div markdown="span" class="alert alert-primary">
 :information_source: **Things to Note:**  <br />
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name will be searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. OR search).
+* The search is case-insensitive. e.g `hans` will match `Hans` <br />
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans` <br />
+* Only the name will be searched. <br />
+* Only full words will be matched e.g. `Han` will not match `Hans` <br />
+* Persons matching at least one keyword will be returned (i.e. OR search). <br />
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 </div>
 
@@ -222,9 +222,9 @@ Figure 2.2.4.2: <i>After `p-find Yeoh` (All patients with 'Yeoh' in their names 
 
 <div markdown="span" class="alert alert-primary">
 :information_source: **Things to Note:**  <br />
-* Store a remark for the patient at the specified INDEX.
-* The index refers to the index number shown in the displayed patient list.
-* The index must be a positive integer 1, 2, 3, …​
+* Store a remark for the patient at the specified INDEX. <br />
+* The index refers to the index number shown in the displayed patient list. <br />
+* The index must be a positive integer 1, 2, 3, …​ <br />
 </div>
 
 Format: `p-remark INDEX r/REMARK`
@@ -245,9 +245,9 @@ Figure 2.2.5.2: <i>After `p-remark 1 r/Allergic to nuts` (Alex Yeoh now has a re
 
 <div markdown="span" class="alert alert-primary">
 :information_source: **Things to Note:**  <br />
-* Removes all your remarks for the patient at the specified INDEX.
-* The index refers to the index number shown in the displayed patient list.
-* The index must be a positive integer 1, 2, 3, …​
+* Removes all your remarks for the patient at the specified INDEX. <br />
+* The index refers to the index number shown in the displayed patient list. <br />
+* The index must be a positive integer 1, 2, 3, …​ <br />
 </div>
 
 Format: `p-remark INDEX`
@@ -268,10 +268,10 @@ Figure 2.2.6.2: <i>After `p-remark 1` (Alex Yeoh no longer has a remark!)</i>
 
 <div markdown="span" class="alert alert-primary">
 :information_source: **Things to Note:**  <br />
-* Deletes the patient at the specified INDEX.
-* The index refers to the index number shown in the displayed patient list.
-* The index must be a positive integer 1, 2, 3, …​
-* Note: Deleting a patient will also delete all Appointments that contains the deleted patient.
+* Deletes the patient at the specified INDEX. <br />
+* The index refers to the index number shown in the displayed patient list. <br />
+* The index must be a positive integer 1, 2, 3, …​ <br />
+* Note: Deleting a patient will also delete all Appointments that contains the deleted patient. <br />
 </div>
 
 Format: `p-delete INDEX`
