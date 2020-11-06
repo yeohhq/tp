@@ -100,7 +100,7 @@ public class AppointmentScheduleCommand extends Command {
 
             model.addAppointment(toSchedule);
             model.getFilteredAppointmentList();
-            model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
+            // model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
             return new CommandResult(String.format(MESSAGE_SUCCESS, toSchedule),
                      false, false, true);
         } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {

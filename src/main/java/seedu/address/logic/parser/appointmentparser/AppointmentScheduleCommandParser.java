@@ -51,9 +51,9 @@ public class AppointmentScheduleCommandParser implements Parser<AppointmentSched
         LocalDateTime endTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_APPOINTMENT_END).get());
 
         // cannot schedule an Appointment before now.
-        if (startTime.isBefore(LocalDateTime.now()) || endTime.isBefore(LocalDateTime.now())) {
-            throw new ParseException(MESSAGE_APPOINTMENT_BACKDATED);
-        }
+        // if (startTime.isBefore(LocalDateTime.now()) || endTime.isBefore(LocalDateTime.now())) {
+        //    throw new ParseException(MESSAGE_APPOINTMENT_BACKDATED);
+        // }
 
         // cannot schedule an Appointment for more than 24 hours.
         if (startTime.plusHours(24).isBefore(endTime)) {
@@ -67,9 +67,15 @@ public class AppointmentScheduleCommandParser implements Parser<AppointmentSched
             throw new ParseException(AppointmentTime.MESSAGE_CONSTRAINTS);
         }
 
+        Boolean isMissed = false; // isMissed is initialised to false for newly scheduled appointment by default
+        if (endTime.plusMinutes(30).isBefore(LocalDateTime.now())) {
+            // If the endtime is passed more than 30 minutes, the appointment is set as missed
+            isMissed = true;
+        }
+
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        Boolean isMissed = false; // isMissed is always initialised to false for newly scheduled appointment
+        // Boolean isMissed = false; // isMissed is always initialised to false for newly scheduled appointment
         Boolean isCompleted = false; // isCompleted is always initialised to false for newly scheduled appointment
         String patient = argMultimap.getValue(PREFIX_PATIENT).get();
         Appointment appointment = new Appointment(appointmentTime, patient, tagList, isCompleted, isMissed,
