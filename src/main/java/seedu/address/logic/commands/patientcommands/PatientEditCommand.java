@@ -98,6 +98,22 @@ public class PatientEditCommand extends Command {
         }
 
         // patient fields has changed, need to update appointments that contain the edited patient
+        this.editModelAppointments(patientToEdit, editedPatient, model);
+
+        model.setPatient(patientToEdit, editedPatient);
+        model.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
+
+        return new CommandResult(String.format(MESSAGE_EDIT_PATIENT_SUCCESS, editedPatient),
+                 false, false, false);
+    }
+
+    /**
+     * Edits appointments in given model to reflect changes to edited patient.
+     * @param patientToEdit Patient before PatientEditCommand is executed
+     * @param editedPatient Patient after PatientEditCommand is executed
+     * @param model Model with list of appointments to update
+     */
+    protected static void editModelAppointments(Patient patientToEdit, Patient editedPatient, Model model) {
         assert patientToEdit != null;
         SearchSpecificPatientHashcodeFilter patientFilter =
                 new SearchSpecificPatientHashcodeFilter(patientToEdit.hashCode());
@@ -109,12 +125,6 @@ public class PatientEditCommand extends Command {
             }
         }
         model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
-
-        model.setPatient(patientToEdit, editedPatient);
-        model.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
-
-        return new CommandResult(String.format(MESSAGE_EDIT_PATIENT_SUCCESS, editedPatient),
-                 false, false, false);
     }
 
     /**
