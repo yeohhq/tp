@@ -300,6 +300,7 @@ Examples:
 
 <div markdown="span" class="alert alert-primary">
 :information_source: **Things to Note:**  <br />
+* Backdated appointments are allowed to be able to digitise existing appointment records . <br />
 * Schedules patient appointment for patient at INDEX in the displayed patient list.<br />
 * Appointment will be set to input DATE (format: YYYY-MM-DD) and TIME (format: HH:MM).<br />
 * TAGS should be alphanumeric.<br />
@@ -350,6 +351,7 @@ Examples:
 
 <div markdown="span" class="alert alert-primary">
 :information_source: **Things to Note:**  <br />
+* Backdated appointments are allowed to be able to digitise existing appointment records . <br />
 * Edits the appointment at the specified INDEX. The index refers to the index number shown in the displayed appointment list. The index must be a positive integer 1, 2, 3, …​ <br />
 * At least one of the optional fields must be provided.<br />
 * Existing values will be updated to the input values.<br />
