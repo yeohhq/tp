@@ -306,13 +306,14 @@ Examples:
 * Appointment time (i.e. duration from `start` to `end`) cannot overlap with another existing appointment.<br />
 * Appointment duration should not exceed 24 hours.<br />
 * Appointment time must be indicated as HH:MM (i.e. 9AM must be `09:00`, and not `9:00`).<br />
+* Appointment with endtime that is 30 minutes or more behind current time will be set as missed.
 </div>
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/UserGuide/a-schedule_1.png" width="95%" /> <br />
-Figure 2.4.1.1: <i>Before `a-schedule`.</i>
+Figure 2.3.1.1: <i>Before `a-schedule`.</i>
 <img src="images/UserGuide/a-schedule_2.png" width="95%" /> <br />
-Figure 2.4.1.2: <i>After `a-schedule`(New appointment added to list!).</i>
+Figure 2.3.1.2: <i>After `a-schedule`(New appointment added to list!).</i>
 </div>
 
 #### 2.3.2 Deleting an appointment : `a-delete`
@@ -334,9 +335,9 @@ Examples:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/UserGuide/a-delete_1.png" width="95%" /> <br />
-Figure 2.4.1.1: <i>Before `a-delete`.</i>
+Figure 2.3.2.1: <i>Before `a-delete`.</i>
 <img src="images/UserGuide/a-delete_2.png" width="95%" /> <br />
-Figure 2.4.1.2: <i>After `a-delete'(Appointment is gone!).</i>
+Figure 2.3.2.2: <i>After `a-delete'(Appointment is gone!).</i>
 </div>
 
 #### 2.3.3 Editing an appointment : `a-edit`
@@ -360,15 +361,14 @@ Examples:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/UserGuide/a-edit_1.png" width="95%" /> <br />
-Figure 2.4.1.1: <i>Before `a-edit`.</i>
+Figure 2.3.3.1: <i>Before `a-edit`.</i>
 <img src="images/UserGuide/a-edit_2.png" width="95%" /> <br />
-Figure 2.4.1.2: <i>After `a-edit`(Appointment details changed!).</i>
+Figure 2.3.3.2: <i>After `a-edit`(Appointment details changed!).</i>
 </div>
 
 #### 2.3.4 Setting appointment as completed : `a-complete`
 
-You have just finished an appointment. Instead of deleting it, let's set it as completed. This way it will be hidden from you by default,
-but you can still find it using specific commands.
+You have just finished an appointment. Instead of deleting it, let's set it as completed. This way you can still find it using specific commands.
 
 Format: `a-complete INDEX`
 
@@ -384,12 +384,20 @@ Examples:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/UserGuide/a-complete_1.png" width="95%" /> <br />
-Figure 2.4.1.1: <i>Before `a-complete 1`.</i>
+Figure 2.3.4.1: <i>Before `a-complete 1`.</i>
 <img src="images/UserGuide/a-complete_2.png" width="95%" /> <br />
-Figure 2.4.1.2: <i>After `a-complete 1`(Appointment 1 is now labelled as Done).</i>
+Figure 2.3.4.2: <i>After `a-complete 1`(Appointment 1 is now labelled as Done).</i>
 </div>
 
-#### 2.3.5 Listing all past and present appointments : `a-listall`
+#### 2.3.5 Setting appointment as missed :
+
+Patient did not show up? Archangel helps you keep track of missed appointments!
+
+Appointments are automatically set as missed if they satisfy both criteria:
+* Appointment end time has been over for at least 30 minutes.
+* Appointment has not been set as completed.
+
+#### 2.3.6 Listing all past and present appointments : `a-listall`
 
 You can also view a combined list of all appointments including missed, completed and upcoming patient appointments.
 
@@ -397,29 +405,29 @@ Format: `a-listall`
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/UserGuide/a-listall_1.png" width="95%" /> <br />
-Figure 2.4.1.1: <i>Before `a-listall`.</i>
+Figure 2.3.6.1: <i>Before `a-listall`.</i>
 <img src="images/UserGuide/a-listall_2.png" width="95%" /> <br />
-Figure 2.4.1.2: <i>After `a-listall`.</i>
+Figure 2.3.6.2: <i>After `a-listall`.</i>
 </div>
 
-#### 2.3.6 Filtering appointment list
+#### 2.3.7 Filtering appointment list
 
 If you are looking for a specific appointment, Archangel allows you to filter your appointment list in many different ways.
 
-##### 2.3.6.1 Listing all upcoming appointments : `a-list`
+##### 2.3.7.1 Listing all upcoming appointments : `a-list`
 
-Shows a list of all your uncompleted patient appointments in Archangel.
+Shows a list of all your uncompleted upcoming patient appointments in Archangel.
 
 Format: `a-list`
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/UserGuide/a-list_1.png" width="95%" /> <br />
-Figure 2.4.1.1: <i>Before `a-list`.</i>
+Figure 2.3.7.1.1: <i>Before `a-list`.</i>
 <img src="images/UserGuide/a-list_2.png" width="95%" /> <br />
 Figure 2.4.1.2: <i>After `a-list`.</i>
 </div>
 
-##### 2.3.6.2 Finding appointments by patient name : `a-find`
+##### 2.3.7.1.2 Finding appointments by patient name : `a-find`
 
 Finds your appointments which the patient's name contains any of the given keywords.
 
@@ -441,12 +449,12 @@ Examples:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/UserGuide/a-find_1.png" width="95%" /> <br />
-Figure 2.4.1.1: <i>Before `a-find Charlotte`.</i>
+Figure 2.3.7.2.1: <i>Before `a-find Charlotte`.</i>
 <img src="images/UserGuide/a-find_2.png" width="95%" /> <br />
-Figure 2.4.1.2: <i>After `a-find Charlotte`.</i>
+Figure 2.3.7.2.2: <i>After `a-find Charlotte`.</i>
 </div>
 
-##### 2.3.6.3 Finding appointments by tags: `a-tag`
+##### 2.3.7.3 Finding appointments by tags: `a-tag`
 Finds your appointments which are tagged by any of the given keywords.
 
 Format: `a-find KEYWORD [MORE_KEYWORDS]`
@@ -467,12 +475,12 @@ Examples:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/UserGuide/a-tag_1.png" width="95%" /> <br />
-Figure 2.4.1.1: <i>Before `a-tag`.</i>
+Figure 2.3.7.3.1: <i>Before `a-tag`.</i>
 <img src="images/UserGuide/a-tag_2.png" width="95%" /> <br />
-Figure 2.4.1.2: <i>After `a-tag`.</i>
+Figure 2.3.7.3.2: <i>After `a-tag`.</i>
 </div>
 
-##### 2.3.6.4 Finding an appointment by current date: `a-today`
+##### 2.3.7.4 Finding an appointment by current date: `a-today`
 Finds your uncompleted appointments scheduled on the current date.
 
 Format: `a-today`
@@ -482,12 +490,12 @@ Examples:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/UserGuide/a-today_1.png" width="95%" /> <br />
-Figure 2.4.1.1: <i>Before `a-today`.</i>
+Figure 2.3.7.4.1: <i>Before `a-today`.</i>
 <img src="images/UserGuide/a-today_2.png" width="95%" /> <br />
-Figure 2.4.1.2: <i>After `a-today`.</i>
+Figure 2.3.7.4.2: <i>After `a-today`.</i>
 </div>
 
-##### 2.3.6.5 Finding an appointment by current week: `a-upcoming`
+##### 2.3.7.5 Finding an appointment by current week: `a-upcoming`
 Finds your uncompleted appointments scheduled in the current week.
 
 Format: `a-upcoming`
@@ -497,12 +505,12 @@ Examples:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/UserGuide/unfilteredAppointmentViewDefault.png" width="95%" /> <br />
-Figure 2.4.1.1: <i>Before `a-upcoming`.</i>
+Figure 2.3.7.5.1: <i>Before `a-upcoming`.</i>
 <img src="images/UserGuide/a-upcoming.png" width="95%" /> <br />
-Figure 2.4.1.2: <i>After `a-upcoming`.</i>
+Figure 2.3.7.5.2: <i>After `a-upcoming`.</i>
 </div>
 
-##### 2.3.6.6 Listing appointments that are completed: `a-completed`
+##### 2.3.7.6 Listing appointments that are completed: `a-completed`
 Shows a list of all your appointments that have been completed.
 
 Format: `a-completed`
@@ -512,12 +520,12 @@ Examples:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/UserGuide/unfilteredAppointmentViewDefault.png" width="95%" /> <br />
-Figure 2.4.1.1: <i>Before `a-completed`.</i>
+Figure 2.3.7.6.1: <i>Before `a-completed`.</i>
 <img src="images/UserGuide/a-completed.png" width="95%" /> <br />
-Figure 2.4.1.2: <i>After `a-completed`.</i>
+Figure 2.3.7.6.2: <i>After `a-completed`.</i>
 </div>
 
-##### 2.3.6.7 Listing appointments that are missed: `a-missed`
+##### 2.3.7.7 Listing appointments that are missed: `a-missed`
 Shows a list of all your appointments that have been missed.
 
 <div markdown="span" class="alert alert-primary">
@@ -533,9 +541,9 @@ Examples:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/UserGuide/unfilteredAppointmentViewDefault.png" width="95%" /> <br />
-Figure 2.4.1.1: <i>Before `a-missed`.</i>
+Figure 2.3.7.7.2: <i>Before `a-missed`.</i>
 <img src="images/UserGuide/a-missed.png" width="95%" /> <br />
-Figure 2.4.1.2: <i>After `a-missed`.</i>
+Figure 2.3.7.7.2: <i>After `a-missed`.</i>
 </div>
 
 ### 2.4 General Commands
