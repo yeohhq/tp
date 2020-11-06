@@ -40,15 +40,12 @@ Given below are my contributions to the project.
   * 
 
 * **Enhancements to existing features**:
-  * Wrote tests and test utilities for Appointment related commands.
+  * Wrote tests and test utilities for Appointment related commands. (Pull request [\#55](https://github.com/AY2021S1-CS2103T-W11-1/tp/pull/55)
   * Updated the default view of Archangel to not include completed/missed commands.
 
 * **Documentation**:
   * User Guide:
-    * 
+    * Added documentations for features `a-completed`, `a-missed`, `a-list`, `a-listall` and `a-complete`. (Pull request [\#85](https://github.com/AY2021S1-CS2103T-W11-1/tp/pull/85))
+    * Improve UG to be more user centric. (Pull request [\#221](https://github.com/AY2021S1-CS2103T-W11-1/tp/pull/221))
   * Developer Guide:
-    * 
-
-* **Tools**:
-  * 
-
+    * Added implementation details for TimerThread. (Pull request [\#203](https://github.com/AY2021S1-CS2103T-W11-1/tp/pull/203))
