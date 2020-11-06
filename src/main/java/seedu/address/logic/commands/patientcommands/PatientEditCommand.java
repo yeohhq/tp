@@ -12,7 +12,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PATIENTS;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -27,7 +26,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.filters.appointmentfilters.SearchPatientFilter;
+import seedu.address.model.filters.appointmentfilters.SearchSpecificPatientHashcodeFilter;
 import seedu.address.model.patient.Address;
 import seedu.address.model.patient.Birthdate;
 import seedu.address.model.patient.BloodType;
@@ -99,8 +98,9 @@ public class PatientEditCommand extends Command {
         }
 
         // patient fields has changed, need to update appointments that contain the edited patient
-        final String[] splitName = patientToEdit.getName().fullName.split("\\s+");
-        SearchPatientFilter patientFilter = new SearchPatientFilter(Arrays.asList(splitName));
+        assert patientToEdit != null;
+        SearchSpecificPatientHashcodeFilter patientFilter =
+                new SearchSpecificPatientHashcodeFilter(patientToEdit.hashCode());
         model.updateFilteredAppointmentList(patientFilter);
 
         if (model.getFilteredAppointmentList() != null) { // appointments containing edited patient exists
