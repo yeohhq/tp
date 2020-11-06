@@ -1,6 +1,8 @@
 package seedu.address.testutil;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.commands.appointmentcommands.AppointmentCommandTestUtil.VALID_END_ONE;
+import static seedu.address.logic.commands.appointmentcommands.AppointmentCommandTestUtil.VALID_START_ONE;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -17,8 +19,8 @@ public class AppointmentTimeBuilder {
      */
     public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm");
 
-    private static final String DEFAULT_START = "2020-01-01 12:00";
-    private static final String DEFAULT_END = "2020-01-01 14:00";
+    private static final String DEFAULT_START = VALID_START_ONE;
+    private static final String DEFAULT_END = VALID_END_ONE;
 
     private LocalDateTime start;
     private LocalDateTime end;

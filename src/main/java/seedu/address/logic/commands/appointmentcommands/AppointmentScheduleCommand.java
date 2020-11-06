@@ -67,8 +67,8 @@ public class AppointmentScheduleCommand extends Command {
             // Target index inside the unique patient list
             int index = Integer.parseInt(toSchedule.getPatientString());
 
-            ArrayList<Patient> arr = new ArrayList<>(patientList);
-            int size = arr.size();
+            ArrayList<Patient> patientArrayList = new ArrayList<>(patientList);
+            int size = patientArrayList.size();
 
             // Patient list is empty
             if (size == 0) {
@@ -80,7 +80,7 @@ public class AppointmentScheduleCommand extends Command {
                 throw new CommandException((MESSAGE_MISSING_PATIENT));
             }
 
-            toSchedule.parsePatient(arr, index);
+            toSchedule.parsePatient(patientArrayList, index);
 
             // Patient does not exist
             if (!model.hasPatient(toSchedule.getPatient())) {
