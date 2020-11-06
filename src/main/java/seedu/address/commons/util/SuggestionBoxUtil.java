@@ -13,7 +13,8 @@ public class SuggestionBoxUtil {
                 Arrays.asList(
                         //for patient commands
                         "p-add n/NAME g/GENDER bd/BIRTHDATE bt/BLOOD_TYPE p/PHONE e/EMAIL a/ADDRESS t/TAG",
-                        "p-edit INDEX n/NAME g/GENDER bd/BIRTHDATE bt/BLOODTYPE p/PHONE e/EMAIL a/ADDRESS t/TAG",
+                        "p-edit INDEX [n/NAME] [g/GENDER] [bd/BIRTHDATE] [bt/BLOODTYPE] [p/PHONE] [e/EMAIL]"
+                                + " [a/ADDRESS] [t/TAG]…",
                         "p-delete INDEX",
                         "p-find KEYWORD",
                         "p-remark INDEX r/REMARK",
