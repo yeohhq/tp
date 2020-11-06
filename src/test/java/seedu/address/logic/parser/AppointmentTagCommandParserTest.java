@@ -24,7 +24,7 @@ public class AppointmentTagCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_appointmentTagCommand() {
+    public void parse_validArgs_returnsAppointmentTagCommand() {
         // no leading and trailing whitespaces
         AppointmentTagCommand expectedAppointmentTagCommand =
                 new AppointmentTagCommand(new SearchAppointmentTagsFilter(Arrays.asList("Alice", "Bob")));

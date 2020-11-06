@@ -24,7 +24,7 @@ public class AppointmentFindPatientCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_appointmentFindPatientCommand() {
+    public void parse_validArgs_returnsAppointmentFindPatientCommand() {
         // no leading and trailing whitespaces
         AppointmentFindPatientCommand expectedAppointmentFindPatientCommand =
                 new AppointmentFindPatientCommand(new SearchPatientFilter(Arrays.asList("Alice", "Bob")));
