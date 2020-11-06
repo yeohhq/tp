@@ -608,7 +608,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is `Archangel` (the AddressBook) and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Add a patient**
+**Use case: UC1 -  Add a patient**
 
 **MSS**
 
@@ -631,7 +631,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-**Use case: Delete a patient**
+**Use case: UC2 - Delete a patient**
 
 **MSS**
 
@@ -654,7 +654,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Edit a patient**
+**Use case: UC3 - Edit a patient**
 
 **MSS**
 
@@ -685,7 +685,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Schedule a patient appointment**
+**Use case: UC4 - Schedule a patient appointment**
 
 **MSS**
 
@@ -714,7 +714,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-**Use case: Delete a patient appointment**
+**Use case: UC5 - Delete a patient appointment**
 
 **MSS**
 
@@ -737,7 +737,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-**Use case: Edit an appointment**
+**Use case: UC6 - Edit an appointment**
 
 **MSS**
 
@@ -759,8 +759,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. Archangel shows an error message.
 
       Use case resumes at step 1.
-      
-**Use case: Complete an appointment**
+
+**Use case: UC7 - Complete an appointment**
 
 **MSS**
 
@@ -782,17 +782,48 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. Archangel shows an error message.
 
       Use case resumes at step 1.
-      
-**Use case: Filter appointment list**
+
+**Use case: UC8 - Filter appointment list to find the upcoming appointments**
 
 **MSS**
 
 1.  User requests to view only upcoming appointments.
-2.  Archangel displays only upcoming appointments.
+2.  Archangel displays only upcoming appointments in the dashboard.
 
     Use case ends.
-    
-**Use case: Undo command**
+
+**Extensions**
+
+* 1a. User chose to view in the calendar tab.
+
+    * 1a1. Archangel shows the upcoming appointments in calendar format.
+
+      Use case ends.
+      
+**Use case: UC9 - Filter appointment list to find the appointments occuring today**
+This case is similar to UC8, without the Extensions.
+
+**Use case: UC10 - Filter appointment list to find tagged appointments**
+
+**MSS**
+
+1.  User requests to view only tagged appointments with their input keywords.
+2.  Archangel displays tagged appointments matching the keywords
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The keywords did not match any tags.
+
+    * 1a1. Archangel was not able to list down any appointments.
+
+      Use case ends.
+
+**Use case: UC11 - Filter appointment list by patients**
+This case is similar to UC10, with the filter being the patient name.
+
+**Use case: UC12 - Undo command**
 
 **MSS**
 
@@ -809,7 +840,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: Redo command**
+**Use case: UC13 - Redo command**
 
 **MSS**
 
@@ -826,7 +857,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: Close Archangel program**
+**Use case: UC14 - Close Archangel program**
 
 **MSS**
 
@@ -915,3 +946,4 @@ testers are expected to do more *exploratory* testing.
 1. Implementation of Calendar feature using iCalendarAgenda
    Credits to  Tae Kwon(https://github.com/ktaekwon000) from CS2103T-W11-4 for sharing his code base and knowledge
    of iCalendarAgenda.
+1. Implementation of Tabs in the UI is inspired by [KeepToo Youtube Channel](https://www.youtube.com/watch?v=ZVtys3GgkMo)
