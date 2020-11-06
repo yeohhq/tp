@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.patientcommands;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PATIENTS;
 
 import java.util.List;
@@ -11,6 +12,8 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.filters.appointmentfilters.SearchSpecificPatientHashcodeFilter;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.Remark;
 
@@ -61,6 +64,18 @@ public class PatientRemarkCommand extends Command {
                     patientToEdit.getBirthdate(), patientToEdit.getBloodType(),
                     patientToEdit.getPhone(), patientToEdit.getEmail(),
                     patientToEdit.getAddress(), remark, patientToEdit.getTags());
+
+        // patient fields has changed, need to update appointments that contain the remarked patient
+        SearchSpecificPatientHashcodeFilter patientFilter =
+                new SearchSpecificPatientHashcodeFilter(patientToEdit.hashCode());
+        model.updateFilteredAppointmentList(patientFilter);
+
+        if (model.getFilteredAppointmentList() != null) { // appointments containing remarked patient exists
+            for (Appointment appointment : model.getFilteredAppointmentList()) {
+                appointment.updatePatient(patientToEdit, editedPatient);
+            }
+        }
+        model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
 
         model.setPatient(patientToEdit, editedPatient);
         model.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);

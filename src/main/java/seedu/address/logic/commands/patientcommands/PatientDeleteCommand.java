@@ -56,6 +56,7 @@ public class PatientDeleteCommand extends Command {
         List<Appointment> appointmentList = model.getFilteredAppointmentList();
         while (appointmentList.size() != 0) {
             model.deleteAppointment(appointmentList.get(0));
+            model.updateFilteredAppointmentList(patientFilter);
         }
         model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
 
