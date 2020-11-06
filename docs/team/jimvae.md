@@ -34,11 +34,11 @@ Given below are my contributions to the project.
   
   Before:
 
-  ![AddressBook3](docs/images/Addressbook3.png)
+  ![AddressBook3](https://raw.githubusercontent.com/jimvae/tp/branch-user-guide-v1.4/docs/images/Addressbook3.png)
   
   After:
   
-  ![Archangel](docs/images/Archangel.png)
+  ![Archangel](https://raw.githubusercontent.com/jimvae/tp/branch-user-guide-v1.4/docs/images/Archangel.png)
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=jimvae)
 
@@ -60,5 +60,5 @@ Given below are my contributions to the project.
     * Updated and added class and sequence diagrams for Model and UI components: [\#101](https://github.com/AY2021S1-CS2103T-W11-1/tp/pull/102)
 
 * **Community**:
-  * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/yeohhq/ped/issues/6), [2](https://github.com/yeohhq/ped/issues/2), [3](https://github.com/yeohhq/ped/issues/3))
+  * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/jimvae/ped/issues/1)
   * Helped my teammates with major logic bugs like scheduling appointments
