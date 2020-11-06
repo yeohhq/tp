@@ -20,7 +20,7 @@ import seedu.address.model.util.SampleDataUtil;
 public class AppointmentBuilder {
 
     public static final boolean DEFAULT_COMPLETE = false;
-    public static final boolean DEFAULT_MISSED = false;
+    public static final boolean DEFAULT_MISSED = true; // as DEFAULT_TIME is backdated
     private static final AppointmentTime DEFAULT_TIME = new AppointmentTimeBuilder().build();
     private static final Patient DEFAULT_PATIENT = new PatientBuilder().build();
     private static final String DEFAULT_PATIENTSTRING = DEFAULT_PATIENT.getName().fullName;

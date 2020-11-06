@@ -8,7 +8,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_START;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PATIENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
 
 import java.util.ArrayList;
 
@@ -100,7 +99,7 @@ public class AppointmentScheduleCommand extends Command {
 
             model.addAppointment(toSchedule);
             model.getFilteredAppointmentList();
-            model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
+            // model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
             return new CommandResult(String.format(MESSAGE_SUCCESS, toSchedule),
                      false, false, true);
         } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {

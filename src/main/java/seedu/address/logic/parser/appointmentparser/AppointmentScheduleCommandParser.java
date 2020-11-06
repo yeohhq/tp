@@ -61,9 +61,15 @@ public class AppointmentScheduleCommandParser implements Parser<AppointmentSched
             throw new ParseException(AppointmentTime.MESSAGE_CONSTRAINTS);
         }
 
+        Boolean isMissed = false; // isMissed is initialised to false for newly scheduled appointment by default
+        if (endTime.plusMinutes(30).isBefore(LocalDateTime.now())) {
+            // If the endtime is passed more than 30 minutes, the appointment is set as missed
+            isMissed = true;
+        }
+
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        Boolean isMissed = false; // isMissed is always initialised to false for newly scheduled appointment
+        // Boolean isMissed = false; // isMissed is always initialised to false for newly scheduled appointment
         Boolean isCompleted = false; // isCompleted is always initialised to false for newly scheduled appointment
         String patientString = argMultimap.getValue(PREFIX_PATIENT).get();
         Appointment appointment = new Appointment(appointmentTime, patientString, tagList, isCompleted, isMissed,

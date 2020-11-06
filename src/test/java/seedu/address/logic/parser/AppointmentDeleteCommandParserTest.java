@@ -17,6 +17,7 @@ import seedu.address.logic.parser.appointmentparser.AppointmentDeleteCommandPars
  * The path variation for those two cases occur inside the ParserUtil, and
  * therefore should be covered by the ParserUtilTest.
  */
+
 public class AppointmentDeleteCommandParserTest {
 
     private AppointmentDeleteCommandParser parser = new AppointmentDeleteCommandParser();
