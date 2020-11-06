@@ -18,11 +18,15 @@
 
 #appointmentStartTime, #appointmentEndTime, #patientName, #description, #description1, #isMissed, #isCompleted {
     -fx-text-fill: #000000;
-    -fx-font-size: 12;
+    -fx-font-size: 16;
 }
 
 #id1, #appointmentStartTime1, #appointmentEndTime1, #patientName1, #description2, #isMissed11, #isMissed1,
 #isCompleted1 {
     -fx-text-fill: #2196F3;
     -fx-font-size: 12;
+}
+
+#resultDisplay {
+    -fx-font-size: 16;
 }

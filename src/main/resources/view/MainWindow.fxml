@@ -59,7 +59,7 @@
                            <StackPane fx:id="calendarPanelPlaceholder" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                         </children>
                      </AnchorPane>
-                     <AnchorPane fx:id="paneDashboard" layoutX="10.0" layoutY="10.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <AnchorPane fx:id="paneDashboard" layoutX="10.0" layoutY="10.0" prefHeight="518.0" prefWidth="500.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="42.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                         <children>
                            <GridPane prefHeight="75.0" prefWidth="500.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                               <columnConstraints>
@@ -109,7 +109,7 @@
                                  </Label>
                               </children>
                            </GridPane>
-                           <StackPane fx:id="appointmentListPanelPlaceholder" layoutX="20.0" layoutY="75.0" minHeight="400.0" minWidth="500.0" prefHeight="550.0" prefWidth="500.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="75.0" />
+                           <StackPane fx:id="appointmentListPanelPlaceholder" layoutX="20.0" layoutY="75.0" minHeight="400.0" minWidth="500.0" prefHeight="454.0" prefWidth="500.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="31.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="75.0" />
                         </children>
                      </AnchorPane>
                   </children>

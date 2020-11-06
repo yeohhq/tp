@@ -20,24 +20,24 @@ Given below are my contributions to the project.
 
 * **New Feature**: Added the ability to set Appointments as completed/missed - complete, new-misses appointment command.
   * What it does: Allows the user to set an Appointment as completed and missed.
-  * Justification: The ability to mark appointments as completed ans missed increase the variety and quality of filtering options we can implement. 
+  * Justification: The ability to mark appointments as completed ans missed increase the variety and quality of filtering options we can implement.
   * Highlights: This feature has allowed the implementation of filters like today, weekly, upcoming and completed.
 
 * **New Feature**: Added the ability to filter appointment list - list, completed, missed appointment command.
   * What it does: Allows the user to view the appointments stored in AddressBook based on their completed and missed status.
   * Justification:
-  * Highlights: 
-  
+  * Highlights:
+
 * **New Feature**: Added the ability for Archangel to automatically check for newly missed appointments.
-  * What it does: At intervals of 1 minute, scans through the appointment list and labels past uncompleted appointments as missed. 
+  * What it does: At intervals of 1 minute, scans through the appointment list and labels past uncompleted appointments as missed.
   * Justification: This feature improves the user experience significantly because it removes the need for users to manually find and label missed appointments.
-  * Highlights: 
+  * Highlights:
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=chshen1998&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=zoom&zFR=false&zA=chshen1998&zR=AY2021S1-CS2103T-W11-1%2Ftp%5Bmaster%5D&zACS=226.12238805970148&zS=2020-08-14&zFS=w11&zU=2020-11-05&zMG=false&zFTF=commit&zFGS=groupByRepos)
 
-* **Project management**: 
-  * 
-  * 
+* **Project management**:
+  *
+  *
 
 * **Enhancements to existing features**:
   * Wrote tests and test utilities for Appointment related commands. (Pull request [\#55](https://github.com/AY2021S1-CS2103T-W11-1/tp/pull/55)

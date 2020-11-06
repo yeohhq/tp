@@ -62,6 +62,9 @@ public class PatientRemarkCommand extends Command {
                     patientToEdit.getPhone(), patientToEdit.getEmail(),
                     patientToEdit.getAddress(), remark, patientToEdit.getTags());
 
+        // patient fields has changed, need to update appointments that contain the remarked patient
+        PatientEditCommand.editModelAppointments(patientToEdit, editedPatient, model);
+
         model.setPatient(patientToEdit, editedPatient);
         model.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
 

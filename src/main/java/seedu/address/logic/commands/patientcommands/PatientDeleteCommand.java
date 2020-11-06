@@ -48,6 +48,20 @@ public class PatientDeleteCommand extends Command {
         Patient patientToDelete = lastShownList.get(targetIndex.getZeroBased());
 
         // patient fields has changed, need to delete appointments that contain the deleted patient
+        this.deleteModelAppointments(patientToDelete, model);
+
+        model.deletePatient(patientToDelete);
+
+        return new CommandResult(String.format(MESSAGE_DELETE_PATIENT_SUCCESS, patientToDelete),
+                 false, false, true);
+    }
+
+    /**
+     * Deletes appointments in given model to reflect changes to edited patient.
+     * @param patientToDelete Patient to be deleted from patient list
+     * @param model Model with list of appointments to update
+     */
+    private void deleteModelAppointments(Patient patientToDelete, Model model) {
         assert patientToDelete != null;
         SearchSpecificPatientHashcodeFilter patientFilter =
                 new SearchSpecificPatientHashcodeFilter(patientToDelete.hashCode());
@@ -56,13 +70,9 @@ public class PatientDeleteCommand extends Command {
         List<Appointment> appointmentList = model.getFilteredAppointmentList();
         while (appointmentList.size() != 0) {
             model.deleteAppointment(appointmentList.get(0));
+            model.updateFilteredAppointmentList(patientFilter);
         }
         model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
-
-        model.deletePatient(patientToDelete);
-
-        return new CommandResult(String.format(MESSAGE_DELETE_PATIENT_SUCCESS, patientToDelete),
-                 false, false, true);
     }
 
     @Override
