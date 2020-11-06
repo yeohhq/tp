@@ -295,15 +295,18 @@ Now that you have patients, it is time to schedule your first appointment! Sched
 
 Format: `a-schedule pt/INDEX start/DATE&TIME end/DATE&TIME d/DESCRIPTION [t/TAGS]…`
 
-* Schedules patient appointment for patient at INDEX in the displayed patient list.
-* Appointment will be set to input DATE (format: YYYY-MM-DD) and TIME (format: HH:MM).
-* TAGS should be alphanumeric.
-* Appointment time (i.e. duration from `start` to `end`) cannot overlap with another existing appointment.
-* Appointment duration should not exceed 24 hours.
-* Appointment time must be indicated as HH:MM (i.e. 9AM must be `09:00`, and not `9:00`).
-
 Examples:
 * `a-schedule pt/2 start/2020-12-14 08:00 end/2020-12-14 10:00 d/Review Appointment` schedules an appointment for patient 2 on 2020-12-14 at 08-00 with appointment description Review Appointment.
+
+<div markdown="span" class="alert alert-primary">
+:information_source: **Things to Note:**  <br />
+* Schedules patient appointment for patient at INDEX in the displayed patient list.<br />
+* Appointment will be set to input DATE (format: YYYY-MM-DD) and TIME (format: HH:MM).<br />
+* TAGS should be alphanumeric.<br />
+* Appointment time (i.e. duration from `start` to `end`) cannot overlap with another existing appointment.<br />
+* Appointment duration should not exceed 24 hours.<br />
+* Appointment time must be indicated as HH:MM (i.e. 9AM must be `09:00`, and not `9:00`).<br />
+</div>
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/UserGuide/a-schedule_1.png" width="95%" /> <br />
@@ -318,13 +321,16 @@ Oh no! Your patient just called to cancel his appointment! Since we would not be
 
 Format: `a-delete INDEX`
 
-* Deletes the appointment at the specified INDEX.
-* The index refers to the index number shown in the displayed appointment list.
-* The index must be a positive integer 1, 2, 3, …​
-
 Examples:
 * `a-list` followed by `a-delete 2` deletes the 2nd appointment in the Archangel.
 * `a-find Review` followed by `a-delete 1` deletes the 1st appointment in the results of the find command.
+
+<div markdown="span" class="alert alert-primary">
+:information_source: **Things to Note:**  <br />
+* Deletes the appointment at the specified INDEX.<br />
+* The index refers to the index number shown in the displayed appointment list.<br />
+* The index must be a positive integer 1, 2, 3, …​<br />
+</div>
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/UserGuide/a-delete_1.png" width="95%" /> <br />
@@ -339,15 +345,18 @@ What if your patients decides to change his appointment details? Archangel allow
 
 Format: `a-edit INDEX [start/DATE&TIME] [end/DATE&TIME] [pt/PATIENT INDEX] [d/DESCRIPTION] [t/TAGS]…`
 
-* Edits the appointment at the specified INDEX. The index refers to the index number shown in the displayed appointment list. The index must be a positive integer 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the appointment will be removed i.e adding of tags is not cumulative.
-* You can remove all the appointment’s tags by typing `t/` without specifying any tags after it.
-* Tags must be alphanumeric and individual tags cannot be separated by spaces (i.e. `HighPriority` is a valid input, while `High Priority` is an invalid input).
-
 Examples:
 * `a-edit 1 start/2020-11-15 12:00 end/2020-11-15 14:00 pt/2` Edits the start and end date & time of the 1st appointment to be 15/9/2020 12:00 and 15/9/2020 14:00 respectively, and edits patient to 2nd patient in patient list.
+
+<div markdown="span" class="alert alert-primary">
+:information_source: **Things to Note:**  <br />
+* Edits the appointment at the specified INDEX. The index refers to the index number shown in the displayed appointment list. The index must be a positive integer 1, 2, 3, …​ <br />
+* At least one of the optional fields must be provided.<br />
+* Existing values will be updated to the input values.<br />
+* When editing tags, the existing tags of the appointment will be removed i.e adding of tags is not cumulative.<br />
+* You can remove all the appointment’s tags by typing `t/` without specifying any tags after it.<br />
+* Tags must be alphanumeric and individual tags cannot be separated by spaces (i.e. `HighPriority` is a valid input, while `High Priority` is an invalid input).<br />
+</div>
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/UserGuide/a-edit_1.png" width="95%" /> <br />
@@ -363,12 +372,15 @@ but you can still find it using specific commands.
 
 Format: `a-complete INDEX`
 
-* Edits the appointment at the specified INDEX.
-* The index refers to the index number shown in the displayed appointment list.
-* The index must be a positive integer 1, 2, 3, …​
-
 Examples:
 * `a-complete 1` Sets the appointment at index 1 as completed.
+
+<div markdown="span" class="alert alert-primary">
+:information_source: **Things to Note:**  <br />
+* Edits the appointment at the specified INDEX.<br />
+* The index refers to the index number shown in the displayed appointment list.<br />
+* The index must be a positive integer 1, 2, 3, …​<br />
+</div>
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/UserGuide/a-complete_1.png" width="95%" /> <br />
@@ -413,6 +425,10 @@ Finds your appointments which the patient's name contains any of the given keywo
 
 Format: `a-find KEYWORD [MORE_KEYWORDS]`
 
+Examples:
+* `a-find Charlotte` returns Appointment with Patient name of `Charlotte Oliveiro`
+* `a-find Jack Jill` returns Appointments with Patient name of `Jack Sparrow` and `Jill Ous`
+
 <div markdown="span" class="alert alert-primary">
 :information_source: **Things to Note:**  <br />
 * The search is case-insensitive. e.g `charlotte` will match `Charlotte` <br />
@@ -422,10 +438,6 @@ Format: `a-find KEYWORD [MORE_KEYWORDS]`
 * Appointments matching at least one keyword will be returned (i.e. OR search). <br />
   e.g. `Jack Jill` will return Appointments with Patient name of `Jack Sparrow`, `Jill Ous`
 </div>
-
-Examples:
-* `a-find Charlotte` returns Appointment with Patient name of `Charlotte Oliveiro`
-* `a-find Jack Jill` returns Appointments with Patient name of `Jack Sparrow` and `Jill Ous`
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/UserGuide/a-find_1.png" width="95%" /> <br />
@@ -437,6 +449,12 @@ Figure 2.4.1.2: <i>After `a-find Charlotte`.</i>
 ##### 2.3.6.3 Finding appointments by tags: `a-tag`
 Finds your appointments which are tagged by any of the given keywords.
 
+Format: `a-find KEYWORD [MORE_KEYWORDS]`
+
+Examples:
+* `a-tag LowPriority` returns Appointments tagged `LowPriority`
+* `a-tag friend enemy`  returns Appointments tagged `Friend` and `Enemy` or both
+
 <div markdown="span" class="alert alert-primary">
 :information_source: **Things to Note:**  <br />
 * The search is case-insensitive. e.g `friends` will match `Friends` <br />
@@ -446,12 +464,6 @@ Finds your appointments which are tagged by any of the given keywords.
 * Appointments matching at least one keyword will be returned (i.e. OR search). <br />
   e.g. `friends enemy` will return Appointment tagged with `Friends`, `Enemy`
 </div>
-
-Format: `a-find KEYWORD [MORE_KEYWORDS]`
-
-Examples:
-* `a-tag LowPriority` returns Appointments tagged `LowPriority`
-* `a-tag friend enemy`  returns Appointments tagged `Friend` and `Enemy` or both
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/UserGuide/a-tag_1.png" width="95%" /> <br />
