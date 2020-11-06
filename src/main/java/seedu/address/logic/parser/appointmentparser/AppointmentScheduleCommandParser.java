@@ -1,6 +1,5 @@
 package seedu.address.logic.parser.appointmentparser;
 
-import static seedu.address.commons.core.Messages.MESSAGE_APPOINTMENT_BACKDATED;
 import static seedu.address.commons.core.Messages.MESSAGE_APPOINTMENT_DURATION;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_END;
