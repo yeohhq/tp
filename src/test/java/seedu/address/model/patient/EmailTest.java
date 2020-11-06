@@ -65,7 +65,7 @@ public class EmailTest {
         assertTrue(new Email("PeterJack_1190@example.com").equals(new Email("PeterJack_1190@example.com")));
 
         // not equal emails
-        assertFalse(new Email("PeterJack_1190@example.com").equals(new Email("Peterjack_1190@example.com"))); 
+        assertFalse(new Email("PeterJack_1190@example.com").equals(new Email("Peterjack_1190@example.com")));
     }
 
     @Test
