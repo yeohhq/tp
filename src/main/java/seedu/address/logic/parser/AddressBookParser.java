@@ -134,7 +134,7 @@ public class AddressBookParser {
             return new AppointmentCompleteCommandParser().parse(arguments);
 
         case AppointmentNewMissesCommand.COMMAND_WORD:
-            return new AppointmentNewMissesCommandParser().parse();
+            return new AppointmentNewMissesCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();

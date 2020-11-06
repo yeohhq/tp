@@ -24,16 +24,10 @@ public class TimerThread extends Thread {
      * Executes the AppointmentNesMissesCommand at one minute intervals.
      */
     public void run() {
-        try {
-            logic.setStartFilteredAppointmentList();
-        } catch (CommandException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
         while (running) {
             try {
                 logic.checkNewlyMissedAppointments();
+                // logic.execute("a-new-misses");
             } catch (CommandException e) {
                 e.printStackTrace();
             } catch (ParseException e) {
