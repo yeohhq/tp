@@ -279,7 +279,8 @@ Any noteworthy details will still be included under each Appointment-type comman
 #### 4.2.1 Schedule Appointment
 
 ##### 4.2.1.1 Implementation
-The implementation of scheduling an appointment has a similar execution as adding a patient (see 4.1.3).
+The implementation of scheduling an appointment has a similar execution as adding a patient (see 4.1.3). Take note that backdated appointments are allowed to be able to digitise existing appointment records from clinics .
+
 
 <!--
 The user's input is parsed by the `ScheduleAppointmentCommandParser` class which extends `Parser`, resulting in an `AppointmentScheduleCommand` which extends `Command`.
@@ -321,7 +322,7 @@ Subsequently, the `LogicManager` executes the `AppointmentDeleteCommand` object 
 #### 4.2.3 Edit Appointment
 
 ##### 4.2.3.1 Implementation
-The implementation of editing an appointment has a similar execution as editing a patient (see 4.1.5).
+The implementation of editing an appointment has a similar execution as editing a patient (see 4.1.5). Take note that backdated appointments are allowed to be able to digitise existing appointment records from clinics .
 
 <!--
 The user's input is parsed by the `EditAppointmentCommandParser` class which extends `Parser`, resulting in an `AppointmentEditCommand` which extends `Command`.
