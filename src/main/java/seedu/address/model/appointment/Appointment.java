@@ -27,7 +27,7 @@ public class Appointment {
     private Description description;
 
     /**
-     * Every field must be present and not null.
+     * Every field must be present and not null. Proper Appointment object.
      */
     public Appointment(AppointmentTime appointmentTime, Patient patient, Set<Tag> tags,
                        Boolean isCompleted, Boolean isMissed, Description description) {
@@ -41,7 +41,7 @@ public class Appointment {
     }
 
     /**
-     * Every field must be present and not null.
+     * No Patient Object yet. This is used before executing Command.
      */
     public Appointment(AppointmentTime appointmentTime, String patientString, Set<Tag> tags,
                        Boolean isCompleted, Boolean isMissed, Description description) {
@@ -188,13 +188,24 @@ public class Appointment {
         }
 
         Appointment otherAppointment = (Appointment) other;
-        return otherAppointment != null
-                && otherAppointment.getAppointmentTime().equals(getAppointmentTime())
-                && otherAppointment.getPatient().equals(getPatient())
-                && otherAppointment.isMissed().equals(isMissed())
-                && otherAppointment.isCompleted().equals(isCompleted())
-                && otherAppointment.getDescription().equals(getDescription())
-                && otherAppointment.getTags().equals(getTags());
+        if (this.patient != null && otherAppointment.patient != null) {
+            return otherAppointment != null
+                    && otherAppointment.getAppointmentTime().equals(getAppointmentTime())
+                    && otherAppointment.getPatient().equals(getPatient())
+                    && otherAppointment.getPatientString().equals(getPatientString())
+                    && otherAppointment.isMissed().equals(isMissed())
+                    && otherAppointment.isCompleted().equals(isCompleted())
+                    && otherAppointment.getDescription().equals(getDescription())
+                    && otherAppointment.getTags().equals(getTags());
+        } else {
+            return otherAppointment != null
+                    && otherAppointment.getAppointmentTime().equals(getAppointmentTime())
+                    && otherAppointment.getPatientString().equals(getPatientString())
+                    && otherAppointment.isMissed().equals(isMissed())
+                    && otherAppointment.isCompleted().equals(isCompleted())
+                    && otherAppointment.getDescription().equals(getDescription())
+                    && otherAppointment.getTags().equals(getTags());
+        }
     }
 
     @Override
@@ -205,21 +216,39 @@ public class Appointment {
 
     @Override
     public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        builder.append(getDescription())
-                .append("\nStart: ")
-                .append(getStartTime())
-                .append("\nEnd: ")
-                .append(getEndTime())
-                .append("\nPatient: ")
-                .append(getPatient().getName().fullName)
-                .append("\nisMissed: ")
-                .append(isMissed())
-                .append("\nisCompleted: ")
-                .append(isCompleted())
-                .append("\nTags: ");
-        getTags().forEach(builder::append);
-        return builder.toString();
+        if (this.patient != null) {
+            final StringBuilder builder = new StringBuilder();
+            builder.append(getDescription())
+                    .append("\nStart: ")
+                    .append(getStartTime())
+                    .append("\nEnd: ")
+                    .append(getEndTime())
+                    .append("\nPatient: ")
+                    .append(getPatient().getName().fullName)
+                    .append("\nisMissed: ")
+                    .append(isMissed())
+                    .append("\nisCompleted: ")
+                    .append(isCompleted())
+                    .append("\nTags: ");
+            getTags().forEach(builder::append);
+            return builder.toString();
+        } else {
+            final StringBuilder builder = new StringBuilder();
+            builder.append(getDescription())
+                    .append("\nStart: ")
+                    .append(getStartTime())
+                    .append("\nEnd: ")
+                    .append(getEndTime())
+                    .append("\nPatientString: ")
+                    .append(getPatientString())
+                    .append("\nisMissed: ")
+                    .append(isMissed())
+                    .append("\nisCompleted: ")
+                    .append(isCompleted())
+                    .append("\nTags: ");
+            getTags().forEach(builder::append);
+            return builder.toString();
+        }
     }
 
 }

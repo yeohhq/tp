@@ -31,6 +31,20 @@ public class Description {
     }
 
     @Override
+    public boolean equals(Object otherDesc) {
+        if (this == otherDesc) {
+            return true;
+        }
+        if (otherDesc instanceof Description) {
+            Description other = (Description) otherDesc;
+            if (this.description.equals(other.description)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
     public int hashCode() {
         return description.hashCode();
     }

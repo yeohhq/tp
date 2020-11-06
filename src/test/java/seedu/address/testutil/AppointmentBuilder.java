@@ -1,5 +1,7 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.commands.appointmentcommands.AppointmentCommandTestUtil.VALID_DESCRIPTION_ONE;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -9,6 +11,8 @@ import seedu.address.model.appointment.Description;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
+
+
 
 /**
  * A utility class to help with building Appointment objects.
@@ -20,7 +24,7 @@ public class AppointmentBuilder {
     private static final AppointmentTime DEFAULT_TIME = new AppointmentTimeBuilder().build();
     private static final Patient DEFAULT_PATIENT = new PatientBuilder().build();
     private static final String DEFAULT_PATIENTSTRING = DEFAULT_PATIENT.getName().fullName;
-    private static final String DEFAULT_DESCRIPTION = "Appointment";
+    private static final String DEFAULT_DESCRIPTION = VALID_DESCRIPTION_ONE;
 
     // Identity fields
     private AppointmentTime appointmentTime;
@@ -69,6 +73,16 @@ public class AppointmentBuilder {
      */
     public AppointmentBuilder withPatient(Patient patient) {
         this.patient = patient;
+        this.patientString = patient.getName().fullName;
+        return this;
+    }
+
+    /**
+     * Sets the {@code PatientString} of the {@code Appointment} that we are building.
+     */
+    public AppointmentBuilder withPatientString(String patientString) {
+        this.patient = null;
+        this.patientString = patientString;
         return this;
     }
 
@@ -90,5 +104,9 @@ public class AppointmentBuilder {
 
     public Appointment build() {
         return new Appointment(appointmentTime, patient, tags, isCompleted, isMissed, description);
+    }
+
+    public Appointment buildAppointmentWithPatientString() {
+        return new Appointment(appointmentTime, patientString, tags, isCompleted, isMissed, description);
     }
 }
