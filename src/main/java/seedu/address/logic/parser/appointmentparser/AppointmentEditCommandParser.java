@@ -1,7 +1,6 @@
 package seedu.address.logic.parser.appointmentparser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_APPOINTMENT_BACKDATED;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.appointmentcommands.AppointmentEditCommand.EditAppointmentDescriptor;
 import static seedu.address.logic.commands.appointmentcommands.AppointmentEditCommand.MESSAGE_NOT_EDITED;
@@ -58,17 +57,9 @@ public class AppointmentEditCommandParser implements Parser<AppointmentEditComma
 
         if (argMultimap.getValue(PREFIX_APPOINTMENT_START).isPresent()) {
             startTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_APPOINTMENT_START).get());
-            // cannot schedule an Appointment before now.
-            if (startTime.isBefore(LocalDateTime.now())) {
-                throw new ParseException(MESSAGE_APPOINTMENT_BACKDATED);
-            }
         }
         if (argMultimap.getValue(PREFIX_APPOINTMENT_END).isPresent()) {
             endTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_APPOINTMENT_END).get());
-            // cannot schedule an Appointment before now.
-            if (endTime.isBefore(LocalDateTime.now())) {
-                throw new ParseException(MESSAGE_APPOINTMENT_BACKDATED);
-            }
         }
         editAppointmentDescriptor.setAppointmentTime(startTime, endTime);
 
@@ -77,8 +68,13 @@ public class AppointmentEditCommandParser implements Parser<AppointmentEditComma
                     argMultimap.getValue(PREFIX_DESCRIPTION).get()));
         }
 
+        String patientString = null;
         if (argMultimap.getValue(PREFIX_PATIENT).isPresent()) {
-            String patientString = ParserUtil.parsePatientString(argMultimap.getValue(PREFIX_PATIENT).get());
+            try {
+                patientString = ParserUtil.parsePatientString(argMultimap.getValue(PREFIX_PATIENT).get());
+            } catch (ParseException e) {
+                throw new ParseException(e.getMessage());
+            }
             editAppointmentDescriptor.setNeedsParsePatient(true);
             editAppointmentDescriptor.setPatientString(patientString);
         }

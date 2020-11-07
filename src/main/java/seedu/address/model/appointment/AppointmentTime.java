@@ -88,8 +88,8 @@ public class AppointmentTime {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AppointmentTime // instanceof handles nulls
-                && getStart().equals(((AppointmentTime) other).getStart()) // check same data fields
-                && getEnd().equals(((AppointmentTime) other).getEnd()));
+                && getStart().isEqual(((AppointmentTime) other).getStart()) // check same data fields
+                && getEnd().isEqual(((AppointmentTime) other).getEnd()));
     }
 
     @Override

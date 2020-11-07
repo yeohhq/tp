@@ -53,9 +53,34 @@ public class EditAppointmentDescriptorBuilder {
     }
 
     /**
+     * Sets the {@code startTime} of the {@code EditAppointmentDescriptor} that we are building.
+     */
+    public EditAppointmentDescriptorBuilder withStartTime(String startTime) {
+        try {
+            descriptor.setAppointmentTime(ParserUtil.parseDateTime(startTime), null);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return this;
+    }
+
+    /**
+     * Sets the {@code endTime} of the {@code EditAppointmentDescriptor} that we are building.
+     */
+    public EditAppointmentDescriptorBuilder withEndTime(String endTime) {
+        try {
+            descriptor.setAppointmentTime(ParserUtil.parseDateTime(endTime), null);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return this;
+    }
+
+    /**
      * Sets the {@code PatientIndex} of the {@code EditAppointmentDescriptor} that we are building.
      */
     public EditAppointmentDescriptorBuilder withPatient(String patientString) {
+        descriptor.setNeedsParsePatient(true);
         descriptor.setPatientString(patientString);
         return this;
     }

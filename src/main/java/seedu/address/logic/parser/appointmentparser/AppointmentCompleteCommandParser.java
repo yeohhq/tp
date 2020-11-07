@@ -11,6 +11,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 /**
  * Parses input arguments and creates a new AppointmentCompleteCommand object
  */
+
 public class AppointmentCompleteCommandParser implements Parser<AppointmentCompleteCommand> {
 
     /**
