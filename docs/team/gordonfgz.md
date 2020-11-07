@@ -54,7 +54,7 @@ Given below are my contributions to the project.
     
   After:
   
-    ![FirstIteration](https://raw.githubusercontent.com/gordonfgz/tp/branch-ppp/docs/images/FirstIteraion.png)
+    ![FirstIteration](https://github.com/gordonfgz/tp/blob/branch-ppp/docs/images/FirstIteration.png)
     
     
 
