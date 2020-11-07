@@ -27,51 +27,47 @@ Given below are my contributions to the project.
     * Highlights: These feature makes Archangel more flexible of an assistant to the medical professionals as it can store non-restrictive data.
     * Credits: *Original CS2103T tutorial for adding remarks into AddressBook was heavily referenced for the implementation of Remark command.*
 
-* **New Feature**: Added code foundation for a new model - Appointment.
-  * What it does: allows users to be able to use Appointment-type commands (which my team have implemented).
-  * Justification: This feature is fundamental to the objective of our product since Archangel focuses on appointments scheduling.
-  * Highlights: This feature affects almost all other commands that works on Appointment-type features.
-  It required an in-depth analysis of design alternatives - to mimic Patient model implementation or if changes are necessary.
-  The implementation too was challenging as it required retrieval of Patient data that exists in Archangel instead of simply parsing primitve-type inputs to existing commands.
-  * Credits: *Original CS2103T AddressBook implementation of `Person` model was heavily referenced for the implementation of `Appointment` model.*
+* **New Feature(s)**: Added basic functionalities for Appointment - schedule, delete and edit appointment commands. (worked together with hui qing)
+  * What it does: allows users to schedule, delete and edit Appointments.
+  * Justification: The add and delete features are fundamental to the objective of our product since Archangel focuses on appointments scheduling.
+  The edit feature is a good-to-have feature to increase user convenience when manging their appointments.
+  * Highlights: These features are essential for the modelling of Archangel as an appointment scheduling application.
+  * Credits: *Original CS2103T AddressBook implementation of `AddCommand`, `DeleteCommand` and `EditCommand` was heavily referenced for the implementation of Appointment-type commands.*
 
 * **New Feature**: First iteration of White-Blue themed UI
   * What it does: Cleaner and more user-friendly UI, which separated Archangel from the original AddressBook. Replaced original structure with a borderpane, and replaced DarkTheme with a WhiteBlueTheme.
   * Justification: The change in UI allowed us to display both Appointment and Patient lists side by side. This maximised the vertical space and made viewing information from both lists way easier.
   * Highlights: The application became more aesthetically pleasing and more practical as a data management app.
   * Credits: *Original CS2103T AddressBook UI was used as the back-bone.*
+  
+    Before:
+    
+      ![AddressBook3](https://raw.githubusercontent.com/gordonfgz/tp/branch-ppp/docs/images/Addressbook3.png)
+      
+    After:
+    
+      ![FirstIteration](https://github.com/gordonfgz/tp/blob/branch-ppp/docs/images/FirstIteration.png)
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=gordonfgz)
 
 * **Project management**:
   * In charge of overall code architecture of Appointment
   * In charge of functionality decisions of Archangel (e.g. delaying the time an appointment gets marked as missed)
-  * In charge of testing
-  
-  Before:
-  
-    ![AddressBook3](https://raw.githubusercontent.com/gordonfgz/tp/branch-ppp/docs/images/Addressbook3.png)
-    
-  After:
-  
-    ![FirstIteration](https://github.com/gordonfgz/tp/blob/branch-ppp/docs/images/FirstIteration.png)
-    
-    
+  * In charge of testing    
 
 * **Enhancements to existing features**:
   * Wrote tests for Patient-type fields
   * Wrote test for Patient-type parsers
   * Wrote tests for Appointment-type commands 
-  * Write tests for Appointment-type parsers
+  * Wrote tests for Appointment-type parsers
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `a-schedule`, `a-delete` and `a-edit`: [\#98](https://github.com/AY2021S1-CS2103T-W11-1/tp/pull/98), [\#126](https://github.com/AY2021S1-CS2103T-W11-1/tp/pull/126)
-    * Did cosmetic tweaks to existing documentation of features for patient-type commands: [\#84](https://github.com/AY2021S1-CS2103T-W11-1/tp/pull/84)
+    * Added documentation for the patient-type commands: [\#225](https://github.com/AY2021S1-CS2103T-W11-1/tp/pull/225)
   * Developer Guide:
-    * Added implementation details of the `a-schedule`, `a-delete`, `a-edit` features with relevant diagrams: [\#102](https://github.com/AY2021S1-CS2103T-W11-1/tp/pull/102)
-    * Edited implementation details of the `p-add`, `p-delete`, `p-edit` features: [\#102](https://github.com/AY2021S1-CS2103T-W11-1/tp/pull/102)
+    * Added implementation details of the Patient command features with relevant diagrams: [\#92](https://github.com/AY2021S1-CS2103T-W11-1/tp/pull/92)
+    * Editted diagrams to reflect the renaming of Person to Patient. [\#92](https://github.com/AY2021S1-CS2103T-W11-1/tp/pull/92)
 
 * **Community**:
   * Reported bugs that are very severe for other teams in the class (examples: [1](https://github.com/gordonfgz/ped/issues/6))
-  * Helped my teammates to rationalise the 
+  * Acted as the devil's advocate, frequently questioning functionalities to ensure features implemented are sound and practical
