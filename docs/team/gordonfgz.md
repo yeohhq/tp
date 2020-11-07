@@ -54,7 +54,7 @@ Given below are my contributions to the project.
     
   After:
   
-    ![AddressBook3](https://raw.githubusercontent.com/gordonfgz/tp/branch-ppp/docs/images/FirstIteraion.png)
+    ![FirstIteration](https://raw.githubusercontent.com/gordonfgz/tp/branch-ppp/docs/images/FirstIteraion.png)
     
     
 
