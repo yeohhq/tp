@@ -279,7 +279,8 @@ Any noteworthy details will still be included under each Appointment-type comman
 #### 4.2.1 Schedule Appointment
 
 ##### 4.2.1.1 Implementation
-The implementation of scheduling an appointment has a similar execution as adding a patient (see 4.1.3). Take note that backdated appointments are allowed to be able to digitise existing appointment records from clinics .
+The implementation of scheduling an appointment has a similar execution as adding a patient (see 4.1.3).
+Take note that backdated appointments are allowed (i.e. appointments scheduled before current time) to be able to digitise existing appointment records from clinics.
 
 
 <!--
@@ -290,7 +291,8 @@ Subsequently, the `LogicManager` executes the `AppointmentScheduleCommand` objec
 The `Appointment` class stores relevant fields (e.g. `AppointmentTime`, `Description`) and the `Patient`, **and/or** a string representing the patient's index in the `ObservableList<Patient>`, depending on which constructor is invoked during execution.
 
 ##### 4.2.1.2 Reason for design of implementation:
-<!-- TO INCLUDE: AppointmentEditCommandActivityDiagram --->
+![AppointmentScheduleCommand Parsing of Patient](images/AppointmentScheduleCommandActivityDiagram.png)
+<br></br>_Diagram 4.2.1.2 : AppointmentScheduleCommand Activity Diagram_
 The reason for having 2 `Appointment` constructors is to improve the ease of scheduling an appointment by the user using the CLI.
 
 To address the problem of mandatory fields being highly time-consuming, we have decided to allow users to simply input a `patientIndex` to identify the patient from the visible `ObservableList<Patient>` without being concerned with typing the exact name or details of the desired patient to assign to the `Appointment`.

@@ -50,7 +50,7 @@ Given below are my contributions to the project.
     * Added documentation for the features `a-schedule`, `a-delete` and `a-edit`: [\#98](https://github.com/AY2021S1-CS2103T-W11-1/tp/pull/98), [\#126](https://github.com/AY2021S1-CS2103T-W11-1/tp/pull/126)
     * Did cosmetic tweaks to existing documentation of features for patient-type commands: [\#84](https://github.com/AY2021S1-CS2103T-W11-1/tp/pull/84)
   * Developer Guide:
-    * Added implementation details of the `a-schedule`, `a-delete`, `a-edit` features with relevant diagrams: [\#102](https://github.com/AY2021S1-CS2103T-W11-1/tp/pull/102)
+    * Added implementation details of the `a-schedule`, `a-delete`, `a-edit` features with relevant diagrams: [\#102](https://github.com/AY2021S1-CS2103T-W11-1/tp/pull/102), [\#243](https://github.com/AY2021S1-CS2103T-W11-1/tp/pull/243)
     * Edited implementation details of the `p-add`, `p-delete`, `p-edit` features: [\#102](https://github.com/AY2021S1-CS2103T-W11-1/tp/pull/102)
 
 * **Community**:
