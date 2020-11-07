@@ -106,6 +106,15 @@ public class AppointmentBuilder {
         return new Appointment(appointmentTime, patient, tags, isCompleted, isMissed, description);
     }
 
+    /**
+     * Build Appointment for Edit Tests, to make sure that the new timing does not clash with any current timing.
+     * @return Appointment to be edited.
+     */
+    public Appointment buildAppointmentForEdit() {
+        return new Appointment(AppointmentTimeBuilder.buildAppointTimeForEdit(), patient, tags,
+                isCompleted, isMissed, description);
+    }
+
     public Appointment buildAppointmentWithPatientString() {
         return new Appointment(appointmentTime, patientString, tags, isCompleted, isMissed, description);
     }

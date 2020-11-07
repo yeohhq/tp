@@ -98,4 +98,15 @@ public class EditAppointmentDescriptorBuilder {
         return descriptor;
     }
 
+    /**
+     * Build Descriptor for Edit Tests, to make sure that the index is provided, and the new patient is parsed using
+     * the index.
+     * @return Descriptor for editting.
+     */
+    public AppointmentEditCommand.EditAppointmentDescriptor buildDescriptorForEdit(String index) {
+        descriptor.setNeedsParsePatient(true);
+        descriptor.setPatientString(index);
+        return descriptor;
+    }
+
 }
