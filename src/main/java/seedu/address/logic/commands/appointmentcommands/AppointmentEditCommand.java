@@ -146,12 +146,25 @@ public class AppointmentEditCommand extends Command {
                 .orElse(appointmentToEdit.getDescription());
         Set<Tag> updatedTags = editAppointmentDescriptor.getTags().orElse(appointmentToEdit.getTags());
 
-        // Edit command does not allow editing of isCompleted and isMissed status
+        // Edit command does not allow editing of isCompleted status
         Boolean isCompleted = appointmentToEdit.isCompleted();
+
+        // Check if appointment should still be considered missed
         Boolean isMissed = appointmentToEdit.isMissed();
+        if (isMissed) {
+            isMissed = getUpdatedMissedStatus(endTime);
+        }
 
         return new Appointment(updatedAppointmentTime, updatedPatient, updatedTags, isCompleted, isMissed,
                 updatedDescription);
+    }
+
+    private static Boolean getUpdatedMissedStatus(LocalDateTime endTime) {
+        if (endTime.plusMinutes(30).isBefore(LocalDateTime.now())) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override

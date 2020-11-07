@@ -307,7 +307,7 @@ Examples:
 * Appointment time (i.e. duration from `start` to `end`) cannot overlap with another existing appointment.<br />
 * Appointment duration should not exceed 24 hours.<br />
 * Appointment time must be indicated as HH:MM (i.e. 9AM must be `09:00`, and not `9:00`).<br />
-* Appointment with endTime that is 30 minutes or more behind current time will be set as missed.
+* Appointment with endTime that is 30 minutes or more behind current time will be set as missed.<br />
 </div>
 
 <div style="text-align: center; padding-bottom: 2em">
@@ -359,6 +359,7 @@ Examples:
 * When editing tags, the existing tags of the appointment will be removed i.e adding of tags is not cumulative.<br />
 * You can remove all the appointment’s tags by typing `t/` without specifying any tags after it.<br />
 * Tags must be alphanumeric and individual tags cannot be separated by spaces (i.e. `HighPriority` is a valid input, while `High Priority` is an invalid input).<br />
+* Editing a missed appointment to an upcoming date and time can remove its missed status.<br />
 </div>
 
 <div style="text-align: center; padding-bottom: 2em">

@@ -2,6 +2,7 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.commands.appointmentcommands.AppointmentCommandTestUtil.VALID_DESCRIPTION_ONE;
 
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -111,7 +112,13 @@ public class AppointmentBuilder {
      * @return Appointment to be edited.
      */
     public Appointment buildAppointmentForEdit() {
-        return new Appointment(AppointmentTimeBuilder.buildAppointTimeForEdit(), patient, tags,
+        AppointmentTime appointmentTime = AppointmentTimeBuilder.buildAppointTimeForEdit();
+        if (appointmentTime.getEnd().plusMinutes(30).isBefore(LocalDateTime.now())) {
+            isMissed = true;
+        } else {
+            isMissed = false;
+        }
+        return new Appointment(appointmentTime, patient, tags,
                 isCompleted, isMissed, description);
     }
 
