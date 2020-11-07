@@ -50,9 +50,11 @@ Given below are my contributions to the project.
   
   Before:
   
-    ![AddressBook3](https://raw.githubusercontent.com/jimvae/tp/branch-user-guide-v1.4/docs/images/Addressbook3.png)
+    ![AddressBook3](https://raw.githubusercontent.com/gordonfgz/tp/branch-user-guide-v1.4/docs/images/Addressbook3.png)
     
-    After:
+  After:
+  
+    ![AddressBook3](https://raw.githubusercontent.com/gordonfgz/tp/branch-ppp/docs/images/FirstIteraion.png)
     
     
 
