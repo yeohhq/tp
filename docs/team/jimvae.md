@@ -28,8 +28,8 @@ Given below are my contributions to the project.
   
 * **New Feature**: Overall UI and Tabs
   * What it does: Cleaner and more user-friendly UI, which separated Archangel from the original AddressBook. I also replaced all the wrapper to AnchorPane and implemented tabs for the dashboard and calendar.
-  * Justification: The change in UI helped us implement other features like Calendar and ensured that you have the patient list all times.
-  * Highlights: The application became more intuitive and suited our team of clinical data management app.
+  * Justification: The change in UI helped us implement other features like Calendar and ensured that you have the patient list at all times.
+  * Highlights: The application became more intuitive and suited for our clinical data management app.
   * Credits: The idea, and the base code to organise the ui in tabs came from [KeepToo Youtube Channel](https://www.youtube.com/watch?v=ZVtys3GgkMo)
   
   Before:
@@ -43,12 +43,14 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=jimvae)
 
 * **Project management**:
-  * In charge of implementing Filters, Filters Testing and UI
+  * In charge of Filters, Testing and UI
   * Ensured features being implemented are sound and intuitive
-  * Improved code quality for some classes
+  * Managed code quality
 
 * **Enhancements to existing features**:
-  * Wrote tests and increase code coverage (Pull requests [\#57](https://github.com/AY2021S1-CS2103T-W11-1/tp/pull/75)
+  * Wrote tests for filters and general commands: [\#57](https://github.com/AY2021S1-CS2103T-W11-1/tp/pull/75)
+  * Wrote tests for parsers: [\#239](https://github.com/AY2021S1-CS2103T-W11-1/tp/pull/239)
+  * Improved tests and builders for appointments: [\#241](https://github.com/AY2021S1-CS2103T-W11-1/tp/pull/241)
 
 * **Documentation**:
   * README
@@ -62,3 +64,4 @@ Given below are my contributions to the project.
 * **Community**:
   * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/jimvae/ped/issues/1)
   * Helped my teammates with major logic bugs like scheduling appointments
+  * Performed timely checks of the current project for any logic or documentation errors

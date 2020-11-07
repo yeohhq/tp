@@ -8,12 +8,12 @@ title: User Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 1 Introduction
+## 1. Introduction
 
 Archangel is a desktop application for managing patient appointments, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 Archangel integrates storing of patient data and scheduling patient appointments in a single application.
 It supports adding, editing, deleting of patients/appointments and facilitates search using filter commands to help improve your experience in handling patient data.
-If you can type fast, Archangel can get your patient management appointment done faster than traditional GUI apps.
+For those familiar with command line interfaces, Archangel can get your patient management appointment done faster than traditional GUI apps.
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/GUI_Labelled_1.png" width="115%" /> <br />
@@ -107,6 +107,11 @@ Adds a patient to Archangel.
 
 "A new patient has contacted me and wants to make an appointment. First, I have to add him along with his details to Archangel!" One of the most fundamental use of Archangel; to store patient data, can be done through the command `p-add`
 
+Format: `p-add n/NAME g/GENDER bd/BIRTHDATE bt/BLOODTYPE p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…`​
+
+Examples:
+* `p-add n/John Doe g/MALE bd/2018-12-27 bt/A+ p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25` adds a Patient with the mentioned information into Archangel.
+
 <div markdown="span" class="alert alert-primary">
 :information_source: **Things to Note:**  <br />
 * Compulsory fields include NAME, GENDER, BIRTHDATE, BLOODTYPE, PHONE_NUMBER, EMAIL and ADDRESS <br />
@@ -115,11 +120,6 @@ Adds a patient to Archangel.
 * BLOODTYPE can be only one of the following per patient: `A+`, `A-`, `B+`, `B-`, `O`, `O+`, `O-`, `AB+`, `AB-` <br />
 * At initial launch of Archangel, there is a pre-loaded sample list of Patients. <br />
 </div>
-
-Format: `p-add n/NAME g/GENDER bd/BIRTHDATE bt/BLOODTYPE p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…`​
-
-Examples:
-* `p-add n/John Doe g/MALE bd/2018-12-27 bt/A+ p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25` adds a Patient with the mentioned information into Archangel.
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/UserGuide/p-add_1.png" width="95%" /> <br />
@@ -134,22 +134,22 @@ A patient can have any number of tags (including 0)
 
 Examples:
 * `p-add n/John Doe g/MALE bd/2018-12-27 bt/A+ p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney`
-* `p-add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `p-add n/Betsy Crowe t/friend g/FEMALE bd/2000-12-27 bt/A+ e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
 #### 2.2.2 Listing all patients : `p-list`
 
 "I want to see all of my patients in one list." You can do so with the command `p-list`
+
+Format: `p-list`
+
+Examples:
+* `p-find alex` followed by `p-list` changes the patient list under view from patients with alex in their names to the All-Patients list
 
 <div markdown="span" class="alert alert-primary">
 :information_source: **Things to Note:**  <br />
 * This is the default for Archangel, whenever Archangel is started, the patient list on the right is what you will see on `p-list`. <br />
 * Typical use case for this command is to change the current patient list that is being viewed back to the All-Patients list. <br />
 </div>
-
-Format: `p-list`
-
-Examples:
-* `p-find alex` followed by `p-list` changes the patient list under view from patients with alex in their names to the All-Patients list
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/UserGuide/p-list_1.png" width="95%" /> <br />
@@ -164,6 +164,12 @@ Figure 2.2.2.3: <i>After `p-list` (All-Patient list is back as the list under vi
 
 "Oh no, I keyed in one of my patient's information incorrectly." Do not worry, as you can change your patients' particulars with the command `p-edit`
 
+Format: `p-edit INDEX [n/NAME] [g/GENDER] [bd/BIRTHDATE] [bt/BLOODTYPE] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+
+Examples:
+* `p-edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be 91234567 and johndoe@example.com respectively.
+* `p-edit 2 n/Betsy Crower t/` Edits the name of the 2nd patient to be Betsy Crower and clears all existing tags.
+
 <div markdown="span" class="alert alert-primary">
 :information_source: **Things to Note:**  <br />
 * Edits the patient at the specified INDEX. The index refers to the index number shown in the displayed patient list. The index must be a positive integer 1, 2, 3, …​ <br />
@@ -175,12 +181,6 @@ Figure 2.2.2.3: <i>After `p-list` (All-Patient list is back as the list under vi
 * Note: Editing a patient will also update the patient in Appointments that contain the patient. <br />
 </div>
 
-Format: `p-edit INDEX [n/NAME] [g/GENDER] [bd/BIRTHDATE] [bt/BLOODTYPE] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
-
-
-Examples:
-* `p-edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be 91234567 and johndoe@example.com respectively.
-* `p-edit 2 n/Betsy Crower t/` Edits the name of the 2nd patient to be Betsy Crower and clears all existing tags.
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/UserGuide/p-edit_1.png" width="95%" /> <br />
@@ -193,6 +193,12 @@ Figure 2.2.3.2: <i>After `p-edit 2 n/Betsy Crower`(Patient at index 2 on the pat
 
 "I want to find all patients with 'Yeoh' in their names!" You can find all of these patients with the command `p-find Yeoh` or `p-find yeoh`.
 
+Format: `p-find KEYWORD [MORE_KEYWORDS]`
+
+Examples:
+* `p-find John` returns `John Chew` and `John Doe`
+* `p-find alex david` returns `Alex Yeoh`, `David Li`<br>
+
 <div markdown="span" class="alert alert-primary">
 :information_source: **Things to Note:**  <br />
 * The search is case-insensitive. e.g `hans` will match `Hans` <br />
@@ -202,12 +208,6 @@ Figure 2.2.3.2: <i>After `p-edit 2 n/Betsy Crower`(Patient at index 2 on the pat
 * Persons matching at least one keyword will be returned (i.e. OR search). <br />
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 </div>
-
-Format: `p-find KEYWORD [MORE_KEYWORDS]`
-
-Examples:
-* `p-find John` returns `John Chew` and `John Doe`
-* `p-find alex david` returns `Alex Yeoh`, `David Li`<br>
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/UserGuide/p-find_1.png" width="95%" /> <br />
@@ -220,17 +220,17 @@ Figure 2.2.4.2: <i>After `p-find Yeoh` (All patients with 'Yeoh' in their names 
 
 "One of my patients has allergies. I want to be able to store this information." You can store special information using the command `p-remark`.
 
+Format: `p-remark INDEX r/REMARK`
+
+Examples:
+* `p-remark 1 r/Allergic to nuts.` gives the 1st patient in the list a remark of `Allergic to nuts.`
+
 <div markdown="span" class="alert alert-primary">
 :information_source: **Things to Note:**  <br />
 * Store a remark for the patient at the specified INDEX. <br />
 * The index refers to the index number shown in the displayed patient list. <br />
 * The index must be a positive integer 1, 2, 3, …​ <br />
 </div>
-
-Format: `p-remark INDEX r/REMARK`
-
-Examples:
-* `p-remark 1 r/Allergic to nuts.` gives the 1st patient in the list a remark of `Allergic to nuts.`
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/UserGuide/p-remark_1.png" width="95%" /> <br />
@@ -243,17 +243,17 @@ Figure 2.2.5.2: <i>After `p-remark 1 r/Allergic to nuts` (Alex Yeoh now has a re
 
 "I want to remove the remark of a patient." You can remove remarks using the command `p-remark`.
 
+Format: `p-remark INDEX`
+
+Examples:
+* `p-remark 1` removes the Remark of the 1st patient on the list.
+
 <div markdown="span" class="alert alert-primary">
 :information_source: **Things to Note:**  <br />
 * Removes all your remarks for the patient at the specified INDEX. <br />
 * The index refers to the index number shown in the displayed patient list. <br />
 * The index must be a positive integer 1, 2, 3, …​ <br />
 </div>
-
-Format: `p-remark INDEX`
-
-Examples:
-* `p-remark 1` removes the Remark of the 1st patient on the list.
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/UserGuide/p-remark_3.png" width="95%" /> <br />
@@ -266,6 +266,11 @@ Figure 2.2.6.2: <i>After `p-remark 1` (Alex Yeoh no longer has a remark!)</i>
 
 "One of my patients will no longer be visiting. I want to be remove him from Archangel so it looks less cluttered." You can remove patients from Archangel using the command `p-delete`.
 
+Format: `p-delete INDEX`
+
+Examples:
+* `p-delete 1` deletes the 1st patient in Archangel and also deletes all of his/her appointment.
+
 <div markdown="span" class="alert alert-primary">
 :information_source: **Things to Note:**  <br />
 * Deletes the patient at the specified INDEX. <br />
@@ -273,11 +278,6 @@ Figure 2.2.6.2: <i>After `p-remark 1` (Alex Yeoh no longer has a remark!)</i>
 * The index must be a positive integer 1, 2, 3, …​ <br />
 * Note: Deleting a patient will also delete all Appointments that contains the deleted patient. <br />
 </div>
-
-Format: `p-delete INDEX`
-
-Examples:
-* `p-delete 1` deletes the 1st patient in Archangel and also deletes all of his/her appointment.
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/UserGuide/p-delete_1.png" width="95%" /> <br />
@@ -503,7 +503,7 @@ Finds your uncompleted appointments scheduled in the current week.
 Format: `a-upcoming`
 
 Examples:
-* `a-upcoming` returns uncompleted Appointments scheduled this week (from Sunday to Saturday).
+* `a-upcoming` returns uncompleted Appointments scheduled this week (from this week's Sunday to Saturday).
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/UserGuide/unfilteredAppointmentViewDefault.png" width="95%" /> <br />
@@ -530,16 +530,16 @@ Figure 2.3.7.6.2: <i>After `a-completed`.</i>
 ##### 2.3.7.7 Listing appointments that are missed: `a-missed`
 Shows a list of all your appointments that have been missed.
 
+Format: `a-missed`
+
+Examples:
+* `a-missed` returns all missed Appointments.
+
 <div markdown="span" class="alert alert-primary">
 :information_source: **Things to Note:**  <br />
 * Only appointments with end time more than 30 minutes from current time will be reflected as 'Missed'.  <br />
 * This is to allow for patients who are late to have a short buffer should they still make it for the appointment.
 </div>
-
-Format: `a-missed`
-
-Examples:
-* `a-missed` returns all missed Appointments.
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/UserGuide/unfilteredAppointmentViewDefault.png" width="95%" /> <br />
@@ -553,6 +553,11 @@ Figure 2.3.7.7.2: <i>After `a-missed`.</i>
 #### 2.4.1 Undoing the previous command : `undo`
 "Oops, I accidentally deleted the wrong appointment!", fret not! You can undo your commands through the command `undo`
 
+Format: `undo`
+
+Examples:
+* `p-delete 1` followed by `undo` undoes the edit command and make no changes to Archangel.
+
 <div markdown="span" class="alert alert-primary">
 :information_source: **Things to Note:**  <br />
 * This command has no keywords  <br />
@@ -563,11 +568,6 @@ Figure 2.3.7.7.2: <i>After `a-missed`.</i>
 * A list of commands that can be undone can be found in the table under Command Summary.  <br />
 * This command can be succeeded by a `redo` command
 </div>
-
-Format: `undo`
-
-Examples:
-* `p-delete 1` followed by `undo` undoes the edit command and make no changes to Archangel.
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/UserGuide/Undo_Example_1.png" width="150%"> <br />
@@ -581,16 +581,16 @@ Figure 2.4.1.3: <i>After `undo`(Roy is back!).</i>
 #### 2.4.2 Redoing the previous command : `redo`
 When there is an `undo`, there is always a `redo`! You can always `redo` commands that you `undo` previously!
 
+Format: `redo`
+
+Examples:
+* `p-delete 1` followed by `undo` then `redo` redoes the `undo` command and carries out the delete command.
+
 <div markdown="span" class="alert alert-primary">
 :information_source: **Things to Note:**  <br />
 * This command has no keywords  <br />
 * This command must be preceded by `undo`
 </div>
-
-Format: `redo`
-
-Examples:
-* `p-delete 1` followed by `undo` then `redo` redoes the `undo` command and carries out the delete command.
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/UserGuide/Undo_Example_2.png" width="150%" /> <br />
