@@ -627,7 +627,15 @@ Figure 2.5.2.2: <i>The calendar panel will be shown with all the appointments in
 ## FAQ
 
 Q: How do I transfer my data to another Computer?<br>
-A: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Archangel home folder.
+A: A data folder will be created in the same directory that you run Archangel.jar. This data folder will contain your existing data. Simply copy this data folder into the other Computer, ensure that the data folder is in the same directory as Archangel.jar, and simply run Archangel.
+
+Pictorial guide for Windows:
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/UserGuide/DownloadArchangelAndPutIntoAFolder.png" width="95%" /> <br />
+Figure above shows the initial folder that Archangel is in before starting.
+<img src="images/UserGuide/AfterYouInputData.png" width="95%" /> <br />
+Figure above shows the additional files including the data file after the user uses Archangel
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -658,5 +666,18 @@ List Appointments by Missed          | `a-missed` | **NO**
 Undo the previous command            | `undo` | **NO**
 Redo the previous command            | `redo` | **NO**
 
+--------------------------------------------------------------------------------------------------------------------
 
+## Glossary
+
+Term                                 | Definition
+-------------------------------------|---------------------------------------------------------------------------|
+Index                                | The position of an object in a list. The context of what object and list involved will be given whenever this term is used.
+Command-Line Interface (CLI)         | A command-line interface (CLI) processes commands to a computer program in the form of lines of text.
+Graphical User Interface (GUI)       | A graphical user interface allows users to interact with the application through graphical icons.
+Archangel.jar                        | The executable file you double click to run Archangel
+Folder                               | A folder is a storage space on your computer that store files
+Directory                            | A directory is the reference to a specific folder on your computer. Windows e.g. `C:\Users\BestDoctor\Desktop` is the directory to your Desktop, while `C:\Users\BestDoctor\Desktop\Archangel` will be the directory to the folder called Archangel on your desktop. 
+
+--------------------------------------------------------------------------------------------------------------------
 
