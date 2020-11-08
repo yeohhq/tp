@@ -182,9 +182,14 @@ public class ParserUtil {
      * Leading and trailing whitespaces will be trimmed.
      * Note: Patient string will be parsed as Index will be processed later.
      */
-    public static String parsePatientString(String patientString) {
+    public static String parsePatientString(String patientString) throws ParseException {
         requireNonNull(patientString);
         String trimmedPatientString = patientString.trim();
+        try {
+            Integer.parseInt(trimmedPatientString);
+        } catch (NumberFormatException e) {
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
         return trimmedPatientString;
     }
 
@@ -198,7 +203,7 @@ public class ParserUtil {
         requireNonNull(description);
         String trimmedDescription = description.trim();
         if (!Description.isValidDescription(trimmedDescription)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
         }
         return new Description(trimmedDescription);
     }

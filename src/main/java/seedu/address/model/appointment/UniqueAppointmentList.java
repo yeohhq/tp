@@ -151,9 +151,6 @@ public class UniqueAppointmentList {
      */
     public void setAppointments(List<Appointment> appointments) {
         requireAllNonNull(appointments);
-        //        if (!appointmentsAreUnique(appointments)) {
-        //            throw new DuplicateAppointmentException();
-        //        }
         internalList.setAll(appointments);
     }
 
@@ -163,11 +160,6 @@ public class UniqueAppointmentList {
     public ObservableList<Appointment> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
     }
-
-    //    @Override
-    //    public Iterator<Appointment> iterator() {
-    //        return internalList.iterator();
-    //    }
 
     @Override
     public boolean equals(Object other) {
@@ -181,17 +173,4 @@ public class UniqueAppointmentList {
         return internalList.hashCode();
     }
 
-    /**
-     * Returns true if {@code appointments} contains only unique appointments.
-     */
-    private boolean appointmentsAreUnique(List<Appointment> appointments) {
-        for (int i = 0; i < appointments.size() - 1; i++) {
-            for (int j = i + 1; j < appointments.size(); j++) {
-                if (appointments.get(i).isSameAppointment(appointments.get(j))) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
 }
