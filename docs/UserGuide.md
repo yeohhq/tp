@@ -67,7 +67,6 @@ These are icons that are used throughout this User Guide for better readability:
 :information_source: **Things to Note:**  <br />
 * For Mac users, you might get an error as shown in the image below, you can refer to the [FAQ](#faq) for more information. <br />
       <img src="images/UserGuide/Mac_User_Step_2.png" width="150%"> <br />   
-</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
