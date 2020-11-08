@@ -367,7 +367,7 @@ Examples:
 * When editing tags, the existing tags of the appointment will be removed i.e adding of tags is not cumulative.<br />
 * You can remove all the appointment’s tags by typing `t/` without specifying any tags after it.<br />
 * Tags must be alphanumeric and individual tags cannot be separated by spaces (i.e. `HighPriority` is a valid input, while `High Priority` is an invalid input).<br />
-* Editing a missed appointment to an upcoming date and time can remove its missed status.<br />
+* Editing an appointment's time may cause it's missed status to change as well.<br />
 </div>
 
 <div style="text-align: center; padding-bottom: 2em">
@@ -405,7 +405,7 @@ Figure 2.3.4.2: <i>After `a-complete 1`(Appointment 1 is now labelled as Done).<
 Patient did not show up? Archangel helps you keep track of missed appointments!
 
 Appointments are automatically set as missed if they satisfy both criteria:
-* Appointment end time has been over for at least 30 minutes.
+* Appointment end time has passed by at least 30 minutes.
 * Appointment has not been set as completed.
 
 #### 2.3.6 Listing all past and present appointments : `a-listall`

@@ -525,7 +525,7 @@ The TimerThread is a separate thread used for automatic tracking of missed appoi
 Here is a summary of how the Timer Thread work:
 1. On initialization, `MainApp` creates an instance of `TimerThread` and calls it's `run()` method to being running the
 thread.
-2. While `TimerThread` is running, it sleeps for 10 seconds using the `Thread.sleep` method.
+2. While `TimerThread` is running, it sleeps for 1 minute using the `Thread.sleep` method.
 3. After sleeping, `TimerThread` will call `LogicManager`'s `checkNewlyMissedAppointments`, which in turn will call
 `AddressBookParser` to `parseCommand("a-new-misses"))`.
 3. `AddressBookParser`'s `parseCommand("a-new-misses")` method will create a `NewMissesCommandParser` object and call
