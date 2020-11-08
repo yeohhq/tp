@@ -20,8 +20,8 @@ implementation and documentation in order to enhance and implement some of the f
 inside the software.
 
 ### 1.3 How to use this guide
-This Developer Guide is written in a top-down manner, starting with the overall architecture of Archangel, followed by in-depth descriptions of individual features implemented.
-<br></br>To navigate to a specific section in this guide, you can click on individual headers in the **Table of Contents** at the top of this markdown document to jump to that section.
+This Developer Guide is written in a top-down manner, starting with the overall architecture of Archangel, followed by in-depth descriptions of individual features implemented.  </br>
+To navigate to a specific section in this guide, you can click on individual headers in the **Table of Contents** at the top of this markdown document to jump to that section.
 Within each section, we have also provided brief introductory statements where necessary.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -66,22 +66,22 @@ Each of the four components,
 
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 
-![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
-<br></br>_Diagram 3.1.1 : Logic Class Diagram_
+![Class Diagram of the Logic Component](images/LogicClassDiagram.png)  </br>
+_Diagram 3.1.1 : Logic Class Diagram_  
 
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
-![Interaction between components](images/ArchitectureSequenceDiagram.png)
-<br></br>_Diagram 3.1.2 : Architecture Sequence Diagram_
+![Interaction between components](images/ArchitectureSequenceDiagram.png)  </br>
+_Diagram 3.1.2 : Architecture Sequence Diagram_  
 
 The sections below give more details of each component.
 
 ### 3.2 UI component
 
-![Structure of the UI Component](images/UiClassDiagram.png)
-<br></br>_Diagram 3.2 : UI Class Diagram_
+![Structure of the UI Component](images/UiClassDiagram.png)  </br>
+_Diagram 3.2 : UI Class Diagram_
 
 **API** :
 [`Ui.java`](https://github.com/AY2021S1-CS2103T-W11-1/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
@@ -97,8 +97,8 @@ The `UI` component,
 
 ### 3.3 Logic component
 
-![Structure of the Logic Component](images/LogicClassDiagram.png)
-<br></br>_Diagram 3.3.1 : Logic Class Diagram_
+![Structure of the Logic Component](images/LogicClassDiagram.png)  </br>
+_Diagram 3.3.1 : Logic Class Diagram_  
 
 **API** :
 [`Logic.java`](https://github.com/AY2021S1-CS2103T-W11-1/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
@@ -112,15 +112,15 @@ The `UI` component,
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
-<br></br>_Diagram 3.3.2 : Delete Sequence Diagram_
+_Diagram 3.3.2 : Delete Sequence Diagram_  </br>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 ### 3.4 Model component
 
-![Structure of the Model Component](images/ModelClassDiagram.png)
-<br></br>_Diagram 3.4 : Model Class Diagram_
+![Structure of the Model Component](images/ModelClassDiagram.png)  </br>
+_Diagram 3.4 : Model Class Diagram_  
 
 **API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-W11-1/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
@@ -140,8 +140,8 @@ The `Model`,
 
 ### 3.5 Storage component
 
-![Structure of the Storage Component](images/StorageClassDiagram.png)
-<br></br>_Diagram 3.5 : Storage Class Diagram_
+![Structure of the Storage Component](images/StorageClassDiagram.png)  </br>
+_Diagram 3.5 : Storage Class Diagram_
 
 **API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-W11-1/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
@@ -180,8 +180,8 @@ Here is a summary of the logic flow:
 #### 4.1.2 Structure of Patient Commands
 
 The following diagram shows the overview of a generic patient command `PatientXYZCommand`, where `XYZ` could be `Add`, `Delete` etc. :
-![Structure of Patient Command](images/PatientCommandStructureDiagram.png)
-<br></br>_Diagram 4.1.2 : Patient Command Structure Diagram_
+![Structure of Patient Command](images/PatientCommandStructureDiagram.png)  </br>
+_Diagram 4.1.2 : Patient Command Structure Diagram_
 
 In each `PatientXYZCommand` class, there are static messages as follows:
 * `COMMAND_WORD` - String denoting the command word `Parser` will check for to determine which type of command user input should invoke.
@@ -220,8 +220,8 @@ This is how Adding of Patients is implemented.
 
 ##### Implementation
 
-The arguments of a Delete patient command includes the `Index` of the Patient to be deleted (see Diagram 4.1.2 and 3.3.2).
-<br></br>On execution, the `Index` object stored in the `PatientDeleteCommand` object will be used to locate the `Patient` object to be deleted from the Model.
+The arguments of a Delete patient command includes the `Index` of the Patient to be deleted (see Diagram 4.1.2 and 3.3.2).  </br>
+On execution, the `Index` object stored in the `PatientDeleteCommand` object will be used to locate the `Patient` object to be deleted from the Model.
 
 <!--
 What happens at `DeleteCommandParser().parse(arguments)`:
@@ -236,13 +236,13 @@ This is how Deleting of Patients is implemented.
 
 #### 4.1.5 Edit Patient
 
-![Interactions Inside the Logic Component for the `p-edit` Command](images/PatientEditCommandSequenceDiagram.png)
-<br></br>_Diagram 4.1.5 : PatientEditCommand Sequence Diagram_
+![Interactions Inside the Logic Component for the `p-edit` Command](images/PatientEditCommandSequenceDiagram.png). </br>
+_Diagram 4.1.5 : PatientEditCommand Sequence Diagram_
 
 ##### Implementation
 
-With reference to Diagram 4.1.5 above, the arguments of an Edit patient command includes the `Index` of the Patient selected for changes and the `changes` the User wants to make to the individual fields of a single `Patient`.
-<br></br>
+With reference to Diagram 4.1.5 above, the arguments of an Edit patient command includes the `Index` of the Patient selected for changes and the `changes` the User wants to make to the individual fields of a single `Patient`.  </br>
+
 What happens at `EditCommandParser().parse(arguments)`:
 1. An `EditPatientDescriptor` object is first created. An `EditPatientDescriptor` object contains all fields that a `Patient` has and acts as a placeholder for the changes.
 2. For each field input present in the argument, that respective field of the `EditPatientDescriptor` object will be set accordingly.
@@ -291,8 +291,8 @@ Subsequently, the `LogicManager` executes the `AppointmentScheduleCommand` objec
 The `Appointment` class stores relevant fields (e.g. `AppointmentTime`, `Description`) and the `Patient`, **and/or** a string representing the patient's index in the `ObservableList<Patient>`, depending on which constructor is invoked during execution.
 
 ##### 4.2.1.2 Reason for design of implementation:
-![AppointmentScheduleCommand Parsing of Patient](images/AppointmentScheduleCommandActivityDiagram.png)
-<br>_Diagram 4.2.1.2 : AppointmentScheduleCommand Activity Diagram_ </br>
+![AppointmentScheduleCommand Parsing of Patient](images/AppointmentScheduleCommandActivityDiagram.png)  </br>
+_Diagram 4.2.1.2 : AppointmentScheduleCommand Activity Diagram_
 The reason for having 2 `Appointment` constructors is to improve the ease of scheduling an appointment by the user using the CLI.
 
 To address the problem of mandatory fields being highly time-consuming, we have decided to allow users to simply input a `patientIndex` to identify the patient from the visible `ObservableList<Patient>` without being concerned with typing the exact name or details of the desired patient to assign to the `Appointment`.
@@ -362,9 +362,10 @@ The unique classes associated to this command are :
 
 Commands involving filtering of the appointment work similarly by using filters to obtain the appointments needed. For this section, we will be exploring `AppointmentFindPatientCommand` which filters Appointments containing Patients whose name includes the given user input.
 The Command, Parser and Predicate in the class diagram below can be replaced by different sets of values from Diagram 4.2.5.1b.
- ![Class Diagram for commands with filter](images/AppointmentFindPatientCommandDiagram.png)
- <br></br>_Diagram 4.2.5.1a : Appointment Commands with Filters Class Diagram_
- <br></br>Filter Appointment Commands including both its Parser and Predicate are listed below:
+ ![Class Diagram for commands with filter](images/AppointmentFindPatientCommandDiagram.png)  </br>
+_Diagram 4.2.5.1a : Appointment Commands with Filters Class Diagram_
+
+Filter Appointment Commands including both its Parser and Predicate are listed below:
 
 | Command                          | Parser                              | Predicate                        | Filters List by:                 |
 |----------------------------------|-------------------------------------|----------------------------------|----------------------------------|
@@ -376,14 +377,14 @@ The Command, Parser and Predicate in the class diagram below can be replaced by 
 | 6. AppointmentIsCompletedCommand | AppointmentIsCompletedCommandParser | SearchAppointmentCompletedFilter | Completed Appointments           |
 | 7. AppointmentListCommand        | AppointmentListCommandParser        | SearchAppointmentFilter          | Pending Appointments             |
 
- <br></br>_Diagram 4.2.5.1b : Appointment Commands with Filters Class Diagram
+_Diagram 4.2.5.1b : Appointment Commands with Filters Class Diagram
 
 ##### 4.2.5.2 Implementation
 The search for appointment by patient name works by filtering the appointment list to show only those appointments with
 the given patient name.
 
-![Sequence Diagram for commands with filter](images/AppointmentFindPatientSequenceDiagram.png)
-<br></br>_Diagram 4.2.5.2 : Appointment Commands with Filters Sequence Diagram
+![Sequence Diagram for commands with filter](images/AppointmentFindPatientSequenceDiagram.png)  </br>
+_Diagram 4.2.5.2 : Appointment Commands with Filters Sequence Diagram
 
 The unique classes associated to `AppointmentFindPatientCommand`  command:
 1. `AppointmentFindPatientCommandParser`— Parses input arguments and creates a new AppointmentFindPatientCommand object.
@@ -404,8 +405,8 @@ The implementation of all listing filter appointment commands have a similar exe
   there might be a conflict for those appointments with more than one tags.
 
 #### 4.2.6 List All Appointments
-![Sequence Diagram for command to list all appointments in Archangel](images/AppointmentListAllCommand.png)
-<br></br>_Diagram 4.2.6 : Appointment List All Command Sequence Diagram
+![Sequence Diagram for command to list all appointments in Archangel](images/AppointmentListAllCommand.png)  </br>
+_Diagram 4.2.6 : Appointment List All Command Sequence Diagram
 
 ##### Implementation
 Listing all past and upcoming appointments from the appointment list.
@@ -467,10 +468,6 @@ The following sequence diagram shows how the undo operation works:
 </div>
 
 The `redo` command does the opposite — it calls `Model#redoHistory()`, which calls `UserHistoryManager#redoHistory()`, popping the `redoHistory` stack,modifying the `AddressBook` and redo-ing the history.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
 
 Step 5. The user then decides to execute the command `a-list`. Commands that do not modify the address book, such as `a-list`, will usually not call `Model#undoHistory()` or `Model#redoHistory()`. Thus, the `UserHistory` remains unchanged.
 
@@ -945,8 +942,8 @@ testers are expected to do more *exploratory* testing.
 
 ### 8.1 Acknowledgments
 
-####8.1.1 Code Related
+#### 8.1.1 Code Related
 1. Implementation of Calendar feature using iCalendarAgenda
-   Credits to  Tae Kwon(https://github.com/ktaekwon000) from CS2103T-W11-4 for sharing his code base and knowledge
+   Credits to  [Tae Kwon](https://github.com/ktaekwon000) from CS2103T-W11-4 for sharing his code base and knowledge
    of iCalendarAgenda.
 1. Implementation of Tabs in the UI is inspired by [KeepToo Youtube Channel](https://www.youtube.com/watch?v=ZVtys3GgkMo)
