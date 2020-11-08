@@ -10,7 +10,7 @@ title: User Guide
 
 ## 1. Introduction
 
-Archangel is a desktop application for managing patient appointments, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
+Archangel is a desktop application for managing patient appointments  designed for usage by private clinic doctors, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 Archangel integrates storing of patient data and scheduling patient appointments in a single application.
 It supports adding, editing, deleting of patients/appointments and facilitates search using filter commands to help improve your experience in handling patient data.
 For those familiar with command line interfaces, Archangel can get your patient management appointment done faster than traditional GUI apps.
@@ -62,11 +62,6 @@ These are icons that are used throughout this User Guide for better readability:
 
 **:information_source: Notes about the command format:**<br>
 
-* Commands are identified by their quantifier type leading the actual command formatted as `{TYPE}-{COMMAND}`.
-  * `p-{COMMAND}` - commands that acts on Patient-type data.
-  * `a-{COMMAND}` - commands that acts on Appointment-type data.
-  <br> e.g. `p-delete` deletes a patient, `a-delete` deletes an appointment.
-
 * Words in UPPER_CASE are the parameters to be supplied by the user.<br>
   e.g. in `p-add n/NAME`, `NAME` is a parameter which can be used as `p-add n/John Doe`.
 
@@ -76,14 +71,11 @@ These are icons that are used throughout this User Guide for better readability:
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as   (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
 </div>
 
 #### 2.1.1 Viewing help : `help`
 
-Shows a message explaining how to access the help page.
+If you need help using Archangel, simply enter `help`, a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -91,7 +83,7 @@ Format: `help`
 
 #### 2.1.2 Exiting the program : `exit`
 
-Exits the program.
+To exit Archangel, simply enter `exit`, Archangel will close.
 
 Format: `exit`
 
@@ -549,7 +541,7 @@ Figure 2.3.7.7.2: <i>Before `a-missed`.</i>
 Figure 2.3.7.7.2: <i>After `a-missed`.</i>
 </div>
 
-### 2.4 General Commands
+### 2.4 Supporting Commands
 
 #### 2.4.1 Undoing the previous command : `undo`
 "Oops, I accidentally deleted the wrong appointment!", fret not! You can undo your commands through the command `undo`
@@ -636,6 +628,7 @@ Figure above shows the initial folder that Archangel is in before starting.
 <img src="images/UserGuide/AfterYouInputData.png" width="95%" /> <br />
 Figure above shows the additional files including the data file after the user uses Archangel
 </div>
+
 
 --------------------------------------------------------------------------------------------------------------------
 
