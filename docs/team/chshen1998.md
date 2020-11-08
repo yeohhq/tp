@@ -37,7 +37,6 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**:
   * Wrote tests and test utilities for Appointment related commands. (Pull request [\#55](https://github.com/AY2021S1-CS2103T-W11-1/tp/pull/55)
-  * Updated the default view of Archangel to not include completed/missed commands.
 
 * **Documentation**:
   * User Guide:
