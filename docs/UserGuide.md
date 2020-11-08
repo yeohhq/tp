@@ -658,11 +658,11 @@ Pictorial guide for Mac:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/UserGuide/Mac_User_Step_3.png" width="95%" /> <br />
-   <i>Step 1.Go to your system preferences, and search for "Security & Privacy"</i>
+   <i>Step 1. Go to your system preferences, and search for "Security & Privacy"</i>
 <img src="images/UserGuide/Mac_User_Step_4.png" width="95%" /> <br />
-   <i>Step 2.Under "Security & Privacy", click on "Open Anyway"</i>
+   <i>Step 2. Under "Security & Privacy", click on "Open Anyway"</i>
 <img src="images/UserGuide/Mac_User_Step_5.png" width="95%" /> <br />
-   <i>Step 3.In the pop-out window,click on "Open" and you are done!</i>
+   <i>Step 3. In the pop-out window,click on "Open" and you are done!</i>
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
