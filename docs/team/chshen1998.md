@@ -33,6 +33,7 @@ Given below are my contributions to the project.
 * **Project management**:
   * In charge of implementing AppointmentList, and various related filters and features.
   * In charge of implementing appointment test utilities and code coverage of various appointment features.
+  * In charge of automating the interactivity between Appointment time, isMissed and isCompleted parameters.
   * Ensure user readability for appointment related sections in UG. 
 
 * **Enhancements to existing features**:
