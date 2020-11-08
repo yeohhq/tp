@@ -416,7 +416,7 @@ The unique classes associated to this command as shown from Diagram 4.2.6 are :
 
 --------------------------------------------------------------------------------------------------------------------
 
-### 4.3 General Commands
+### 4.3 Supporting Commands
 
 #### 4.3.1 Undo/redo feature
 
@@ -520,7 +520,7 @@ However, after many test runs, we concluded that the memory usage of the user hi
 
 ##### Implementation
 
-The TimerThread is a separate thread used for automatic tracking of missed appointments, and is created upon application launch.
+The TimerThread is a separate thread used for automatic tracking of missed appointments, and is initiated by MainApp.
 
 Here is a summary of how the Timer Thread work:
 1. On initialization, `MainApp` creates an instance of `TimerThread` and calls it's `run()` method to being running the
@@ -542,8 +542,8 @@ out of the loop.
 
 ##### Reason for design of implementation:
 
-The reason for having a timer on a separate thread from the main app functionality to prevent the interrupting the
-commands input by the user.
+The reason for having a timer on a separate thread from the main app functionality to avoid any conflicts with the manual
+commands input from the user.
 
 For ease of use, the user is not required to input any command for the `TimerThread` to run.
 
