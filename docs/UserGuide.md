@@ -15,6 +15,19 @@ Archangel integrates storing of patient data and scheduling patient appointments
 It supports adding, editing, deleting of patients/appointments and facilitates search using filter commands to help improve your experience in handling patient data.
 For those familiar with command line interfaces, Archangel can get your patient management appointment done faster than traditional GUI apps.
 
+### 1.1 Archangel User Interface
+You will be using the interface displayed below when using Archangel. It consists of a "Main Dashboard" tab and a "Calendar" Tab.
+
+*For main dashboard tab,
+   **Appointment List**: Shows the list of appointments that are scheduled.
+   **Patient List**: Shows the list of patients that are stored within Archangel.
+   **Status Box**: Displays the response of Archangel for commands that are entered by the user.
+   **Command Box**: Input box for the user to enter their commands.
+   
+*For calendar tab,
+   **Calendar**: Shows the list of appointments that are scheduled within the current week in an in-built Calendar.
+   **Patient List**: Shows the list of patients that are stored within Archangel.
+
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/GUI_Labelled_1.png" width="115%" /> <br />
 <img src="images/GUI_Labelled_2.png" width="95%" /> <br />
@@ -42,7 +55,7 @@ These are icons that are used throughout this User Guide for better readability:
    <div markdown="span" class="alert alert-primary">
 :information_source: **Things to Note:**  <br />
 * For Mac users, you might get an error as shown in the image below, you can refer to the [FAQ](#faq) for more information. <br />
-      <img src="images/Ui.png" width="150%"> <br />   
+      <img src="images/UserGuide/Mac_User_Step_2.png" width="150%"> <br />   
 </div>
 
 5. Type the command in the command box and press `Enter` to execute it. e.g. typing `help` and pressing `Enter` will open the help window.<br>
@@ -641,7 +654,7 @@ Pictorial guide for Mac:
    <i>Figure above shows the additional files including the data file after the user uses Archangel</i>
 </div>
 
-Q: As a mac user, when opening the file for the first time, I received an error that prevented me from opening the file, how do I fix this?
+Q: As a mac user, when opening the file for the first time, I received an error that prevented me from opening the file, how do I fix this?<br>
 A: Due to security configurations of the Mac OS, you have to verify the download is safe to open, you can follow the steps show below.
 
 <div style="text-align: center; padding-bottom: 2em">
