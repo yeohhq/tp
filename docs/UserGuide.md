@@ -430,9 +430,9 @@ Figure 2.3.7.1.1: <i>Before `a-list`.</i>
 Figure 2.4.1.2: <i>After `a-list`.</i>
 </div>
 
-##### 2.3.7.1.2 Finding appointments by patient name : `a-find`
+##### 2.3.7.2 Finding appointments by patient name : `a-find`
 
-Finds your appointments which the patient's name contains any of the given keywords.
+Archangel finds your appointments with patients whose name contains the given keywords.
 
 Format: `a-find KEYWORD [MORE_KEYWORDS]`
 
@@ -458,7 +458,7 @@ Figure 2.3.7.2.2: <i>After `a-find Charlotte`.</i>
 </div>
 
 ##### 2.3.7.3 Finding appointments by tags: `a-tag`
-Finds your appointments which are tagged by any of the given keywords.
+Archangel finds your appointments which are tagged by any of the given keywords.
 
 Format: `a-find KEYWORD [MORE_KEYWORDS]`
 
@@ -535,12 +535,6 @@ Format: `a-missed`
 
 Examples:
 * `a-missed` returns all missed Appointments.
-
-<div markdown="span" class="alert alert-primary">
-:information_source: **Things to Note:**  <br />
-* Only appointments with end time more than 30 minutes from current time will be reflected as 'Missed'.  <br />
-* This is to allow for patients who are late to have a short buffer should they still make it for the appointment.
-</div>
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/UserGuide/unfilteredAppointmentViewDefault.png" width="95%" /> <br />
@@ -627,7 +621,7 @@ Figure 2.5.2.2: <i>The calendar panel will be shown with all the appointments in
 ## FAQ
 
 Q: How do I transfer my data to another Computer?<br>
-A: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Archangel home folder.
+A: Install the app in the other computer and overwrite the empty data file (.json file) it creates with the file (.json file) that contains the data of your previous Archangel home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 

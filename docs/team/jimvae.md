@@ -27,7 +27,7 @@ Given below are my contributions to the project.
   * Credits: *Original CS2103T AddressBook implementation of `PatientFindCommand` was heavily referenced for the implementation of `AppointmentTagCommand` and `AppointmentFindPatientCommand`.*
   
 * **New Feature**: Overall UI and Tabs
-  * What it does: Cleaner and more user-friendly UI, which separated Archangel from the original AddressBook. I also replaced all the wrapper to AnchorPane and implemented tabs for the dashboard and calendar.
+  * What it does: Cleaner and more user-friendly UI, which separated Archangel from the original AddressBook. I also replaced all the wrapper to anchorpane which is more responsive design and implemented tabs for the dashboard and calendar.
   * Justification: The change in UI helped us implement other features like Calendar and ensured that you have the patient list at all times.
   * Highlights: The application became more intuitive and suited for our clinical data management app.
   * Credits: The idea, and the base code to organise the ui in tabs came from [KeepToo Youtube Channel](https://www.youtube.com/watch?v=ZVtys3GgkMo)
@@ -62,6 +62,6 @@ Given below are my contributions to the project.
     * Updated and added class and sequence diagrams for Model and UI components: [\#101](https://github.com/AY2021S1-CS2103T-W11-1/tp/pull/102)
 
 * **Community**:
-  * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/jimvae/ped/issues/1)
+  * Reported bugs and suggestions for other teams in the class: [1](https://github.com/jimvae/ped/issues/1)
   * Helped my teammates with major logic bugs like scheduling appointments
   * Performed timely checks of the current project for any logic or documentation errors

@@ -38,21 +38,24 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=yeohhq)
 
 * **Project management**:
-  * In charge of implementing Appointment model
-  * In charge of documentation of project
+  * In charge of implementing core Appointment model and logic
+  * In charge of overall documentation of project
   * Ensure that project deliverables are delivered on time
 
 * **Enhancements to existing features**:
-  * Wrote tests for Appointment-type commands (Pull requests [\#51](https://github.com/AY2021S1-CS2103T-W11-1/tp/pull/51), [\#66](https://github.com/AY2021S1-CS2103T-W11-1/tp/pull/66), [\#67](https://github.com/AY2021S1-CS2103T-W11-1/tp/pull/67))
-
+  * Wrote tests for Appointment-type command (Pull requests [\#51](https://github.com/AY2021S1-CS2103T-W11-1/tp/pull/51), [\#66](https://github.com/AY2021S1-CS2103T-W11-1/tp/pull/66), [\#67](https://github.com/AY2021S1-CS2103T-W11-1/tp/pull/67))
+  * Created all the test builders for the Appointment class.
+  
 * **Documentation**:
   * User Guide:
     * Added documentation for the features `a-schedule`, `a-delete` and `a-edit`: [\#98](https://github.com/AY2021S1-CS2103T-W11-1/tp/pull/98), [\#126](https://github.com/AY2021S1-CS2103T-W11-1/tp/pull/126)
     * Did cosmetic tweaks to existing documentation of features for patient-type commands: [\#84](https://github.com/AY2021S1-CS2103T-W11-1/tp/pull/84)
+    * Added all the step by step photos in the UG
+
   * Developer Guide:
     * Added implementation details of the `a-schedule`, `a-delete`, `a-edit` features with relevant diagrams: [\#102](https://github.com/AY2021S1-CS2103T-W11-1/tp/pull/102), [\#243](https://github.com/AY2021S1-CS2103T-W11-1/tp/pull/243)
     * Edited implementation details of the `p-add`, `p-delete`, `p-edit` features: [\#102](https://github.com/AY2021S1-CS2103T-W11-1/tp/pull/102)
-
+    
 * **Community**:
   * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/yeohhq/ped/issues/6), [2](https://github.com/yeohhq/ped/issues/2), [3](https://github.com/yeohhq/ped/issues/3))
   * Most parts of the Appointment model I have implemented is used by other members for their implementations
