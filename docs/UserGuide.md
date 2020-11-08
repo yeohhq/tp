@@ -41,7 +41,7 @@ These are icons that are used throughout this User Guide for better readability:
    
    <div markdown="span" class="alert alert-primary">
 :information_source: **Things to Note:**  <br />
-* For Mac users, you might get an error as shown in the image below, you can refer to the [FAQ](#FAQ) for more information. <br />
+* For Mac users, you might get an error as shown in the image below, you can refer to the [FAQ](#faq) for more information. <br />
       <img src="images/Ui.png" width="150%"> <br />   
 </div>
 
@@ -55,8 +55,6 @@ These are icons that are used throughout this User Guide for better readability:
    * `p-delete 3` : Deletes the 3rd patient shown in the current list.
 
    * `exit` : Exits the app.
-
-6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
