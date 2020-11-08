@@ -37,7 +37,13 @@ These are icons that are used throughout this User Guide for better readability:
 3. Copy the file to the folder you want to use as the _home folder_ for Archangel.
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   <img src="images/Ui.png" width="150%"> <br />
+   <img src="images/Ui.png" width="150%"> <br />   
+   
+   <div markdown="span" class="alert alert-primary">
+:information_source: **Things to Note:**  <br />
+* For Mac users, you might get an error as shown in the image below, you can refer to the [FAQ](#FAQ) for more information. <br />
+      <img src="images/Ui.png" width="150%"> <br />   
+</div>
 
 5. Type the command in the command box and press `Enter` to execute it. e.g. typing `help` and pressing `Enter` will open the help window.<br>
    Some example commands you can try:
@@ -624,11 +630,30 @@ A: A data folder will be created in the same directory that you run Archangel.ja
 Pictorial guide for Windows:
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/UserGuide/DownloadArchangelAndPutIntoAFolder.png" width="95%" /> <br />
-Figure above shows the initial folder that Archangel is in before starting.
+   <i>Figure above shows the initial folder that Archangel is in before starting.</i>
 <img src="images/UserGuide/AfterYouInputData.png" width="95%" /> <br />
-Figure above shows the additional files including the data file after the user uses Archangel
+   <i>Figure above shows the additional files including the data file after the user uses Archangel</i>
 </div>
 
+Pictorial guide for Mac:
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/UserGuide/Mac_User_Step_1.png" width="95%" /> <br />
+   <i>Figure above shows the initial folder that Archangel is in before starting.</i>
+<img src="images/UserGuide/Mac_User_Step_6.png" width="95%" /> <br />
+   <i>Figure above shows the additional files including the data file after the user uses Archangel</i>
+</div>
+
+Q: As a mac user, when opening the file for the first time, I received an error that prevented me from opening the file, how do I fix this?
+A: Due to security configurations of the Mac OS, you have to verify the download is safe to open, you can follow the steps show below.
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/UserGuide/Mac_User_Step_3.png" width="95%" /> <br />
+   <i>Go to your system preferences, and search for "Security & Privacy"</i>
+<img src="images/UserGuide/Mac_User_Step_4.png" width="95%" /> <br />
+   <i>Under "Security & Privacy", click on "Open Anyway"</i>
+<img src="images/UserGuide/Mac_User_Step_5.png" width="95%" /> <br />
+   <i>In the pop-out window,click on "Open" and you are done!</i>
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
