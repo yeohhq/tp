@@ -33,11 +33,11 @@ Given below are my contributions to the project.
 * **Project management**:
   * In charge of implementing AppointmentList, and various related filters and features.
   * In charge of implementing appointment test utilities and code coverage of various appointment features.
-  * Ensure user readability for appointment related sections in UG. 
+  * In charge of automating the interactivity between Appointment time, isMissed and isCompleted parameters.
+  * Ensure user readability for appointment related sections in UG.
 
 * **Enhancements to existing features**:
   * Wrote tests and test utilities for Appointment related commands. (Pull request [\#55](https://github.com/AY2021S1-CS2103T-W11-1/tp/pull/55)
-  * Updated the default view of Archangel to not include completed/missed commands.
 
 * **Documentation**:
   * User Guide:
