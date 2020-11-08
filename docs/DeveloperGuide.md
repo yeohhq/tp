@@ -20,7 +20,8 @@ implementation and documentation in order to enhance and implement some of the f
 inside the software.
 
 ### 1.3 How to use this guide
-This Developer Guide is written in a top-down manner, starting with the overall architecture of Archangel, followed by in-depth descriptions of individual features implemented.  </br>
+This Developer Guide is written in a top-down manner, starting with the overall architecture of Archangel, followed by in-depth descriptions of individual features implemented.  
+
 To navigate to a specific section in this guide, you can click on individual headers in the **Table of Contents** at the top of this markdown document to jump to that section.
 Within each section, we have also provided brief introductory statements where necessary.
 
@@ -54,10 +55,10 @@ The ***Architecture Diagram*** given above explains the high-level design of Arc
 
 The rest of Archangel consists of four components.
 
-* [**`UI`**](#ui-component): The UI of Archangel.
-* [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of Archangel in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+* [**`UI`**](#32-ui-component): The UI of Archangel.
+* [**`Logic`**](#33-logic-component): The command executor.
+* [**`Model`**](#34-model-component): Holds the data of Archangel in memory.
+* [**`Storage`**](#35-storage-component): Reads data from, and writes data to, the hard disk.
 
 Each of the four components,
 
@@ -66,21 +67,21 @@ Each of the four components,
 
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 
-![Class Diagram of the Logic Component](images/LogicClassDiagram.png)  </br>
+![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
 _Diagram 3.1.1 : Logic Class Diagram_  
 
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
-![Interaction between components](images/ArchitectureSequenceDiagram.png)  </br>
+![Interaction between components](images/ArchitectureSequenceDiagram.png)
 _Diagram 3.1.2 : Architecture Sequence Diagram_  
 
 The sections below give more details of each component.
 
 ### 3.2 UI component
 
-![Structure of the UI Component](images/UiClassDiagram.png)  </br>
+![Structure of the UI Component](images/UiClassDiagram.png)
 _Diagram 3.2 : UI Class Diagram_
 
 **API** :
@@ -97,7 +98,7 @@ The `UI` component,
 
 ### 3.3 Logic component
 
-![Structure of the Logic Component](images/LogicClassDiagram.png)  </br>
+![Structure of the Logic Component](images/LogicClassDiagram.png) 
 _Diagram 3.3.1 : Logic Class Diagram_  
 
 **API** :
@@ -112,14 +113,14 @@ _Diagram 3.3.1 : Logic Class Diagram_
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
-_Diagram 3.3.2 : Delete Sequence Diagram_  </br>
+_Diagram 3.3.2 : Delete Sequence Diagram_ 
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 ### 3.4 Model component
 
-![Structure of the Model Component](images/ModelClassDiagram.png)  </br>
+![Structure of the Model Component](images/ModelClassDiagram.png) 
 _Diagram 3.4 : Model Class Diagram_  
 
 **API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-W11-1/tp/tree/master/src/main/java/seedu/address/model/Model.java)
@@ -140,7 +141,7 @@ The `Model`,
 
 ### 3.5 Storage component
 
-![Structure of the Storage Component](images/StorageClassDiagram.png)  </br>
+![Structure of the Storage Component](images/StorageClassDiagram.png) 
 _Diagram 3.5 : Storage Class Diagram_
 
 **API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-W11-1/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
@@ -180,7 +181,7 @@ Here is a summary of the logic flow:
 #### 4.1.2 Structure of Patient Commands
 
 The following diagram shows the overview of a generic patient command `PatientXYZCommand`, where `XYZ` could be `Add`, `Delete` etc. :
-![Structure of Patient Command](images/PatientCommandStructureDiagram.png)  </br>
+![Structure of Patient Command](images/PatientCommandStructureDiagram.png) 
 _Diagram 4.1.2 : Patient Command Structure Diagram_
 
 In each `PatientXYZCommand` class, there are static messages as follows:
@@ -236,7 +237,7 @@ This is how Deleting of Patients is implemented.
 
 #### 4.1.5 Edit Patient
 
-![Interactions Inside the Logic Component for the `p-edit` Command](images/PatientEditCommandSequenceDiagram.png). </br>
+![Interactions Inside the Logic Component for the `p-edit` Command](images/PatientEditCommandSequenceDiagram.png)
 _Diagram 4.1.5 : PatientEditCommand Sequence Diagram_
 
 ##### Implementation
@@ -291,8 +292,9 @@ Subsequently, the `LogicManager` executes the `AppointmentScheduleCommand` objec
 The `Appointment` class stores relevant fields (e.g. `AppointmentTime`, `Description`) and the `Patient`, **and/or** a string representing the patient's index in the `ObservableList<Patient>`, depending on which constructor is invoked during execution.
 
 ##### 4.2.1.2 Reason for design of implementation:
-![AppointmentScheduleCommand Parsing of Patient](images/AppointmentScheduleCommandActivityDiagram.png)  </br>
+![AppointmentScheduleCommand Parsing of Patient](images/AppointmentScheduleCommandActivityDiagram.png) 
 _Diagram 4.2.1.2 : AppointmentScheduleCommand Activity Diagram_
+
 The reason for having 2 `Appointment` constructors is to improve the ease of scheduling an appointment by the user using the CLI.
 
 To address the problem of mandatory fields being highly time-consuming, we have decided to allow users to simply input a `patientIndex` to identify the patient from the visible `ObservableList<Patient>` without being concerned with typing the exact name or details of the desired patient to assign to the `Appointment`.
@@ -362,7 +364,7 @@ The unique classes associated to this command are :
 
 Commands involving filtering of the appointment work similarly by using filters to obtain the appointments needed. For this section, we will be exploring `AppointmentFindPatientCommand` which filters Appointments containing Patients whose name includes the given user input.
 The Command, Parser and Predicate in the class diagram below can be replaced by different sets of values from Diagram 4.2.5.1b.
- ![Class Diagram for commands with filter](images/AppointmentFindPatientCommandDiagram.png)  </br>
+ ![Class Diagram for commands with filter](images/AppointmentFindPatientCommandDiagram.png)
 _Diagram 4.2.5.1a : Appointment Commands with Filters Class Diagram_
 
 Filter Appointment Commands including both its Parser and Predicate are listed below:
@@ -377,14 +379,14 @@ Filter Appointment Commands including both its Parser and Predicate are listed b
 | 6. AppointmentIsCompletedCommand | AppointmentIsCompletedCommandParser | SearchAppointmentCompletedFilter | Completed Appointments           |
 | 7. AppointmentListCommand        | AppointmentListCommandParser        | SearchAppointmentFilter          | Pending Appointments             |
 
-_Diagram 4.2.5.1b : Appointment Commands with Filters Class Diagram
+_Diagram 4.2.5.1b : Appointment Commands with Filters Class Diagram_
 
 ##### 4.2.5.2 Implementation
 The search for appointment by patient name works by filtering the appointment list to show only those appointments with
 the given patient name.
 
-![Sequence Diagram for commands with filter](images/AppointmentFindPatientSequenceDiagram.png)  </br>
-_Diagram 4.2.5.2 : Appointment Commands with Filters Sequence Diagram
+![Sequence Diagram for commands with filter](images/AppointmentFindPatientSequenceDiagram.png)  
+_Diagram 4.2.5.2 : Appointment Commands with Filters Sequence Diagram_
 
 The unique classes associated to `AppointmentFindPatientCommand`  command:
 1. `AppointmentFindPatientCommandParser`— Parses input arguments and creates a new AppointmentFindPatientCommand object.
@@ -405,7 +407,7 @@ The implementation of all listing filter appointment commands have a similar exe
   there might be a conflict for those appointments with more than one tags.
 
 #### 4.2.6 List All Appointments
-![Sequence Diagram for command to list all appointments in Archangel](images/AppointmentListAllCommand.png)  </br>
+![Sequence Diagram for command to list all appointments in Archangel](images/AppointmentListAllCommand.png)
 _Diagram 4.2.6 : Appointment List All Command Sequence Diagram
 
 ##### Implementation
