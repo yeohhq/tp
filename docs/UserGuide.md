@@ -10,9 +10,9 @@ title: User Guide
 
 ## 1. Introduction
 
-Archangel is a desktop application for managing patient appointments  designed for usage by private clinic doctors, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
+Archangel is a desktop application for managing patient appointments  designed for usage by private clinic doctors, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). <br />
 Archangel integrates storing of patient data and scheduling patient appointments in a single application.
-It supports adding, editing, deleting of patients/appointments and facilitates search using filter commands to help improve your experience in handling patient data.
+It supports adding, editing, deleting of patients/appointments and facilitates search using filter commands to help improve your experience in handling patient data. <br />
 For those familiar with command line interfaces, Archangel can get your patient management appointment done faster than traditional GUI apps.
 
 ### 1.1 Archangel User Interface
@@ -113,7 +113,7 @@ The Archangel data is saved in the hard disk automatically after any command tha
 
 Adds a patient to Archangel.
 
-"A new patient has contacted me and wants to make an appointment. First, I have to add him along with his details to Archangel!" One of the most fundamental use of Archangel; to store patient data, can be done through the command `p-add`
+"A new patient has contacted me and wants to make an appointment. First, I have to add him along with his details to Archangel!" One of the most fundamental use of Archangel; to store patient data, can be done through the command `p-add`.
 
 Format: `p-add n/NAME g/GENDER bd/BIRTHDATE bt/BLOODTYPE p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…`​
 
@@ -124,7 +124,7 @@ Examples:
 :information_source: **Things to Note:**  <br />
 * Compulsory fields include NAME, GENDER, BIRTHDATE, BLOODTYPE, PHONE_NUMBER, EMAIL and ADDRESS <br />
 * TAGS are not compulsory <br />
-* BIRTHDATE should be in YYYY/MM/DD format. <br />
+* BIRTHDATE should be in YYYY-MM-DD format. <br />
 * BLOODTYPE can be only one of the following per patient: `A+`, `A-`, `B+`, `B-`, `O`, `O+`, `O-`, `AB+`, `AB-` <br />
 * At initial launch of Archangel, there is a pre-loaded sample list of Patients. <br />
 </div>
@@ -142,16 +142,16 @@ A patient can have any number of tags (including 0)
 
 Examples:
 * `p-add n/John Doe g/MALE bd/2018-12-27 bt/A+ p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney`
-* `p-add n/Betsy Crowe t/friend g/FEMALE bd/2000-12-27 bt/A+ e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `p-add n/Betsy Crower t/friend g/FEMALE bd/2000-12-27 bt/A+ e/betsycrower@example.com a/Newgate Prison p/1234567 t/criminal`
 
 #### 2.2.2 Listing all patients : `p-list`
 
-"I want to see all of my patients in one list." You can do so with the command `p-list`
+"I want to see all of my patients in one list!" You can do so with the command `p-list`.
 
 Format: `p-list`
 
 Examples:
-* `p-find alex` followed by `p-list` changes the patient list under view from patients with alex in their names to the All-Patients list
+* `p-find alex` followed by `p-list` changes the patient list under view from patients with `alex` in their names to the All-Patients list
 
 <div markdown="span" class="alert alert-primary">
 :information_source: **Things to Note:**  <br />
@@ -161,22 +161,25 @@ Examples:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/UserGuide/p-list_1.png" width="95%" /> <br />
-Figure 2.2.2.1: <i>Initial state of Archangel at launch (All-Patient list is the list under view!).</i>
+Figure 2.2.2.1: <i>Initial state of Archangel at launch<br />
+(All-Patient list is the list under view!).</i>
 <img src="images/UserGuide/p-list_2.png" width="95%" /> <br />
-Figure 2.2.2.2: <i>After `p-find alex` (All-Patients list changed to List of Patients with Alex in their name!).</i>
+Figure 2.2.2.2: <i>After `p-find alex`<br />
+(All-Patients list changed to list of patients with 'alex' in their name!).</i>
 <img src="images/UserGuide/p-list_3.png" width="95%" /> <br />
-Figure 2.2.2.3: <i>After `p-list` (All-Patient list is back as the list under view!).</i>
+Figure 2.2.2.3: <i>After `p-list`<br />
+(All-Patient list is back as the list under view!).</i>
 </div>
 
 #### 2.2.3 Editing a patient : `p-edit`
 
-"Oh no, I keyed in one of my patient's information incorrectly." Do not worry, as you can change your patients' particulars with the command `p-edit`
+"Oh no, I keyed in one of my patient's information incorrectly!" Do not worry, as you can change your patients' particulars with the command `p-edit`.
 
 Format: `p-edit INDEX [n/NAME] [g/GENDER] [bd/BIRTHDATE] [bt/BLOODTYPE] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
 Examples:
-* `p-edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be 91234567 and johndoe@example.com respectively.
-* `p-edit 2 n/Betsy Crower t/` Edits the name of the 2nd patient to be Betsy Crower and clears all existing tags.
+* `p-edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
+* `p-edit 2 n/Betsy Crower t/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing tags.
 
 <div markdown="span" class="alert alert-primary">
 :information_source: **Things to Note:**  <br />
@@ -185,16 +188,18 @@ Examples:
 * Existing values will be updated to the input values. <br />
 * When editing tags, the existing tags of the patient will be removed i.e adding of tags is not cumulative. <br />
 * You can remove all the patient’s tags by typing `t/` without specifying any tags after it. <br />
-* For editting of remarks, please look at the commands specifically related to remarks. <br />
+* For editing of remarks, please look at the commands specifically related to remarks. <br />
 * Note: Editing a patient will also update the patient in Appointments that contain the patient. <br />
 </div>
 
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/UserGuide/p-edit_1.png" width="95%" /> <br />
-Figure 2.2.3.1: <i>Initial state of Archangel at launch (All-Patient list is the list under view!).</i>
+Figure 2.2.3.1: <i>Initial state of Archangel at launch<br />
+(All-Patient list is the list under view!).</i>
 <img src="images/UserGuide/p-edit_2.png" width="95%" /> <br />
-Figure 2.2.3.2: <i>After `p-edit 2 n/Betsy Crower`(Patient at index 2 on the patient list has their name changed to Betsy Crower! Affected appointments also have their patient updated!).</i>
+Figure 2.2.3.2: <i>After `p-edit 2 n/Betsy Crower`<br />
+(Patient at index 2 on the patient list has their name changed to Betsy Crower! Affected appointments also have their patient updated!).</i>
 </div>
 
 #### 2.2.4 Locating patients by name: `p-find`
@@ -219,19 +224,21 @@ Examples:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/UserGuide/p-find_1.png" width="95%" /> <br />
-Figure 2.2.4.1: <i>Initial state of Archangel at launch (All-Patient list is the list under view!).</i>
+Figure 2.2.4.1: <i>Initial state of Archangel at launch<br />
+(All-Patient list is the list under view!).</i>
 <img src="images/UserGuide/p-find_2.png" width="95%" /> <br />
-Figure 2.2.4.2: <i>After `p-find Yeoh` (All patients with 'Yeoh' in their names will be displayed!).</i>
+Figure 2.2.4.2: <i>After `p-find Yeoh`<br />
+(All patients with 'Yeoh' in their names will be displayed!).</i>
 </div>
 
 #### 2.2.5 Giving a patient a Remark : `p-remark`
 
-"One of my patients has allergies. I want to be able to store this information." You can store special information using the command `p-remark`.
+"One of my patients has allergies. I want to be able to store this information." You can store special information as a remark using the command `p-remark`.
 
 Format: `p-remark INDEX r/REMARK`
 
 Examples:
-* `p-remark 1 r/Allergic to nuts.` gives the 1st patient in the list a remark of `Allergic to nuts.`
+* `p-remark 1 r/Allergic to nuts` gives the 1st patient in the list a remark of `Allergic to nuts`
 
 <div markdown="span" class="alert alert-primary">
 :information_source: **Things to Note:**  <br />
@@ -242,14 +249,16 @@ Examples:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/UserGuide/p-remark_1.png" width="95%" /> <br />
-Figure 2.2.5.1: <i>Before `p-remark 1 r/Allergic to nuts` (patient Alex Yeoh has no remarks.)</i>
+Figure 2.2.5.1: <i>Before `p-remark 1 r/Allergic to nuts`<br />
+(Patient Alex Yeoh has no remarks.)</i>
 <img src="images/UserGuide/p-remark_2.png" width="95%" /> <br />
-Figure 2.2.5.2: <i>After `p-remark 1 r/Allergic to nuts` (Alex Yeoh now has a remark that says "Allergic to nuts!".</i>
+Figure 2.2.5.2: <i>After `p-remark 1 r/Allergic to nuts`<br />
+(Patient Alex Yeoh now has a remark that says "Allergic to nuts".)</i>
 </div>
 
 #### 2.2.6 Removing a patient's Remark : `p-remark`
 
-"I want to remove the remark of a patient." You can remove remarks using the command `p-remark`.
+"The remark for the patient no longer applies, I want to remove it from the patient." You can remove remarks using the command `p-remark`.
 
 Format: `p-remark INDEX`
 
@@ -265,9 +274,11 @@ Examples:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/UserGuide/p-remark_3.png" width="95%" /> <br />
-Figure 2.2.6.1: <i>Before `p-remark 1` (patient Alex Yeoh has a remark that says "Allergic to nuts!".)</i>
+Figure 2.2.6.1: <i>Before `p-remark 1`<br />
+(Patient Alex Yeoh has a remark that says "Allergic to nuts".)</i>
 <img src="images/UserGuide/p-remark_4.png" width="95%" /> <br />
-Figure 2.2.6.2: <i>After `p-remark 1` (Alex Yeoh no longer has a remark!)</i>
+Figure 2.2.6.2: <i>After `p-remark 1`<br />
+(Patient Alex Yeoh no longer has a remark!)</i>
 </div>
 
 #### 2.2.7 Deleting a patient : `p-delete`
@@ -277,7 +288,7 @@ Figure 2.2.6.2: <i>After `p-remark 1` (Alex Yeoh no longer has a remark!)</i>
 Format: `p-delete INDEX`
 
 Examples:
-* `p-delete 1` deletes the 1st patient in Archangel and also deletes all of his/her appointment.
+* `p-delete 1` deletes the 1st patient in Archangel and also deletes all of his/her appointments.
 
 <div markdown="span" class="alert alert-primary">
 :information_source: **Things to Note:**  <br />
@@ -289,9 +300,11 @@ Examples:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/UserGuide/p-delete_1.png" width="95%" /> <br />
-Figure 2.2.7.1: <i>Before p-delete 1 (patient Alex Yeoh is in the patient list, and the appointment list shows an appointment under Alex Yeoh.)</i>
+Figure 2.2.7.1: <i>Before `p-delete 1`<br />
+(Patient Alex Yeoh is in the patient list, and the appointment list shows an appointment under Alex Yeoh.)</i>
 <img src="images/UserGuide/p-delete_2.png" width="95%" /> <br />
-Figure 2.2.7.2: <i>After `p-delete 1` (Alex Yeoh is no longer on the patient list, every appointment under Alex Yeoh is also removed from the all-appointments list!)</i>
+Figure 2.2.7.2: <i>After `p-delete 1`<br />
+(Patient Alex Yeoh is no longer on the patient list, every appointment under Alex Yeoh is also removed from the All-Appointments list!)</i>
 </div>
 
 
@@ -299,35 +312,35 @@ Figure 2.2.7.2: <i>After `p-delete 1` (Alex Yeoh is no longer on the patient lis
 
 #### 2.3.1 Scheduling an appointment : `a-schedule`
 
-Now that you have patients, it is time to schedule your first appointment! Scheduling an appointment is as simple as adding a patient!
+Now that you have patients, it is time to schedule your first appointment! Scheduling an appointment can be done using the command `a-schedule`.
 
 Format: `a-schedule pt/INDEX start/DATE&TIME end/DATE&TIME d/DESCRIPTION [t/TAGS]…`
 
 Examples:
-* `a-schedule pt/2 start/2020-12-14 08:00 end/2020-12-14 10:00 d/Review Appointment` schedules an appointment for patient 2 on 2020-12-14 at 08-00 with appointment description Review Appointment.
+* `a-schedule pt/2 start/2020-12-14 08:00 end/2020-12-14 10:00 d/Review Appointment` schedules an appointment for patient at index `2` on `2020-12-14` from `08:00` to `10:00` with appointment description `Review Appointment`.
 
 <div markdown="span" class="alert alert-primary">
 :information_source: **Things to Note:**  <br />
-* Backdated appointments are allowed to be able to digitise existing appointment records . <br />
+* Backdated appointments are allowed for clinics to be able to digitise their existing appointment records.<br />
 * Schedules patient appointment for patient at INDEX in the displayed patient list.<br />
 * Appointment will be set to input DATE (format: YYYY-MM-DD) and TIME (format: HH:MM).<br />
-* TAGS should be alphanumeric.<br />
+* Appointment time must be indicated as HH:MM (i.e. 9AM must be `09:00`, and not `9:00`).<br />
 * Appointment time (i.e. duration from `start` to `end`) cannot overlap with another existing appointment.<br />
 * Appointment duration should not exceed 24 hours.<br />
-* Appointment time must be indicated as HH:MM (i.e. 9AM must be `09:00`, and not `9:00`).<br />
-* Appointment with endTime that is 30 minutes or more behind current time will be set as missed.<br />
+* TAGS should be alphanumeric.<br />
 </div>
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/UserGuide/a-schedule_1.png" width="95%" /> <br />
-Figure 2.3.1.1: <i>Before `a-schedule`.</i>
+Figure 2.3.1.1: <i>Before `a-schedule pt/2 start/2020-12-14 08:00 end/2020-12-14 10:00 d/Review Appointment`.</i>
 <img src="images/UserGuide/a-schedule_2.png" width="95%" /> <br />
-Figure 2.3.1.2: <i>After `a-schedule`(New appointment added to list!).</i>
+Figure 2.3.1.2: <i>After `a-schedule pt/2 start/2020-12-14 08:00 end/2020-12-14 10:00 d/Review Appointment` <br />
+(New appointment added to list!).</i>
 </div>
 
 #### 2.3.2 Deleting an appointment : `a-delete`
 
-Oh no! Your patient just called to cancel his appointment! Since we would not be needing it anymore, let's delete the appointment.
+Oh no! Your patient just called to cancel his appointment! Since we will not need the appointment anymore, let's delete the appointment using the command `a-delete`.
 
 Format: `a-delete INDEX`
 
@@ -344,14 +357,15 @@ Examples:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/UserGuide/a-delete_1.png" width="95%" /> <br />
-Figure 2.3.2.1: <i>Before `a-delete`.</i>
+Figure 2.3.2.1: <i>Before `a-delete 1`.</i>
 <img src="images/UserGuide/a-delete_2.png" width="95%" /> <br />
-Figure 2.3.2.2: <i>After `a-delete'(Appointment is gone!).</i>
+Figure 2.3.2.2: <i>After `a-delete 1'<br />
+(Appointment is gone!).</i>
 </div>
 
 #### 2.3.3 Editing an appointment : `a-edit`
 
-What if your patients decides to change his appointment details? Archangel allows you to edit existing patient appointments.
+What if your patients decides to change his appointment details? Archangel allows you to edit existing patient appointments using the command `a-edit`.
 
 Format: `a-edit INDEX [start/DATE&TIME] [end/DATE&TIME] [pt/PATIENT INDEX] [d/DESCRIPTION] [t/TAGS]…`
 
@@ -372,14 +386,15 @@ Examples:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/UserGuide/a-edit_1.png" width="95%" /> <br />
-Figure 2.3.3.1: <i>Before `a-edit`.</i>
+Figure 2.3.3.1: <i>Before `a-edit 1 start/2020-11-15 12:00 end/2020-11-15 14:00 pt/2`.</i>
 <img src="images/UserGuide/a-edit_2.png" width="95%" /> <br />
-Figure 2.3.3.2: <i>After `a-edit`(Appointment details changed!).</i>
+Figure 2.3.3.2: <i>After `a-edit 1 start/2020-11-15 12:00 end/2020-11-15 14:00 pt/2`<br />
+(Appointment details changed!).</i>
 </div>
 
 #### 2.3.4 Setting appointment as completed : `a-complete`
 
-You have just finished an appointment. Instead of deleting it, let's set it as completed. This way you can still find it using specific commands.
+You have just finished an appointment. Instead of deleting it, let's set it as completed with the command `a-complete`. This way you can still find it using specific commands.
 
 Format: `a-complete INDEX`
 
@@ -397,20 +412,21 @@ Examples:
 <img src="images/UserGuide/a-complete_1.png" width="95%" /> <br />
 Figure 2.3.4.1: <i>Before `a-complete 1`.</i>
 <img src="images/UserGuide/a-complete_2.png" width="95%" /> <br />
-Figure 2.3.4.2: <i>After `a-complete 1`(Appointment 1 is now labelled as Done).</i>
+Figure 2.3.4.2: <i>After `a-complete 1`<br />
+(Appointment 1 is now labelled as Done).</i>
 </div>
 
 #### 2.3.5 Setting appointment as missed :
 
-Patient did not show up? Archangel helps you keep track of missed appointments!
+Did your patient not show up? Archangel helps you keep track of missed appointments!
 
-Appointments are automatically set as missed if they satisfy both criteria:
+Appointments are automatically marked as missed if they satisfy both criteria:
 * Appointment end time has been over for at least 30 minutes.
 * Appointment has not been set as completed.
 
 #### 2.3.6 Listing all past and present appointments : `a-listall`
 
-You can also view a combined list of all appointments including missed, completed and upcoming patient appointments.
+You can also view a combined list of all appointments including missed, completed and upcoming patient appointments using the command `a-listall`.
 
 Format: `a-listall`
 
@@ -423,7 +439,7 @@ Figure 2.3.6.2: <i>After `a-listall`.</i>
 
 #### 2.3.7 Filtering appointment list
 
-If you are looking for a specific appointment, Archangel allows you to filter your appointment list in many different ways.
+If you are looking for a specific appointment, Archangel allows you to filter your appointment list in various ways.
 
 ##### 2.3.7.1 Listing all upcoming appointments : `a-list`
 
@@ -466,6 +482,7 @@ Figure 2.3.7.2.2: <i>After `a-find Charlotte`.</i>
 </div>
 
 ##### 2.3.7.3 Finding appointments by tags: `a-tag`
+
 Finds your appointments which are tagged by any of the given keywords.
 
 Format: `a-find KEYWORD [MORE_KEYWORDS]`
@@ -492,6 +509,7 @@ Figure 2.3.7.3.2: <i>After `a-tag`.</i>
 </div>
 
 ##### 2.3.7.4 Finding an appointment by current date: `a-today`
+
 Finds your uncompleted appointments scheduled on the current date.
 
 Format: `a-today`
@@ -507,6 +525,7 @@ Figure 2.3.7.4.2: <i>After `a-today`.</i>
 </div>
 
 ##### 2.3.7.5 Finding an appointment by current week: `a-upcoming`
+
 Finds your uncompleted appointments scheduled in the current week.
 
 Format: `a-upcoming`
@@ -522,6 +541,7 @@ Figure 2.3.7.5.2: <i>After `a-upcoming`.</i>
 </div>
 
 ##### 2.3.7.6 Listing appointments that are completed: `a-completed`
+
 Shows a list of all your appointments that have been completed.
 
 Format: `a-completed`
@@ -537,6 +557,7 @@ Figure 2.3.7.6.2: <i>After `a-completed`.</i>
 </div>
 
 ##### 2.3.7.7 Listing appointments that are missed: `a-missed`
+
 Shows a list of all your appointments that have been missed.
 
 Format: `a-missed`
@@ -560,7 +581,7 @@ Figure 2.3.7.7.2: <i>After `a-missed`.</i>
 ### 2.4 Supporting Commands
 
 #### 2.4.1 Undoing the previous command : `undo`
-"Oops, I accidentally deleted the wrong appointment!", fret not! You can undo your commands through the command `undo`
+"Oops, I accidentally deleted the wrong appointment!", fret not! You can undo your commands through the command `undo`.
 
 Format: `undo`
 
@@ -569,22 +590,22 @@ Examples:
 
 <div markdown="span" class="alert alert-primary">
 :information_source: **Things to Note:**  <br />
-* This command has no keywords  <br />
-* This command does not work with filter commands (`a-completed`,`a-missed`,`a-upcoming`,`a-today`,`a-find`,`a-list`)  <br />
-  as its implementation purpose is to assist the user in undo-ing his changes, filter commands do not make changes to the data.  <br />
+* This command has no keywords.<br />
+* This command does not work with filter commands (`a-completed`,`a-missed`,`a-upcoming`,`a-today`,`a-find`,`a-list`) <br />
+  as its implementation purpose is to assist the user in undo-ing his changes, filter commands do not make changes to the data.<br />
   It also does not work with `p-edit` as the design requires patient details to be accurate as of time schedule, such that the
   records can accurately reflect the patient's conditions at the time of the appointment. <br />
-* A list of commands that can be undone can be found in the table under Command Summary.  <br />
-* This command can be succeeded by a `redo` command
+* A list of commands that can be undone can be found in the table under Command Summary. <br />
+* This command can be succeeded by a `redo` command.
 </div>
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/UserGuide/Undo_Example_1.png" width="150%"> <br />
 Figure 2.4.1.1: <i>Before `a-delete 1`.</i>
 <img src="images/UserGuide/Undo_Example_2.png" width="150%" /> <br />
-Figure 2.4.1.2: <i>After `a-delete 1`(Roy is gone!).</i>
+Figure 2.4.1.2: <i>After `a-delete 1` (Roy is gone!).</i>
 <img src="images/UserGuide/Undo_Example_3.png" width="150%" /> <br />
-Figure 2.4.1.3: <i>After `undo`(Roy is back!).</i>
+Figure 2.4.1.3: <i>After `undo` (Roy is back!).</i>
 </div>
 
 #### 2.4.2 Redoing the previous command : `redo`
@@ -597,23 +618,25 @@ Examples:
 
 <div markdown="span" class="alert alert-primary">
 :information_source: **Things to Note:**  <br />
-* This command has no keywords  <br />
-* This command must be preceded by `undo`
+* This command has no keywords. <br />
+* This command must be preceded by `undo`.
 </div>
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/UserGuide/Undo_Example_2.png" width="150%" /> <br />
-Figure 2.4.2.1: <i>After `a-delete 1`(Roy is gone!).</i>
+Figure 2.4.2.1: <i>After `a-delete 1` (Roy is gone!).</i>
 <img src="images/UserGuide/Undo_Example_3.png" width="150%" /> <br />
-Figure 2.4.2.2: <i>After `undo`(Roy is back!).</i>
+Figure 2.4.2.2: <i>After `undo` (Roy is back!).</i>
 <img src="images/UserGuide/Redo_Example_1.png" width="150%" /> <br />
-Figure 2.4.2.3: <i>After `redo`(Roy is gone!).</i>
+Figure 2.4.2.3: <i>After `redo` (Roy is gone!).</i>
 </div>
 
 ### 2.5 Miscellaneous Features
 
 #### 2.5.1 Suggestion Box
-Find it troublesome to keep referring to the User Guide for the format of commands? You can always refer to the suggestion box which is shown once you typing your commands. As you type letter by letter, the suggestion box will automatically match your input to the most similar command, allowing you to refer to it on the go!
+
+Find it troublesome to keep referring to the User Guide for the format of commands? You can always refer to the suggestion box which is shown once you enter your commands.<br/>
+As you type letter by letter, the suggestion box will automatically match your input to the most similar command, allowing you to refer to it on the go!
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="https://raw.githubusercontent.com/AY2021S1-CS2103T-W11-1/tp/master/docs/images/UserGuide/Suggestion_Box.gif" width="95%" /> <br />
