@@ -25,6 +25,8 @@ Given below are my contributions to the project.
   * Highlights: These features are essential for the modelling of Archangel as an appointment scheduling application.
   * Credits: *Original CS2103T AddressBook implementation of `AddCommand`, `DeleteCommand` and `EditCommand` was heavily referenced for the implementation of Appointment-type commands.*
 
+<div style="page-break-after: always;"></div>
+
 * **New Feature**: Added ability to delete/edit appointments if patient in appointment is deleted/edit respectively.
   * What it does: allows users to manage their appointments easily if changes are made to patients in the appointments.
   * Justification: This feature ensures appointment and patient data are synced at any point in time and removes obsolete data entries in Archangel.
