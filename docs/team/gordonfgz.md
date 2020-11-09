@@ -46,7 +46,7 @@ Given below are my contributions to the project.
       
     After:
     
-      ![FirstIteration](https://raw.githubusercontent.com/gordonfgz/tp/blob/branch-ppp/docs/images/FirstIteration.png)
+      ![FirstIteration](https://raw.githubusercontent.com/gordonfgz/tp/branch-ppp/docs/images/FirstIteration.png)
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=gordonfgz)
 
