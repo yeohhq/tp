@@ -26,6 +26,8 @@ Given below are my contributions to the project.
   * Justification: These features enable better appointment organisation, which is one of the focus of Archangel. The ability to view your Appointments by tag or patient allows better user experience.
   * Credits: *Original CS2103T AddressBook implementation of `PatientFindCommand` was referenced for the implementation of `AppointmentTagCommand` and `AppointmentFindPatientCommand`.*
   
+<div style="page-break-after: always;"></div>
+
 * **New Feature**: Overall UI and Tabs
   * What it does: Cleaner and more user-friendly UI, which separated Archangel from the original AddressBook. I also replaced all the wrapper to anchorpane which is a more responsive design and implemented tabs for the dashboard and calendar.
   * Justification: The change in UI helped us implement other features like Calendar and ensured that you have the patient list at all times. This allows a better user work flow, seamlessly integrating Patients with Appointments.
