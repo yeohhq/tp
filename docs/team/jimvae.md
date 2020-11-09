@@ -37,8 +37,8 @@ Given below are my contributions to the project.
     Before:
 
     ![AddressBook3](https://raw.githubusercontent.com/jimvae/tp/branch-user-guide-v1.4/docs/images/Addressbook3.png)
-  
- <div style="page-break-after: always;"></div>
+    
+    <div style="page-break-after: always;"></div>
  
     After:
   
