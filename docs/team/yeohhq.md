@@ -35,7 +35,7 @@ Given below are my contributions to the project.
   * Justification: This feature improves ease of accessing appointments by making it more intuitive for users to search for appointments.
   * Highlights: This feature improves the usability of Archangel as it reduces hassle for user to manually search/filter appointments.
 
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=yeohhq)
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=yeohhq&sort=groupTitle&sortWithin=title&since=2020-08-14&until=2020-11-09&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=zoom&zA=yeohhq&zR=AY2021S1-CS2103T-W11-1%2Ftp%5Bmaster%5D&zACS=200.0952380952381&zS=2020-08-14&zFS=yeohhq&zU=2020-11-09&zMG=false&zFTF=commit&zFGS=groupByRepos&zFR=false)
 
 * **Project management**:
   * In charge of implementing core Appointment model and logic

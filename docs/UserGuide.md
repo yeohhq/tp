@@ -39,7 +39,7 @@ Figure 1: <i>The user interface of Archangel.</i>
 These are icons that are used throughout this User Guide for better readability:
 - :bulb: — A useful tip for the users when using Archangel.
 - :information_source: — A point for users to take note of.
-- `code` — Indicates commands that will be type into the <i>command box</i> (see below)
+- `code` — Indicates commands that will be typed into the <i>command box</i> 
 
 ### 1.3 Quick start
 
