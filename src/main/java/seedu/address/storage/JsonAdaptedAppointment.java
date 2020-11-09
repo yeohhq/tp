@@ -59,7 +59,6 @@ public class JsonAdaptedAppointment {
      */
     public JsonAdaptedAppointment(Appointment source) {
         String patient1;
-        System.out.println(source);
         appointmentTime = source.getAppointmentTime().toString();
         patient1 = source.getPatientString();
         if (patient1 == null) {

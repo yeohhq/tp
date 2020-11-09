@@ -10,27 +10,27 @@ The user interacts with it using a CLI, and it has a GUI created with JavaFX. It
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added code foundation for filter commands.
-  * What it does: Allows users to filter appointments.
-  * Justification: This feature is necessary to provide the different queries on appointments.
-  * Credits: *Original CS2103T AddressBook implementation of `SearchNameFilter`  was heavily referenced for the implementation of `appointmentfilters`.*
-
+* **New Feature**: Added the code foundation for filtering Appointment commands.
+  * What it does: Allows users to filter appointments with specific Appointment filters.
+  * Justification: This feature is necessary to provide the different queries on appointments. Multiple commands were implemented using this code foundation.
+  * Credits: *Original CS2103T AddressBook implementation of `SearchNameFilter`  was referenced for the implementation of `appointmentfilters`.*
+  
 * **New Feature(s)**: Added daily and upcoming commands.
   * What it does: Filter appointments to show daily and weekly appointments.
   * Justification: These are core features needed to make this application appointment-centric.
   * Highlights: This feature provided the backbone for the calendar feature and commands that involved filters which my teammates have implemented.
-  * Credits: *Original CS2103T AddressBook implementation of `PatientFindCommand` was heavily referenced for the implementation of `AppointmentTodayCommand` and `AppointmentWeekCommand`.*
+  * Credits: *Original CS2103T AddressBook implementation of `PatientFindCommand` was referenced for the implementation of `AppointmentTodayCommand` and `AppointmentWeekCommand`.*
 
 * **New Feature(s)**: Added commands that filters tags and patient in appointment.
   * What it does: Filter appointments to appointments based on the keywords provided.
-  * Justification: These features enable better appointment organisation, which is one of the focus of this Archangel.
-  * Credits: *Original CS2103T AddressBook implementation of `PatientFindCommand` was heavily referenced for the implementation of `AppointmentTagCommand` and `AppointmentFindPatientCommand`.*
+  * Justification: These features enable better appointment organisation, which is one of the focus of Archangel. The ability to view your Appointments by tag or patient allows better user experience.
+  * Credits: *Original CS2103T AddressBook implementation of `PatientFindCommand` was referenced for the implementation of `AppointmentTagCommand` and `AppointmentFindPatientCommand`.*
   
 * **New Feature**: Overall UI and Tabs
-  * What it does: Cleaner and more user-friendly UI, which separated Archangel from the original AddressBook. I also replaced all the wrapper to AnchorPane and implemented tabs for the dashboard and calendar.
-  * Justification: The change in UI helped us implement other features like Calendar and ensured that you have the patient list at all times.
+  * What it does: Cleaner and more user-friendly UI, which separated Archangel from the original AddressBook. I also replaced all the wrapper to anchorpane which is a more responsive design and implemented tabs for the dashboard and calendar.
+  * Justification: The change in UI helped us implement other features like Calendar and ensured that you have the patient list at all times. This allows a better user work flow, seamlessly integrating Patients with Appointments.
   * Highlights: The application became more intuitive and suited for our clinical data management app.
-  * Credits: The idea, and the base code to organise the ui in tabs came from [KeepToo Youtube Channel](https://www.youtube.com/watch?v=ZVtys3GgkMo)
+  * Credits: The idea to organise the ui in tabs came from [KeepToo Youtube Channel](https://www.youtube.com/watch?v=ZVtys3GgkMo)
   
   Before:
 
@@ -62,6 +62,6 @@ Given below are my contributions to the project.
     * Updated and added class and sequence diagrams for Model and UI components: [\#101](https://github.com/AY2021S1-CS2103T-W11-1/tp/pull/102)
 
 * **Community**:
-  * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/jimvae/ped/issues/1)
+  * Reported bugs and suggestions for other during [PE-Dry Run](https://github.com/jimvae/ped/issues/1)
   * Helped my teammates with major logic bugs like scheduling appointments
   * Performed timely checks of the current project for any logic or documentation errors

@@ -150,8 +150,10 @@ public class AppointmentEditCommand extends Command {
         Boolean isCompleted = appointmentToEdit.isCompleted();
 
         // Check if appointment should still be considered missed
-        Boolean isMissed = appointmentToEdit.isMissed();
-        if (isMissed) {
+        Boolean isMissed;
+        if (isCompleted) {
+            isMissed = false;
+        } else {
             isMissed = getUpdatedMissedStatus(endTime);
         }
 

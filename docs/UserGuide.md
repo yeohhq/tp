@@ -39,7 +39,7 @@ Figure 1: <i>The user interface of Archangel.</i>
 These are icons that are used throughout this User Guide for better readability:
 - :bulb: — A useful tip for the users when using Archangel.
 - :information_source: — A point for users to take note of.
-- `code` — Indicates commands that will be type into the <i>command box</i> (see below)
+- `code` — Indicates commands that will be typed into the <i>command box</i> 
 
 ### 1.3 Quick start
 
@@ -335,7 +335,7 @@ Examples:
 Figure 2.3.1.1: <i>Before `a-schedule pt/2 start/2020-12-14 08:00 end/2020-12-14 10:00 d/Review Appointment`.</i>
 <img src="images/UserGuide/a-schedule_2.png" width="95%" /> <br />
 Figure 2.3.1.2: <i>After `a-schedule pt/2 start/2020-12-14 08:00 end/2020-12-14 10:00 d/Review Appointment` <br />
-(New appointment added to list!).</i>
+(New scheduled appointment has been added to the list!).</i>
 </div>
 
 #### 2.3.2 Deleting an appointment : `a-delete`
@@ -360,7 +360,7 @@ Examples:
 Figure 2.3.2.1: <i>Before `a-delete 1`.</i>
 <img src="images/UserGuide/a-delete_2.png" width="95%" /> <br />
 Figure 2.3.2.2: <i>After `a-delete 1'<br />
-(Appointment is gone!).</i>
+(Appointment previously at index 1 is now gone!).</i>
 </div>
 
 #### 2.3.3 Editing an appointment : `a-edit`
@@ -381,7 +381,7 @@ Examples:
 * When editing tags, the existing tags of the appointment will be removed i.e adding of tags is not cumulative.<br />
 * You can remove all the appointment’s tags by typing `t/` without specifying any tags after it.<br />
 * Tags must be alphanumeric and individual tags cannot be separated by spaces (i.e. `HighPriority` is a valid input, while `High Priority` is an invalid input).<br />
-* Editing a missed appointment to an upcoming date and time can remove its missed status.<br />
+* Editing an appointment's time may cause it's missed status to change as well.<br />
 </div>
 
 <div style="text-align: center; padding-bottom: 2em">
@@ -389,7 +389,7 @@ Examples:
 Figure 2.3.3.1: <i>Before `a-edit 1 start/2020-11-15 12:00 end/2020-11-15 14:00 pt/2`.</i>
 <img src="images/UserGuide/a-edit_2.png" width="95%" /> <br />
 Figure 2.3.3.2: <i>After `a-edit 1 start/2020-11-15 12:00 end/2020-11-15 14:00 pt/2`<br />
-(Appointment details changed!).</i>
+(Appointment time and patient has been updated!).</i>
 </div>
 
 #### 2.3.4 Setting appointment as completed : `a-complete`
@@ -413,15 +413,15 @@ Examples:
 Figure 2.3.4.1: <i>Before `a-complete 1`.</i>
 <img src="images/UserGuide/a-complete_2.png" width="95%" /> <br />
 Figure 2.3.4.2: <i>After `a-complete 1`<br />
-(Appointment 1 is now labelled as Done).</i>
+(Appointment at index 1 is now labelled as Done).</i>
 </div>
 
 #### 2.3.5 Setting appointment as missed :
 
 Did your patient not show up? Archangel helps you keep track of missed appointments!
 
-Appointments are automatically marked as missed if they satisfy both criteria:
-* Appointment end time has been over for at least 30 minutes.
+Appointments are automatically set as missed if they satisfy both criteria:
+* Appointment end time has passed by at least 30 minutes.
 * Appointment has not been set as completed.
 
 #### 2.3.6 Listing all past and present appointments : `a-listall`
@@ -435,6 +435,7 @@ Format: `a-listall`
 Figure 2.3.6.1: <i>Before `a-listall`.</i>
 <img src="images/UserGuide/a-listall_2.png" width="95%" /> <br />
 Figure 2.3.6.2: <i>After `a-listall`.</i>
+(Appointment list now displays all missed, completed and upcoming appointments!).</i>
 </div>
 
 #### 2.3.7 Filtering appointment list
@@ -452,11 +453,12 @@ Format: `a-list`
 Figure 2.3.7.1.1: <i>Before `a-list`.</i>
 <img src="images/UserGuide/a-list_2.png" width="95%" /> <br />
 Figure 2.4.1.2: <i>After `a-list`.</i>
+(Appointment list now displays only upcoming appointments!).</i>
 </div>
 
-##### 2.3.7.1.2 Finding appointments by patient name : `a-find`
+##### 2.3.7.2 Finding appointments by patient name : `a-find`
 
-Finds your appointments which the patient's name contains any of the given keywords.
+Archangel finds your appointments with patients whose name contains the given keywords.
 
 Format: `a-find KEYWORD [MORE_KEYWORDS]`
 
@@ -479,13 +481,14 @@ Examples:
 Figure 2.3.7.2.1: <i>Before `a-find Charlotte`.</i>
 <img src="images/UserGuide/a-find_2.png" width="95%" /> <br />
 Figure 2.3.7.2.2: <i>After `a-find Charlotte`.</i>
+(Appointment list now displays only appointments with patient names that match with "Charlotte"!).</i>
 </div>
 
 ##### 2.3.7.3 Finding appointments by tags: `a-tag`
 
-Finds your appointments which are tagged by any of the given keywords.
+Archangel finds your appointments which are tagged by any of the given keywords.
 
-Format: `a-find KEYWORD [MORE_KEYWORDS]`
+Format: `a-tag KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 * `a-tag LowPriority` returns Appointments tagged `LowPriority`
@@ -506,6 +509,7 @@ Examples:
 Figure 2.3.7.3.1: <i>Before `a-tag`.</i>
 <img src="images/UserGuide/a-tag_2.png" width="95%" /> <br />
 Figure 2.3.7.3.2: <i>After `a-tag`.</i>
+(Appointment list now displays only appointments with the tag "LowPriority"!).</i>
 </div>
 
 ##### 2.3.7.4 Finding an appointment by current date: `a-today`
@@ -522,6 +526,7 @@ Examples:
 Figure 2.3.7.4.1: <i>Before `a-today`.</i>
 <img src="images/UserGuide/a-today_2.png" width="95%" /> <br />
 Figure 2.3.7.4.2: <i>After `a-today`.</i>
+(Appointment list now displays only upcoming appointments that are today!).</i>
 </div>
 
 ##### 2.3.7.5 Finding an appointment by current week: `a-upcoming`
@@ -538,6 +543,7 @@ Examples:
 Figure 2.3.7.5.1: <i>Before `a-upcoming`.</i>
 <img src="images/UserGuide/a-upcoming.png" width="95%" /> <br />
 Figure 2.3.7.5.2: <i>After `a-upcoming`.</i>
+(Appointment list now displays only upcoming appointments that are this week!).</i>
 </div>
 
 ##### 2.3.7.6 Listing appointments that are completed: `a-completed`
@@ -554,6 +560,7 @@ Examples:
 Figure 2.3.7.6.1: <i>Before `a-completed`.</i>
 <img src="images/UserGuide/a-completed.png" width="95%" /> <br />
 Figure 2.3.7.6.2: <i>After `a-completed`.</i>
+(Appointment list now displays only completed appointments!).</i>
 </div>
 
 ##### 2.3.7.7 Listing appointments that are missed: `a-missed`
@@ -565,17 +572,12 @@ Format: `a-missed`
 Examples:
 * `a-missed` returns all missed Appointments.
 
-<div markdown="span" class="alert alert-primary">
-:information_source: **Things to Note:**  <br />
-* Only appointments with end time more than 30 minutes from current time will be reflected as 'Missed'.  <br />
-* This is to allow for patients who are late to have a short buffer should they still make it for the appointment.
-</div>
-
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/UserGuide/unfilteredAppointmentViewDefault.png" width="95%" /> <br />
 Figure 2.3.7.7.2: <i>Before `a-missed`.</i>
 <img src="images/UserGuide/a-missed.png" width="95%" /> <br />
 Figure 2.3.7.7.2: <i>After `a-missed`.</i>
+(Appointment list now displays only missed appointments!).</i>
 </div>
 
 ### 2.4 Supporting Commands

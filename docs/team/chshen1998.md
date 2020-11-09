@@ -33,11 +33,11 @@ Given below are my contributions to the project.
 * **Project management**:
   * In charge of implementing AppointmentList, and various related filters and features.
   * In charge of implementing appointment test utilities and code coverage of various appointment features.
-  * Ensure user readability for appointment related sections in UG. 
+  * In charge of automating the interactivity between Appointment time, isMissed and isCompleted parameters.
+  * Ensure user readability for appointment related sections in UG.
 
 * **Enhancements to existing features**:
-  * Wrote tests and test utilities for Appointment related commands. (Pull request [\#55](https://github.com/AY2021S1-CS2103T-W11-1/tp/pull/55)
-  * Updated the default view of Archangel to not include completed/missed commands.
+  * Wrote tests and test utilities for Appointment related commands. (Pull request [\#55](https://github.com/AY2021S1-CS2103T-W11-1/tp/pull/55))
 
 * **Documentation**:
   * User Guide:
@@ -45,6 +45,7 @@ Given below are my contributions to the project.
     * Improve UG to be more user centric. (Pull request [\#221](https://github.com/AY2021S1-CS2103T-W11-1/tp/pull/221))
   * Developer Guide:
     * Added implementation details for TimerThread. (Pull request [\#203](https://github.com/AY2021S1-CS2103T-W11-1/tp/pull/203))
+    * Added implementation details for `a-completed`, `a-missed`, `a-list`, `a-listall` and `a-complete`. (Pull Request [\#85](https://github.com/AY2021S1-CS2103T-W11-1/tp/pull/85))
 
 * **Community**:
   * Reported bugs and suggestions for other teams. (Example [1](https://github.com/chshen1998/ped/issues/5))
