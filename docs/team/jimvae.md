@@ -34,13 +34,13 @@ Given below are my contributions to the project.
   * Highlights: The application became more intuitive and suited for our clinical data management app.
   * Credits: The idea to organise the ui in tabs came from [KeepToo Youtube Channel](https://www.youtube.com/watch?v=ZVtys3GgkMo)
   
-  Before:
+    Before:
 
-  ![AddressBook3](https://raw.githubusercontent.com/jimvae/tp/branch-user-guide-v1.4/docs/images/Addressbook3.png)
+    ![AddressBook3](https://raw.githubusercontent.com/jimvae/tp/branch-user-guide-v1.4/docs/images/Addressbook3.png)
   
-  After:
+    After:
   
-  ![Archangel](https://raw.githubusercontent.com/jimvae/tp/branch-user-guide-v1.4/docs/images/Archangel.png)
+    ![Archangel](https://raw.githubusercontent.com/jimvae/tp/branch-user-guide-v1.4/docs/images/Archangel.png)
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=jimvae&sort=groupTitle&sortWithin=title&since=2020-08-14&until=2020-11-09&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=zoom&zA=jimvae&zR=AY2021S1-CS2103T-W11-1%2Ftp%5Bmaster%5D&zACS=208.38888888888889&zS=2020-08-14&zFS=jimvae&zU=2020-11-09&zMG=false&zFTF=commit&zFGS=groupByRepos&zFR=false)
 
