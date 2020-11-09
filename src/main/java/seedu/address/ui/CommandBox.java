@@ -116,14 +116,6 @@ public class CommandBox extends UiPart<Region> {
                 final String result = searchResult.get(i);
                 Label entryLabel = new Label(result);
                 CustomMenuItem item = new CustomMenuItem(entryLabel, true);
-                //            item.setOnAction(new EventHandler<ActionEvent>()
-                //            {
-                //                @Override
-                //                public void handle(ActionEvent actionEvent) {
-                //                    commandTextField.setText(result);
-                //                    suggestionPopup.hide();
-                //                }
-                //            });
                 menuItems.add(item);
             }
         }
