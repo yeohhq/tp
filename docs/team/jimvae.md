@@ -25,22 +25,26 @@ Given below are my contributions to the project.
   * What it does: Filter appointments to appointments based on the keywords provided.
   * Justification: These features enable better appointment organisation, which is one of the focus of Archangel. The ability to view your Appointments by tag or patient allows better user experience.
   * Credits: *Original CS2103T AddressBook implementation of `PatientFindCommand` was referenced for the implementation of `AppointmentTagCommand` and `AppointmentFindPatientCommand`.*
-  
+
+ <div style="page-break-after: always;"></div>
+
 * **New Feature**: Overall UI and Tabs
   * What it does: Cleaner and more user-friendly UI, which separated Archangel from the original AddressBook. I also replaced all the wrapper to anchorpane which is a more responsive design and implemented tabs for the dashboard and calendar.
   * Justification: The change in UI helped us implement other features like Calendar and ensured that you have the patient list at all times. This allows a better user work flow, seamlessly integrating Patients with Appointments.
   * Highlights: The application became more intuitive and suited for our clinical data management app.
   * Credits: The idea to organise the ui in tabs came from [KeepToo Youtube Channel](https://www.youtube.com/watch?v=ZVtys3GgkMo)
   
-  Before:
+    Before:
 
-  ![AddressBook3](https://raw.githubusercontent.com/jimvae/tp/branch-user-guide-v1.4/docs/images/Addressbook3.png)
+    ![AddressBook3](https://raw.githubusercontent.com/jimvae/tp/branch-user-guide-v1.4/docs/images/Addressbook3.png)
+    
+    <div style="page-break-after: always;"></div>
+ 
+    After:
   
-  After:
-  
-  ![Archangel](https://raw.githubusercontent.com/jimvae/tp/branch-user-guide-v1.4/docs/images/Archangel.png)
+    ![Archangel](https://raw.githubusercontent.com/jimvae/tp/branch-user-guide-v1.4/docs/images/Archangel.png)
 
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=jimvae&sort=groupTitle&sortWithin=title&since=2020-08-14&until=2020-11-09&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=zoom&zA=jimvae&zR=AY2021S1-CS2103T-W11-1%2Ftp%5Bmaster%5D&zACS=208.38888888888889&zS=2020-08-14&zFS=jimvae&zU=2020-11-09&zMG=false&zFTF=commit&zFGS=groupByRepos&zFR=false)
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=jimvae)
 
 * **Project management**:
   * In charge of Filters, Testing and UI
@@ -60,6 +64,9 @@ Given below are my contributions to the project.
   * Developer Guide:
     * Added implementation details of all the filter commands: [\#83](https://github.com/AY2021S1-CS2103T-W11-1/tp/pull/83), [\#101](https://github.com/AY2021S1-CS2103T-W11-1/tp/pull/102)
     * Updated and added class and sequence diagrams for Model and UI components: [\#101](https://github.com/AY2021S1-CS2103T-W11-1/tp/pull/102)
+
+
+<div style="page-break-after: always;"></div>
 
 * **Community**:
   * Reported bugs and suggestions for other during [PE-Dry Run](https://github.com/jimvae/ped/issues/1)
