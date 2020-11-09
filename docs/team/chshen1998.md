@@ -24,6 +24,8 @@ Given below are my contributions to the project.
   * What it does: Allows the user to view the appointments stored in AddressBook based on their completed and missed status.
   * Justification: These features enable better appointment organisation, which is one of the focuses of Archangel.
 
+<div style="page-break-after: always;"></div>
+
 * **New Feature**: Added the ability for Archangel to automatically check for newly missed appointments - TimerThread.
   * What it does: At intervals of 1 minute, scans through the appointment list and labels past uncompleted appointments as missed.
   * Justification: This feature improves the user experience significantly because it removes the need for users to manually find and label missed appointments.
