@@ -26,6 +26,7 @@ Given below are my contributions to the project.
     * Justification: As service in the medical industry is very personalised, we allow for storing of more exclusive information such as allergies/preferences under the Remark section.
     * Highlights: These feature makes Archangel more flexible of an assistant to the medical professionals as it can store non-restrictive data.
     * Credits: *Original CS2103T tutorial for adding remarks into AddressBook was heavily referenced for the implementation of Remark command.*
+<div style="page-break-after: always;"></div>
 
 * **New Feature(s)**: Added basic functionalities for Appointment - schedule, delete and edit appointment commands. (worked together with hui qing)
   * What it does: allows users to schedule, delete and edit Appointments.
