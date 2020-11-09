@@ -488,7 +488,7 @@ Figure 2.3.7.2.2: <i>After `a-find Charlotte`.</i>
 
 Archangel finds your appointments which are tagged by any of the given keywords.
 
-Format: `a-find KEYWORD [MORE_KEYWORDS]`
+Format: `a-tag KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 * `a-tag LowPriority` returns Appointments tagged `LowPriority`
