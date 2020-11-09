@@ -40,7 +40,7 @@ Given below are my contributions to the project.
   
   ![Archangel](https://raw.githubusercontent.com/jimvae/tp/branch-user-guide-v1.4/docs/images/Archangel.png)
 
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=jimvae)
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=jimvae&sort=groupTitle&sortWithin=title&since=2020-08-14&until=2020-11-09&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=zoom&zA=jimvae&zR=AY2021S1-CS2103T-W11-1%2Ftp%5Bmaster%5D&zACS=208.38888888888889&zS=2020-08-14&zFS=jimvae&zU=2020-11-09&zMG=false&zFTF=commit&zFGS=groupByRepos&zFR=false)
 
 * **Project management**:
   * In charge of Filters, Testing and UI
